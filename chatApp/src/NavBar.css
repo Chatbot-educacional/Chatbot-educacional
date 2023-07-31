@@ -1,0 +1,40 @@
+/* NavBar.css */
+
+.NavBar {
+    background-color: rgb(197, 50, 219);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    top: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    justify-content: space-between; /* Changed to space-between to separate the search bar and icons */
+    padding: 0 10px; /* Added some padding to the left and right to give space between the edges */
+  }
+  
+
+
+  .Icons {
+    display: flex;
+    font-size: 15px;
+    align-items: center; /* Align the icons vertically in the middle */
+  }
+  
+  .bars {
+    margin-right: 10px; /* Adjust the margin to move the FaBars icon to the left */
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+  }
+  
+
+  .itens-nav{
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
