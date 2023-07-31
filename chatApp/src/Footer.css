@@ -1,19 +1,13 @@
-/* styles.css */
 .footer {
-    
-   
+    position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    font-size: 10px;
-    padding: 10px 0;
+    height: 30px; /* Set the desired height of the footer */
+    line-height: 10px; /* Match the line-height with the height to center the text vertically */
+    font-size: 8px;
+    padding: 0 20px; /* Add padding on the left and right to create spacing for the text */
     text-align: center;
-    margin-top: auto;
-    margin-bottom: -80px;
-    background-color:#808080;
-   
-    width: auto;
-    margin-left: -48.8px;
-    margin-right: -48.8px;
-  
-  }
-  
+    background-color: #808080;
+    z-index: 9999;
+}
