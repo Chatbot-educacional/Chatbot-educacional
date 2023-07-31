@@ -62,6 +62,25 @@ function App() {
     } else {
       setShowButtons(true); // Show buttons 2 and 3 for other messages
     }
+
+
+       // Conditionally hide buttons 2 and 3 after clicking button 1
+       if (message === "Opção 2") {
+     
+        setTimeout(() => {
+          const systemMessage = {
+            message: "Escolhido Opção 2, aqui os botoes são mantidos",
+            sentTime: "just now",
+            sender: "ChatGPT",
+          };
+  
+          const updatedMessages = [...newMessages, systemMessage];
+          setMessages(updatedMessages);
+       
+        }, 1000);
+      } else {
+        setShowButtons(true); // Show buttons 2 and 3 for other messages
+      }
   };
 
   return (
