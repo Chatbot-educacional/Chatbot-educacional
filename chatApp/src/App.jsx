@@ -14,6 +14,8 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 import { FaBars } from 'react-icons/fa';
 import Bar from './Bar';
+import Footer from './Footer';
+
 
 function App() {
   const [showButtons, setShowButtons] = useState(true);
@@ -115,7 +117,12 @@ function App() {
           </div>
         </MainContainer>
       </div>
+              <div className='footer'>
+              <Footer />
+              </div>
+            
     </div>
+   
   );
 }
 
