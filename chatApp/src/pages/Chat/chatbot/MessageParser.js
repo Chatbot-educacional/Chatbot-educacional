@@ -15,6 +15,10 @@ class MessageParser {
         if (lowerCaseMessage.includes("javascript") || lowerCaseMessage.includes("js")) {
             this.actionProvider.handleJavascriptQuiz()
         }
+
+        if (lowerCaseMessage.includes("variavel") || lowerCaseMessage.includes("variable")) {
+            this.actionProvider.handleVariavelQuiz()
+        }
     }
   }
   

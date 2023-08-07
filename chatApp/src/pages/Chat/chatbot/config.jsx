@@ -17,7 +17,27 @@ const config = {
       widgetFunc: (props) => <Options {...props} />,
     },
     {
-      widgetName: "javascriptQuiz",
+      widgetName: "variaveis",
+      widgetFunc: (props) => <Quiz {...props} />,
+      props: {
+        questions: [
+          {
+            question: "O que é uma variável?",
+            answer:
+              "Variável é uma posição de memória que armazena temporariamente um valor.",
+            id: 1,
+          },
+          {
+            question: "Explain prototypal inheritance",
+            answer:
+              "Prototypal inheritance is a link between an object and an object store that holds shared properties. If a property is not found on the host object, javascript will check the prototype object.",
+            id: 2,
+          },
+        ],
+      },
+    },
+    {
+      widgetName: "For",
       widgetFunc: (props) => <Quiz {...props} />,
       props: {
         questions: [

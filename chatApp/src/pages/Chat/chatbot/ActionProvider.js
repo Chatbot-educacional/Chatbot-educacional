@@ -13,12 +13,36 @@ class ActionProvider {
       const message = this.createChatBotMessage(
         "Fantastic. Here is your quiz. Good luck!",
         {
-          widget: "javascriptQuiz",
+          widget: "variaveis",
         }
       );
   
       this.addMessageToState(message);
     };
+
+    handleVariableQuiz = () => {
+      const message = this.createChatBotMessage(
+        "Fantastic. Here is your variable quiz. Good luck!",
+        {
+          widget: "variablequiz",
+        }
+      );
+  
+      this.addMessageToState(message);
+    };
+
+    handleFor = () => {
+      const message = this.createChatBotMessage(
+        "Fantastic. Here is your  for quiz. Good luck!",
+        {
+          widget: "for",
+        }
+      );
+  
+      this.addMessageToState(message);
+    };
+
+   
   
     addMessageToState = (message) => {
       this.setState((prevState) => ({
