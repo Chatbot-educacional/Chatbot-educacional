@@ -5,38 +5,38 @@ import Options from "../Options/Options";
 import Quiz from "../Quiz/Quiz";
 
 const config = {
-    botName: "LearningBot",
+  botName: "LearningBot",
   initialMessages: [
-    createChatBotMessage(`Olá, o que gostaria de aprender hoje`,{
-        widget: "Options",
+    createChatBotMessage(`Hello. What do you want to learn`, {
+      widget: "options",
     }),
-    ],
+  ],
   widgets: [
     {
-        widgetName: "Options",
-        widgetFunc: (props) => <Options {...props}/>,
+      widgetName: "options",
+      widgetFunc: (props) => <Options {...props} />,
     },
     {
-      widgetName: "JavascriptQuiz",
+      widgetName: "javascriptQuiz",
       widgetFunc: (props) => <Quiz {...props} />,
       props: {
         questions: [
           {
-            question : "O que é Javascript?",
-            answer : "Linguagem de programação client-side",
-            id : 1,
-
+            question: "What is closure?",
+            answer:
+              "Closure is a way for a function to retain access to it's enclosing function scope after the execution of that function is finished.",
+            id: 1,
           },
           {
-            question : "O que é React?",
-            answer : "Biblioteca Javascript",
-            id : 2,
+            question: "Explain prototypal inheritance",
+            answer:
+              "Prototypal inheritance is a link between an object and an object store that holds shared properties. If a property is not found on the host object, javascript will check the prototype object.",
+            id: 2,
           },
         ],
       },
     },
   ],
+};
 
-}
-
-export default config
+export default config;

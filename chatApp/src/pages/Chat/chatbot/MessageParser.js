@@ -12,7 +12,9 @@ class MessageParser {
             this.actionProvider.greet()
         }
 
-
+        if (lowerCaseMessage.includes("javascript") || lowerCaseMessage.includes("js")) {
+            this.actionProvider.handleJavascriptQuiz()
+        }
     }
   }
   

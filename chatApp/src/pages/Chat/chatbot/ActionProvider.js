@@ -15,7 +15,6 @@ class ActionProvider {
         {
           widget: "javascriptQuiz",
         }
-        
       );
   
       this.addMessageToState(message);
