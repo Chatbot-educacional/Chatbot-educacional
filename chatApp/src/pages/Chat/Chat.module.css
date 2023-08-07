@@ -1,22 +1,3 @@
-/* Estilos para a mensagem enviada pelo usuário (outgoing) */
-.message.outgoing .body {
-    background-color: #007bff; /* Cor de fundo da mensagem de saída (user) */
-    color: white; /* Cor do texto da mensagem de saída (user) */
-    align-self: flex-start;
-}
-  
-  /* Estilos para a mensagem recebida pelo bot (incoming) */
-.message.incoming .body {
-    background-color: #17a2b8; /* Cor de fundo da mensagem de entrada (bot) */
-    color: white; /* Cor do texto da mensagem de entrada (bot) */
-    align-self: flex-end;
-}
-  
-.btnEnviar{
-    justify-content: space-between;
-    align-items: center; 
-}
-
-.chatContainer {
-    margin: 0 auto;
+.react-chatbot-kit-chat-bot-message-container {
+    background-color: black;
 }
