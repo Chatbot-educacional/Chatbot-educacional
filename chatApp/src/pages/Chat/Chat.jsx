@@ -1,17 +1,16 @@
 // import { useState } from 'react'
-import Chatbot, { ChatBot} from "react-chatbot-kit"
+import Chatbot from "react-chatbot-kit"
 import config from "./chatbot/config";
 import MessageParser from "./chatbot/MessageParser";
 import ActionProvider from "./chatbot/ActionProvider";
-import 'react-chatbot-kit/build/main.css';
-import  styles from "./Chat.module.css";
+import './main.css';
+// import 'react-chatbot-kit/build/main.css';
 
 function Chat(){
     return(
-        <div className="Chat" style={styles}>
+        <div className="div-container-chat">
           <Chatbot config={config} messageParser={MessageParser} actionProvider={ActionProvider}/>
         </div>
-
     );
 }
 
