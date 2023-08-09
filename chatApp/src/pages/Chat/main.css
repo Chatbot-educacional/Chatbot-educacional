@@ -1,5 +1,5 @@
 .div-container-chat {
-  background-color: rgba(128, 128, 128, 0.123);
+  background-color: rgba(128, 128, 128, 0.13);
 }
 
 .react-chatbot-kit-user-chat-message-container {
@@ -79,13 +79,13 @@
   
   .react-chatbot-kit-chat-bot-message {
     background-color: #2898ec;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #fff;
     font-weight: medium;
     position: relative;
-    width: 184.5px;
+    width: 100%;
     margin-left: auto;
     text-align: left;
   }
@@ -145,7 +145,7 @@
   }
   
   .react-chatbot-kit-chat-inner-container {
-    height: 90vh;
+    height: 89vh;
     background-color: #fff;
     border-radius: 3px;
     border-radius: 5px;
@@ -158,7 +158,9 @@
     font-family: Arial;
     display: flex;
     align-items: center;
-    font-size: 0.85rem;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
     color: #514f4f;
     padding: 12.5px;
     font-weight: bold;
@@ -168,6 +170,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    max-width: 800px;
     display: flex;
   }
   
@@ -178,26 +181,33 @@
   }
   
   .react-chatbot-kit-chat-input {
-    width: 100%;
+    width: 700px;
+    margin-left: -200px;
     padding: 12.5px;
     border: none;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     border-top: 1px solid #d8d8d8;
     border-bottom-left-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  .react-chatbot-kit-chat-input:hover {
+    border: 1px solid rgb(3, 3, 117);;
   }
   
   .react-chatbot-kit-chat-input-form {
-    width: 100%;
+    width: 700px;
     display: flex;
   }
   
   .react-chatbot-kit-chat-input::placeholder {
-    color: #585858;
+    color: #414040;
   }
   
   .react-chatbot-kit-chat-btn-send {
     background-color: #2898ec;
-    width: 100px;
+    margin-right: -65%;
+    width: 110px;
     border: none;
     color: #fff;
     border-bottom-right-radius: 5px;
@@ -205,7 +215,7 @@
   
   .react-chatbot-kit-chat-btn-send-icon {
     fill: #fff;
-    width: 15px;
+    width: 25px;
     margin: 0 auto;
   }
   
