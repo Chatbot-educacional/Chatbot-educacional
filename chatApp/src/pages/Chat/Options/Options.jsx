@@ -9,10 +9,10 @@ const Options = (props) => {
       handler: props.actionProvider.handleJavascriptQuiz,
       id: 1,
     },
-    { text: "3",
+    { text: "2",
      handler: props.actionProvider.handleCondicionaisQuiz,
       id: 2 },
-    { text: "2",
+    { text: "3",
      handler: props.actionProvider.handleFor,
       id: 3 },
   ];

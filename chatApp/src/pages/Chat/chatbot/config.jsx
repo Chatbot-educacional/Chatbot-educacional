@@ -5,7 +5,7 @@ import Options from "../Options/Options";
 import Quiz from "../Quiz/Quiz";
 
 const config = {
-  botName: "LearningBot",
+  botName: "Bot de Educação",
   initialMessages: [
     
     createChatBotMessage(`Olá, eu sou Edubot, irie lhe auxiliar aprendendo conceitos de programação.Digite a opção que deseja aprender.Opção 1: Variaveis 
@@ -54,7 +54,7 @@ const config = {
       },
     },
     {
-      widgetName: "2", // for
+      widgetName: "3", // for
       widgetFunc: (props) => <Quiz {...props} />,
       props: {
         questions: [
@@ -91,7 +91,7 @@ const config = {
       widgetFunc: (props) => <Options {...props} />,
     },
     {
-      widgetName: "3", // condicional
+      widgetName: "2", // condicional
       widgetFunc: (props) => <Quiz {...props} />,
       props: {
         questions: [
