@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// CSS
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -7,11 +7,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Chat from './pages/Chat/Chat';
+import FooterConditional from './components/FooterConditional';
 
 function App() {
   
@@ -29,7 +29,7 @@ function App() {
             <Route path="/chat" element={<Chat />} />
           </Routes>
         </div>
-        <Footer />
+        <FooterConditional />
       </Router>
     </div>
   );

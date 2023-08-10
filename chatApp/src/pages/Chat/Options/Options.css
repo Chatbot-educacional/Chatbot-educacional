@@ -10,4 +10,10 @@
     border-color: rgb(3, 3, 117);
     background: transparent;
     text-align: center;
+    transition: .4s;
+    cursor: pointer;
+  }
+
+  .option-button:hover {
+    color: #bbb;
   }
