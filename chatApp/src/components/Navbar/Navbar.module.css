@@ -1,0 +1,59 @@
+.navbar {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, .15) 0px -2px 10px 0px;
+    justify-content: space-between;
+    align-items: center;    
+    padding: .5em 2em;
+    margin-bottom: 0;
+}
+
+.brand {
+    font-size: 1.5em;
+    margin-left: 80px;
+}
+
+.brand span {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.links_list {
+    display: flex;
+    list-style: none;
+}
+
+.links_list {
+    margin-right: 1em;
+}
+
+.links_list li a {
+    padding: .4em .6em;
+    border-radius: 5px;
+}
+
+.links_list_right {
+    display: flex;
+    list-style: none;
+    margin-right: 3em;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.links_list_right li a {
+    padding: .8em .8em;
+    margin: 5px;
+    border-radius: 15px;
+    background: linear-gradient(to right, #F0F0F0, #E0E0E0);
+    color: #333; /* Defina a cor do texto como branco para contrastar com o gradiente */
+    text-decoration: none; /* Remova a sublinhado do link */
+    transition: background 0.3s; /* Adicione uma transição suave para a mudança de cor de fundo */
+}
+
+.links_list_right li a:hover {
+    background: linear-gradient(to right, #E0E0E0, #D0D0D0);
+}
+
+.active {
+    background-color: black;
+    color: white;
+}
