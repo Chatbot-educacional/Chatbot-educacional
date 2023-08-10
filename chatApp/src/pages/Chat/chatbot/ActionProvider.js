@@ -13,7 +13,7 @@ class ActionProvider {
       const message = this.createChatBotMessage(
         "Fantastic. Here is your quiz. Good luck!",
         {
-          widget: "variaveis",
+          widget: "1", // widget de variaveis
         }
       );
   
@@ -24,7 +24,7 @@ class ActionProvider {
       const message = this.createChatBotMessage(
         "Fantastic. Here is your conditionals  quiz. Good luck!",
         {
-          widget: "Condicionais",
+          widget: "3", // widget de condicionais
         }
       );
   
@@ -35,7 +35,7 @@ class ActionProvider {
       const message = this.createChatBotMessage(
         "Fantastic. Here is your  for quiz. Good luck!",
         {
-          widget: "For",
+          widget: "2", // widget de for
         }
       );
   

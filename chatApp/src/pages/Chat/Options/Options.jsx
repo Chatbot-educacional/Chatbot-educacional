@@ -5,14 +5,14 @@ import "./Options.css";
 const Options = (props) => {
   const options = [
     {
-      text: "variaveis",
+      text: "1",
       handler: props.actionProvider.handleJavascriptQuiz,
       id: 1,
     },
-    { text: "Condicionais",
+    { text: "3",
      handler: props.actionProvider.handleCondicionaisQuiz,
       id: 2 },
-    { text: "For",
+    { text: "2",
      handler: props.actionProvider.handleFor,
       id: 3 },
   ];
