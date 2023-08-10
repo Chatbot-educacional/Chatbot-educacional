@@ -25,7 +25,7 @@ const FlashCard = ({ question, answer, incrementIndex }) => {
         {/* talvez esse botão fique melhor do que o click na tela */}
       {showAnswer && (
         <button onClick={incrementIndex} className="flashcard-button">
-          Next question
+          Próxima Pergunta
         </button>
       )}
     </>

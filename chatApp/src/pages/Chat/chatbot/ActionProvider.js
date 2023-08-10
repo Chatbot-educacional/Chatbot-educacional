@@ -10,36 +10,36 @@ class ActionProvider {
     };
   
     handleJavascriptQuiz = () => {
-      const message = this.createChatBotMessage(
+      const mensagem = this.createChatBotMessage(
         "Fantastic. Here is your quiz. Good luck!",
         {
           widget: "1", // widget de variaveis
         }
       );
   
-      this.addMessageToState(message);
+      this.addMessageToState(mensagem);
     };
 
     handleCondicionaisQuiz = () => {
-      const message = this.createChatBotMessage(
+      const mensagem = this.createChatBotMessage(
         "Fantastic. Here is your conditionals  quiz. Good luck!",
         {
           widget: "3", // widget de condicionais
         }
       );
   
-      this.addMessageToState(message);
+      this.addMessageToState(mensagem);
     };
 
     handleFor = () => {
-      const message = this.createChatBotMessage(
+      const mensagem = this.createChatBotMessage(
         "Fantastic. Here is your  for quiz. Good luck!",
         {
           widget: "2", // widget de for
         }
       );
   
-      this.addMessageToState(message);
+      this.addMessageToState(mensagem);
     };
 
    
