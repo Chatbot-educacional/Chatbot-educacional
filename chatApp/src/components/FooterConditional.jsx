@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 
 function FooterConditional() {
   const location = useLocation();
