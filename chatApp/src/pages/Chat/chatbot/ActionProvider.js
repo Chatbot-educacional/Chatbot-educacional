@@ -20,11 +20,11 @@ class ActionProvider {
       this.addMessageToState(message);
     };
 
-    handleVariableQuiz = () => {
+    handleCondicionaisQuiz = () => {
       const message = this.createChatBotMessage(
-        "Fantastic. Here is your variable quiz. Good luck!",
+        "Fantastic. Here is your conditionals  quiz. Good luck!",
         {
-          widget: "variablequiz",
+          widget: "Condicionais",
         }
       );
   
@@ -35,7 +35,7 @@ class ActionProvider {
       const message = this.createChatBotMessage(
         "Fantastic. Here is your  for quiz. Good luck!",
         {
-          widget: "for",
+          widget: "For",
         }
       );
   
