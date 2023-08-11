@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './Contact.module.css';
 import Button from '../../components/form/Button';
 import contactImage from '../../assets/contact_image3.svg';
+import ArrowDown from '../../components/scroll/ArrowDown';
 
 // import Input from '../../components/form/Input';
 
@@ -69,7 +70,7 @@ const Contact = () => {
                 <img src={contactImage} alt="Um celular e duas pessoas, demonstrando o ato de comunicação um com o outro."></img>
           </div>
       </div>
-      <div className={styles.arrow}></div>
+      <ArrowDown></ArrowDown>
         <div className={styles.contactInfo}>
           <h1>DADOS DE CONTATO</h1>
           <p>
