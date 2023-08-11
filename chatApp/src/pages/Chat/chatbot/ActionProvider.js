@@ -65,13 +65,106 @@ class ActionProvider {
         console.log("O valor de a é " + a);
         `,
         {
+          widget: "5", // widget de for
+
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
+    handleIndentificaErroVariavel = () => {
+      const mensagem = this.createChatBotMessage(
+        `Vamos identificar o erro
+          O Erro acontece porque a variável a não foi declarada, então não é possível acessar o seu valor.`,
+        {
+          // widget: "4", // widget de for
+          // adicionar botão de voltar aqui ou para mostrar o exemplo correto
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    }
+
+
+    handleExemploIncorretoFor = () => {
+      const mensagem = this.createChatBotMessage(
+        `Considerando que queremos mostrar os números de 1 a 10
+        for (var i = 0; i > 10; i++) {
+          console.log(i);
+        } `,
+        {
+          widget: "4", // widget de for
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
+    handleExemploCorretoFor = () => {
+      const mensagem = this.createChatBotMessage(
+        `Considerando que queremos mostrar os números de 1 a 10
+        for (var i = 0; i < 10; i++) {
+          console.log(i);
+        } `,
+        {
           widget: "1", // widget de for
         }
       );
   
       this.addMessageToState(mensagem);
     };
-   
+    
+    handleIdentificarErroFor = () => { 
+      const mensagem = this.createChatBotMessage(
+        `Vamos identificar o erro
+        O erro acontece porque a condição está errada, o correto seria x == 0,
+         pois queremos que o código seja executado caso x seja igual a 0.`,
+        {
+          // widget: "4", // widget de for
+          // adicionar botão de voltar aqui
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    }
+
+    handleExemploCorretoConditional = () => {
+      const mensagem = this.createChatBotMessage(
+        `Vamos ver um exemplo correto de condicionais.
+        x = 0 
+        if(x == 0){
+          console.log('x é igual a 0');
+        } else {
+          console.log('x não é igual a 0');
+        }
+        `,
+        {
+          widget: "6", // widget de for
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
+    handleExemploIncorretoConditional = () => {
+      const mensagem = this.createChatBotMessage(
+        `Vamos ver um exemplo incorreto de condicionais.
+        x = 0
+         if(x > 0) {
+          console.log('x é igual a 0');
+        }
+        `,
+        {
+          widget: "6", // widget de for
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
+
+ 
   
     addMessageToState = (message) => {
       this.setState((prevState) => ({

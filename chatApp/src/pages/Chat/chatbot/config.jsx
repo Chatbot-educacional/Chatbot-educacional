@@ -4,7 +4,10 @@ import { createChatBotMessage } from "react-chatbot-kit";
 import Options from "../Options/Options";
 import OptionsVariable from "../Options/OptionsVariable";
 import Quiz from "../Quiz/Quiz";
-
+import OptionsFor from "../Options/OptionsFor";
+import OptionsForWrong from "../Options/OptionsForWrong";
+import OptionsVariableWrong from "../Options/OptionsVariableWrong";
+import OptionsConditional from "../Options/OptionsConditional";
 const config = {
   botName: "Bot de Educação",
   initialMessages: [
@@ -60,6 +63,7 @@ const config = {
     {
       widgetName: "3", // for
       widgetFunc: (props) => <Quiz {...props} />,
+      widgetFunc: (props) => <OptionsFor {...props} />,
       props: {
         questions: [
           {
@@ -97,6 +101,7 @@ const config = {
     {
       widgetName: "2", // condicional
       widgetFunc: (props) => <Quiz {...props} />,
+      widgetFunc: (props) => <OptionsConditional {...props} />,
       props: {
         questions: [
           {
@@ -125,7 +130,20 @@ const config = {
           }
         ],
       },
+      
     },
+    {
+      widgetName: "4",
+      widgetFunc: (props) => <OptionsForWrong {...props} />,
+    },
+    {
+      widgetName: "5",
+      widgetFunc: (props) => <OptionsVariableWrong {...props} />,
+    },
+    {
+      widgetName: "6",
+      widgetFunc: (props) => <OptionsConditional {...props} />,
+    }
   ],
 };
 
