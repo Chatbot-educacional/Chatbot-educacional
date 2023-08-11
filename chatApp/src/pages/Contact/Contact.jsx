@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './Contact.module.css';
 import Button from '../../components/form/Button';
+import contactImage from '../../assets/contact_image3.svg';
 
 // import Input from '../../components/form/Input';
 
@@ -14,10 +15,10 @@ const Contact = () => {
   return (
     <div className={styles.contactContainer}>
       <div className={styles.topContainer}>
-      <span>
-        <p>Envie-nos um email</p>
-      </span>
-        <p>Para informar bugs ou sugestões</p>
+        <span>
+          <p>Envie-nos um email</p>
+        </span>
+          <p>Para informar bugs ou sugestões</p>
       </div>
 
       <div className={styles.bottomContainer}>
@@ -64,6 +65,11 @@ const Contact = () => {
             </Button>
           </form>
         </div>
+          <div className={styles.imageContact}>
+                <img src={contactImage} alt="Um celular e duas pessoas, demonstrando o ato de comunicação um com o outro."></img>
+          </div>
+      </div>
+      <div className={styles.arrow}></div>
         <div className={styles.contactInfo}>
           <h1>DADOS DE CONTATO</h1>
           <p>
@@ -82,7 +88,6 @@ const Contact = () => {
             <li>mateusmota.aluno@unipampa.edu.br</li>
           </ul>
         </div>
-      </div>
     </div>
   )
 }
