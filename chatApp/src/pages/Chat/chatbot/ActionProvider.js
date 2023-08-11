@@ -11,7 +11,7 @@ class ActionProvider {
   
     handleJavascriptQuiz = () => {
       const mensagem = this.createChatBotMessage(
-        "Fantastic. Here is your quiz. Good luck!",
+        "Uma variável é um nome associado a um valor ou espaço de armazenamento na programação. Ela permite que os dados sejam manipulados e referenciados de forma flexível durante a execução de um programa.",
         {
           widget: "1", // widget de variaveis
         }
@@ -42,6 +42,27 @@ class ActionProvider {
       this.addMessageToState(mensagem);
     };
 
+    handleExemploCorreto = () => {
+      const mensagem = this.createChatBotMessage(
+        "adkadkadkakdakdkad",
+        {
+          widget: "1", // widget de for
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
+    handleExemploIncorreto = () => {
+      const mensagem = this.createChatBotMessage(
+        "balalalasss",
+        {
+          widget: "1", // widget de for
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
    
   
     addMessageToState = (message) => {

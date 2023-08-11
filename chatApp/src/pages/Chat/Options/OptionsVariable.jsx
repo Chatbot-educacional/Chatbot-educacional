@@ -2,19 +2,18 @@ import React from "react";
 
 import "./Options.css";
 
-const Options = (props) => {
+const OptionsVariable = (props) => {
   const options = [
     {
-      text: "1",
-      handler: props.actionProvider.handleJavascriptQuiz,
-      id: 1,
+      text: "Exemplo Correto",
+      handler: props.actionProvider.handleExemploCorreto,
+      id: 4,
     },
-    { text: "2",
-     handler: props.actionProvider.handleCondicionaisQuiz,
-      id: 2 },
-    { text: "3",
-     handler: props.actionProvider.handleFor,
-      id: 3 },
+    {
+      text: "Exemplo Incorreto",
+      handler: props.actionProvider.handleExemploIncorreto,
+      id: 5,
+    }
   ];
 
   const buttonsMarkup = options.map((option) => (
@@ -30,4 +29,4 @@ const Options = (props) => {
   return <div className="options-container">{buttonsMarkup}</div>;
 };
 
-export default Options;
+export default OptionsVariable;

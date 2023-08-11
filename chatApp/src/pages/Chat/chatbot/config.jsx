@@ -2,13 +2,14 @@
 import React from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
 import Options from "../Options/Options";
+import OptionsVariable from "../Options/OptionsVariable";
 import Quiz from "../Quiz/Quiz";
 
 const config = {
   botName: "Bot de Educação",
   initialMessages: [
     
-    createChatBotMessage(`Olá, eu sou Edubot, irie lhe auxiliar aprendendo conceitos de programação.Digite a opção que deseja aprender.Opção 1: Variaveis 
+    createChatBotMessage(`Olá, eu sou Edubot, irei lhe auxiliar aprendendo conceitos de programação.Digite a opção que deseja aprender.Opção 1: Variaveis 
         Opção 2: Laço For 
         Opção 3 condicionais   `, {
       widget: "options",
@@ -22,6 +23,7 @@ const config = {
     {
       widgetName: "1", // variavel
       widgetFunc: (props) => <Quiz {...props} />,
+      widgetFunc: (props) => <OptionsVariable {...props} />,
       props: {
         questions: [
           {
