@@ -44,7 +44,11 @@ class ActionProvider {
 
     handleExemploCorreto = () => {
       const mensagem = this.createChatBotMessage(
-        "adkadkadkakdakdkad",
+        `Vamos ver um exemplo correto
+         
+        var a;
+        console.log("O valor de a é " + "a);
+        console.log("O valor de b é " + "b);`,
         {
           widget: "1", // widget de for
         }
@@ -55,7 +59,11 @@ class ActionProvider {
 
     handleExemploIncorreto = () => {
       const mensagem = this.createChatBotMessage(
-        "balalalasss",
+        `Agora vamos ver um exemplo incorreto
+
+        var c;
+        console.log("O valor de a é " + a);
+        `,
         {
           widget: "1", // widget de for
         }

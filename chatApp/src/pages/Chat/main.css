@@ -88,7 +88,9 @@
     width: 100%;
     margin-left: auto;
     text-align: left;
-  }
+    white-space: pre-line;
+}
+
   
   .react-chatbot-kit-chat-bot-message-arrow {
     width: 0;

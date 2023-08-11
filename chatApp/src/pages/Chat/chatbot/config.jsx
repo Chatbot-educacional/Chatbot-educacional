@@ -9,7 +9,9 @@ const config = {
   botName: "Bot de Educação",
   initialMessages: [
     
-    createChatBotMessage(`Olá, eu sou Edubot, irei lhe auxiliar aprendendo conceitos de programação.Digite a opção que deseja aprender.Opção 1: Variaveis 
+    createChatBotMessage(`Olá, eu sou Edubot, irei lhe auxiliar aprendendo conceitos de programação.Digite a opção que deseja aprender.
+    
+        Opção 1: Variaveis 
         Opção 2: Laço For 
         Opção 3 condicionais   `, {
       widget: "options",
