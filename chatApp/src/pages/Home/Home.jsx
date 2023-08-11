@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 // Images
 import ExemCorreto from '../../assets/example.jpg';
+import ExemCorreto1 from '../../assets/workedexamplecorreto.png';
+import ExemIncorreto from '../../assets/workedexampleincorreto.png';
 
 // CSS
 import styles from './Home.module.css'; 
@@ -21,15 +23,33 @@ const Home = () => {
       </div>
       <div className={styles.exampleContainer}>
         <h1 className={styles.titleExem}>Exemplificação</h1>
+        <div className={styles.divParagrafos}>
+          <p className={styles.pExem}>
+          <strong className={styles.strongPara1}>Dados Gerais sobre a abordagem</strong><br/>
+          <strong className={styles.strongLi}>Título da disciplina:</strong> Construção de Algoritmos<br/>
+          <strong className={styles.strongLi}>Tópico da disciplina:</strong> Estruturas de decisão<br/>
+          <strong className={styles.strongLi}>Subtópicos:</strong> Uso do comando "if"<br/>
+          <strong className={styles.strongLi}>Conhecimento prévio:</strong> Variáveis<br/>
+          <strong className={styles.strongLi}>Dados do Local do Exemplo:</strong> Local onde foi retirado: Material didático - Aula Professor Renato - IFMS<br/>
+          </p>
+          <p className={styles.pExem2}>
+          <strong className={styles.strongPara2}>Dados do Worked Example</strong><br/>
+          <ul>
+            <li><strong className={styles.strongLi}>Descrição do problema:</strong> Desenvolva um código para verificar se um número é ímpar ou par</li><br/>
+            <li><strong className={styles.strongLi}>Resultado:</strong> para o valor 2, o resultado esperado é par</li><br/>
+            <li><strong className={styles.strongLi}>Material complementar:</strong> Curso Intensivo de Python - 3ª Edição: Uma Introdução Prática e Baseada em Projetos à Programação. (2023). (n.p.): Novatec Editora.</li>
+          </ul>
+          </p>
+        </div>
         <div className={styles.exampleImages}>
           <div className={styles.example}>
-            <img src={ExemCorreto} alt="Exemplo Correto" className={styles.exampleImage} />
+            <img src={ExemCorreto1} alt="Exemplo Correto" className={styles.exampleImage} />
             <h2 className={styles.exampleTitle}>Exemplo Correto</h2>
             <p className={styles.exampleDescription}>This is a description</p>
           </div>
 
           <div className={styles.example}>
-            <img src={ExemCorreto} alt="Exemplo Incorreto" className={styles.exampleImage} />
+            <img src={ExemIncorreto} alt="Exemplo Incorreto" className={styles.exampleImage} />
             <h2 className={styles.exampleTitle}>Exemplo Incorreto</h2>
             <p className={styles.exampleDescription}>This is a description</p>
           </div>
