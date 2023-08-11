@@ -173,6 +173,8 @@
   }
   
   .react-chatbot-kit-chat-input-container {
+    background-color: white;
+    padding-top:  7px;
     position: absolute;
     bottom: 0;
     width: 100%;
