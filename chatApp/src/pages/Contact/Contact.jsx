@@ -3,7 +3,6 @@ import styles from './Contact.module.css';
 import Button from '../../components/form/Button';
 import contactImage from '../../assets/contact_image3.svg';
 import ArrowDown from '../../components/scroll/ArrowDown';
-
 // import Input from '../../components/form/Input';
 
 const Contact = () => {
@@ -71,8 +70,15 @@ const Contact = () => {
           </div>
       </div>
       <ArrowDown></ArrowDown>
+      <div className={styles.contactInfoMain}>
         <div className={styles.contactInfo}>
-          <h1>DADOS DE CONTATO</h1>
+          Você pode nos encontrar tambem...
+        </div>
+
+
+
+        {/* <div className={styles.contactInfo}>
+          <h1>Dados para Contato</h1>
           <p>
             <span>Av. Tiaraju, 810</span>
             <br />
@@ -88,7 +94,8 @@ const Contact = () => {
             <li>renatogarcia.aluno@unipampa.edu.br</li>
             <li>mateusmota.aluno@unipampa.edu.br</li>
           </ul>
-        </div>
+        </div> */}
+      </div>    
     </div>
   )
 }
