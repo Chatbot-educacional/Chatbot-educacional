@@ -4,9 +4,11 @@ import "./Options.css";
 
 const OptionsVariableWrong = (props) => {
   const options = [
-   { text: "Identificar o problema",
-    handler: props.actionProvider.handleIdentificarErroFor,
-    id: 9,}
+  { 
+    text: "Identificar o problema",
+    handler: props.actionProvider.handleIdentificarErroVariavel,
+    id: 10,
+  }
   ];
 
   const buttonsMarkup = options.map((option) => (

@@ -2,21 +2,18 @@ import React from "react";
 
 import "./Options.css";
 
-const OptionsConditional = (props) => {
+const OptionsRepeatingLoopWrong = (props) => {
   const options = [
     {
-      text: "Exemplo Correto",
-      handler: props.actionProvider.handleExemploCorretoCondicional,
-      id: 8,
+      text: "Identificar o problema",
+      handler: props.actionProvider.handleIdentificarErroLacoRepeticao,
+      id: 11,
     },
-    {
-      text: "Exemplo Incorreto",
-      handler: props.actionProvider.handleExemploIncorretoCondicional,
-      id: 9,
-    },  
+       
   ];
- 
+  
   const buttonsMarkup = options.map((option) => (
+   
     <button 
       key={option.id} 
       onClick={option.handler} 
@@ -29,4 +26,4 @@ const OptionsConditional = (props) => {
   return <div className="options-container">{buttonsMarkup}</div>;
 };
 
-export default OptionsConditional;
+export default OptionsRepeatingLoopWrong;

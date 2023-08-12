@@ -1,22 +1,25 @@
 // Config starter code
 import React from "react";
 import { createChatBotMessage } from "react-chatbot-kit";
+
+// QUI
+import Quiz from "../Quiz/Quiz";
+
+// Options
 import Options from "../Options/Options";
 import OptionsVariable from "../Options/OptionsVariable";
-import Quiz from "../Quiz/Quiz";
-import OptionsFor from "../Options/OptionsFor";
-import OptionsForWrong from "../Options/OptionsForWrong";
-import OptionsVariableWrong from "../Options/OptionsVariableWrong";
 import OptionsConditional from "../Options/OptionsConditional";
+import OptionsRepeatingLoop from "../Options/OptionsRepeatingLoop";
+import OptionsVariableWrong from "../Options/OptionsVariableWrong";
+import OptionsConditionalWrong from "../Options/OptionsConditionalWrong";
+import OptionsRepeatingLoopWrong from "../Options/OptionsRepeatingLoopWrong";
+import OptionsGoToMainMenu from "../Options/OptionsGoToMainMenu";
+
 const config = {
-  botName: "Bot de Educação",
+  botName: "ChatBot de Educação",
   initialMessages: [
     
-    createChatBotMessage(`Olá, eu sou Edubot, irei lhe auxiliar aprendendo conceitos de programação.Digite a opção que deseja aprender.
-    
-        Opção 1: Variaveis 
-        Opção 2: Laço For 
-        Opção 3 condicionais   `, {
+    createChatBotMessage(`Olá! Sou o EducaBot, e estou aqui para te auxiliar a aprender conceitos de programação. Escolha qual a opção que deseja aprender.`, {
       widget: "options",
     }),
   ],
@@ -26,124 +29,36 @@ const config = {
       widgetFunc: (props) => <Options {...props} />,
     },
     {
-      widgetName: "1", // variavel
+      widgetName: "volteMenuPrincipal", // menu principal
+      widgetFunc: (props) => <OptionsGoToMainMenu {...props} />,
+    },
+    {
+      widgetName: "variavel", // variavel
       widgetFunc: (props) => <Quiz {...props} />,
       widgetFunc: (props) => <OptionsVariable {...props} />,
-      props: {
-        questions: [
-          {
-            question: "Vamos ver um exemplo correto",
-            answer:
-              "var a; "  +
-             "console.log" + "("+ "O valor de a é " + "a);" +
-              "console.log"+"("+"O valor de b é " + "b);",
-            id: 1,
-            option: "teste",
-          },
-          {
-            question: "Agora vamos ver um exemplo incorreto",
-            answer:
-            "var c; "  +
-            "console.log" + "("+ "O valor de a é " + "a);",
-             
-            id: 2,
-            
-          },
-          {
-            question: "Voce consegue identificar o erro?",
-            answer:
-            "O erro acontece porque a variável é definida como a, mas é chamada como b.",
-             
-            id: 3,
-            
-          },
-        ],
-      },
     },
     {
-      widgetName: "3", // for
-      widgetFunc: (props) => <Quiz {...props} />,
-      widgetFunc: (props) => <OptionsFor {...props} />,
-      props: {
-        questions: [
-          {
-            question: "O que é um for?",
-            answer:
-              "For é uma estrutura de repetição que executa um bloco de código até que uma condição seja atendida.",
-             
-            id: 1,
-          },
-          {
-            question: "Vamos ver um exemplo correto de for, considerando que queremos mostrar os números de 1 a 10",
-            answer:
-              "for (var i = 0; i < 10; i++) {console.log(i);}",
-            id: 2,
-          },
-          {
-            question: "Vamos ver um exemplo incorreto de for, considerando que queremos mostrar os números de 1 a 10",
-            answer:
-              "for (var i = 0; i > 10; i++) {console.log(i);}",
-            id: 3,
-          },
-          {
-            question: "Voce consegue identificar o erro?",
-            answer:
-            "O erro acontece porque a condição está errada, o correto seria i < 10, pois queremos que o código seja executado até que i seja menor que 10.",
-            id: 4,
-          }
-        ],
-      },
-    },
-    {
-      widgetName: "options",
-      widgetFunc: (props) => <Options {...props} />,
-    },
-    {
-      widgetName: "2", // condicional
+      widgetName: "condicional", // condicional
       widgetFunc: (props) => <Quiz {...props} />,
       widgetFunc: (props) => <OptionsConditional {...props} />,
-      props: {
-        questions: [
-          {
-            question: "O que é uma estrutura condicional ?",
-            answer:
-              "Estruturas condicionais são estruturas de decisão que executam um bloco de código caso uma condição seja atendida.",
-            id: 1,
-          },
-          {
-            question: "Vamos ver um exemplo correto de condicionais?",
-            answer:
-              "x = 0, if(x == 0) {console.log('x é igual a 0');} else {console.log('x não é igual a 0');}",
-            id: 2,
-          },
-          {
-            question: "Agora vamos ver um exemplo incorreto de condicionais",
-            answer:
-              "x = 0, if(x > 0) {console.log('x é igual a 0');}",
-            id: 3,
-          },
-          {
-            question: "Voce consegue identificar o erro?",
-            answer:
-            "O erro acontece porque a condição está errada, o correto seria x == 0, pois queremos que o código seja executado caso x seja igual a 0.",
-            id: 4,
-          }
-        ],
-      },
-      
     },
     {
-      widgetName: "4",
-      widgetFunc: (props) => <OptionsForWrong {...props} />,
+      widgetName: "lacoRepeticao", // laco de repeticao
+      widgetFunc: (props) => <Quiz {...props} />,
+      widgetFunc: (props) => <OptionsRepeatingLoop {...props} />,
     },
     {
-      widgetName: "5",
+      widgetName: "identificarErroVariavel", // identificar erro variavel
       widgetFunc: (props) => <OptionsVariableWrong {...props} />,
     },
     {
-      widgetName: "6",
-      widgetFunc: (props) => <OptionsConditional {...props} />,
-    }
+      widgetName: "identificarErroCondicional", // identificar erro condicional
+      widgetFunc: (props) => <OptionsConditionalWrong {...props} />,
+    },
+    {
+      widgetName: "identificarErroLacoRepeticao", // identificar erro laco de repeticao
+      widgetFunc: (props) => <OptionsRepeatingLoopWrong {...props} />,
+    },
   ],
 };
 

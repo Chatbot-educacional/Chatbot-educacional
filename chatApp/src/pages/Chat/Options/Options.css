@@ -12,6 +12,7 @@
     text-align: center;
     transition: .4s;
     cursor: pointer;
+    font-size: 14px;
   }
 
   .option-button:hover {

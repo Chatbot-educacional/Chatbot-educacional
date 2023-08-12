@@ -5,133 +5,91 @@ class ActionProvider {
     }
   
     greet = () => {
-      const message = this.createChatBotMessage("Hello friend.");
+      const message = this.createChatBotMessage("Olá, amigo/a");
       this.addMessageToState(message);
     };
   
-    handleJavascriptQuiz = () => {
+    handleVariavelQuiz = () => {
       const mensagem = this.createChatBotMessage(
         "Uma variável é um nome associado a um valor ou espaço de armazenamento na programação. Ela permite que os dados sejam manipulados e referenciados de forma flexível durante a execução de um programa.",
         {
-          widget: "1", // widget de variaveis
+          widget: "variavel", // widget de variaveis
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
-    handleCondicionaisQuiz = () => {
+    handleCondicionalQuiz = () => {
       const mensagem = this.createChatBotMessage(
-        "Fantastic. Here is your conditionals  quiz. Good luck!",
+        `Uma condicional é uma estrutura de programação que permite que o código tome decisões com base em uma condição. Ela avalia se uma afirmação é verdadeira ou falsa e executa diferentes ações com base nessa avaliação. Geralmente é expressa com palavras-chave como "if" (se) e "else" (senão) em muitas linguagens de programação.`,
         {
-          widget: "3", // widget de condicionais
+          widget: "condicional", // widget de condicionais
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
-    handleFor = () => {
+    handleLacoRepeticao = () => {
       const mensagem = this.createChatBotMessage(
-        "Fantastic. Here is your  for quiz. Good luck!",
+        `Um laço de repetição é uma construção de programação que permite executar um conjunto de instruções várias vezes, com base em uma condição ou um número definido de iterações. Isso ajuda a automatizar tarefas repetitivas e economizar código. Em linguagens de programação, os laços de repetição são frequentemente implementados usando palavras-chave como "for" e "while".`,
         {
-          widget: "2", // widget de for
+          widget: "lacoRepeticao", // widget de laco de repeticao
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
-    handleExemploCorreto = () => {
+    handleExemploCorretoVariavel = () => {
       const mensagem = this.createChatBotMessage(
         `Vamos ver um exemplo correto
          
-        var a;
-        console.log("O valor de a é " + "a);
-        console.log("O valor de b é " + "b);`,
+        // Declaração e inicialização de uma variável
+        let nome = "Williamson";
+
+        // Impressão do valor da variável
+        console.log("Meu nome é: " + nome);`,
         {
-          widget: "1", // widget de for
+          widget: "variavel", // widget de variavel
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
-    handleExemploIncorreto = () => {
+    handleExemploIncorretoVariavel = () => {
       const mensagem = this.createChatBotMessage(
         `Agora vamos ver um exemplo incorreto
 
-        var c;
-        console.log("O valor de a é " + a);
+        let nome = "Williamson";
+
+        console.log("Meu nome é: " + nom);
         `,
         {
-          widget: "5", // widget de for
-
+          widget: "identificarErroVariavel", // widget de idenfica o erro
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
-    handleIndentificaErroVariavel = () => {
+    handleIdentificarErroVariavel = () => {
       const mensagem = this.createChatBotMessage(
-        `Vamos identificar o erro
-          O Erro acontece porque a variável a não foi declarada, então não é possível acessar o seu valor.`,
+        `O problema é que a variável foi declarada como "nome", mas na linha de impressão, você está tentando acessar uma variável chamada "nom". Como a variável "nom" não foi declarada, isso resultará em um erro, indicando que a variável é indefinida. Para corrigir o erro, você deve usar o nome correto da variável, que é "nome"`,
         {
-          // widget: "4", // widget de for
-          // adicionar botão de voltar aqui ou para mostrar o exemplo correto
+          widget: "volteMenuPrincipal", // widget para voltar menu principal
         }
       );
   
       this.addMessageToState(mensagem);
     }
 
-
-    handleExemploIncorretoFor = () => {
-      const mensagem = this.createChatBotMessage(
-        `Considerando que queremos mostrar os números de 1 a 10
-        for (var i = 0; i > 10; i++) {
-          console.log(i);
-        } `,
-        {
-          widget: "4", // widget de for
-        }
-      );
-  
-      this.addMessageToState(mensagem);
-    };
-
-    handleExemploCorretoFor = () => {
-      const mensagem = this.createChatBotMessage(
-        `Considerando que queremos mostrar os números de 1 a 10
-        for (var i = 0; i < 10; i++) {
-          console.log(i);
-        } `,
-        {
-          widget: "1", // widget de for
-        }
-      );
-  
-      this.addMessageToState(mensagem);
-    };
-    
-    handleIdentificarErroFor = () => { 
-      const mensagem = this.createChatBotMessage(
-        `Vamos identificar o erro
-        O erro acontece porque a condição está errada, o correto seria x == 0,
-         pois queremos que o código seja executado caso x seja igual a 0.`,
-        {
-          // widget: "4", // widget de for
-          // adicionar botão de voltar aqui
-        }
-      );
-  
-      this.addMessageToState(mensagem);
-    }
-
-    handleExemploCorretoConditional = () => {
+    handleExemploCorretoCondicional = () => {
       const mensagem = this.createChatBotMessage(
         `Vamos ver um exemplo correto de condicionais.
+
         x = 0 
         if(x == 0){
           console.log('x é igual a 0');
@@ -140,32 +98,104 @@ class ActionProvider {
         }
         `,
         {
-          widget: "6", // widget de for
+          widget: "condicional", // widget de condiocional
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
-    handleExemploIncorretoConditional = () => {
+    handleExemploIncorretoCondicional = () => {
       const mensagem = this.createChatBotMessage(
         `Vamos ver um exemplo incorreto de condicionais.
-        x = 0
-         if(x > 0) {
-          console.log('x é igual a 0');
+
+        x = 0;
+        if (x = 0) {
+          console.log('x é igual a 0'); 
+        } else {
+          console.log('x não é igual a 0');
+        }     
+        `,
+        {
+          widget: "identificarErroCondicional", // widget de condiocional
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
+    handleIdentificarErroCondicional = () => {
+      const mensagem = this.createChatBotMessage(
+        `Neste exemplo, o erro está na linha if (x = 0), o operador de atribuição (=) em vez do operador de comparação de igualdade (==). Como resultado, a expressão (x = 0) atribuirá o valor 0 à variável x e a condição será avaliada como falsa, levando à impressão da mensagem "x não é igual a 0" mesmo quando x é igual a 0. Para corrigir, você deve usar o operador de igualdade (==):`,
+        {
+          widget: "volteMenuPrincipal", // widget para voltar menu principal
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    }
+
+    handleExemploCorretoLacoRepeticao = () => {
+      const mensagem = this.createChatBotMessage(
+        `Vamos ver um exemplo correto de laços de repetição.
+
+        Considerando que queremos mostrar os números de 1 a 10
+        for (var i = 0; i < 10; i++) {
+          console.log(i);
         }
         `,
         {
-          widget: "6", // widget de for
+          widget: "lacoRepeticao", // widget de laco de repeticao
         }
       );
   
       this.addMessageToState(mensagem);
     };
 
+    handleExemploIncorretoLacoRepeticao = () => {
+      const mensagem = this.createChatBotMessage(
+        `Vamos ver um exemplo incorreto de laços de repetição.
 
- 
+        for (var i = 0; i > 10; i++) {
+          console.log(i);
+        }
+        `,
+        {
+          widget: "identificarErroLacoRepeticao", // widget de erro de laco de repeticao
+        }
+      );
   
+      this.addMessageToState(mensagem);
+    };
+    
+    handleIdentificarErroLacoRepeticao = () => { 
+      const mensagem = this.createChatBotMessage(
+        `Vamos identificar o erro
+        Neste exemplo, o erro está na condição do loop for. A condição i > 10 é falsa desde o início, já que i é inicializado como 0. Isso significa que o loop nunca será executado e nenhum número será impresso. Para imprimir os números de 0 a 9, a condição deveria ser i < 10`,
+        {
+          widget: "volteMenuPrincipal", // widget para voltar menu principal
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    }
+
+    handleGoToMainMenu = () => {
+      this.setState({
+        messages: [],
+      });
+      const mensagem = this.createChatBotMessage(
+        `Você voltou ao menu principal.
+        Olá! Sou o EducaBot, e estou aqui para te auxiliar a aprender conceitos de programação. Escolha qual a opção que deseja aprender.
+        `,
+        {
+          widget: "options",
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
     addMessageToState = (message) => {
       this.setState((prevState) => ({
         ...prevState,

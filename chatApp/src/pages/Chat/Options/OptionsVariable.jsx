@@ -6,12 +6,12 @@ const OptionsVariable = (props) => {
   const options = [
     {
       text: "Exemplo Correto",
-      handler: props.actionProvider.handleExemploCorreto,
+      handler: props.actionProvider.handleExemploCorretoVariavel,
       id: 4,
     },
     {
       text: "Exemplo Incorreto",
-      handler: props.actionProvider.handleExemploIncorreto,
+      handler: props.actionProvider.handleExemploIncorretoVariavel,
       id: 5,
     }
   ];

@@ -2,21 +2,16 @@ import React from "react";
 
 import "./Options.css";
 
-const OptionsForWrong = (props) => {
+const OptionsGoToMainMenu = (props) => {
   const options = [
     {
-      text: "Identificar o problema",
-      handler: props.actionProvider.handleIdentificarErroFor,
-      id: 8,
+      text: "Voltar ao menu principal",
+      handler: props.actionProvider.handleGoToMainMenu,
+      id: 13,
     },
-       
   ];
-  
-
-
 
   const buttonsMarkup = options.map((option) => (
-   
     <button 
       key={option.id} 
       onClick={option.handler} 
@@ -29,4 +24,4 @@ const OptionsForWrong = (props) => {
   return <div className="options-container">{buttonsMarkup}</div>;
 };
 
-export default OptionsForWrong;
+export default OptionsGoToMainMenu;
