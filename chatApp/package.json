@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Chatbot-educacional.github.io/Chatbot-educacional",
   "name": "chatapp",
   "private": true,
   "version": "0.0.0",
@@ -7,9 +8,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
     "@chatscope/chat-ui-kit-react": "^1.10.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -23,6 +28,7 @@
     "formik": "^2.4.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
+    "react-chatbot-kit": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",
@@ -39,6 +45,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "vite": "^4.4.5"
   }
 }
