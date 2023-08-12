@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom';
 import ExemCorreto from '../../assets/example.jpg';
 import ExemCorreto1 from '../../assets/workedexamplecorreto.png';
 import ExemIncorreto from '../../assets/workedexampleincorreto.png';
+import ConteudoVar from '../../assets/codeVar.png';
+import ConteudoArit from '../../assets/codeArit.png';
+import ConteudoCond from '../../assets/codeCond.png';
+import ConteudoLaco from '../../assets/codeRep.png';
 
 // CSS
 import styles from './Home.module.css'; 
@@ -60,7 +64,7 @@ const Home = () => {
       </div>
       <div className={styles.componenteImagemTexto}>
         <div className={`${styles.imagemContainer} ${styles.image}`}>
-          <img src={ExemCorreto} alt="Imagem" />
+          <img src={ConteudoVar} alt="Imagem" />
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.textoContainer}>
@@ -88,7 +92,7 @@ const Home = () => {
       </div> */}
       <div className={styles.componenteImagemTexto}>
         <div className={`${styles.imagemContainer} ${styles.image}`}>
-          <img src={ExemCorreto} alt="Imagem" />
+          <img src={ConteudoArit} alt="Imagem" />
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.textoContainer}>
@@ -102,7 +106,7 @@ const Home = () => {
       </div>
       <div className={styles.componenteImagemTexto}>
         <div className={`${styles.imagemContainer} ${styles.image}`}>
-          <img src={ExemCorreto} alt="Imagem" />
+          <img src={ConteudoCond} alt="Imagem" />
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.textoContainer}>
@@ -116,7 +120,7 @@ const Home = () => {
       </div>
       <div className={styles.componenteImagemTexto}>
         <div className={`${styles.imagemContainer} ${styles.image}`}>
-          <img src={ExemCorreto} alt="Imagem" />
+          <img src={ConteudoLaco} alt="Imagem" />
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.textoContainer}>
