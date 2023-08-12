@@ -45,19 +45,17 @@ const Home = () => {
           <div className={styles.example}>
             <img src={ExemCorreto1} alt="Exemplo Correto" className={styles.exampleImage} />
             <h2 className={styles.exampleTitle}>Exemplo Correto</h2>
-            <p className={styles.exampleDescription}>This is a description</p>
           </div>
 
           <div className={styles.example}>
             <img src={ExemIncorreto} alt="Exemplo Incorreto" className={styles.exampleImage} />
             <h2 className={styles.exampleTitle}>Exemplo Incorreto</h2>
-            <p className={styles.exampleDescription}>This is a description</p>
           </div>
         </div>
       </div>
       <div className={styles.backgroundSession}>
         <div className={styles.sessionContent}>
-        <h1 className={styles.sessionTitle}>Sessão sobre conteúdos <br/>Abordados   ?</h1>
+        <h1 className={styles.sessionTitle}>Conteúdos Abordados</h1>
         </div>
       </div>
       <div className={styles.componenteImagemTexto}>
@@ -74,7 +72,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className={styles.componenteImagemTexto}>
+      {/* <div className={styles.componenteImagemTexto}>
         <div className={`${styles.imagemContainer} ${styles.image}`}>
           <img src={ExemCorreto} alt="Imagem" />
         </div>
@@ -87,7 +85,7 @@ const Home = () => {
             <span>02</span>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className={styles.componenteImagemTexto}>
         <div className={`${styles.imagemContainer} ${styles.image}`}>
           <img src={ExemCorreto} alt="Imagem" />
@@ -98,7 +96,7 @@ const Home = () => {
             <p>desenvolvimento de cálculos aritméticos</p>
           </div>
           <div className={styles.numeroContainer}>
-            <span>03</span>
+            <span>02</span>
           </div>
         </div>
       </div>
@@ -112,7 +110,7 @@ const Home = () => {
             <p>Uso de estruturas para definição de caminho condicionais</p>
           </div>
           <div className={styles.numeroContainer}>
-            <span>04</span>
+            <span>03</span>
           </div>
         </div>
       </div>
@@ -126,7 +124,7 @@ const Home = () => {
             <p>aplicação de laços para execução de uma ou mais vezes determinadas trechos de código</p>
           </div>
           <div className={styles.numeroContainer}>
-            <span>05</span>
+            <span>04</span>
           </div>
         </div>
       </div>
