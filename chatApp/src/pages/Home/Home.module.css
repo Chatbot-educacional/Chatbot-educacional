@@ -72,6 +72,54 @@
   margin-bottom: 1rem;
 }
 
+.divParagrafos {
+  border: 1px solid #ccc;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+.pExem {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  text-align: left;
+  text-align: justify;
+}
+
+.pExem2 {
+  float: right;
+  text-align: left;
+  text-align: justify;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.strongPara1 {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100%;
+  margin-bottom: 20px;
+  font-weight: 380;
+  font-size: 20px;
+}
+
+.strongPara2 {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-weight: 380;
+  font-size: 20px;
+}
+
+.strongLi {
+  color: rgb(20, 89, 136);
+  font-weight: 450;
+}
+
 .exampleImages {
   display: flex;
   justify-content: center;
@@ -85,8 +133,8 @@
 }
 
 .exampleImage {
-  width: 500px;
-  height: 400px;
+  width: 600px;
+  height: 500px;
 }
 
 .exampleTitle {
