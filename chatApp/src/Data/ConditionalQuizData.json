@@ -1,0 +1,13 @@
+{
+    "definicao": "Uma condicional é uma estrutura de programação que permite que o código tome decisões com base em uma condição. Ela avalia se uma afirmação é verdadeira ou falsa e executa diferentes ações com base nessa avaliação. Geralmente é expressa com palavras-chave como \"if\" (se) e \"else\" (senão) em muitas linguagens de programação.",
+ 
+    "exemploCorreto": "Vamos ver um exemplo correto de condicionais. \n x = 0 \nif(x == 0){\n console.log('x é igual a 0'); \n} else { \n   console.log('x não é igual a 0'); }\n}," ,
+
+    "exemploIncorreto": "Vamos ver um exemplo incorreto de condicionais. \nx = 0; \nif (x = 0) {\n console.log('x é igual a 0');  \n} else {\n console.log('x não é igual a 0');\n }     ",
+
+    "identificaProblema": "Neste exemplo, o erro está na linha if (x = 0), o operador de atribuição (=) em vez do operador de comparação de igualdade (==). Como resultado, a expressão (x = 0) atribuirá o valor 0 à variável x e a condição será avaliada como falsa, levando à impressão da mensagem \"x não é igual a 0\" mesmo quando x é igual a 0. Para corrigir, você deve usar o operador de igualdade (==):"
+
+    
+    
+ }
+ 
