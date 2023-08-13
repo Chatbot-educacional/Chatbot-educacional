@@ -160,6 +160,17 @@ class ActionProvider {
       this.addMessageToState(mensagem);
     };
 
+    handleDefaultMessage = () => {
+      const mensagem = this.createChatBotMessage(
+        "Desculpe, não entendi. Poderia repetir ou selecionar uma das opções abaixo?",
+        {
+          widget: "options",
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    }
+
     addMessageToState = (message) => {
       this.setState((prevState) => ({
         ...prevState,

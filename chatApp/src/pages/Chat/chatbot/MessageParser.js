@@ -8,20 +8,37 @@ class MessageParser {
       console.log(message)
       const lowerCaseMessage = message.toLowerCase()
 
-        if (lowerCaseMessage.includes("oi") || lowerCaseMessage.includes("ola") || lowerCaseMessage.includes("olá") || lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("hi") || lowerCaseMessage.includes("hey") || lowerCaseMessage.includes("oi, tudo bem?") || lowerCaseMessage.includes("ola, tudo bem?") || lowerCaseMessage.includes("olá, tudo bem?") || lowerCaseMessage.includes("hello, tudo bem?") || lowerCaseMessage.includes("hi, tudo bem?") || lowerCaseMessage.includes("hey, tudo bem?") || lowerCaseMessage.includes("oi, tudo bem") || lowerCaseMessage.includes("ola, tudo bem") || lowerCaseMessage.includes("olá, tudo bem") || lowerCaseMessage.includes("hello, tudo bem") || lowerCaseMessage.includes("hi, tudo bem") || lowerCaseMessage.includes("hey, tudo bem") || lowerCaseMessage.includes("eae") || lowerCaseMessage.includes("eai") || lowerCaseMessage.includes("e aí") || lowerCaseMessage.includes("e aí?") || lowerCaseMessage.includes("eai?") || lowerCaseMessage.includes("eae?")) {
-            this.actionProvider.greet()
+        const greetingsKeywords = ["oi", "ola", "olá", "hello", "hi", "hey", "oi, tudo bem?", "ola, tudo bem?", "olá, tudo bem?", "hello, tudo bem?", "hi, tudo bem?", "hey, tudo bem?", "oi, tudo bem", "ola, tudo bem", "olá, tudo bem", "hello, tudo bem", "hi, tudo bem", "hey, tudo bem", "eae", "eai", "e aí", "e aí?", "eai?", "eae?"];
+        const variableKeywords = ["variavel", "variable", "variável", "variáveis", "variables", "var", "1", "um", "um.", "1.", "um)", "1)"];
+        const conditionalKeywords = ["2", "dois", "dois.", "2.", "dois)", "2)", "condicional", "condicionais", "conditional", "conditionals", "if", "else", "if-else", "if else"];
+        const loopKeywords = ["3", "tres", "três", "3.", "três.", "3)", "três)", "laco", "laço", "repeticao", "repetição", "loop", "looping", "for", "while"];
+
+        let matched = false;
+
+        switch (true) {
+            case greetingsKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
+                this.actionProvider.greet();
+                matched = true;
+                break;
+
+            case variableKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
+                this.actionProvider.handleVariavelQuiz();
+                matched = true;
+                break;
+
+            case conditionalKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
+                this.actionProvider.handleCondicionalQuiz();
+                matched = true;
+                break;
+
+            case loopKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
+                this.actionProvider.handleLacoRepeticao();
+                matched = true;
+                break;
         }
 
-        if (lowerCaseMessage.includes("variavel") || lowerCaseMessage.includes("variable") || lowerCaseMessage.includes("variável") || lowerCaseMessage.includes("variáveis") || lowerCaseMessage.includes("variables") || lowerCaseMessage.includes("var") ||lowerCaseMessage.includes("1") || lowerCaseMessage.includes("um") || lowerCaseMessage.includes("um.") || lowerCaseMessage.includes("1.") || lowerCaseMessage.includes("um)") || lowerCaseMessage.includes("1)")) {
-            this.actionProvider.handleVariavelQuiz()
-        }
-        
-        if (lowerCaseMessage.includes("2") || lowerCaseMessage.includes("dois") || lowerCaseMessage.includes("dois.") || lowerCaseMessage.includes("2.") || lowerCaseMessage.includes("dois)") || lowerCaseMessage.includes("2)") || lowerCaseMessage.includes("condicional") || lowerCaseMessage.includes("condicionais") || lowerCaseMessage.includes("conditional") || lowerCaseMessage.includes("conditionals") || lowerCaseMessage.includes("if") || lowerCaseMessage.includes("else") || lowerCaseMessage.includes("if-else") || lowerCaseMessage.includes("if else")) {
-            this.actionProvider.handleCondicionalQuiz()
-        }
-
-        if (lowerCaseMessage.includes("3") || lowerCaseMessage.includes("tres") || lowerCaseMessage.includes("três") || lowerCaseMessage.includes("3.") || lowerCaseMessage.includes("três.") || lowerCaseMessage.includes("3)") || lowerCaseMessage.includes("três)") || lowerCaseMessage.includes("laco") || lowerCaseMessage.includes("laço") || lowerCaseMessage.includes("repeticao") || lowerCaseMessage.includes("repetição") || lowerCaseMessage.includes("loop") || lowerCaseMessage.includes("looping") || lowerCaseMessage.includes("for") || lowerCaseMessage.includes("while")) {
-            this.actionProvider.handleLacoRepeticao()
+        if (!matched) {
+            this.actionProvider.handleDefaultMessage();
         }
     }
   }

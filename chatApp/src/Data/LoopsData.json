@@ -6,8 +6,5 @@
     "exemploIncorreto": "Vamos ver um exemplo incorreto de laços de repetição.\n\n for (var i = 0; i > 10; i++) {\n console.log(i); \n}",
 
     "identificaProblema": "Vamos identificar o erro\nNeste exemplo, o erro está na condição do loop for. A condição i > 10 é falsa desde o início, já que i é inicializado como 0. Isso significa que o loop nunca será executado e nenhum número será impresso.\n Para imprimir os números de 0 a 9, a condição deveria ser i < 10"
-
-    
-    
  }
  
