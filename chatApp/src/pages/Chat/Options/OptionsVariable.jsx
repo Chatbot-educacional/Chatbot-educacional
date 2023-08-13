@@ -5,12 +5,12 @@ import "./Options.css";
 const OptionsVariable = (props) => {
   const options = [
     {
-      text: "Exemplo Correto",
+      text: "Exemplo Correto ✅",
       handler: props.actionProvider.handleExemploCorretoVariavel,
       id: 4,
     },
     {
-      text: "Exemplo Incorreto",
+      text: "Exemplo Incorreto ❌",
       handler: props.actionProvider.handleExemploIncorretoVariavel,
       id: 5,
     }

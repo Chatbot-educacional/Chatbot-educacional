@@ -5,12 +5,12 @@ import "./Options.css";
 const OptionsConditional = (props) => {
   const options = [
     {
-      text: "Exemplo Correto",
+      text: "Exemplo Correto ✅",
       handler: props.actionProvider.handleExemploCorretoCondicional,
       id: 8,
     },
     {
-      text: "Exemplo Incorreto",
+      text: "Exemplo Incorreto ❌",
       handler: props.actionProvider.handleExemploIncorretoCondicional,
       id: 9,
     },  

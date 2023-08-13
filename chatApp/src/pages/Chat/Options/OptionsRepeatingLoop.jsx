@@ -5,12 +5,12 @@ import "./Options.css";
 const OptionsRepeatingLoop = (props) => {
   const options = [
     {
-      text: "Exemplo Correto",
+      text: "Exemplo Correto ✅",
       handler: props.actionProvider.handleExemploCorretoLacoRepeticao,
       id: 6,
     },
     {
-      text: "Exemplo Incorreto",
+      text: "Exemplo Incorreto ❌",
       handler: props.actionProvider.handleExemploIncorretoLacoRepeticao,
       id: 7,
     },  
