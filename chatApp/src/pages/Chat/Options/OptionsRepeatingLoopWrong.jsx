@@ -7,7 +7,7 @@ const OptionsRepeatingLoopWrong = (props) => {
     {
       text: "Identificar o problema",
       handler: props.actionProvider.handleIdentificarErroLacoRepeticao,
-      id: 11,
+      id: 12,
     },
        
   ];

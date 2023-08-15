@@ -7,12 +7,17 @@ const OptionsVariable = (props) => {
     {
       text: "Exemplo Correto ✅",
       handler: props.actionProvider.handleExemploCorretoVariavel,
-      id: 4,
+      id: 13,
     },
     {
       text: "Exemplo Incorreto ❌",
       handler: props.actionProvider.handleExemploIncorretoVariavel,
-      id: 5,
+      id: 14,
+    },
+    {
+      text: "Voltar",
+      handler: props.actionProvider.handleGoToBackMenu,
+      id: 15,
     }
   ];
 

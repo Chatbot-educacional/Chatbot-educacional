@@ -160,6 +160,22 @@ class ActionProvider {
       this.addMessageToState(mensagem);
     };
 
+    handleGoToBackMenu = () => {
+      this.setState({
+        messages: [],
+      });
+      const mensagem = this.createChatBotMessage(
+        `
+        Olá! Sou o EducaBot, e estou aqui para te auxiliar a aprender conceitos de programação. Escolha qual a opção que deseja aprender.
+        `,
+        {
+          widget: "options",
+        }
+      );
+  
+      this.addMessageToState(mensagem);
+    };
+
     handleDefaultMessage = () => {
       const mensagem = this.createChatBotMessage(
         "Desculpe, não entendi. Poderia repetir ou selecionar uma das opções abaixo?",

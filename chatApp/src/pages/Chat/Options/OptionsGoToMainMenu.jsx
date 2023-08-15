@@ -7,7 +7,7 @@ const OptionsGoToMainMenu = (props) => {
     {
       text: "Voltar ao menu principal",
       handler: props.actionProvider.handleGoToMainMenu,
-      id: 13,
+      id: 8,
     },
   ];
 

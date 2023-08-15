@@ -7,13 +7,18 @@ const OptionsRepeatingLoop = (props) => {
     {
       text: "Exemplo Correto ✅",
       handler: props.actionProvider.handleExemploCorretoLacoRepeticao,
-      id: 6,
+      id: 9,
     },
     {
       text: "Exemplo Incorreto ❌",
       handler: props.actionProvider.handleExemploIncorretoLacoRepeticao,
-      id: 7,
-    },  
+      id: 10,
+    },
+    {
+      text: "Voltar",
+      handler: props.actionProvider.handleGoToBackMenu,
+      id: 11,
+    }
   ];
  
   const buttonsMarkup = options.map((option) => (
