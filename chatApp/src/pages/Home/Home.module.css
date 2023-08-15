@@ -1,4 +1,4 @@
-.homeContainer {
+.homeContainer { /* tem todos dentor body*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,7 +63,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 9rem;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .titleExem {
@@ -225,4 +225,116 @@
 
 .numeroContainer span {
   font-size: 28px;
+}
+
+@media screen and (max-width: 1024px) {
+  
+  .exampleContainer .divParagrafos {
+    max-width: 70%;
+  }
+
+  .content {
+    width: 60vw;
+    margin: 0;
+    margin-top: 6em;
+    text-align: center;
+    font-size: x-small;
+  }
+
+  .exampleImages {
+    display: block;
+  }
+
+  .exampleContainer .titleExem {
+    margin:10px 0;
+    font-size: 2.0em;
+  }
+
+  .componenteImagemTexto {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+  .homeContainer content {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+
+  .backgroundImage {
+    width: 100%;  
+  }
+  
+  .exampleImages {
+    display: block;
+  }
+
+  .imagemContainer {
+    align-items: center;
+  }
+
+  .textoContainer p {
+    max-width: 225px;
+    margin: 17px;
+  }
+
+  .content {
+    width: 60vw;
+    margin: 0;
+    margin-top: 6em;
+    text-align: center;
+    font-size: x-small;
+  }
+
+  .titleExem {
+    margin: 30px;
+  }
+
+  .exampleContainer .divParagrafos {
+    width: 85vw;
+    margin-bottom: 3em;
+  }
+
+  .exampleContainer .titleExem {
+    font-size: 2.0em;
+    margin-top: 3em;
+  }
+
+  .exampleImages .exampleTitle{
+    margin: 25px;
+    margin-top: 5px;
+  }
+
+  .backgroundSession {
+      height: 30vh;
+      margin-bottom: 60px;
+  }
+
+  .backgroundSession .sessionTitle {
+    font-size: 2.3em;
+  }
+
+  .componenteImagemTexto {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .homeContainer {
+    margin: 0;
+  }
+
+  .exampleContainer .exampleImages .example img { /* imagens exemplo correto e incorreto*/
+    width: 100%;
+    width: 400px;
+    height: 400px;
+  }
+
+  .backgroundImage {
+    width: 100%;
+  }
 }
