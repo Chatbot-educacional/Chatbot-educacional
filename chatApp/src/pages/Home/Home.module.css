@@ -25,7 +25,7 @@
 .content {
   position: relative; 
   z-index: 1; 
-  padding: 2rem;
+  padding: 3rem;
   background-color: rgba(128, 128, 128, 0.171);
   border-radius: 50px;
   margin-top: 100px;
@@ -35,13 +35,14 @@
 .title {
   font-size: 4.0rem;
   color: white;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .description {
   font-size: 1.5rem;
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+  margin-top: 0.5em;
 }
 
 .startButton {
@@ -197,12 +198,16 @@
   border-radius: 50px;
 }
 
+.lastContainer {
+  margin-top: 3vh;
+}
+
 .componenteImagemTexto {
   display: flex;
   position: relative;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
   margin-left: 200px;
   margin-right: 200px;
 }
@@ -402,6 +407,5 @@
     width: 70%;
     margin-left: 3.2em;
     margin-right: 0;
-  
   }
 }
