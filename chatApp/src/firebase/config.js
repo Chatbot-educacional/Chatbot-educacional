@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore} from "firebase/firebase";
+import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyAT6CATosrnNmy9tpTB8GEenPcHcJBuA8k",
   authDomain: "chatboteduca.firebaseapp.com",
   projectId: "chatboteduca",
@@ -12,6 +12,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
-export {db};
+// export {db};
