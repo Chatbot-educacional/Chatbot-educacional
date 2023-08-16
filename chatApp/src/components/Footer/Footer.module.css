@@ -86,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 531px) { /* 425px ou 531px*/
   .footer {
     display: block;
     text-align: center;
@@ -107,13 +107,15 @@
   }
 
   .footerContent {
+    box-sizing: border-box;
     padding: 0em 3em;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0;
   }
 
-  .footerContent h4 {
-    font-size: 0.7em;
+  .footerContent h4, p {
+    margin-top: 0;
+    font-size: 0.8em;
   }
 }
   

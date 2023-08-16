@@ -108,19 +108,20 @@
         align-items: flex-start;
         justify-content: flex-start;
         position: fixed;
-        top: 77px;
-        right: -300px;
+        top: 74px;
+        right: -300px; /* controla se ve ou não a navbar do mobile */
         width: 300px;
         height: 100vh;
-        background-color: #9e53ff;
+        background-color: #9e53ff; /* #9e53ff */
         font-size: 1.2em;
         box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
         padding: 50px 0 0 25px;
         z-index: 10;
+        transition: 0.3s ease-in-out;
     }
 
-    .navbar.active{
-        right: 0;
+    .links_list.active{
+        right: 0px;
     }
     
     .navbar .links_list li {

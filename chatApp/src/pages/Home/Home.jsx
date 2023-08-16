@@ -1,6 +1,7 @@
 // Imports
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../../components/form/Button';
 
 // Images
 import ExemCorreto from '../../assets/example.jpg';
@@ -22,7 +23,6 @@ const Home = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>ChatBot</h1>
         <p className={styles.description}>Uma ferramenta de ensino de programação</p>
-
         <Link to="/chat" className={styles.startButton}>Iniciar</Link>
       </div>
       <div className={styles.exampleContainer}>
