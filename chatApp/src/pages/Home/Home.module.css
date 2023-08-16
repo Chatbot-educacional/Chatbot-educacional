@@ -5,11 +5,12 @@
   justify-content: center;
   background-color: transparent; 
   position: relative; 
+  /* overflow: hidden; */
 }
 
 .backgroundImage {
   background-image: url('../../assets/5.jpg');
-  background-size: cover;
+  /* background-size: cover; */
   background-position: center;
   background-attachment: fixed;
   width: 100%;
@@ -323,18 +324,59 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 531px) { /* 531px ou 425px */
   .homeContainer {
     margin: 0;
   }
 
+  .exampleContainer {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .exampleContainer .exampleImages {
+    width: 100%;
+  }
+
   .exampleContainer .exampleImages .example img { /* imagens exemplo correto e incorreto*/
     width: 100%;
-    width: 400px;
+    /* width: 400px; */
     height: 400px;
   }
 
   .backgroundImage {
     width: 100%;
+  }
+
+  .componenteImagemTexto {
+    width: 90%;
+    height: 40vh;
+    flex-direction: column-reverse; 
+  }
+
+  .componenteImagemTexto .infoContainer .textoContainer {
+    margin-top: 8%;
+  }
+
+  .content {
+    width: 90%;
+    padding: 1rem;
+    height: 40vh;
+    margin-bottom: 151px;
+  }
+
+  .exampleContainer .divParagrafos {
+    max-width: 100%;
+    width: 90vw;
+    height: 8*0vh;
+    padding: 1.2em;
+  }
+
+  .exampleContainer .divParagrafos .pExem, .pExem2{
+    width: 100%;
+  }
+
+  .exampleContainer .divParagrafos .pExem, .pExem2 { /* espaçamento entre linhas da parte "Exemplificação"*/
+    line-height: 1.7;
   }
 }
