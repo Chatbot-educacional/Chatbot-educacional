@@ -2,7 +2,7 @@
   "homepage": "https://Chatbot-educacional.github.io/Chatbot-educacional",
   "name": "chatapp",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
