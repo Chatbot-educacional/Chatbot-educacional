@@ -1,15 +1,16 @@
-.homeContainer {
+.homeContainer { /* tem todos dentor body*/
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: transparent; 
   position: relative; 
+  /* overflow: hidden; */
 }
 
 .backgroundImage {
   background-image: url('../../assets/5.jpg');
-  background-size: cover;
+  /* background-size: cover; */
   background-position: center;
   background-attachment: fixed;
   width: 100%;
@@ -24,7 +25,7 @@
 .content {
   position: relative; 
   z-index: 1; 
-  padding: 2rem;
+  padding: 3rem;
   background-color: rgba(128, 128, 128, 0.171);
   border-radius: 50px;
   margin-top: 100px;
@@ -34,28 +35,47 @@
 .title {
   font-size: 4.0rem;
   color: white;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .description {
   font-size: 1.5rem;
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+  margin-top: 0.5em;
 }
 
 .startButton {
-  padding: 0.8rem 1.4rem;
-  font-size: 1.5rem;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 10px;
-  border: none;
+  margin: 0;
+  padding: 15px 30px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 20px;
+  display: block;
+  border: 0px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0px 0px 35px -4px #a119f0;
+  background-image: linear-gradient(45deg, #820cf0 0%, #cc19f0  51%, #860fd6  100%);
   cursor: pointer;
-  transition: background-color 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 40%;
+  min-height: 3rem;
+  white-space: nowrap;
 }
 
 .startButton:hover {
-  background-color: #0056b3;
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.startButton:active {
+  transform: scale(0.95);
 }
 
 .exampleContainer {
@@ -63,7 +83,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 9rem;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .titleExem {
@@ -74,7 +94,12 @@
 
 .divParagrafos {
   border: 1px solid #ccc;
-  max-width: 1000px;
+  width: 65.5vw; /* rever */
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.divParagrafos p{
   padding: 20px;
 }
 
@@ -178,12 +203,19 @@
   border-radius: 50px;
 }
 
+.lastContainer {
+  margin-top: 3vh;
+  text-align: center;
+  align-items: center;
+
+}
+
 .componenteImagemTexto {
   display: flex;
   position: relative;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
   margin-left: 200px;
   margin-right: 200px;
 }
@@ -225,4 +257,200 @@
 
 .numeroContainer span {
   font-size: 28px;
+}
+
+/* 1024px ou 1260px*/
+@media screen and (max-width: 1260px) {
+  
+  .exampleContainer .divParagrafos {
+    width: 78%; 
+    max-width: 100%;
+  }
+
+  .content {
+    width: 60vw;
+    margin: 0;
+    margin-top: 6em;
+    text-align: center;
+    font-size: x-small;
+  }
+
+  .exampleImages {
+    display: block;
+  }
+
+  .exampleContainer .titleExem {
+    margin:10px 0;
+    font-size: 2.0em;
+  }
+
+  .componenteImagemTexto {
+    margin-right: 100px;
+    margin-left: 100px;
+    height: 25vh;
+    align-items: center;
+  }
+}
+
+/* 768px ou 637px*/
+@media screen and (max-width: 637px) {
+  
+  .homeContainer content {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+
+  .backgroundImage {
+    width: 100%;
+  }
+  
+  .exampleImages {
+    display: block;
+  }
+
+  .imagemContainer {
+    align-items: center;
+  }
+
+  .textoContainer p {
+    max-width: 225px;
+    margin: 17px;
+  }
+
+  .content {
+    padding: 3em;
+    width: 60vw;
+    margin: 0;
+    margin-top: 6em;
+    text-align: center;
+    font-size: x-small;
+  }
+
+  .titleExem {
+    margin: 30px;
+  }
+
+  .exampleContainer .divParagrafos {
+    width: 100%;
+    margin-bottom: 3em;
+  }
+
+  .exampleContainer .titleExem {
+    font-size: 2.0em;
+    margin-top: 0;
+  }
+
+  .exampleImages .exampleTitle{
+    margin: 25px;
+    margin-top: 5px;
+  }
+
+  .backgroundSession {
+      height: 30vh;
+      margin-bottom: 60px;
+  }
+
+  .backgroundSession .sessionTitle {
+    font-size: 2.3em;
+  }
+
+  .componenteImagemTexto {
+    /* margin-right: 100px;
+    margin-left: 100px; */
+    height: 50vh;
+  }
+
+  .startButton {
+    width: 100%;
+  }
+}
+
+/* 531px ou */
+@media screen and (max-width: 531px) { /* 531px ou 425px */
+  .homeContainer {
+    margin: 0;
+  }
+
+  .exampleContainer {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .exampleContainer .titleExem {
+    margin: 30px;
+  }
+
+  .exampleContainer .exampleImages {
+    width: 100%;
+  }
+
+  .exampleContainer .exampleImages .example img { /* imagens exemplo correto e incorreto*/
+    width: 100%;
+    /* width: 400px; */
+    height: 400px;
+  }
+
+  .backgroundImage {
+    width: 100%;
+  }
+
+  .lastContainer {
+    margin: 0;
+    display:contents; 
+    justify-content: center;
+  }
+
+  .componenteImagemTexto {
+    margin-bottom: 0.5em;
+    width: 90%;
+    max-width: 100%;
+    /* width: 100vw; */
+    /* max-width: 90vw; */
+    /* height: 40vh; */
+    height: auto;
+    flex-direction: column-reverse; 
+  }
+
+  .componenteImagemTexto .textoContainer {
+    margin-top: 8%;
+  }
+
+  .componenteImagemTexto .textoContainer p{
+    /* max-width: 100vw; */
+    max-width: 100%;
+    font-size: 1em;
+  }
+
+  .content {
+    width: 90%;
+    padding: 1rem;
+    height: 40vh;
+    margin-bottom: 151px;
+  }
+
+  .content .description{
+    margin-bottom: 25px;
+  }
+
+  .exampleContainer .divParagrafos {
+    max-width: 100%;
+    width: 90vw;
+    height: 8*0vh;
+    padding: 1.2em;
+  }
+
+  .exampleContainer .divParagrafos .pExem, .pExem2{
+    width: 100%;
+  }
+
+  .exampleContainer .divParagrafos .pExem, .pExem2 { /* espaçamento entre linhas da parte "Exemplificação"*/
+    line-height: 1.7;
+  }
+
+  .startButton {
+    width: 70%;
+    margin-left: 3.2em;
+    margin-right: 0;
+  }
 }
