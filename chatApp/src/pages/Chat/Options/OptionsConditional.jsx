@@ -5,15 +5,20 @@ import "./Options.css";
 const OptionsConditional = (props) => {
   const options = [
     {
-      text: "Exemplo Correto",
+      text: "Exemplo Correto ✅",
       handler: props.actionProvider.handleExemploCorretoCondicional,
-      id: 8,
+      id: 4,
     },
     {
-      text: "Exemplo Incorreto",
+      text: "Exemplo Incorreto ❌",
       handler: props.actionProvider.handleExemploIncorretoCondicional,
-      id: 9,
-    },  
+      id: 5,
+    },
+    {
+      text: "Voltar",
+      handler: props.actionProvider.handleGoToBackMenu,
+      id: 6,
+    }
   ];
  
   const buttonsMarkup = options.map((option) => (

@@ -7,7 +7,7 @@ const OptionsVariableWrong = (props) => {
   { 
     text: "Identificar o problema",
     handler: props.actionProvider.handleIdentificarErroVariavel,
-    id: 10,
+    id: 16,
   }
   ];
 

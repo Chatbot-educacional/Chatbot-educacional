@@ -7,7 +7,7 @@ const OptionsConditionalWrong = (props) => {
     {
       text: "Identificar o problema",
       handler: props.actionProvider.handleIdentificarErroCondicional,
-      id: 12,
+      id: 7,
     },
   ];
   

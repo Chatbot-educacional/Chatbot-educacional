@@ -1,0 +1,9 @@
+{
+    "definicao": "Uma variável é um nome associado a um valor ou espaço de armazenamento na programação. Ela permite que os dados sejam manipulados e referenciados de forma flexível durante a execução de um programa.",
+ 
+    "exemploCorreto": "Vamos ver um exemplo correto\n\n Declaração e inicialização de uma variável\nlet nome = \"Williamson\";\n\n Impressão do valor da variável\nconsole.log(\"Meu nome é: \" + nome);",
+    "exemploIncorreto": "Agora vamos ver um exemplo incorreto \n\nlet nome = \"Williamson\"; \nconsole.log(\"Meu nome é: \" + nom);",
+
+    "identificaProblema": "O problema é que a variável foi declarada como \"nome\", mas na linha de impressão você está tentando acessar uma variável chamada \"nom\". Como a variável \"nom\" não foi declarada, isso resultará em um erro, indicando que a variável é indefinida. Para corrigir o erro, você deve usar o nome correto da variável, que é \"nome\");"
+ }
+ 
