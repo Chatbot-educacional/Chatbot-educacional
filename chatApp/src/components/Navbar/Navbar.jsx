@@ -1,27 +1,34 @@
-import { NavLink } from "react-router-dom"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useAuthentication } from "../../hooks/useAuthentication";
+import { useAuthValue } from "../../context/AuthContext";
 import styles from './Navbar.module.css';
-import { Component } from "react";
 
-class Navbar extends Component{
+function Navbar() {
+    const { user } = useAuthValue();
+    const { logout } = useAuthentication();
+    const [clicked, setClicked] = React.useState(false);
 
-    state ={clicked : false}; /*verifica se clicou no menu do mobile*/
-    handleClick = () => {
-        this.setState({clicked: !this.state.clicked})
+    const handleClick = () => {
+        setClicked(!clicked);
     }
 
-    render() {
     return (
-    <nav className={styles.navbar}>
-        <NavLink to="/" className={styles.brand}>
-            Chat <span>Bot</span>
-        </NavLink>
-            <ul className={`${styles.links_list} ${this.state.clicked ? styles.active : ''}`}>
+        <nav className={styles.navbar}>
+            <NavLink to="/" className={styles.brand}>
+                Chat <span>Bot</span>
+            </NavLink>
+            <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>
-                    <NavLink to="/" className={({isActive}) => (isActive ? styles.active : '')}>Home</NavLink>
+                    <NavLink exact to="/" className={({isActive}) => (isActive ? styles.active : '')}>Home</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/chat" className={({isActive}) => (isActive ? styles.active : '')}>Chat</NavLink>
-                </li>
+                {user && (
+                    <>
+                        <li>
+                            <NavLink to="/chat" className={({isActive}) => (isActive ? styles.active : '')}>Chat</NavLink>
+                        </li>
+                    </>
+                )}
                 <li>
                     <NavLink to="/about" className={({isActive}) => (isActive ? styles.active : '')}>Sobre</NavLink>
                 </li>
@@ -30,19 +37,28 @@ class Navbar extends Component{
                 </li>
             </ul>
             <ul className={styles.links_list_right}>
-                <li>
-                    <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')}>Entrar</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
-                </li>
+                {!user ? (
+                    <>
+                        <li>
+                            <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')}>Entrar</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
+                        </li>
+                    </>
+                ) : (
+                    <li>
+                        <NavLink onClick={logout}>Sair</NavLink>
+                    </li>
+                )}
             </ul>
-        <div className={styles.mobile} onClick={this.handleClick}>
-            <i id="bar" className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
-        </div>
+            {/* Mobile menu icon */}
+            <div className={styles.mobile} onClick={handleClick}>
+                <i id="bar" className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
+            </div>
 
-    </nav>
-  )
+        </nav>
+    );
 }
-}
-export default Navbar
+
+export default Navbar;

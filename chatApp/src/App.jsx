@@ -2,6 +2,14 @@
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { onAuthStateChanged } from '@firebase/auth';
+
+// hooks
+import { useState, useEffect } from 'react';
+import { useAuthentication } from './hooks/useAuthentication';
+
+// context
+import { AuthProvider } from './context/AuthContext';
 
 // pages 
 import Home from './pages/Home/Home';
@@ -14,23 +22,41 @@ import Chat from './pages/Chat/Chat';
 import FooterConditional from './components/FooterConditional';
 
 function App() {
+
+  const [user, setUser] = useState(undefined);
+  const {auth} = useAuthentication();
+
+  const loadingUser = user === undefined;
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    })
+  }, [auth])
+
+  if (loadingUser) {
+    return <div>Carregando...</div>
+  }
   
   return (
     <div className="App">
-      <Router>
-      <Navbar />
-        <div className="container"> 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/chat" element={<Chat />} />
-          </Routes>
-        </div>
-        <FooterConditional />
-      </Router>
+      <AuthProvider value={{ user }}>
+        <Router>
+        <Navbar />
+          <div className="container"> 
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+              <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
+              <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
+              
+            </Routes>
+          </div>
+          <FooterConditional />
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
