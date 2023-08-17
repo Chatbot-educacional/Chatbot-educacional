@@ -1,0 +1,10 @@
+{
+    "definicao": "Um laço de repetição é uma construção de programação que permite executar um conjunto de instruções várias vezes, com base em uma condição ou um número definido de iterações. Isso ajuda a automatizar tarefas repetitivas e economizar código. Em linguagens de programação, os laços de repetição são frequentemente implementados usando palavras-chave como \"for\" e \"while\".",
+ 
+    "exemploCorreto": "Vamos ver um exemplo correto de laços de repetição.\n\n Considerando que queremos mostrar os números de 1 a 10\n for (var i = 0; i < 10; i++) {\n console.log(i);  \n}," ,
+
+    "exemploIncorreto": "Vamos ver um exemplo incorreto de laços de repetição.\n\n for (var i = 0; i > 10; i++) {\n console.log(i); \n}",
+
+    "identificaProblema": "Vamos identificar o erro\nNeste exemplo, o erro está na condição do loop for. A condição i > 10 é falsa desde o início, já que i é inicializado como 0. Isso significa que o loop nunca será executado e nenhum número será impresso.\n Para imprimir os números de 0 a 9, a condição deveria ser i < 10"
+ }
+ 

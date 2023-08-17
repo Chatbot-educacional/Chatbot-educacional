@@ -1,0 +1,153 @@
+.contactContainer { /*MAIN CONTAINER*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.container {
+    margin-bottom: 0;
+}
+
+.contactContainer h2 { /*Título "Contato"*/
+    margin-top: 0; /* ou 10px*/
+    text-align: start;
+    font-size:35px;
+}
+  
+.topContainer { /*Texto inicial*/
+    font-size: 100px;
+    margin: 83px;
+    margin-bottom: 35px;
+    margin-top: 50px;
+    padding: 0 50px;
+    text-align: center;
+    position: relative; /*rever esse*/
+    font-size: large; /*ou x-large*/
+}
+
+.topContainer span{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.bottomContainer {
+    width: 80%;
+    height: 600px;
+    max-width: 70%;
+    display: flex;
+    justify-content: space-around;
+    
+    /*margin-top: 20px;*/
+}
+
+.contactForm { /*Segunda div*/
+    max-width:550px; 
+    /* display: flex;
+    flex-direction: column; */
+    height:auto; 
+    float:none; 
+    margin:0; 
+    padding:2em; 
+    position:relative; 
+}
+
+.contactForm form {
+    margin: 0;
+    justify-content: start;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.contactForm label {
+    float:left; 
+    width:100%; 
+    margin-bottom: 25px; 
+}
+
+.contactForm label span {
+    width: 100%;
+    float: left;
+    color: rgb(105, 105, 105);
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+ 
+.contactForm label input {
+    font-size: 1em;
+    width:100%; 
+    display:block; 
+    margin:auto;
+    color:#555; 
+    outline:none; 
+    border:1px #d2d8df solid; 
+    border-radius:20px; 
+    padding:0.6em; 
+    transition: 0.3s;
+}
+
+.contactForm label select {
+    font-size:1em; 
+    color:#555; 
+    border:1px #dee5ed solid; 
+    border-radius:20px; 
+    padding:0.6em; 
+    outline:none; 
+    transition: 0.3s;  
+}
+
+.contactForm label textarea {
+    font-size:1em; 
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    box-sizing: border-box;
+    resize: vertical;
+    color:#555; 
+    border:1px #dee5ed solid; 
+    border-radius:20px; 
+    padding:0.6em;
+    outline:none;
+    transition: 0.3s;
+}
+
+.imageContact {
+    /* display: flex; */
+    /* justify-content: center; */
+    align-items: center;
+    min-height: 600px;
+    min-width: 550px;
+  }
+  
+  .imageContact img {
+    width: 550px;
+    height: 550px;
+  }
+
+.contactInfoMain {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 50px;
+    max-width: 100%;
+    margin-top: 100px;
+    min-height: 100%;
+    background-color: #820cf0;
+    /* align-items: center; */
+}
+
+.contactInfo { /*Informações de contato*/
+    display: flex;
+    color: rgb(243, 243, 243);
+    flex: 1;
+    padding: 50px;
+    min-width: 400px;
+    min-height: 400px;
+    max-width: 600px;
+    text-align: start;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 3rem;
+    font-weight: 500;
+}
