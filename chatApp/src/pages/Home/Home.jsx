@@ -28,23 +28,23 @@ const Home = () => {
       <div className={styles.exampleContainer}>
         <h1 className={styles.titleExem}>Exemplificação</h1>
         <div className={styles.divParagrafos}>
-          <p className={styles.pExem}>
-          <strong className={styles.strongPara1}>Dados Gerais sobre a abordagem</strong><br/>
-          <strong className={styles.strongLi}>Título da disciplina:</strong> Construção de Algoritmos<br/>
-          <strong className={styles.strongLi}>Tópico da disciplina:</strong> Estruturas de decisão<br/>
-          <strong className={styles.strongLi}>Subtópicos:</strong> Uso do comando "if"<br/>
-          <strong className={styles.strongLi}>Conhecimento prévio:</strong> Variáveis<br/>
-          <strong className={styles.strongLi}>Dados do Local do Exemplo:</strong> Local onde foi retirado: Material didático - Aula Professor Renato - IFMS<br/>
-          </p>
-          <p className={styles.pExem2}>
-          <strong className={styles.strongPara2}>Dados do Worked Example</strong><br/>
-          <ul>
-            <strong className={styles.strongLi}>Descrição do problema:</strong> Desenvolva um código para verificar se um número é ímpar ou par<br/>
-            <strong className={styles.strongLi}>Resultado:</strong> para o valor 2, o resultado esperado é par<br/>
-            <strong className={styles.strongLi}>Material complementar:</strong> Curso Intensivo de Python - 3ª Edição: Uma Introdução Prática e Baseada em Projetos à Programação. (2023). (n.p.): Novatec Editora.
-          </ul>
-          </p>
-        </div>
+            <p className={styles.pExem}>
+                <strong className={styles.strongPara1}>Dados Gerais sobre a abordagem</strong><br/>
+                <strong className={styles.strongLi}>Título da disciplina:</strong> Construção de Algoritmos<br/>
+                <strong className={styles.strongLi}>Tópico da disciplina:</strong> Estruturas de decisão<br/>
+                <strong className={styles.strongLi}>Subtópicos:</strong> Uso do comando "if"<br/>
+                <strong className={styles.strongLi}>Conhecimento prévio:</strong> Variáveis<br/>
+                <strong className={styles.strongLi}>Dados do Local do Exemplo:</strong> Local onde foi retirado: Material didático - Aula Professor Renato - IFMS<br/>
+            </p>
+            <p className={styles.pExem2}>
+            <strong className={styles.strongPara2}>Dados do Worked Example</strong><br/>
+            <ul>
+              <strong className={styles.strongLi}>Descrição do problema:</strong> Desenvolva um código para verificar se um número é ímpar ou par<br/>
+              <strong className={styles.strongLi}>Resultado:</strong> para o valor 2, o resultado esperado é par<br/>
+              <strong className={styles.strongLi}>Material complementar:</strong> Curso Intensivo de Python - 3ª Edição: Uma Introdução Prática e Baseada em Projetos à Programação. (2023). (n.p.): Novatec Editora.
+            </ul>
+            </p>
+        </div>    
         <div className={styles.exampleImages}>
           <div className={styles.example}>
             <img src={ExemCorreto1} alt="Exemplo Correto" className={styles.exampleImage} />
@@ -98,7 +98,7 @@ const Home = () => {
           <div className={styles.infoContainer}>
             <div className={styles.textoContainer}>
               <h2>Expressão aritméticas</h2>
-              <p>desenvolvimento de cálculos aritméticos</p>
+              <p>Desenvolvimento de cálculos aritméticos</p>
             </div>
             <div className={styles.numeroContainer}>
               <span>02</span>
@@ -126,7 +126,7 @@ const Home = () => {
           <div className={styles.infoContainer}>
             <div className={styles.textoContainer}>
               <h2>Laços de repetição</h2>
-              <p>aplicação de laços para execução de uma ou mais vezes determinadas trechos de código</p>
+              <p>Aplicação de laços para execução de uma ou mais vezes determinados trechos de código</p>
             </div>
             <div className={styles.numeroContainer}>
               <span>04</span>
