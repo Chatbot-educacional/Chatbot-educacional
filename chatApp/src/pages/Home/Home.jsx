@@ -7,11 +7,9 @@ import Button from '../../components/form/Button';
 import ExemCorreto from '../../assets/example.jpg';
 import ExemCorreto1 from '../../assets/workedexamplecorreto.png';
 import ExemIncorreto from '../../assets/workedexampleincorreto.png';
-import ConteudoVar from '../../assets/codeVar.png';
-import ConteudoArit from '../../assets/codeArit.png';
-import ConteudoCond from '../../assets/codeCond.png';
-import ConteudoLaco from '../../assets/codeRep.png';
 
+
+import AccordionComponent from '../../components/Accordion/AccordionComponent';
 // CSS
 import styles from './Home.module.css'; 
 
@@ -63,20 +61,7 @@ const Home = () => {
         </div>
       </div>
       <div className={styles.lastContainer}>
-        <div className={styles.componenteImagemTexto}>
-          <div className={`${styles.imagemContainer} ${styles.image}`}>
-            <img src={ConteudoVar} alt="Imagem" />
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.textoContainer}>
-              <h2>Variáveis</h2>
-              <p>Como declarar variáveis e uso de atribuição de valores</p>
-            </div>
-            <div className={styles.numeroContainer}>
-              <span>01</span>
-            </div>
-          </div>
-        </div>
+       
         {/* <div className={styles.componenteImagemTexto}>
           <div className={`${styles.imagemContainer} ${styles.image}`}>
             <img src={ExemCorreto} alt="Imagem" />
@@ -91,7 +76,10 @@ const Home = () => {
             </div>
           </div>
         </div> */}
-        <div className={styles.componenteImagemTexto}>
+
+
+        <AccordionComponent />
+        {/* <div className={styles.componenteImagemTexto}>
           <div className={`${styles.imagemContainer} ${styles.image}`}>
             <img src={ConteudoArit} alt="Imagem" />
           </div>
@@ -132,7 +120,7 @@ const Home = () => {
               <span>04</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
