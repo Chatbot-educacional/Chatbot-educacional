@@ -1,41 +1,52 @@
 import React from "react";
 import styles from "./Researchers.module.css";
-
+import { FaEnvelope } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 // Importe as imagens dos pesquisadores
 import imgPesquisador1 from "./Andre.jpeg"; // Substitua pelo caminho correto da imagem
-import imgPesquisador3 from "./mateus.png"; // Substitua pelo caminho correto da imagem
-
+import imgPesquisador3 from "./joao.png"; // Substitua pelo caminho correto da imagem
+import imgPesquisador4 from "./renato.png"; // Substitua pelo caminho correto da imagem
 import imgPesquisador2 from "./MateusReal.jpeg"; // Substitua pelo caminho correto da imagem
+import imgPesquisador5 from "./will.png"; // Substitua pelo caminho correto da imagem
 // Adicione os demais caminhos para as imagens dos outros pesquisadores
 
 const researchersData = [
   {
     name: "André L M Miranda",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA. ",
+    email: "andremendes0113@gmail.com",
+    github:"Mendes113",
     img: imgPesquisador1,
   },
   {
-    name: "João ...",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    name: "João ",
+    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA.",
     img: imgPesquisador3,
   },
   {
     name: "Mateus Balda",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA.",
     img: imgPesquisador2,
   },
   {
     name: "Renato",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    img: imgPesquisador2,
+    img: imgPesquisador4,
   },
   {
     name: "Williamson Silva",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    img: imgPesquisador2,
+    img: imgPesquisador5,
   },
 ];
 
+
+const verifyIfHasGithub = (researcher) => {
+    if(researcher.github){
+        return <p> <FaGithub />{researcher.github}</p>
+    }
+
+}
 const Researchers = () => {
     const chunkedResearchers = chunkArray(researchersData, 2);
   
@@ -58,6 +69,11 @@ const Researchers = () => {
                   </div>
                   <div className={styles.researcherDescription}>
                     <p>{researcher.description}</p>
+                    
+                    <div className={researcher.contact}>
+                    <p> <FaEnvelope /> {researcher.email}</p>
+                   {verifyIfHasGithub(researcher)}
+                   </div>
                   </div>
                 </div>
               ))}
