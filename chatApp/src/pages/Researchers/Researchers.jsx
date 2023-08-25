@@ -24,29 +24,58 @@ const researchersData = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     img: imgPesquisador2,
   },
+  {
+    name: "Renato",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    img: imgPesquisador2,
+  },
+  {
+    name: "Williamson Silva",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    img: imgPesquisador2,
+  },
 ];
 
 const Researchers = () => {
-  return (
-    <div className={styles.container}>
-      <h1>Researchers</h1>
-      <p>Os pesquisadores são:</p>
-      <div className={styles.researcherContainer}>
-        {researchersData.map((researcher, index) => (
-          <div key={index} className={styles.researcher}>
-            <img src={researcher.img} alt={`${researcher.name} - Foto`} className={styles.researcherImage} />
-            <div className={styles.researcherName}>
-            <h2>{researcher.name}</h2>
+    const chunkedResearchers = chunkArray(researchersData, 2);
+  
+    return (
+      <div className={styles.container}>
+        <h1>Researchers</h1>
+        <p>Os pesquisadores são:</p>
+        <div className={styles.researcherContainer}>
+          {chunkedResearchers.map((researcherGroup, groupIndex) => (
+            <div key={groupIndex} className={styles.researcherGroup}>
+              {researcherGroup.map((researcher, index) => (
+                <div key={index} className={styles.researcher}>
+                  <div className={styles.researcherNameAndPic}>
+                    <div className={styles.researcherImage}>
+                      <img className={styles.img} src={researcher.img} alt={`${researcher.name} - Foto`} />
+                    </div>
+                    <div className={styles.researcherName}>
+                      <h2>{researcher.name}</h2>
+                    </div>
+                  </div>
+                  <div className={styles.researcherDescription}>
+                    <p>{researcher.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className={styles.researcherDescription}>
-                 <p>{researcher.description}</p>
-            </div>
-          
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+  
+  // Função para dividir o array de pesquisadores em grupos de tamanho específico
+  function chunkArray(arr, chunkSize) {
+    const chunkedArr = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      chunkedArr.push(arr.slice(i, i + chunkSize));
+    }
+    return chunkedArr;
+  }
+
 
 export default Researchers;
