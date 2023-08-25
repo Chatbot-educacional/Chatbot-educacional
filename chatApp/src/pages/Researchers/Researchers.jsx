@@ -52,8 +52,8 @@ const Researchers = () => {
   
     return (
       <div className={styles.container}>
-        <h1>Researchers</h1>
-        <p>Os pesquisadores são:</p>
+        <h1>Pesquisadores</h1>
+        {/* <p>Os pesquisadores são:</p> */}
         <div className={styles.researcherContainer}>
           {chunkedResearchers.map((researcherGroup, groupIndex) => (
             <div key={groupIndex} className={styles.researcherGroup}>
