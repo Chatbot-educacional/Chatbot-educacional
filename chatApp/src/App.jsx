@@ -19,6 +19,7 @@ import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Chat from './pages/Chat/Chat';
+import Researchers from './pages/Researchers/Researchers';
 import FooterConditional from './components/FooterConditional';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
               <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
               <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
+              <Route path="/researchers" element={ <Researchers /> } />
               
             </Routes>
           </div>
