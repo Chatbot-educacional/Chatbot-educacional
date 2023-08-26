@@ -48,6 +48,7 @@ function Navbar() {
                     </>
                 ) : (
                     <li>
+                        {user.displayName}
                         <NavLink onClick={logout}>Sair</NavLink>
                     </li>
                 )}
