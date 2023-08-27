@@ -43,10 +43,20 @@ const researchersData = [
 
 const verifyIfHasGithub = (researcher) => {
     if(researcher.github){
-        return <p> <FaGithub />{researcher.github}</p>
+        return <p> <FaGithub /> {researcher.github}</p>
     }
 
 }
+const verifyIfHasEmail = (researcher) => {
+  if(researcher.email){
+      return <p> <FaEnvelope /> {researcher.email}</p>
+  }
+
+}
+
+
+
+
 const Researchers = () => {
     const chunkedResearchers = chunkArray(researchersData, 2);
   
@@ -71,7 +81,7 @@ const Researchers = () => {
                     <p>{researcher.description}</p>
                     
                     <div className={researcher.contact}>
-                    <p> <FaEnvelope /> {researcher.email}</p>
+                    {verifyIfHasEmail(researcher)}
                    {verifyIfHasGithub(researcher)}
                    </div>
                   </div>
