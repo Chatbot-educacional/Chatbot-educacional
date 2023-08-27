@@ -1,0 +1,84 @@
+/* Researchers.module.css */
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.researcherContainer {
+  display: flex;
+  justify-content: center; /* Alinha horizontalmente no centro */
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: auto; /* Remova a margem esquerda fixa */
+  margin-right: auto; /* Remova a margem direita fixa */
+  max-width: 1400px; /* Defina um valor máximo para o container */
+}
+
+.researcher {
+  display: flex;
+  flex-direction: column;
+  background-color: #efbbff20;
+  border-radius: 15px;
+  padding: 20px;
+  flex: 1;
+  min-width: 300px;
+  margin-top: 35px;
+  width: 400px;
+  height: 500px;
+}
+  .researcherNameAndPic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .researcherName {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .researcherDescription {
+    flex: 1;
+  }
+  
+/* Additional styling for responsiveness */
+@media (max-width: 768px) {
+  .researcher {
+    min-width: 250px;
+    width: 100%; /* Ocupar a largura total */
+    height: auto; /* Ajustar a altura automaticamente */
+    margin-top: 20px; /* Reduzir a margem superior */
+    padding: 15px; /* Reduzir o espaçamento interno */
+    max-width: none;
+  }
+  
+  .researcherName {
+    font-size: 18px; /* Reduzir o tamanho da fonte */
+  }
+}
+
+
+/* Additional styling for iPad in portrait orientation */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .researcher {
+    min-width: 500px; /* Ajuste conforme necessário */
+    width: 100%;
+    padding: 20px;
+    margin-top: 35px;
+    max-width: none;
+  }
+  
+  .researcherName {
+    font-size: 20px;
+  }
+}
