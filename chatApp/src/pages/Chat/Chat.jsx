@@ -1,8 +1,8 @@
 // import { useState } from 'react'
 import Chatbot from "react-chatbot-kit"
 import config from "./chatbot/config";
-import MessageParser from "./chatbot/MessageParser";
-import ActionProvider from "./chatbot/ActionProvider";
+import MessageParser from "./chatbot/MessageParser.jsx";
+import ActionProvider from "./chatbot/ActionProvider.jsx";
 import './main.css';
 // import 'react-chatbot-kit/build/main.css';
 
