@@ -27,6 +27,9 @@ function Navbar() {
                         <li>
                             <NavLink to="/chat" className={({isActive}) => (isActive ? styles.active : '')}>Chat</NavLink>
                         </li>
+                        <li>
+                            <NavLink to="/create-example" className={({isActive}) => (isActive ? styles.active : '')}>Criar novo exemplo</NavLink>
+                        </li>
                     </>
                 )}
                 <li>
