@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import imgPesquisador1 from "./Andre.jpeg"; // Substitua pelo caminho correto da imagem
 import imgPesquisador3 from "./joao.png"; // Substitua pelo caminho correto da imagem
 import imgPesquisador4 from "./renato.png"; // Substitua pelo caminho correto da imagem
-import imgPesquisador2 from "./MateusReal.jpeg"; // Substitua pelo caminho correto da imagem
+import imgPesquisador2 from "./mateus.png"; // Substitua pelo caminho correto da imagem
 import imgPesquisador5 from "./will.png"; // Substitua pelo caminho correto da imagem
 // Adicione os demais caminhos para as imagens dos outros pesquisadores
 
