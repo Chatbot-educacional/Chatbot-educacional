@@ -35,9 +35,9 @@ const Login = () => {
   }, [authError]);
 
   return (
-    <div className={styles.login}>
+    <div className={"text-center mt-3"}>
       <h1>Entrar</h1>
-      <p>Faça o login para poder utilizar o chatBot</p>
+      <p className={"text-gray-500"}>Faça o login para poder utilizar o chatBot</p>
       <form onSubmit={handleSubmit}>
         <label>
           <span>E-mail: </span>
