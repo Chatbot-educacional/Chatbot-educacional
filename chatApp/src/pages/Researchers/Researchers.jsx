@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Researchers.module.css";
+// import styles from "./Researchers.module.css";
 import { FaEnvelope } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 // Importe as imagens dos pesquisadores
@@ -72,18 +72,18 @@ const Researchers = () => {
         
         <div className={"flex justify-center flex-wrap gap-5 ml-auto mr-auto max-w-1200"}>
           {chunkedResearchers.map((researcherGroup, groupIndex) => (
-            <div key={groupIndex} className={styles.researcherGroup}>
+            <div key={groupIndex} >
               {researcherGroup.map((researcher, index) => (
-               <div key={index} className="flex flex-col bg-purple-50 rounded-lg p-5 flex-1 w-96 h-96 mt-8 ">
+               <div key={index} className="flex flex-col bg-purple-50 rounded-lg p-5 flex-1 w-96 h-96 mt-8 my-10 mx-auto ">
                   <div className={"flex flex-col items-center"}>
-                    <div className={styles.researcherImage}>
+                    <div >
                       <img className={"w-40  h-40 rounded-full object-cover mb-2"} src={researcher.img} alt={`${researcher.name} - Foto`} />
                     </div>
                     <div className={"font-bold text-lg mt-2"}>
                       <h2>{researcher.name}</h2>
                     </div>
                   </div>
-                  <div className={styles.researcherDescription}>
+                  <div >
                     <p>{researcher.description}</p>
                     
                     <div className={researcher.contact}>
