@@ -43,37 +43,43 @@ const researchersData = [
 
 const verifyIfHasGithub = (researcher) => {
     if(researcher.github){
-        return <p> <FaGithub /> {researcher.github}</p>
+        return <p ><div className={"ml-24 -mb-4 text-lg"}><FaGithub /></div>   {researcher.github}</p>
     }
 
 }
 const verifyIfHasEmail = (researcher) => {
   if(researcher.email){
-      return <p> <FaEnvelope /> {researcher.email}</p>
+      return <p> <div className={"ml-4 -mb-4 text-lg"}>  <FaEnvelope /> </div> {researcher.email}</p>
   }
 
 }
 
 
+// .researcherName {
+//   font-size: 20px;
+//   font-weight: bold;
+//   margin-top: 10px;
+// }
 
 
 const Researchers = () => {
     const chunkedResearchers = chunkArray(researchersData, 2);
   
     return (
-      <div className={styles.container}>
+      <div className={"text-center p-5 "}>
         <h1>Pesquisadores</h1>
         {/* <p>Os pesquisadores são:</p> */}
-        <div className={styles.researcherContainer}>
+        
+        <div className={"flex justify-center flex-wrap gap-5 ml-auto mr-auto max-w-1200"}>
           {chunkedResearchers.map((researcherGroup, groupIndex) => (
             <div key={groupIndex} className={styles.researcherGroup}>
               {researcherGroup.map((researcher, index) => (
-                <div key={index} className={styles.researcher}>
-                  <div className={styles.researcherNameAndPic}>
+               <div key={index} className="flex flex-col bg-purple-50 rounded-lg p-5 flex-1 w-96 h-96 mt-8 ">
+                  <div className={"flex flex-col items-center"}>
                     <div className={styles.researcherImage}>
-                      <img className={styles.img} src={researcher.img} alt={`${researcher.name} - Foto`} />
+                      <img className={"w-40  h-40 rounded-full object-cover mb-2"} src={researcher.img} alt={`${researcher.name} - Foto`} />
                     </div>
-                    <div className={styles.researcherName}>
+                    <div className={"font-bold text-lg mt-2"}>
                       <h2>{researcher.name}</h2>
                     </div>
                   </div>
