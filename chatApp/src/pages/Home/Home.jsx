@@ -38,11 +38,9 @@ const Home = () => {
             </p>
             <p className={styles.pExem2}>
             <strong className={styles.strongPara2}>Dados do Worked Example</strong><br/>
-            <ul>
               <strong className={styles.strongLi}>Descrição do problema:</strong> Desenvolva um código para verificar se um número é ímpar ou par<br/>
               <strong className={styles.strongLi}>Resultado:</strong> para o valor 2, o resultado esperado é par<br/>
               <strong className={styles.strongLi}>Material complementar:</strong> Curso Intensivo de Python - 3ª Edição: Uma Introdução Prática e Baseada em Projetos à Programação. (2023). (n.p.): Novatec Editora.
-            </ul>
             </p>
         </div>    
         <div className={styles.exampleImages}>

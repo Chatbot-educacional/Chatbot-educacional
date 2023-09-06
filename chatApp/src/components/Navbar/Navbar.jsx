@@ -20,7 +20,7 @@ function Navbar() {
             </NavLink>
             <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>
-                    <NavLink exact to="/" className={({isActive}) => (isActive ? styles.active : '')}>Home</NavLink>
+                    <NavLink to="/" className={({isActive}) => (isActive ? styles.active : '')}>Home</NavLink>
                 </li>
                 {user && (
                     <>
