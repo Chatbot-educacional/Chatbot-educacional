@@ -18,7 +18,6 @@ import OptionsGoToMainMenu from "../Options/OptionsGoToMainMenu";
 const config = {
   botName: "ChatBot de Educação",
   initialMessages: [
-    
     createChatBotMessage(`Olá ! 👋  Sou o EducaBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
       widget: "options",
     }),

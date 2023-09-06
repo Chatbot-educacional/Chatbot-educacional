@@ -1,0 +1,12 @@
+.createExample{
+    text-align: center;
+}
+
+.createExample h2 {
+    font-size: 2.2em;
+}
+
+.createExample p {
+    color: #aaaa;
+    font-size: 1.2em;
+}

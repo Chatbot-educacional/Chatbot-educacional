@@ -1,11 +1,8 @@
-class MessageParser {
-    constructor(actionProvider, state) {
-      this.actionProvider = actionProvider;
-      this.state = state;
-    }
+import React from "react";
+
+const MessageParser = ({ children, actions }) => {
   
-    parse(message) {
-      console.log(message)
+    const parse = (message) => {
       const lowerCaseMessage = message.toLowerCase()
 
         const greetingsKeywords = ["oi", "ola", "olá", "hello", "hi", "hey", "oi, tudo bem?", "ola, tudo bem?", "olá, tudo bem?", "hello, tudo bem?", "hi, tudo bem?", "hey, tudo bem?", "oi, tudo bem", "ola, tudo bem", "olá, tudo bem", "hello, tudo bem", "hi, tudo bem", "hey, tudo bem", "eae", "eai", "e aí", "e aí?", "eai?", "eae?"];
@@ -17,30 +14,41 @@ class MessageParser {
 
         switch (true) {
             case greetingsKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
-                this.actionProvider.greet();
+                actions.greet();
                 matched = true;
                 break;
 
             case variableKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
-                this.actionProvider.handleVariavelQuiz();
+                actions.handleVariavelQuiz();
                 matched = true;
                 break;
 
             case conditionalKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
-                this.actionProvider.handleCondicionalQuiz();
+                actions.handleCondicionalQuiz();
                 matched = true;
                 break;
 
             case loopKeywords.some(palavra => lowerCaseMessage.includes(palavra)):
-                this.actionProvider.handleLacoRepeticao();
+                actions.handleLacoRepeticao();
                 matched = true;
                 break;
         }
 
         if (!matched) {
-            this.actionProvider.handleDefaultMessage();
+            actions.handleDefaultMessage();
         }
     }
+    
+    return (    
+        <div>      
+            {React.Children.map(children, (child) => {
+                return React.cloneElement(child, {
+                    parse: parse,
+                    actions,
+                });
+            })}
+        </div>
+    );
   }
   
   export default MessageParser;
