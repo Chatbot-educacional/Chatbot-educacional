@@ -38,6 +38,9 @@ function Navbar() {
                 <li>
                     <NavLink to="/contact" className={({isActive}) => (isActive ? styles.active : '')}>Contato</NavLink>
                 </li>
+                <li>
+                     <NavLink to="/researchers" className={({isActive}) => (isActive ? styles.active : '')}>Pesquisadores</NavLink>
+                </li>
             </ul>
             <ul className={styles.links_list_right}>
                 {!user ? (
@@ -48,6 +51,8 @@ function Navbar() {
                         <li>
                             <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
                         </li>
+                        
+                      
                     </>
                 ) : (
                     <li>
