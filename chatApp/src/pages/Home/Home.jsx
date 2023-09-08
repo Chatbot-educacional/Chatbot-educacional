@@ -15,10 +15,13 @@ import ConteudoLaco from '../../assets/codeRep.png';
 // CSS
 import styles from './Home.module.css'; 
 
-const Home = () => {
+const Home = ({button}) => {
   return (
     <div className={styles.homeContainer}>
       <div className={styles.backgroundImage}>
+      <div className="relative w-full flex justify-end right-4 top-4">
+          {button}
+      </div>
       </div>
       <div className={styles.content}>
         <h1 className={styles.title}>ChatBot</h1>
@@ -26,10 +29,10 @@ const Home = () => {
         <Link to="/chat" className={styles.startButton}>Iniciar</Link>
       </div>
       <div className={styles.exampleContainer}>
-        <h1 className={styles.titleExem}>Exemplificação</h1>
+        <h1 className="text-[2.5rem] text-[rgba(0,0,0,0.795)] mb-4 dark:text-white">Exemplificação</h1>
         <div className={styles.divParagrafos}>
             <p className={styles.pExem}>
-                <strong className={styles.strongPara1}>Dados Gerais sobre a abordagem</strong><br/>
+                <strong className="text-[black] flex justify-center items-center h-full font-[380] text-xl mb-5 dark:text-white">Dados Gerais sobre a abordagem</strong><br/>
                 <strong className={styles.strongLi}>Título da disciplina:</strong> Construção de Algoritmos<br/>
                 <strong className={styles.strongLi}>Tópico da disciplina:</strong> Estruturas de decisão<br/>
                 <strong className={styles.strongLi}>Subtópicos:</strong> Uso do comando "if"<br/>
@@ -37,7 +40,7 @@ const Home = () => {
                 <strong className={styles.strongLi}>Dados do Local do Exemplo:</strong> Local onde foi retirado: Material didático - Aula Professor Renato - IFMS<br/>
             </p>
             <p className={styles.pExem2}>
-            <strong className={styles.strongPara2}>Dados do Worked Example</strong><br/>
+            <strong className="text-[black] flex justify-center items-center h-full font-[380] text-xl dark:text-white">Dados do Worked Example</strong><br/>
             <ul>
               <strong className={styles.strongLi}>Descrição do problema:</strong> Desenvolva um código para verificar se um número é ímpar ou par<br/>
               <strong className={styles.strongLi}>Resultado:</strong> para o valor 2, o resultado esperado é par<br/>

@@ -18,6 +18,9 @@ import Register from './pages/Register/Register';
 import Chat from './pages/Chat/Chat';
 import Researchers from './pages/Researchers/Researchers';
 import FooterConditional from './components/FooterConditional';
+import { useTheme } from './hooks/useTheme';
+import { MdDarkMode } from 'react-icons/md';
+import { BsFillLightbulbFill } from 'react-icons/bs';
 
 function App() {
 
@@ -35,22 +38,42 @@ function App() {
   if (loadingUser) {
     return <div>Carregando...</div>
   }
+
+  const { theme, setTheme} = useTheme();
+
+  const button = (
+    <div>
+      {theme === "light" ? (
+        <MdDarkMode 
+          size={30} 
+          className='cursor-pointer text-white' 
+          onClick={()=>setTheme("dark")}
+        />
+      ) : (
+        <BsFillLightbulbFill
+          size={25}
+          className='cursor-pointer text-white'
+          onClick={()=>setTheme("light")}
+        />
+      )}
+    </div>
+  );
   
+
   return (
-    <div className="App">
+    <div className="dark:bg-[#02050c] dark:text-white">
       <AuthProvider value={{ user }}>
         <Router>
         <Navbar />
           <div className='min-h-70 mb-5'> 
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home button={button} />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
               <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
               <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
-              <Route path="/researchers" element={ <Researchers /> } />
-              
+              <Route path="/researchers" element={ <Researchers /> } />  
             </Routes>
           </div>
           <FooterConditional />
