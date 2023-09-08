@@ -19,7 +19,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; 
+  z-index: 1; /* old -1 */
 }
 
 .content {
@@ -86,12 +86,6 @@
   margin-bottom: 20px;
 }
 
-.titleExem {
-  font-size: 2.5rem;
-  color: rgba(0, 0, 0, 0.795);
-  margin-bottom: 1rem;
-}
-
 .divParagrafos {
   border: 1px solid #ccc;
   width: 65.5vw; /* rever */
@@ -117,27 +111,6 @@
   text-align: justify;
   width: 50%;
   box-sizing: border-box;
-}
-
-.strongPara1 {
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  height: 100%;
-  margin-bottom: 20px;
-  font-weight: 380;
-  font-size: 20px;
-}
-
-.strongPara2 {
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  font-weight: 380;
-  font-size: 20px;
 }
 
 .strongLi {
@@ -184,7 +157,7 @@
   position: relative;
   bottom: 0; 
   left: 0;
-  z-index: -2;
+  z-index: 0;
 }
 
 .sessionContent {

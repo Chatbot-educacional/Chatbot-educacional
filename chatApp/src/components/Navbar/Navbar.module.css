@@ -1,18 +1,11 @@
-*{
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+* {
+  @apply box-border p-0;
+  font-family: "Poppins", sans-serif;
 }
 
 .navbar {
-    position: relative;
-    display: flex;
-    box-shadow: rgba(0, 0, 0, .15) 0px -2px 10px 0px;
-    justify-content: space-between;
-    align-items: center;    
-    padding: .5em 2em;
-    margin-bottom: 0;
-}
+    @apply relative flex shadow-[rgba(0,0,0,0.15)_0px_-2px_10px_0px] justify-between items-center mb-0 px-[2em] py-[0.5em] dark:text-white;
+  }
 
 .navbar .links_list {
     gap: 30px;

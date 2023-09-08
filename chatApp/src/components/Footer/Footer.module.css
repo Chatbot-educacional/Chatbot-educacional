@@ -1,11 +1,3 @@
-.footer {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #edf3f6;
-}
-  
 .footerContent {
   text-align: right;
 }
@@ -29,8 +21,7 @@
 }
 
 .brand span {
-  font-weight: 900;
-  text-transform: uppercase;
+  @apply font-black uppercase dark:text-white;
 }
 
 .links_list {
@@ -43,8 +34,7 @@
 }
 
 .links_list li a {
-  padding: .4em .6em;
-  border-radius: 5px;
+  @apply px-[0.6em] py-[0.4em] rounded-[5px] dark:text-white;
 }
 
 .active {

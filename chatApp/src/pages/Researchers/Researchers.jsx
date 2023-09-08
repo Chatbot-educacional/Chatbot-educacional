@@ -43,13 +43,13 @@ const researchersData = [
 
 const verifyIfHasGithub = (researcher) => {
     if(researcher.github){
-        return <p ><div className={"ml-24 -mb-4 text-lg"}><FaGithub /></div>   {researcher.github}</p>
+        return <p ><div className="ml-24 -mb-4 text-lg"><FaGithub /></div>   {researcher.github}</p>
     }
 
 }
 const verifyIfHasEmail = (researcher) => {
   if(researcher.email){
-      return <p> <div className={"ml-4 -mb-4 text-lg"}>  <FaEnvelope /> </div> {researcher.email}</p>
+      return <p> <div className="ml-4 -mb-4 text-lg">  <FaEnvelope /> </div> {researcher.email}</p>
   }
 
 }
@@ -66,20 +66,20 @@ const Researchers = () => {
     const chunkedResearchers = chunkArray(researchersData, 2);
   
     return (
-      <div className={"text-center p-5 "}>
+      <div className="text-center p-5 dark:bg-black">
         <h1>Pesquisadores</h1>
         {/* <p>Os pesquisadores são:</p> */}
         
-        <div className={"flex justify-center flex-wrap gap-5 ml-auto mr-auto max-w-1200"}>
+        <div className="flex justify-center flex-wrap gap-5 ml-auto mr-auto max-w-1200">
           {chunkedResearchers.map((researcherGroup, groupIndex) => (
             <div key={groupIndex} >
               {researcherGroup.map((researcher, index) => (
-               <div key={index} className="flex flex-col bg-purple-50 rounded-lg p-5 flex-1 w-96 h-96 mt-8 my-10 mx-auto ">
+               <div key={index} className="flex flex-col bg-purple-50 rounded-lg p-5 flex-1 w-96 h-96 mt-8 my-10 mx-auto dark:bg-slate-950">
                   <div className={"flex flex-col items-center"}>
                     <div >
-                      <img className={"w-40  h-40 rounded-full object-cover mb-2"} src={researcher.img} alt={`${researcher.name} - Foto`} />
+                      <img className="w-40  h-40 rounded-full object-cover mb-2" src={researcher.img} alt={`${researcher.name} - Foto`} />
                     </div>
-                    <div className={"font-bold text-lg mt-2"}>
+                    <div className="font-bold text-lg mt-2">
                       <h2>{researcher.name}</h2>
                     </div>
                   </div>

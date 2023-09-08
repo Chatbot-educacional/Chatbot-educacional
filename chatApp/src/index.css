@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #f6fcff;
-  padding: 0;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
+  @apply bg-[#f6fcff] m-0 p-0 dark:bg-[#02050c] dark:text-white;
+  font-family: "Poppins", sans-serif;
 }
 
 input::placeholder,
@@ -20,16 +18,12 @@ textarea:focus {
   outline: none;
 }
 
-a, nav button {
-  text-decoration: none;
-  background-color: transparent;
-  border: none;
-  color: black;
-  transition: .4s;
-  font-size: 1em;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+a,
+nav button {
+  @apply no-underline bg-transparent text-black transition-[0.4s] text-[1em] cursor-pointer border-[none] dark:text-white;
+  font-family: "Poppins", sans-serif;
 }
+
 
 a:hover, nav button:hover {
   color: #bbb;

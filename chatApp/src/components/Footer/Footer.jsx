@@ -6,7 +6,7 @@ import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className="h-[180px] flex items-center justify-center bg-[#edf3f6] dark:bg-[#02050c] dark:text-white">
       <div className={styles.navbar}>
         <NavLink to="/" className={styles.brand}>
           Chat <span>Bot</span>
