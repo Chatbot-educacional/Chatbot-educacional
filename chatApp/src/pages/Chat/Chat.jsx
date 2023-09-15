@@ -9,13 +9,19 @@ import './main.css';
 function Chat(){
     return(
         <div className="div-container-chat">
-          <Chatbot 
-            config={config} 
-            messageParser={MessageParser} 
-            actionProvider={ActionProvider}
-            headerText="ChatBot Educacional"
-            placeholderText="Digite sua opção..."
-          />
+          <div className="left-side">
+            <h1>WillBOT</h1>
+            <button>+ Novo chatbot</button>
+          </div>
+          <div className="chat-bot">
+            <Chatbot 
+              config={config} 
+              messageParser={MessageParser} 
+              actionProvider={ActionProvider}
+              headerText="ChatBot Educacional"
+              placeholderText="Digite sua opção..."
+            />
+          </div>
         </div>
     );
 }
