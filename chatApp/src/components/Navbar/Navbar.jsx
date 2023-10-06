@@ -45,10 +45,10 @@ function Navbar() {
             <ul className={styles.links_list_right}>
                 {!user ? (
                     <>
-                        <li>
+                        <li className={styles.bottom_entrar}>
                             <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')}>Entrar</NavLink>
                         </li>
-                        <li>
+                        <li className={styles.bottom_cadastrar}>
                             <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
                         </li>
                         
