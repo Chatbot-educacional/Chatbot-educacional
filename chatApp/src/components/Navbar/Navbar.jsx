@@ -16,7 +16,7 @@ function Navbar() {
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
-                Chat <span>Bot</span>
+                WEBOT
             </NavLink>
             <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>

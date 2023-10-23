@@ -11,7 +11,7 @@
     background-color: #161616;
     justify-content: space-between;
     align-items: center;    
-    padding: 12px 12px;
+    padding: 16px 32px;
     margin-bottom: 0;
 }
 
@@ -42,13 +42,14 @@
     /* margin-right: 2em; */
     /* letter-spacing: -0.35px; */
     font-size: 14px;
+    font-weight: 600;
     color: #ffffff;
 }
 
 .navbar .links_list li a {
     padding: .4em .6em;
     border-radius: 5px;
-    font-weight: 400;
+    font-weight: 500;
     color: #ffffff;
 }
 
@@ -101,11 +102,11 @@
     /*transition: background 0.3s;*/ /* Adicione uma transição suave para a mudança de cor de fundo */
 }
 .links_list_right .bottom_entrar a{
-    font-weight: 400;
+    font-weight: 500;
     color: #ffffff;
 }
 .links_list_right .bottom_cadastrar a{
-    font-weight: 400;
+    font-weight: 500;
     color: #272727;
 }
 
