@@ -1,16 +1,14 @@
 // Imports
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../components/form/Button';
+// import Button from '../../components/form/Button';
 
 // Images
-import ExemCorreto from '../../assets/example.jpg';
-import ExemCorreto1 from '../../assets/workedexamplecorreto.png';
-import ExemIncorreto from '../../assets/workedexampleincorreto.png';
 import ConteudoVar from '../../assets/codeVar.png';
 import ConteudoArit from '../../assets/codeArit.png';
 import ConteudoCond from '../../assets/codeCond.png';
 import ConteudoLaco from '../../assets/codeRep.png';
+import HomeFormImage from '../../assets/home_bg_form.png';
 
 // CSS
 import styles from './Home.module.css'; 
@@ -18,14 +16,33 @@ import styles from './Home.module.css';
 const Home = () => {
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.backgroundImage}>
+      <div className={styles.home_image}>
+          <img src={HomeFormImage} alt="Forma para estilização"/>
+          <img className={styles.home_image2} src={HomeFormImage} alt="Forma para estilização2"/>
       </div>
       <div className={styles.content}>
-        <h1 className={styles.title}>ChatBot</h1>
-        <p className={styles.description}>Uma ferramenta de ensino de programação</p>
-        <Link to="/chat" className={styles.startButton}>Iniciar</Link>
+        <h1 className={styles.title}>WEBOT</h1>
+        <p className={styles.description}>Desperte o potencial dos programadores do futuro com o WeBot - <span>A chave para o sucesso.</span></p>
+        <Link to="/chat" className={styles.startButton}>
+          {/* <svg xmlns="http://www.w3.org/2000/svg"></svg> */}
+          Iniciar
+          </Link>
       </div>
-      <div className={styles.exampleContainer}>
+      <div className={styles.sub_content}>
+        <h2>Aqui você vai...</h2>
+        <div className={styles.texts}>j
+          <h1>
+            <span>Conhecer</span>
+            <span>Aprender</span>
+            <span className={styles.spantext}>Desenvolver</span>
+          </h1>
+        </div>
+        <div className={styles.texts_button}>
+          <h2>Sua jornada para o mundo da programação inicia aqui.</h2>
+          <Link to="/chat" className={styles.startbutton2}><p>Começar</p></Link>
+        </div>
+      </div>
+      {/* <div className={styles.exampleContainer}>
         <h1 className={styles.titleExem}>Exemplificação</h1>
         <div className={styles.divParagrafos}>
             <p className={styles.pExem}>
@@ -54,12 +71,12 @@ const Home = () => {
             <h2 className={styles.exampleTitle}>Exemplo Incorreto</h2>
           </div>
         </div>
-      </div>
-      <div className={styles.backgroundSession}>
+      </div> */}
+      {/* <div className={styles.backgroundSession}>
         <div className={styles.sessionContent}>
         <h1 className={styles.sessionTitle}>Conteúdos Abordados</h1>
         </div>
-      </div>
+      </div> */}
       <div className={styles.lastContainer}>
         <div className={styles.componenteImagemTexto}>
           <div className={`${styles.imagemContainer} ${styles.image}`}>
