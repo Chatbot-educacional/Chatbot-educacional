@@ -83,12 +83,13 @@ ul{
 }
 
 .footerContent {
-  padding: 100px 0 0 0;
-  border-top: 1px solid #333333;
+	text-align: center;
+  	padding: 100px 0 0 0;
+ 	border-top: 1px solid #333333;
 }
 
 .footerContent p{
-  color: #ffffff
+  	color: #ffffff
 }
 
 
