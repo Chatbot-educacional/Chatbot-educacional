@@ -1,6 +1,9 @@
 // Imports
-// import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 import { Link } from 'react-router-dom';
+// import ScrollReveal from "scrollreveal";
+// import Fade from 'react-reveal/Fade';
 // import Button from '../../components/form/Button';
 
 // Images
@@ -28,20 +31,22 @@ const Home = () => {
           Iniciar
           </Link>
       </div>
+
       <div className={styles.sub_content}>
-        <h2>Aqui você vai...</h2>
-        <div className={styles.texts}>j
-          <h1>
-            <span>Conhecer</span>
-            <span>Aprender</span>
-            <span className={styles.spantext}>Desenvolver</span>
-          </h1>
-        </div>
-        <div className={styles.texts_button}>
-          <h2>Sua jornada para o mundo da programação inicia aqui.</h2>
-          <Link to="/chat" className={styles.startbutton2}><p>Começar</p></Link>
-        </div>
+          <h2>Aqui você vai...</h2>
+          <div className={styles.texts}>
+            <h1>
+              <span>Conhecer</span>
+              <span>Aprender</span>
+              <span className={styles.spantext}>Desenvolver</span>
+            </h1>
+          </div>
+          <div className={styles.texts_button}>
+            <h2>Sua jornada para o mundo da programação inicia aqui.</h2>
+            <Link to="/chat" className={styles.startbutton2}><p>Começar</p></Link>
+          </div>
       </div>
+
       {/* <div className={styles.exampleContainer}>
         <h1 className={styles.titleExem}>Exemplificação</h1>
         <div className={styles.divParagrafos}>
@@ -78,73 +83,73 @@ const Home = () => {
         </div>
       </div> */}
       <div className={styles.lastContainer}>
-        <div className={styles.componenteImagemTexto}>
-          <div className={`${styles.imagemContainer} ${styles.image}`}>
-            <img src={ConteudoVar} alt="Imagem" />
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.textoContainer}>
-              <h2>Variáveis</h2>
-              <p>Como declarar variáveis e uso de atribuição de valores</p>
-            </div>
-            <div className={styles.numeroContainer}>
-              <span>01</span>
-            </div>
-          </div>
+        <div className={styles.titleContainer}>
+          <span>Confira também...</span>
+          <h2>Conteúdos Abordados</h2>
         </div>
-        {/* <div className={styles.componenteImagemTexto}>
-          <div className={`${styles.imagemContainer} ${styles.image}`}>
-            <img src={ExemCorreto} alt="Imagem" />
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.textoContainer}>
-              <h2>Constantes</h2>
-              <p>Uso de constantes</p>
+        <div className={styles.itens}>
+          <div className={styles.componenteImagemTexto}>
+            <div className={`${styles.imagemContainer} ${styles.image}`}>
+              <img src={ConteudoVar} alt="Imagem" />
+            </div>
+            <div className={styles.infoContainer}>
+              <div className={styles.textoContainer}>
+                <h2>Variáveis</h2>
+                <p>Como declarar variáveis e uso de atribuição de valores</p>
+              </div>
             </div>
             <div className={styles.numeroContainer}>
-              <span>02</span>
+              <div className={styles.circle_num}>
+                <h2>01</h2>  
+              </div>
             </div>
           </div>
-        </div> */}
-        <div className={styles.componenteImagemTexto}>
-          <div className={`${styles.imagemContainer} ${styles.image}`}>
-            <img src={ConteudoArit} alt="Imagem" />
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.textoContainer}>
-              <h2>Expressão aritméticas</h2>
-              <p>Desenvolvimento de cálculos aritméticos</p>
+          <div className={styles.componenteImagemTexto}>
+            <div className={`${styles.imagemContainer} ${styles.image}`}>
+              <img src={ConteudoArit} alt="Imagem" />
             </div>
-            <div className={styles.numeroContainer}>
-              <span>02</span>
-            </div>
-          </div>
-        </div>
-        <div className={styles.componenteImagemTexto}>
-          <div className={`${styles.imagemContainer} ${styles.image}`}>
-            <img src={ConteudoCond} alt="Imagem" />
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.textoContainer}>
-              <h2>Estruturas condicionais</h2>
-              <p>Uso de estruturas para definição de caminho condicionais</p>
+            <div className={styles.infoContainer}>
+              <div className={styles.textoContainer}>
+                <h2>Expressão aritmética</h2>
+                <p>Desenvolvimento de cálculos aritméticos</p>
+              </div>
             </div>
             <div className={styles.numeroContainer}>
-              <span>03</span>
+              <div className={styles.circle_num}>
+                <h2>02</h2>  
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles.componenteImagemTexto}>
-          <div className={`${styles.imagemContainer} ${styles.image}`}>
-            <img src={ConteudoLaco} alt="Imagem" />
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.textoContainer}>
-              <h2>Laços de repetição</h2>
-              <p>Aplicação de laços para execução de uma ou mais vezes determinados trechos de código</p>
+          <div className={styles.componenteImagemTexto}>
+            <div className={`${styles.imagemContainer} ${styles.image}`}>
+              <img src={ConteudoCond} alt="Imagem" />
+            </div>
+            <div className={styles.infoContainer}>
+              <div className={styles.textoContainer}>
+                <h2>Estruturas condicionais</h2>
+                <p>Uso de estruturas para definição de caminho condicionais</p>
+              </div>
             </div>
             <div className={styles.numeroContainer}>
-              <span>04</span>
+              <div className={styles.circle_num}>
+                <h2>03</h2>  
+              </div>
+            </div>
+          </div>
+          <div className={styles.componenteImagemTexto}>
+            <div className={`${styles.imagemContainer} ${styles.image}`}>
+              <img src={ConteudoLaco} alt="Imagem" />
+            </div>
+            <div className={styles.infoContainer}>
+              <div className={styles.textoContainer}>
+                <h2>Laços de repetição</h2>
+                <p>Aplicação de laços para execução de uma ou mais vezes determinados trechos de código</p>
+              </div>
+            </div>
+            <div className={styles.numeroContainer}>
+              <div className={styles.circle_num}>
+                <h2>04</h2>  
+              </div>
             </div>
           </div>
         </div>

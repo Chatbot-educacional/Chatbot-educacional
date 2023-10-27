@@ -383,21 +383,85 @@
   border-radius: 50px;
 }
 
+
+
+
 .lastContainer {
   margin-top: 3vh;
   text-align: center;
   align-items: center;
+  padding: 132px 0 170px 0;
 
 }
 
-.componenteImagemTexto {
+.titleContainer {
+  align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: min-content;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+.titleContainer span {
+  font-size: 24px;
+  background-image: linear-gradient(0deg, var(--token-d3b3556d-a2ec-474d-bdcb-9cb33996210d, rgb(236, 233, 255)) -215.13735512208902%, hsl(228, 100%, 57%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  text-align: center;
+}
+
+.titleContainer h2 {
+  font-size: 62px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  text-align: center;
+  color: rgb(39, 39, 39);
+}
+
+.itens {
+  align-content: center;
+  align-items: center;
   display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 40px;
+  height: min-content;
+  justify-content: center;
+  min-height: 800px;
+  overflow: hidden;
+  padding: 50px 0;
   position: relative;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 20px;
-  margin-left: 200px;
-  margin-right: 200px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.componenteImagemTexto {
+  align-content: center;
+  align-items: center;
+  border-radius: 40px;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: min-content;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px;
+  position: relative;
+  width: 100%;
+  border: 1px solid #8a8a8a;
 }
 
 .imagemContainer {
@@ -409,32 +473,99 @@
 .imagemContainer img {
   max-width: 100%;
   max-height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-position: center;
+  object-fit: cover;
+  image-rendering: auto;
 }
 
 .infoContainer {
-  display: flex;
-  flex-direction: column;
-  flex: 2;
+  align-content: center;
   align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 1 0 0px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 20px;
+  height: auto;
+  justify-content: center;
+  overflow: hidden;
+  padding: 24px 32px;
+  position: relative;
+  width: 1px;
+}
+
+.infoContainer h2{
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -2.1px;
+  text-align: left;
+  background-image: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(69, 69, 69) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.infoContainer p{
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.5em;
+  text-align: left;
+  color: rgb(94, 94, 94);
 }
 
 .textoContainer {
   max-width: 600px;
 }
 
-.textoContainer h2, p {
-  text-align: center;
-}
-
 .numeroContainer {
+  align-content: flex-start;
+  align-items: flex-start;
+  align-self: stretch;
   display: flex;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  color: black;
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: auto;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: min-content;
 }
 
-.numeroContainer span {
-  font-size: 28px;
+.numeroContainer .circle_num {
+  align-content: center;
+  align-items: center;
+  background-color: #c0bdff;
+  border-radius: 50px;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: min-content;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 12px 14px 16px 14px;
+  position: relative;
+  width: min-content;
+}
+
+.numeroContainer .circle_num h2 {
+  top: 0;
+  line-height: 36px;
+  /* height: 38px; */
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-align: center;
+  color: rgb(22, 22, 22);
 }
