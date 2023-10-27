@@ -46,6 +46,7 @@
   margin-top: -80px;
   text-align: center;
   font-size: 252px;
+  /* font-size: 100%; */
   font-weight: 600;
   letter-spacing: -0.07em;
   background: -webkit-linear-gradient( var(--color_gradient2), var(--color_gradient1));
@@ -722,3 +723,54 @@
   /* flex-shrink: 0; */
 }
 
+@media(max-width: 809px){
+  .itens{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .componenteImagemTexto{
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 0 0 24px;
+  }
+
+  .imagemContainer{
+    flex-direction: column;
+    /* height: 180px; */
+    width: 100%;
+  }
+
+  .infoContainer{
+    align-self: unset;
+    flex: none;
+    gap: 10px;
+    height: min-content;
+    width: 100%;
+  }
+
+  .numeroContainer{
+    align-content: center;
+    align-items: center;
+    align-self: unset;
+    height: min-content;
+    width: 64px;
+  }
+
+  .sub_content{
+    padding: 24px;
+  }
+
+  .sub_content span{
+    font-size: 3em;
+    height: 100px;
+    width: 100% relative;
+  }
+
+  .texts_button{
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 46px;
+  }
+}
