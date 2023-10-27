@@ -159,7 +159,7 @@ const Home = () => {
               <span>Junte-se</span>
             </h2>
           </div>
-          <Link to="#" className={styles.circleBottom}>
+          <Link to="/chat" className={styles.circleBottom}>
             <div className={styles.iconOnBottom}>
               <svg><FaArrowRight/></svg>
             </div>
