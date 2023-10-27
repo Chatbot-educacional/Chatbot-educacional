@@ -2,15 +2,18 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
+
+// import { IonIcon } from '@ionic/react';
 // import ScrollReveal from "scrollreveal";
 // import Fade from 'react-reveal/Fade';
 // import Button from '../../components/form/Button';
 
 // Images
-import ConteudoVar from '../../assets/codeVar.png';
-import ConteudoArit from '../../assets/codeArit.png';
-import ConteudoCond from '../../assets/codeCond.png';
-import ConteudoLaco from '../../assets/codeRep.png';
+import ConteudoVar from '../../assets/codeVar3.png';
+import ConteudoArit from '../../assets/codeArit2.png';
+import ConteudoCond from '../../assets/codeCond2.png';
+import ConteudoLaco from '../../assets/codeRep2.png';
 import HomeFormImage from '../../assets/home_bg_form.png';
 
 // CSS
@@ -26,10 +29,7 @@ const Home = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>WEBOT</h1>
         <p className={styles.description}>Desperte o potencial dos programadores do futuro com o WeBot - <span>A chave para o sucesso.</span></p>
-        <Link to="/chat" className={styles.startButton}>
-          {/* <svg xmlns="http://www.w3.org/2000/svg"></svg> */}
-          Iniciar
-          </Link>
+        <Link to="/chat" className={styles.startButton}>Iniciar</Link>
       </div>
 
       <div className={styles.sub_content}>
@@ -93,10 +93,8 @@ const Home = () => {
               <img src={ConteudoVar} alt="Imagem" />
             </div>
             <div className={styles.infoContainer}>
-              <div className={styles.textoContainer}>
-                <h2>Variáveis</h2>
-                <p>Como declarar variáveis e uso de atribuição de valores</p>
-              </div>
+                <div className={styles.itemTitle}><h2>Variáveis</h2></div>
+                <div className={styles.itemDesc}><p>Como declarar variáveis e uso de atribuição de valores</p></div>
             </div>
             <div className={styles.numeroContainer}>
               <div className={styles.circle_num}>
@@ -109,10 +107,8 @@ const Home = () => {
               <img src={ConteudoArit} alt="Imagem" />
             </div>
             <div className={styles.infoContainer}>
-              <div className={styles.textoContainer}>
-                <h2>Expressão aritmética</h2>
-                <p>Desenvolvimento de cálculos aritméticos</p>
-              </div>
+                <div className={styles.itemTitle}><h2>Expressão aritmética</h2></div>
+                <div className={styles.itemDesc}><p>Desenvolvimento de cálculos aritméticos</p></div>
             </div>
             <div className={styles.numeroContainer}>
               <div className={styles.circle_num}>
@@ -125,10 +121,8 @@ const Home = () => {
               <img src={ConteudoCond} alt="Imagem" />
             </div>
             <div className={styles.infoContainer}>
-              <div className={styles.textoContainer}>
-                <h2>Estruturas condicionais</h2>
-                <p>Uso de estruturas para definição de caminho condicionais</p>
-              </div>
+                <div className={styles.itemTitle}><h2>Estruturas condicionais</h2></div>
+                <div className={styles.itemDesc}><p>Uso de estruturas para definição de caminho condicionais</p></div>
             </div>
             <div className={styles.numeroContainer}>
               <div className={styles.circle_num}>
@@ -141,10 +135,8 @@ const Home = () => {
               <img src={ConteudoLaco} alt="Imagem" />
             </div>
             <div className={styles.infoContainer}>
-              <div className={styles.textoContainer}>
-                <h2>Laços de repetição</h2>
-                <p>Aplicação de laços para execução de uma ou mais vezes determinados trechos de código</p>
-              </div>
+                <div className={styles.itemTitle}><h2>Laços de repetição</h2></div>
+                <div className={styles.itemDesc}><p>Aplicação de laços para execução de uma ou mais vezes determinados trechos de código</p></div>
             </div>
             <div className={styles.numeroContainer}>
               <div className={styles.circle_num}>
@@ -153,7 +145,26 @@ const Home = () => {
             </div>
           </div>
         </div>
-
+      </div>
+      <div className={styles.finalContainer}>
+        <div className={styles.contentTexts}>
+          <div className={styles.primaryText}>
+            <h2>VEM APRENDER COM A GENTE</h2>
+            <h2>WEBOT 2023©</h2>
+          </div>
+          <div className={styles.secondText}>
+            <h2>
+              <span>Entre</span> <br></br>
+              <span>Treine</span> <br></br>
+              <span>Junte-se</span>
+            </h2>
+          </div>
+          <Link to="#" className={styles.circleBottom}>
+            <div className={styles.iconOnBottom}>
+              <svg><FaArrowRight/></svg>
+            </div>
+          </Link>
+        </div>
       </div>
 
     </div>
