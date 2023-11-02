@@ -7,40 +7,36 @@ import styles from './Footer.module.css'
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles.navbar}>
-        <NavLink to="/" className={styles.brand}>
-          Chat <span>Bot</span>
-        </NavLink>
-        <ul className={styles.links_list}>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? styles.active : '')}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => (isActive ? styles.active : '')}
-            >
-              Sobre
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => (isActive ? styles.active : '')}
-            >
-              Contato
-            </NavLink>
-          </li>
-        </ul>
+      <div className={styles.horizontalContent}>
+        <div className={styles.row}>
+          <div className={styles.footer_col}>
+            <h4>Conta</h4>
+            <ul>
+              <li><a href="#">login</a></li>
+              <li><a href="#">registrar</a></li>
+              <li><a href="#">ajuda</a></li>
+            </ul>
+          </div>
+          <div className={styles.footer_col}>
+            <h4>Aprenda</h4>
+            <ul>
+              <li><a href="#">Exemplificação</a></li>
+              <li><a href="#">Worked Examples</a></li>
+              <li><a href="#">Conteúdos Abordados</a></li>
+            </ul>
+          </div>
+          <div className={styles.footer_col}>
+            <h4>Compania</h4>
+            <ul>
+              <li><a href="#">Sobre</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Time</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div className={styles.footerContent}>
-        <h4>ChatBot educacional destinado para ensino de programação</h4>
-        <p>ChatBot &copy; {new Date().getFullYear()}</p>
+        <p>&copy; {new Date().getFullYear()} StudyBot. All rights reserved.</p>
       </div>
     </footer>
   )

@@ -5,3 +5,25 @@
 .login p {
     color: #AAA;
 }
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px auto;
+}
+  
+.lineWithText {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+}
+  
+.line {
+    border-top: 1px solid black;
+}
+
+.text {
+    padding: 0 10px;
+}
