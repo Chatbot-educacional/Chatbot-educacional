@@ -16,5 +16,6 @@
   }
 
   .option-button:hover {
-    color: #bbb;
+    background: #AFABFC;
+    font-weight: 400;
   }

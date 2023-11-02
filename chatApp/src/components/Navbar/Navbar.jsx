@@ -55,9 +55,9 @@ function Navbar() {
                       
                     </>
                 ) : (
-                    <li>
-                        {user.displayName}
-                        <NavLink onClick={logout}>Sair</NavLink>
+                    <li className={styles.container_name_user}>
+                        <span>{user.displayName}</span>
+                        <NavLink className={styles.bottom_sair} onClick={logout}>Sair</NavLink>
                     </li>
                 )}
             </ul>
