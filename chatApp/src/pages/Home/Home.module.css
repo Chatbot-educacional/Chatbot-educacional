@@ -156,7 +156,15 @@
   line-height: -0.9em;
   height: 140px;
   font-size: 152px;
+
+  /* animation-range: cover 0% cover 50%; */
 }
+
+/* .sub_content .texts h1{
+  animation: appear 2s ease-in-out forwards;
+  animation-timeline: view();
+  animation-range: cover 0% cover 50%;
+} */
 
 .texts .spantext{
   color: #FFFFFF;
@@ -189,7 +197,28 @@
   line-height: 1.5em;
   text-align: center;
   color: rgb(186, 186, 186);
+
+  animation-name: reveal;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-timeline: view(inline);
+  /* animation-range: cover 0% cover 50%; */
+  animation-timing-function: linear;
 }
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    /* transform: -100vw 0; */
+  }
+
+  to {
+    opacity: 1;
+    /* transform: 0 0; */
+  }
+}
+
+
 
 .texts_button .startbutton2 {
   align-content: center;
