@@ -1,6 +1,6 @@
 // Config starter code
 import React from "react";
-import { createChatBotMessage } from "react-chatbot-kit";
+import { createChatBotMessage, createCustomMessage } from "react-chatbot-kit";
 
 // QUI
 import Quiz from "../Quiz/Quiz";
@@ -14,13 +14,16 @@ import OptionsVariableWrong from "../Options/OptionsVariableWrong";
 import OptionsConditionalWrong from "../Options/OptionsConditionalWrong";
 import OptionsRepeatingLoopWrong from "../Options/OptionsRepeatingLoopWrong";
 import OptionsGoToMainMenu from "../Options/OptionsGoToMainMenu";
+import CustomMessage from "./CustomMessage";
+
 
 const config = {
   botName: "ChatBot de Educação",
   initialMessages: [
-    createChatBotMessage(`Olá ! 👋  Sou o EducaBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
+    createChatBotMessage(`Olá, ! 👋  Sou o EducaBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
       widget: "options",
     }),
+    createCustomMessage(<CustomMessage />)
   ],
   widgets: [
     {

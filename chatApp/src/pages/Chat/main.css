@@ -78,11 +78,11 @@
   }
   
   .react-chatbot-kit-chat-bot-message {
-    background-color: #2898ec;
+    background-color: #AFABFC;
     padding: 20px;
     border-radius: 5px;
     font-size: 1rem;
-    color: #fff;
+    color: black;
     font-weight: medium;
     position: relative;
     width: 100%;
@@ -180,7 +180,7 @@
     bottom: 0;
     width: 100%;
     max-width: 800px;
-    display: flex;
+    display: none;
   }
   
   .react-chatbot-kit-chat-message-container {

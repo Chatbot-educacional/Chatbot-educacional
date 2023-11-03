@@ -13,8 +13,7 @@ function Chat(){
             config={config} 
             messageParser={MessageParser} 
             actionProvider={ActionProvider}
-            headerText="ChatBot Educacional"
-            placeholderText="Digite sua opção..."
+            headerText="CoderBot"
           />
         </div>
     );

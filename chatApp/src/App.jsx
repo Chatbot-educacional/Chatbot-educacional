@@ -22,6 +22,9 @@ import Chat from './pages/Chat/Chat';
 import CreateExample from './pages/CreateExample/CreateExample';
 import Researchers from './pages/Researchers/Researchers';
 import FooterConditional from './components/FooterConditional';
+import HeaderChat from './components/HeaderChat';
+import PacmanLoader from "react-spinners/PacmanLoader";
+
 
 function App() {
 
@@ -37,27 +40,29 @@ function App() {
   }, [auth])
 
   if (loadingUser) {
-    return <div>Carregando...</div>
+    return (
+      <div className="loader">
+        <PacmanLoader color="#AFABFC" size={50} />
+      </div>
+    )
   }
-  
+
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
         <Router>
-        <Navbar />
-          <div className="container"> 
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-              <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
-              <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
-              <Route path="/create-example" element={user ? <CreateExample /> : <Navigate to="/login" />} />
-              <Route path="/researchers" element={ <Researchers /> } />
-              
-            </Routes>
-          </div>
+            <HeaderChat/>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+                <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
+                <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
+                <Route path="/create-example" element={user ? <CreateExample /> : <Navigate to="/login" />} />
+                <Route path="/researchers" element={ <Researchers /> } />
+                
+              </Routes>
           <FooterConditional />
         </Router>
       </AuthProvider>

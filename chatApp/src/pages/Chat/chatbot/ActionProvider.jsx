@@ -3,6 +3,17 @@ import dataVariable from '../../../Data/VariableQuizData.json';
 import dataFor from '../../../Data/LoopsData.json';
 import dataCondicional from '../../../Data/ConditionalQuizData.json';
 import { useAuthValue } from "../../../context/AuthContext";
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+
+const CodeMessage = ({ code }) => {
+  return (
+    <SyntaxHighlighter language="javascript" style={tomorrowNight}>
+      {code}
+    </SyntaxHighlighter>
+  );
+};
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     const { user } = useAuthValue();
@@ -17,16 +28,19 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     };
   
     const handleVariavelQuiz = () => {
-      const botMessage = createChatBotMessage(
-        dataVariable.definicao,
-        {
-          widget: "variavel", // widget de variaveis
-        }
-      );
-      
+      const greetingMessage = `bla`;
+
+      const codeExample = `const exemplo = 'Este é um exemplo de código em JavaScript';\nconsole.log(exemplo);`;
+  
+      const botMessages = [
+        createChatBotMessage(greetingMessage),
+        createChatBotMessage( <CodeMessage code={codeExample} />)
+        
+      ];
+  
       setState((prev) => ({
         ...prev,
-        messages: [...prev.messages, botMessage],
+        messages: [...prev.messages, ...botMessages],
       }));
     };
 
@@ -60,7 +74,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
     const handleExemploCorretoVariavel = () => {
       const botMessage = createChatBotMessage(
-       dataVariable.exemploCorreto ,
+       dataVariable.problemaComWorkedExampleCorreto.reflexivo + "\n" + dataVariable.problemaComWorkedExampleCorreto.propostaDeSolucao.etapasDeSolucao + "\n" + dataVariable.problemaComWorkedExampleCorreto.propostaDeSolucao.teste + "\n" + dataVariable.problemaComWorkedExampleCorreto.solucaoCorreta ,
         {
           widget: "variavel", // widget de variavel
         }
