@@ -14,6 +14,8 @@ import OptionsVariableWrong from "../Options/OptionsVariableWrong";
 import OptionsConditionalWrong from "../Options/OptionsConditionalWrong";
 import OptionsRepeatingLoopWrong from "../Options/OptionsRepeatingLoopWrong";
 import OptionsGoToMainMenu from "../Options/OptionsGoToMainMenu";
+import OptionsYesOrNo from "../Options/OptionsYesOrNo";
+import OptionsButtonsLines from "../Options/OptionsButtonsLines";
 import CustomMessage from "./CustomMessage";
 
 
@@ -60,6 +62,14 @@ const config = {
     {
       widgetName: "identificarErroLacoRepeticao", // identificar erro laco de repeticao
       widgetFunc: (props) => <OptionsRepeatingLoopWrong {...props} />,
+    },
+    {
+      widgetName: "identificarErroVariavelYesOrNo", // identificar erro variavel
+      widgetFunc: (props) => <OptionsYesOrNo {...props} />,
+    },
+    {
+      widgetName: "identificarErroVariavelLines", // identificar erro variavel
+      widgetFunc: (props) => <OptionsButtonsLines {...props} />,
     },
   ],
 };

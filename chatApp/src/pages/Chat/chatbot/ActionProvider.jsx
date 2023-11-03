@@ -9,7 +9,7 @@ import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const CodeMessage = ({ code }) => {
   return (
-    <SyntaxHighlighter language="javascript" style={tomorrowNight}>
+    <SyntaxHighlighter language="python" style={tomorrowNight} showLineNumbers={true}>
       {code}
     </SyntaxHighlighter>
   );
@@ -28,14 +28,15 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     };
   
     const handleVariavelQuiz = () => {
-      const greetingMessage = `bla`;
+      const descricaoDoProblema = dataVariable.descricaoDoProblema
 
-      const codeExample = `const exemplo = 'Este é um exemplo de código em JavaScript';\nconsole.log(exemplo);`;
+      const resultado = dataVariable.resultado
   
       const botMessages = [
-        createChatBotMessage(greetingMessage),
-        createChatBotMessage( <CodeMessage code={codeExample} />)
-        
+        createChatBotMessage(descricaoDoProblema + resultado,
+          {
+            widget: "variavel", // widget de variavel
+          })
       ];
   
       setState((prev) => ({
@@ -72,33 +73,53 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       }));
     };
 
-    const handleExemploCorretoVariavel = () => {
-      const botMessage = createChatBotMessage(
-       dataVariable.problemaComWorkedExampleCorreto.reflexivo + "\n" + dataVariable.problemaComWorkedExampleCorreto.propostaDeSolucao.etapasDeSolucao + "\n" + dataVariable.problemaComWorkedExampleCorreto.propostaDeSolucao.teste + "\n" + dataVariable.problemaComWorkedExampleCorreto.solucaoCorreta ,
-        {
-          widget: "variavel", // widget de variavel
-        }
-      );
-      
+    const handleExemploCorretoVariavel = () => {  
+      const botMessages = [
+        createChatBotMessage(dataVariable.problemaComWorkedExampleCorreto.reflexivo  + dataVariable.problemaComWorkedExampleCorreto.propostaDeSolucao.etapasDeSolucao),
+        createChatBotMessage(<CodeMessage code={dataVariable.problemaComWorkedExampleCorreto.solucaoCorreta} />,
+          {
+           widget: "variavel", // widget de variavel
+          })
+      ];
+
       setState((prev) => ({
         ...prev,
-        messages: [...prev.messages, botMessage],
+        messages: [...prev.messages, ...botMessages],
       }));
     };
 
     const handleExemploIncorretoVariavel = () => {
-      const botMessage = createChatBotMessage(
-        dataVariable.exemploIncorreto,
-        {
-          widget: "identificarErroVariavel", // widget de idenfica o erro
-        }
-      );
-  
+      const botMessages = [
+        createChatBotMessage(dataVariable.problemaComWorkedExampleIncorreto.reflexivo),
+        createChatBotMessage(<CodeMessage code={dataVariable.problemaComWorkedExampleIncorreto.solucaoIncorreta} />),
+        createChatBotMessage('Você conseguiu identificar o erro?',
+          {
+            widget: "identificarErroVariavelYesOrNo", 
+          }
+        )
+      ];
+
       setState((prev) => ({
         ...prev,
-        messages: [...prev.messages, botMessage],
+        messages: [...prev.messages, ...botMessages],
       }));
     };
+
+    const handleIdentificarErroVariavelSim = () => {
+      const botMessages = [
+        createChatBotMessage('Em qual linha do código acima está o erro ?',
+          {
+            widget: "identificarErroVariavelLines", 
+          }
+        ),
+      ];
+
+      setState((prev) => ({
+        ...prev,
+        messages: [...prev.messages, ...botMessages],
+      }));
+    };
+
 
     const handleIdentificarErroVariavel = () => {
       const botMessage = createChatBotMessage(
@@ -265,6 +286,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
               handleGoToMainMenu,
               handleGoToBackMenu,
               handleDefaultMessage,
+              handleIdentificarErroVariavelSim,
             },        
           });     
         })}
