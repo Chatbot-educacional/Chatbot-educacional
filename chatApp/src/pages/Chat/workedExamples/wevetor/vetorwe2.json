@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Estruturas de Dados em Java",
+    "Tópico da disciplina": "Ordenação de Vetores",
+    "Conhecimento prévio": "Conhecimento básico em Java e arrays.",
+    "Local onde foi retirado": "Material didático da universidade",
+    "Descrição do problema": "Implementar um algoritmo de ordenação de vetor em Java. O objetivo é classificar um vetor de números inteiros em ordem crescente.",
+    "Resultado": "O programa deve imprimir o vetor original e o vetor ordenado em ordem crescente.",
+    "Material complementar": "Livros sobre algoritmos de ordenação e tutoriais sobre implementação de algoritmos de ordenação em Java.",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "O problema com worked example correto envolve a implementação de um algoritmo de ordenação de vetor, o que é uma habilidade fundamental em programação.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Criar um vetor de números inteiros.\n2. Implementar um algoritmo de ordenação, como o algoritmo de ordenação por inserção.\n3. Aplicar o algoritmo de ordenação ao vetor.\n4. Imprimir o vetor original e o vetor ordenado."
+        },
+        "Teste": "Você pode testar o programa com o vetor: [5, 2, 9, 1, 5, 3]. O resultado esperado é o vetor original [5, 2, 9, 1, 5, 3] e o vetor ordenado [1, 2, 3, 5, 5, 9].",
+        "Solução Correta": "Aqui está uma proposta de solução de código em Java que utiliza o algoritmo de ordenação por inserção:\n\n```java\npublic class OrdenacaoVetor {\n    public static void main(String[] args) {\n        int[] vetor = {5, 2, 9, 1, 5, 3};\n        ordenarVetor(vetor);\n        System.out.print(\"Vetor Original: \");\n        imprimirVetor(vetor);\n    }\n\n    public static void ordenarVetor(int[] vetor) {\n        for (int i = 1; i < vetor.length; i++) {\n            int chave = vetor[i];\n            int j = i - 1;\n            while (j >= 0 && vetor[j] > chave) {\n                vetor[j + 1] = vetor[j];\n                j--;\n            }\n            vetor[j + 1] = chave;\n        }\n    }\n\n    public static void imprimirVetor(int[] vetor) {\n        for (int num : vetor) {\n            System.out.print(num + \" \");\n        }\n        System.out.println();\n    }\n}\n```\n"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O problema com worked example incorreto envolve um erro na implementação do algoritmo de ordenação, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "Solução Incorreta": "Aqui está uma proposta de solução incorreta de código em Java que utiliza um algoritmo de ordenação inadequado:\n\n```java\npublic class OrdenacaoVetorIncorreto {\n    public static void main(String[] args) {\n        int[] vetor = {5, 2, 9, 1, 5, 3};\n        ordenarVetorIncorreto(vetor);\n        System.out.print(\"Vetor Original: \");\n        imprimirVetor(vetor);\n    }\n\n    public static void ordenarVetorIncorreto(int[] vetor) {\n        Arrays.sort(vetor);\n    }\n\n    public static void imprimirVetor(int[] vetor) {\n        for (int num : vetor) {\n            System.out.print(num + \" \");\n        }\n        System.out.println();\n    }\n}\n```\n",
+        "Teste": "Você pode testar o programa com o vetor: [5, 2, 9, 1, 5, 3]. O resultado esperado é o vetor original [5, 2, 9, 1, 5, 3] e o vetor ordenado em ordem crescente [1, 2, 3, 5, 5, 9], mas a solução proposta incorreta produzirá resultados errados.",
+        "Você consegue identificar o erro?": "O erro está na forma como o algoritmo de ordenação é implementado na solução incorreta. Ela utiliza `Arrays.sort(vetor)`, que não é um algoritmo de ordenação personalizado, e não garantirá a ordem desejada no vetor.",
+        "Resposta": "O erro ocorre na parte em que o algoritmo de ordenação é implementado na solução incorreta. Em vez de usar um algoritmo de ordenação personalizado, a solução incorreta utiliza `Arrays.sort(vetor)`, que não é adequado para o problema proposto.",
+        "Proposta de solução correta": "[PASSO 1] Criar um vetor de números inteiros. [PASSO 2] Implementar um algoritmo de ordenação personalizado, como o algoritmo de ordenação por inserção. [PASSO 3] Aplicar o algoritmo de ordenação ao vetor. [PASSO 4] Imprimir o vetor original e o vetor ordenado."
+    }
+}

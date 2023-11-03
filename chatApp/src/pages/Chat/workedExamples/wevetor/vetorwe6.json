@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Estruturas de Dados em Java",
+    "Tópico da disciplina": "Pesquisa em Vetores",
+    "Conhecimento prévio": "Conhecimento intermediário em Java e estruturas de dados.",
+    "Local onde foi retirado": "Material do curso universitário",
+    "Descrição do problema": "Desenvolver um programa em Java para realizar a pesquisa de um elemento em um vetor de números inteiros. O programa deve permitir que o usuário digite um número e verificar se ele está presente no vetor.",
+    "Resultado": "O programa deve imprimir se o número está presente ou ausente no vetor.",
+    "Material complementar": "Livros sobre estruturas de dados em Java e tutoriais sobre pesquisa em vetores.",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "O problema do worked example correto envolve a implementação de um algoritmo de pesquisa em um vetor, o que é uma habilidade importante em estruturas de dados.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Criar um vetor de números inteiros.\n2. Solicitar ao usuário um número a ser pesquisado.\n3. Percorrer o vetor e verificar se o número está presente.\n4. Imprimir se o número está presente ou ausente."
+        },
+        "Teste": "Você pode testar o programa pesquisando por diferentes números no vetor. O resultado esperado é que o programa informe se o número está presente ou ausente no vetor.",
+        "Solução Correta": "Aqui está uma proposta de solução de código em Java que realiza a pesquisa em um vetor:\n\n```java\nimport java.util.Scanner;\n\nclass PesquisaVetor {\n    public static void main(String[] args) {\n        int[] vetor = {10, 20, 30, 40, 50};\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Digite um número a ser pesquisado: \");\n        int numero = scanner.nextInt();\n        boolean encontrado = false;\n\n        for (int elemento : vetor) {\n            if (elemento == numero) {\n                encontrado = true;\n                break;\n            }\n        }\n\n        if (encontrado) {\n            System.out.println(\"O número \" + numero + \" está presente no vetor.\");\n        } else {\n            System.out.println(\"O número \" + numero + \" não está presente no vetor.\");\n        }\n    }\n}\n```\n"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O problema com worked example incorreto envolve um erro na implementação do algoritmo de pesquisa em vetores, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "Solução Incorreta": "Aqui está uma proposta de solução incorreta de código em Java que não realiza a pesquisa em vetores adequadamente:\n\n```java\nimport java.util.Scanner;\n\nclass PesquisaVetorIncorreto {\n    public static void main(String[] args) {\n        int[] vetor = {10, 20, 30, 40, 50};\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Digite um número a ser pesquisado: \");\n        int numero = scanner.nextInt();\n\n        if (vetor[0] == numero) {\n            System.out.println(\"O número \" + numero + \" está presente no vetor.\");\n        } else {\n            System.out.println(\"O número \" + numero + \" não está presente no vetor.\");\n        }\n    }\n}\n```\n",
+        "Teste": "Você pode testar o programa pesquisando por diferentes números no vetor. O resultado esperado é que o programa informe se o número está presente ou ausente no vetor, mas a solução proposta incorreta não faz isso corretamente.",
+        "Você consegue identificar o erro?": "O erro está na forma como a pesquisa é realizada na solução incorreta. Ela apenas verifica se o primeiro elemento do vetor é igual ao número, o que não é uma pesquisa eficaz.",
+        "Resposta": "O erro ocorre na parte em que a pesquisa é realizada de maneira inadequada na solução incorreta. Ela verifica apenas o primeiro elemento do vetor, o que não é uma pesquisa abrangente.",
+        "Proposta de solução correta": "[PASSO 1] Criar um vetor de números inteiros. [PASSO 2] Solicitar ao usuário um número a ser pesquisado. [PASSO 3] Percorrer o vetor e verificar se o número está presente. [PASSO 4] Imprimir se o número está presente ou ausente."
+    }
+}

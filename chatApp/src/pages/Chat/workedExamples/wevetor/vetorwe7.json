@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Programação em Java",
+    "Tópico da disciplina": "Vetores (Arrays) em Java",
+    "Conhecimento prévio": "Conhecimento básico em sintaxe Java",
+    "Local onde foi retirado": "[Inserir de onde o material para o worked example foi retirado]",
+    "Descrição do problema": "Escreva um programa em Java que crie um vetor de números pares entre 1 e 20 e imprima a lista.",
+    "Resultado": "O programa deve criar um vetor de números pares e imprimir a lista desses números.",
+    "Material complementar": "[Inserir material de apoio para resolução do problema]",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "Este exemplo demonstra como criar um vetor em Java e preenchê-lo com números pares dentro de um intervalo específico. Isso requer o uso de um loop e condições para determinar se um número é par. É um exercício útil para praticar o uso de arrays e loops.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Crie um vetor (array) de inteiros para armazenar os números pares. 2. Use um loop 'for' para iterar de 1 a 20. 3. Dentro do loop, verifique se o número é par (divisível por 2) e, se for par, adicione-o ao vetor. 4. Após o loop, imprima os números no vetor.",
+            "Teste": "Execute o programa e verifique se ele cria um vetor de números pares entre 1 e 20 e imprime a lista corretamente."
+        },
+        "Solução Correta": "```java\npublic class NumerosPares {\n    public static void main(String[] args) {\n        int[] numerosPares = new int[10];\n        int index = 0;\n\n        for (int i = 1; i <= 20; i++) {\n            if (i % 2 == 0) {\n                numerosPares[index] = i;\n                index++;\n            }\n        }\n\n        for (int numero : numerosPares) {\n            System.out.println(numero);\n        }\n    }\n}\n```"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta identificação de números pares e o armazenamento deles no vetor.",
+        "Solução Incorreta":  "```java\npublic class NumerosParesIncorreto {\n    public static void main(String[] args) {\n        int[] numerosPares = new int[10];\n        int index = 0;\n\n        for (int i = 1; i <= 20; i++) {\n            if (i % 2 != 0) {\n                numerosPares[index] = i;\n                index++;\n            }\n        }\n\n        for (int numero : numerosPares) {\n            System.out.println(numero);\n        }\n    }\n}\n```",
+        "Teste": "Execute o programa e verifique se ele cria um vetor de números pares incorretamente.",
+        "Você consegue identificar o erro?": "O erro está na condição dentro do loop 'for'. A condição 'if (i % 2 != 0)' verifica se um número é ímpar em vez de par. Isso faz com que o programa armazene números ímpares no vetor.",
+        "Resposta" : "O erro ocorre na parte 'if (i % 2 != 0)'. Essa condição verifica se um número é ímpar, o que não é o objetivo do programa. A condição correta deve ser 'if (i % 2 == 0)' para verificar se um número é par.",
+        "Proposta de solução correta": "[PASSO 1] Modificar a condição do loop para 'if (i % 2 == 0)'. [PASSO 2] Execute o programa novamente para verificar se agora cria e imprime corretamente a lista de números pares."
+    }
+}

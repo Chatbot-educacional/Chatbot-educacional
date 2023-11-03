@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Algoritmos e Estruturas de Dados em Java",
+    "Tópico da disciplina": "Busca Binária",
+    "Conhecimento prévio": "Conhecimento básico em Java e arrays.",
+    "Local onde foi retirado": "Material didático da faculdade",
+    "Descrição do problema": "Implementar um algoritmo de busca binária em um vetor ordenado em Java. O programa deve ser capaz de encontrar um elemento específico no vetor e retornar sua posição, se existir.",
+    "Resultado": "O programa deve imprimir a posição do elemento no vetor ou uma mensagem indicando que o elemento não foi encontrado.",
+    "Material complementar": "Livros sobre algoritmos de busca e tutoriais sobre implementação de busca binária em Java.",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "O problema com worked example correto envolve a implementação de um algoritmo de busca binária, que é uma técnica eficiente para encontrar elementos em um vetor ordenado.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Criar um vetor ordenado.\n2. Implementar o algoritmo de busca binária.\n3. Encontrar o elemento desejado no vetor.\n4. Retornar a posição do elemento ou indicar que ele não foi encontrado."
+        },
+        "Teste": "Você pode testar o programa com um vetor ordenado, por exemplo: [1, 3, 5, 7, 9, 11, 13]. Tente encontrar o número 7. O resultado esperado é a posição 3 (lembrando que as posições são indexadas a partir de 0).",
+        "Solução Correta": "Aqui está uma proposta de solução de código em Java que implementa a busca binária:\n\n```java\npublic class BuscaBinaria {\n    public static void main(String[] args) {\n        int[] vetorOrdenado = {1, 3, 5, 7, 9, 11, 13};\n        int elementoBuscado = 7;\n        int posicao = buscaBinaria(vetorOrdenado, elementoBuscado);\n        if (posicao != -1) {\n            System.out.println(\"Elemento encontrado na posição \" + posicao);\n        } else {\n            System.out.println(\"Elemento não encontrado.\");\n        }\n    }\n\n    public static int buscaBinaria(int[] vetor, int elemento) {\n        int esquerda = 0;\n        int direita = vetor.length - 1;\n\n        while (esquerda <= direita) {\n            int meio = esquerda + (direita - esquerda) / 2;\n            if (vetor[meio] == elemento) {\n                return meio;\n            }\n            if (vetor[meio] < elemento) {\n                esquerda = meio + 1;\n            } else {\n                direita = meio - 1;\n            }\n        }\n        return -1;\n    }\n}\n```\n"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O problema com worked example incorreto envolve um erro na implementação do algoritmo de busca binária, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "Solução Incorreta": "Aqui está uma proposta de solução incorreta de código em Java que não implementa a busca binária de forma adequada:\n\n```java\npublic class BuscaBinariaIncorreto {\n    public static void main(String[] args) {\n        int[] vetorOrdenado = {1, 3, 5, 7, 9, 11, 13};\n        int elementoBuscado = 7;\n        int posicao = buscaBinariaIncorreto(vetorOrdenado, elementoBuscado);\n        if (posicao != -1) {\n            System.out.println(\"Elemento encontrado na posição \" + posicao);\n        } else {\n            System.out.println(\"Elemento não encontrado.\");\n        }\n    }\n\n    public static int buscaBinariaIncorreto(int[] vetor, int elemento) {\n        for (int i = 0; i < vetor.length; i++) {\n            if (vetor[i] == elemento) {\n                return i;\n            }\n        }\n        return -1;\n    }\n}\n```\n",
+        "Teste": "Você pode testar o programa com o mesmo vetor ordenado: [1, 3, 5, 7, 9, 11, 13] e tentar encontrar o número 7. O resultado esperado é a posição 3, mas a solução proposta incorreta produzirá resultados errados.",
+        "Você consegue identificar o erro?": "O erro está na implementação da busca binária na solução incorreta. Ela utiliza um loop linear para procurar o elemento, o que não é uma busca binária eficiente.",
+        "Resposta": "O erro ocorre na parte em que a busca binária é implementada de forma incorreta na solução incorreta. A busca binária requer a divisão do vetor em subintervalos e a comparação do elemento desejado com o elemento do meio para determinar a direção da busca.",
+        "Proposta de solução correta": "[PASSO 1] Criar um vetor ordenado. [PASSO 2] Implementar o algoritmo de busca binária. [PASSO 3] Encontrar o elemento desejado no vetor. [PASSO 4] Retornar a posição do elemento ou indicar que ele não foi encontrado."
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Programação em Java",
+    "Tópico da disciplina": "Trabalhando com Vetores",
+    "Conhecimento prévio": "Conhecimento básico de Java, estruturas de controle e vetores.",
+    "Local onde foi retirado": "Livro de Programação Java Avançada",
+    "Descrição do problema": "Desenvolver um programa em Java que calcule a média de notas de alunos e determine a situação deles (Aprovado, Reprovado, Recuperação) com base nas notas. O programa deve utilizar vetores para armazenar as notas dos alunos.",
+    "Resultado": "O programa deve imprimir a média de notas de cada aluno e sua situação.",
+    "Material complementar": "Vídeo tutorial sobre como trabalhar com vetores em Java.",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "O problema do worked example correto envolve calcular a média de notas e determinar a situação do aluno com base na média. Isso pode ser resolvido com uma abordagem passo a passo.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Receber as notas dos alunos e armazená-las em um vetor.\n2. Calcular a média das notas.\n3. Usar uma estrutura condicional para determinar a situação de cada aluno.\n4. Imprimir a média e a situação de cada aluno.",
+            "Teste": "Você pode testar o programa com as seguintes notas: [7.5, 6.0, 8.3, 5.5, 9.2]. O resultado esperado é a média de cada aluno e sua situação."
+        },
+        "Solução Correta": "Aqui está uma proposta de solução de código em Java:\n\n```java\nimport java.util.Arrays;\n\npublic class CalculoMedia {\n    public static void main(String[] args) {\n        double[] notas = {7.5, 6.0, 8.3, 5.5, 9.2};\n        double media = Arrays.stream(notas).average().orElse(0.0);\n        System.out.println(\"Média das notas: \" + media);\n        if (media >= 7.0) {\n            System.out.println(\"Situação: Aprovado\");\n        } else if (media >= 5.0) {\n            System.out.println(\"Situação: Recuperação\");\n        } else {\n            System.out.println(\"Situação: Reprovado\");\n        }\n    }\n}\n```\n"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O problema com worked example incorreto envolve um erro na solução do programa, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "Solução Incorreta": "Aqui está uma proposta de solução incorreta de código em Java:\n\n```java\nimport java.util.Arrays;\n\npublic class CalculoMediaIncorreto {\n    public static void main(String[] args) {\n        double[] notas = {7.5, 6.0, 8.3, 5.5, 9.2};\n        double media = 0.0;\n        for (int i = 0; i < notas.length; i++) {\n            media += notas[i];\n        }\n        media /= notas.length;\n        System.out.println(\"Média das notas: \" + media);\n        if (media >= 7.0) {\n            System.out.println(\"Situação: Aprovado\");\n        } else if (media >= 5.0) {\n            System.out.println(\"Situação: Recuperação\");\n        } else {\n            System.out.println(\"Situação: Reprovado\");\n        }\n    }\n}\n```\n",
+        "Teste": "Você pode testar o programa com as mesmas notas: [7.5, 6.0, 8.3, 5.5, 9.2]. O resultado esperado é a média de cada aluno e sua situação, mas a solução proposta incorreta produzirá resultados errados.",
+        "Você consegue identificar o erro?": "O erro está na forma como a média é calculada na solução incorreta. A média correta deve ser calculada utilizando a função `average()` da classe `Arrays`, como na solução correta.",
+        "Resposta": "O erro ocorre na parte em que a média é calculada na solução incorreta. Em vez de usar a função `average()` para calcular a média corretamente, a solução incorreta utiliza um loop e calcula a média de maneira incorreta.",
+        "Proposta de solução correta": "[PASSO 1] Receber as notas dos alunos e armazená-las em um vetor. [PASSO 2] Calcular a média das notas utilizando a função `average()` da classe `Arrays`. [PASSO 3] Usar uma estrutura condicional para determinar a situação de cada aluno. [PASSO 4] Imprimir a média e a situação."
+    }
+}

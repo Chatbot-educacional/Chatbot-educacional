@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Programação em Java",
+    "Tópico da disciplina": "Trabalhando com Vetores (Arrays) em Java",
+    "Conhecimento prévio": "Conhecimento básico em sintaxe Java",
+    "Local onde foi retirado": "[Inserir de onde o material para o worked example foi retirado]",
+    "Descrição do problema": "Escreva um programa em Java que imprima os números de 1 a 10 em um vetor.",
+    "Resultado": "O programa deve criar um vetor e imprimir os números de 1 a 10 nele.",
+    "Material complementar": "[Inserir material de apoio para resolução do problema]",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "Este exemplo demonstra como criar um vetor em Java e preenchê-lo com números de 1 a 10. É um exercício simples, mas importante para entender como trabalhar com arrays em Java.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Crie um vetor (array) de inteiros com tamanho 10. 2. Use um loop 'for' para preencher o vetor com números de 1 a 10. 3. Imprima os números no vetor.",
+            "Teste": "Execute o programa e verifique se ele cria o vetor e imprime os números de 1 a 10 corretamente."
+        },
+        "Solução Correta": "```java\npublic class NumerosNoVetor {\n    public static void main(String[] args) {\n        int[] numeros = new int[10];\n\n        for (int i = 0; i < numeros.length; i++) {\n            numeros[i] = i + 1;\n        }\n\n        for (int numero : numeros) {\n            System.out.println(numero);\n        }\n    }\n}\n```"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta inicialização do vetor e do loop.",
+        "Solução Incorreta":  "```java\npublic class NumerosNoVetorIncorreto {\n    public static void main(String[] args) {\n        int[] numeros = new int[10];\n\n        for (int i = 0; i < numeros.length; i++) {\n            numeros[i] = i;\n        }\n\n        for (int numero : numeros) {\n            System.out.println(numero);\n        }\n    }\n}\n```",
+        "Teste": "Execute o programa e verifique se ele cria o vetor e imprime os números incorretamente.",
+        "Você consegue identificar o erro?": "O erro está na lógica de preenchimento do vetor. O programa está preenchendo o vetor com valores de 0 a 9 em vez de 1 a 10.",
+        "Resposta" : "O erro ocorre na parte 'numeros[i] = i;'. O programa está preenchendo o vetor com os valores de 'i', que começam em 0 e vão até 9. O vetor deve ser preenchido com os valores de 'i + 1' para obter os números de 1 a 10.",
+        "Proposta de solução correta": "[PASSO 1] Modificar a linha 'numeros[i] = i;' para 'numeros[i] = i + 1;'. [PASSO 2] Execute o programa novamente para verificar se agora cria o vetor e imprime os números de 1 a 10 corretamente."
+    }
+}

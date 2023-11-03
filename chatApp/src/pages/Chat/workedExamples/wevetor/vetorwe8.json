@@ -1,0 +1,29 @@
+{
+    "Título da disciplina": "Programação em Java",
+    "Tópico da disciplina": "Trabalhando com Vetores (Arrays) em Java",
+    "Conhecimento prévio": "Conhecimento básico em sintaxe Java",
+    "Local onde foi retirado": "[Inserir de onde o material para o worked example foi retirado]",
+    "Descrição do problema": "Escreva um programa em Java que crie um vetor de números e imprima a soma de todos os números do vetor.",
+    "Resultado": "O programa deve criar um vetor de números e imprimir a soma de todos os números no vetor.",
+    "Material complementar": "[Inserir material de apoio para resolução do problema]",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "Este exemplo demonstra como criar um vetor em Java, preencher o vetor com números e calcular a soma de todos os números no vetor. É uma tarefa importante para entender como trabalhar com arrays e loops.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Crie um vetor (array) de inteiros para armazenar os números. 2. Preencha o vetor com números. 3. Use um loop para iterar pelo vetor e somar os números. 4. Imprima a soma.",
+            "Teste": "Execute o programa e verifique se ele cria o vetor e imprime a soma corretamente."
+        },
+        "Solução Correta": "```java\npublic class SomaVetorNumeros {\n    public static void main(String[] args) {\n        int[] numeros = {1, 2, 3, 4, 5};\n        int soma = 0;\n\n        for (int numero : numeros) {\n            soma += numero;\n        }\n\n        System.out.println(\"Soma dos números no vetor: \" + soma);\n    }\n}\n```"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O exemplo incorreto apresenta um erro que afeta o cálculo da soma. Isso serve para destacar a importância de somar os números corretamente no vetor.",
+        "Solução Incorreta":  "```java\npublic class SomaVetorNumerosIncorreto {\n    public static void main(String[] args) {\n        int[] numeros = {1, 2, 3, 4, 5};\n        int soma = 10; // Valor inicial incorreto\n\n        for (int numero : numeros) {\n            soma += numero;\n        }\n\n        System.out.println(\"Soma dos números no vetor: \" + soma);\n    }\n}\n```",
+        "Teste": "Execute o programa e verifique se ele calcula a soma incorretamente.",
+        "Você consegue identificar o erro?": "O erro está no valor inicial da variável 'soma', que está definido como 10. Isso afeta o cálculo da soma, pois o valor inicial deve ser 0.",
+        "Resposta" : "O erro ocorre na parte 'int soma = 10;', onde o valor inicial da variável 'soma' está definido como 10 em vez de 0. Isso afeta o cálculo da soma, pois não começa com o valor correto.",
+        "Proposta de solução correta": "[PASSO 1] Modificar o valor inicial da variável 'soma' para 'int soma = 0;'. [PASSO 2] Execute o programa novamente para verificar se agora calcula a soma corretamente no vetor."
+    }
+}
+
+
