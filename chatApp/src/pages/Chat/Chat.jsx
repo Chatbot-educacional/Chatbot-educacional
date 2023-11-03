@@ -10,7 +10,7 @@ function Chat(){
     return(
         <div className="div-container-chat">
           <div className="left-side">
-            <h1>WillBOT</h1>
+            <h1>WEBOT</h1>
             <button>+ Novo chatbot</button>
           </div>
           <div className="chat-bot">
