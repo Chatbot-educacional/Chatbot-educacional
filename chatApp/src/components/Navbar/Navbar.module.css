@@ -86,6 +86,7 @@
 } */
 
 .links_list_right {
+    color: white;
     align-items: center;
     flex-wrap: nowrap;
     gap: 10px;
@@ -129,6 +130,27 @@
 .links_list_right li a:active {
     transform: scale(0.95);
 } */
+
+.container_name_user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container_name_user span {
+    overflow: hidden; 
+    white-space: nowrap; 
+}
+
+.bottom_sair {
+    background-color: #AFABFC; 
+    color: #161616; 
+    padding: 8px 15px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px;
+    text-decoration: none;  
+}
 
 .active {
     color: #c300ff;
