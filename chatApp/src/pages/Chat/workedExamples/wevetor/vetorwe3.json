@@ -1,0 +1,27 @@
+{
+    "Título da disciplina": "Programação em Java Avançada",
+    "Tópico da disciplina": "Manipulação de Vetores Multidimensionais",
+    "Conhecimento prévio": "Conhecimento avançado em Java e arrays multidimensionais.",
+    "Local onde foi retirado": "Material de estudo avançado",
+    "Descrição do problema": "Desenvolver um programa em Java que realize a multiplicação de duas matrizes. O programa deve ser capaz de receber duas matrizes como entrada e produzir a matriz resultante da multiplicação.",
+    "Resultado": "O programa deve imprimir a matriz resultante da multiplicação.",
+    "Material complementar": "Livros sobre álgebra linear, tutoriais sobre multiplicação de matrizes em Java e bibliotecas para manipulação de matrizes.",
+
+    "Problema com worked Example Correto": {
+        "Reflexivo": "O problema com worked example correto envolve a multiplicação de matrizes, que é um conceito importante em álgebra linear e programação.",
+        "Proposta de solução": {
+            "Etapas de Solução": "1. Receber duas matrizes como entrada.\n2. Verificar se as dimensões das matrizes são adequadas para multiplicação.\n3. Realizar a multiplicação das matrizes de acordo com as regras matriciais.\n4. Imprimir a matriz resultante."
+        },
+        "Teste": "Você pode testar o programa com as seguintes matrizes:\nMatrix A:\n[[1, 2, 3], [4, 5, 6]]\nMatrix B:\n[[7, 8], [9, 10], [11, 12]]\nO resultado esperado é a matriz resultante da multiplicação.",
+        "Solução Correta": "Aqui está uma proposta de solução de código em Java que realiza a multiplicação de matrizes:\n\n```java\npublic class MultiplicacaoMatrizes {\n    public static void main(String[] args) {\n        int[][] matrizA = {{1, 2, 3}, {4, 5, 6}};\n        int[][] matrizB = {{7, 8}, {9, 10}, {11, 12}};\n        int[][] matrizResultante = multiplicarMatrizes(matrizA, matrizB);\n        imprimirMatriz(matrizResultante);\n    }\n\n    public static int[][] multiplicarMatrizes(int[][] matrizA, int[][] matrizB) {\n        int linhasA = matrizA.length;\n        int colunasA = matrizA[0].length;\n        int colunasB = matrizB[0].length;\n        int[][] resultado = new int[linhasA][colunasB];\n\n        for (int i = 0; i < linhasA; i++) {\n            for (int j = 0; j < colunasB; j++) {\n                for (int k = 0; k < colunasA; k++) {\n                    resultado[i][j] += matrizA[i][k] * matrizB[k][j];\n                }\n            }\n        }\n\n        return resultado;\n    }\n\n    public static void imprimirMatriz(int[][] matriz) {\n        for (int[] linha : matriz) {\n            for (int elemento : linha) {\n                System.out.print(elemento + \" \");\n            }\n            System.out.println();\n        }\n    }\n}\n```\n"
+    },
+
+    "Problema com worked Example Incorreto": {
+        "Reflexivo": "O problema com worked example incorreto envolve um erro na implementação da multiplicação de matrizes, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "Solução Incorreta": "Aqui está uma proposta de solução incorreta de código em Java que não realiza a multiplicação de matrizes corretamente:\n\n```java\npublic class MultiplicacaoMatrizesIncorreto {\n    public static void main(String[] args) {\n        int[][] matrizA = {{1, 2, 3}, {4, 5, 6}};\n        int[][] matrizB = {{7, 8}, {9, 10}, {11, 12}};\n        int[][] matrizResultante = multiplicarMatrizesIncorreto(matrizA, matrizB);\n        imprimirMatriz(matrizResultante);\n    }\n\n    public static int[][] multiplicarMatrizesIncorreto(int[][] matrizA, int[][] matrizB) {\n        int linhasA = matrizA.length;\n        int colunasA = matrizA[0].length;\n        int colunasB = matrizB[0].length;\n        int[][] resultado = new int[linhasA][colunasB];\n\n        for (int i = 0; i < linhasA; i++) {\n            for (int j = 0; j < colunasB; j++) {\n                for (int k = 0; k < colunasA; k++) {\n                    resultado[i][j] += matrizA[i][k] * matrizB[j][k];\n                }\n            }\n        }\n\n        return resultado;\n    }\n\n    public static void imprimirMatriz(int[][] matriz) {\n        for (int[] linha : matriz) {\n            for (int elemento : linha) {\n                System.out.print(elemento + \" \");\n            }\n            System.out.println();\n        }\n    }\n}\n```\n",
+        "Teste": "Você pode testar o programa com as mesmas matrizes:\nMatrix A:\n[[1, 2, 3], [4, 5, 6]]\nMatrix B:\n[[7, 8], [9, 10], [11, 12]]\nO resultado esperado é a matriz resultante da multiplicação, mas a solução proposta incorreta produzirá resultados errados.",
+        "Você consegue identificar o erro?": "O erro está na forma como os índices das matrizes são usados na solução incorreta. Ela utiliza índices de forma inadequada na multiplicação de matrizes, o que resulta em uma matriz resultante incorreta.",
+        "Resposta": "O erro ocorre na parte em que os índices das matrizes são usados de maneira inadequada na solução incorreta. A multiplicação de matrizes requer uma abordagem cuidadosa na escolha de índices para garantir o cálculo correto.",
+        "Proposta de solução correta": "[PASSO 1] Receber duas matrizes como entrada. [PASSO 2] Verificar se as dimensões das matrizes são adequadas para multiplicação. [PASSO 3] Realizar a multiplicação das matrizes de acordo com as regras matriciais. [PASSO 4] Imprimir a matriz resultante."
+    }
+}
