@@ -1,8 +1,11 @@
 // Imports
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+// import React from 'react';
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // import { IonIcon } from '@ionic/react';
 // import ScrollReveal from "scrollreveal";
@@ -20,6 +23,12 @@ import HomeFormImage from '../../assets/home_bg_form.png';
 import styles from './Home.module.css'; 
 
 const Home = () => {
+
+  useEffect(()=> {
+    AOS.init();
+    AOS.refresh();
+  }, [])
+
   return (
     <div className={styles.homeContainer}>
       <div className={styles.home_image}>
@@ -27,23 +36,23 @@ const Home = () => {
           <img className={styles.home_image2} src={HomeFormImage} alt="Forma para estilização2"/>
       </div>
       <div className={styles.content}>
-        <h1 className={styles.title}>WEBOT</h1>
-        <p className={styles.description}>Desperte o potencial dos programadores do futuro com o WeBot - <span>A chave para o sucesso.</span></p>
-        <Link to="/chat" className={styles.startButton}>Iniciar</Link>
+        <h1 className={styles.title} data-aos="zoom-out" data-aos-duration="1500">WEBOT</h1>
+        <p className={styles.description} data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="250">Desperte o potencial dos programadores do futuro com o WeBot - <span>A chave para o sucesso.</span></p>
+        <Link to="/chat" className={styles.startButton} data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="350">Iniciar</Link>
       </div>
 
       <div className={styles.sub_content}>
           <h2>Aqui você vai...</h2>
           <div className={styles.texts}>
             <h1>
-              <span>Conhecer</span>
-              <span>Aprender</span>
-              <span className={styles.spantext}>Desenvolver</span>
+              <span data-aos="fade-up" data-aos-duration="1500" data-aos-anchorPlacement="center-center">Conhecer</span>
+              <span data-aos="fade-up" data-aos-duration="1500" data-aos-anchorPlacement="center-center">Aprender</span>
+              <span className={styles.spantext} data-aos="fade-up" data-aos-duration="1500" data-aos-anchorPlacement="center-center">Desenvolver</span>
             </h1>
           </div>
           <div className={styles.texts_button}>
-            <h2>Sua jornada para o mundo da programação inicia aqui.</h2>
-            <Link to="/chat" className={styles.startbutton2}><p>Começar</p></Link>
+            <h2 data-aos="fade-up" data-aos-duration="800">Sua jornada para o mundo da programação inicia aqui.</h2>
+            <Link to="/chat" className={styles.startbutton2} data-aos="fade-up" data-aos-duration="800" data-aos-delay="200"><p>Começar</p></Link>
           </div>
       </div>
 
@@ -88,7 +97,7 @@ const Home = () => {
           <h2>Conteúdos Abordados</h2>
         </div>
         <div className={styles.itens}>
-          <div className={styles.componenteImagemTexto}>
+          <div className={styles.componenteImagemTexto} data-aos="fade-up" data-aos-duration="1000">
             <div className={`${styles.imagemContainer} ${styles.image}`}>
               <img src={ConteudoVar} alt="Imagem" />
             </div>
@@ -102,7 +111,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className={styles.componenteImagemTexto}>
+          <div className={styles.componenteImagemTexto} data-aos="fade-up" data-aos-duration="1000">
             <div className={`${styles.imagemContainer} ${styles.image}`}>
               <img src={ConteudoArit} alt="Imagem" />
             </div>
@@ -116,7 +125,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className={styles.componenteImagemTexto}>
+          <div className={styles.componenteImagemTexto} data-aos="fade-up" data-aos-duration="1000">
             <div className={`${styles.imagemContainer} ${styles.image}`}>
               <img src={ConteudoCond} alt="Imagem" />
             </div>
@@ -130,7 +139,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className={styles.componenteImagemTexto}>
+          <div className={styles.componenteImagemTexto} data-aos="fade-up" data-aos-duration="1000">
             <div className={`${styles.imagemContainer} ${styles.image}`}>
               <img src={ConteudoLaco} alt="Imagem" />
             </div>
@@ -154,13 +163,13 @@ const Home = () => {
           </div>
           <div className={styles.secondText}>
             <h2>
-              <span>Entre</span> <br></br>
-              <span>Treine</span> <br></br>
-              <span>Junte-se</span>
+              <span data-aos="zoom-out" data-aos-duration="1500" data-aos-anchorPlacement="center-center">Entre</span> <br></br>
+              <span data-aos="zoom-out" data-aos-duration="1500" data-aos-anchorPlacement="center-center">Treine</span> <br></br>
+              <span data-aos="zoom-out" data-aos-duration="1500" data-aos-anchorPlacement="center-center">Junte-se</span>
             </h2>
           </div>
           <Link to="/chat" className={styles.circleBottom}>
-            <div className={styles.iconOnBottom}>
+            <div className={styles.iconOnBottom} data-aos="fade-right" data-aos-duration="1000">
               <svg><FaArrowRight/></svg>
             </div>
           </Link>
