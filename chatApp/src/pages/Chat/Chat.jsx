@@ -23,9 +23,8 @@ function Chat(){
     return(
         <div className="div-container-chat">
           <div className="div-lateral-bar">
-            <h1>CoderBOT</h1>
-
-            <span>Olá,<br/>{user.displayName}</span>
+            {/* <h1>CoderBOT</h1> */}
+            {/* <span className="">Olá,<br/>{user.displayName}</span> */}
             <Link to="/chat" className="startbutton2"><p>+ Novo Chat</p></Link>
           </div>
           <Chatbot 
