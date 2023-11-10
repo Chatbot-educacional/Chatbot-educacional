@@ -25,7 +25,7 @@ function Chat(){
           <div className="div-lateral-bar">
             {/* <h1>CoderBOT</h1> */}
             {/* <span className="">Olá,<br/>{user.displayName}</span> */}
-            <Link to="/chat" className="startbutton2"><p>+ Novo Chat</p></Link>
+            <Link className="startbutton2" to="/chat"><p>+ Novo Chat</p></Link>
           </div>
           <Chatbot 
             config={config} 
