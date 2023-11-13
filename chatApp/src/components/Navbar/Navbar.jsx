@@ -16,7 +16,7 @@ function Navbar() {
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
-                Chat <span>Bot</span>
+                WEBOT
             </NavLink>
             <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>
@@ -45,19 +45,19 @@ function Navbar() {
             <ul className={styles.links_list_right}>
                 {!user ? (
                     <>
-                        <li>
+                        <li className={styles.bottom_entrar}>
                             <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')}>Entrar</NavLink>
                         </li>
-                        <li>
+                        <li className={styles.bottom_cadastrar}>
                             <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
                         </li>
                         
                       
                     </>
                 ) : (
-                    <li>
-                        {user.displayName}
-                        <NavLink onClick={logout}>Sair</NavLink>
+                    <li className={styles.container_name_user}>
+                        <span>{user.displayName}</span>
+                        <NavLink className={styles.bottom_sair} onClick={logout}>Sair</NavLink>
                     </li>
                 )}
             </ul>

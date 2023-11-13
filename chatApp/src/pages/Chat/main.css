@@ -1,5 +1,13 @@
 .div-container-chat {
-  background-color: rgba(128, 128, 128, 0.13);
+  /* background-color: rgba(128, 128, 128, 0.13); */
+  background-color: #AFABFC;
+  display: flex;
+  width: 100%;
+  height: 100vh; /* deixar assim*/
+  /* min-height: 100vh; */
+  padding: 12px;
+  gap: 10px;
+  overflow: hidden;
 }
 
 .react-chatbot-kit-user-chat-message-container {
@@ -78,11 +86,11 @@
   }
   
   .react-chatbot-kit-chat-bot-message {
-    background-color: #2898ec;
+    background-color: #afabfc9d;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 24px;
     font-size: 1rem;
-    color: #fff;
+    color: black;
     font-weight: medium;
     position: relative;
     width: 100%;
@@ -92,16 +100,20 @@
     white-space: pre-line;
 }
 
-  
+.react-chatbot-kit-chat-bot-message pre {
+  border-radius: 10px;
+}  
+
   .react-chatbot-kit-chat-bot-message-arrow {
     width: 0;
     height: 0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-right: 8px solid #2898ec;
+    border-right: 8px solid #afabfc9d;
     position: absolute;
     left: -7px;
-    top: 13px;
+    top: 14px;
+    transform: rotate(4deg);
   }
   
   .react-chatbot-kit-chat-bot-loading-icon-container {
@@ -141,27 +153,94 @@
     }
   }
   
+  .div-lateral-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    background-color: #ffffff;
+    border: 1px solid red;
+    /* height: fit-content; */
+    height: auto;
+    width: 300px;
+    min-width: 300px;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .div-lateral-bar h1{
+    font-weight: 400;
+    font-size: 20px;
+    /* text-align: center; */
+  }
+
+  .div-lateral-bar span{
+    width: max-content;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    color: #161616;
+  }
+
+  .div-lateral-bar .startbutton2 {
+    align-content: center;
+    align-items: center;
+    background: linear-gradient(180deg,#CBC9F3 0%, #5c7cff 100%);
+    border-radius: 66px;
+    /* box-shadow: 0 0.7065919983928324px 0.7065919983928324px -0.625px #00000026, 0 1.8065619053231785px 1.8065619053231785px -1.25px #00000025, 0 3.6217592146567767px 3.6217592146567767px -1.875px #00000023, 0 6.8655999097303715px 6.8655999097303715px -2.5px #00000020, 0 13.646761411524492px 13.646761411524492px -3.125px #0000001b, 0 30px 30px -3.75px #0000000d; */
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    height: min-content;
+    justify-content: center;
+    overflow: visible;
+    padding: 20px 30px;
+    /* width: min-content; */
+    z-index: 1;
+    color: #FFFFFF;
+    transition: 0.5s;
+    transition-delay: 10ms;
+  }
+
+  .div-lateral-bar .startbutton2:hover{
+    box-shadow: inset 0 0 0 #CBC9F3, 0 0 1.5em #5c7cff
+  }
+
   .react-chatbot-kit-chat-container {
-    position: fixed; /* was relative */
+    position: relative; /* was relative */
     top: 1;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 800px;
+    width: 100%;
+    height: 915px;
+    min-height: 100%;
+    /* max-height: 100%; */
+    border-radius: 20px;
   }
   
   .react-chatbot-kit-chat-inner-container {
-    height: 89vh;
-    background-color: #fff;
-    border-radius: 3px;
-    border-radius: 5px;
-   
+    position: relative;
+    width: 100%;
+    /* height: 100vh; */
+    /* height: auto; */
+    height: 100%;
+    /* height: 915px; */
+    background-color: #FFF;
+    /* border-radius: 3px;
+    border-radius: 5px; */
+    border-radius: 20px;
+    /* box-sizing: border-box; */
+    border: 1px solid green;
   }
   
   .react-chatbot-kit-chat-header {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-    background-color: #efefef;
+    /* background-color: #efefef; */
     font-family: Arial;
     display: flex;
     align-items: center;
@@ -180,14 +259,20 @@
     bottom: 0;
     width: 100%;
     max-width: 800px;
-    display: flex;
+    display: none;
   }
   
   .react-chatbot-kit-chat-message-container {
+    position: relative;
     padding: 0 17.5px 10px 17.5px;
     overflow: scroll;
-    height: 600px;
-    overflow-x: hidden;
+    /* height: min-content; */
+    height: 90%;
+    /* max-height: 915px; */
+    /* max-height: 100%; */
+    /* height: 100%; */
+    overflow-x: auto;
+    box-sizing: border-box;
     
   }
   
