@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
@@ -12,11 +13,11 @@ function Navbar() {
     const handleClick = () => {
         setClicked(!clicked);
     }
-
+  
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
-                WEBOT
+                CoderBot
             </NavLink>
             <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>
