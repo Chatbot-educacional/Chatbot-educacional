@@ -1,0 +1,33 @@
+{
+    "title": "Programação em Java",
+    "topic": "Criação de Array com Números Aleatórios",
+    "knowledge": "Conhecimento básico em sintaxe Java",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Java que crie um array de 5 números aleatórios entre 1 e 100 e imprima o array.",
+    "result": "O programa deve criar um array de 5 números aleatórios entre 1 e 100 e imprimir corretamente o array.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array de números aleatórios em Java e imprimir o array resultante. Isso requer o uso da classe Random para gerar números aleatórios e um loop para preencher o array.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Importe a classe Random. \n[PASSO 2]. Crie um array de inteiros com tamanho 5. \n[PASSO 3]. Use um loop para gerar e atribuir números aleatórios entre 1 e 100 ao array. \n[PASSO 4]. Imprima o array de números aleatórios.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente o array de números aleatórios."
+        },
+        "correctSolutionProposal": "import java.util.Random;\n\npublic class NumerosAleatoriosArray {\n    public static void main(String[] args) {\n        // Importar a classe Random\n        Random random = new Random();\n\n        // Criar um array de inteiros com tamanho 5\n        int[] arrayAleatorio = new int[5];\n\n        // Preencher o array com números aleatórios entre 1 e 100\n        for (int i = 0; i < arrayAleatorio.length; i++) {\n            arrayAleatorio[i] = random.nextInt(100) + 1;\n        }\n\n        // Imprimir o array de números aleatórios\n        for (int numero : arrayAleatorio) {\n            System.out.print(numero + \" \");\n        }\n    }\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de números aleatórios e preenchimento de arrays.",
+        "incorrectSolution": "import java.util.Random;\n\npublic class NumerosAleatoriosArrayIncorreto {\n    public static void main(String[] args) {\n        // Importar a classe Random\n        Random random = new Random();\n\n        // Criar um array de inteiros com tamanho 5\n        int[] arrayAleatorio = new int[5];\n\n        // Preencher o array com números aleatórios entre 0 e 100\n        for (int i = 0; i <= arrayAleatorio.length; i++) {\n            arrayAleatorio[i] = random.nextInt(101);\n        }\n\n        // Imprimir o array de números aleatórios\n        for (int numero : arrayAleatorio) {\n            System.out.print(numero + \" \");\n        }\n    }\n}",
+        "test": "Execute o programa e verifique se o array de números aleatórios é gerado incorretamente.",
+        "options": {
+            "one": "linha 12",
+            "two": "linha 14",
+            "three": "linha 16",
+            "four": "linha 17",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na geração dos números aleatórios na linha 12, onde o sinal <= faz o laço acessar posição inexistente no array.",
+        "response": "O erro está na geração dos números aleatórios na linha 12, onde o sinal <= faz o laço acessar posição inexistente no array. Para corrigir basta mudar o sinal para apenas <",
+        "correctSolutionProposal": "[PASSO 1] Modificar a expressão na linha 16 para 'random.nextInt(100) + 1'. \n[PASSO 2] Execute o programa novamente para verificar se agora o array de números aleatórios é gerado corretamente."
+    }
+}

@@ -24,7 +24,7 @@ import Researchers from './pages/Researchers/Researchers';
 import FooterConditional from './components/FooterConditional';
 import HeaderChat from './components/HeaderChat';
 import PacmanLoader from "react-spinners/PacmanLoader";
-
+import PageError404 from './pages/404/PageError404';
 
 function App() {
 
@@ -53,7 +53,7 @@ function App() {
         <Router>
             <HeaderChat/>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
@@ -62,6 +62,9 @@ function App() {
                 <Route path="/create-example" element={user ? <CreateExample /> : <Navigate to="/login" />} />
                 <Route path="/researchers" element={ <Researchers /> } />
                 
+                <Route index element={<Navigate to="/home" />} />
+
+                <Route path='*' element={<PageError404 />} />
               </Routes>
           <FooterConditional />
         </Router>

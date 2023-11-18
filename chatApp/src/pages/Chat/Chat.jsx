@@ -6,6 +6,7 @@ import MessageParser from "./chatbot/MessageParser.jsx";
 import ActionProvider from "./chatbot/ActionProvider.jsx";
 import './main.css';
 import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
 // import { FaArrowRight } from 'react-icons/fa';
@@ -26,6 +27,7 @@ function Chat(){
             {/* <h1>CoderBOT</h1> */}
             {/* <span className="">Olá,<br/>{user.displayName}</span> */}
             <Link className="startbutton2" to="/chat"><p>+ Novo Chat</p></Link>
+            <NavLink className="startbutton2" to="/home">Sair</NavLink>
           </div>
           <Chatbot 
             config={config} 

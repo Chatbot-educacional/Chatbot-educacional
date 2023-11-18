@@ -4,24 +4,24 @@
     "Conhecimento prévio": "Conhecimento básico de Python e conceitos de programação.",
     "Local onde foi retirado": "Livro 'Python Programming for Beginners', Capítulo 2",
 
-    "descricaoDoProblema": "Você está aprendendo Python e precisa entender como funcionam as variáveis em Python.",
-    "resultado": "As variáveis em Python são usadas para armazenar dados. Elas podem conter números inteiros, números de ponto flutuante, strings e outros tipos de dados.",
+    "descricaoDoProblema": "DESCRIÇÃO DO PROBLEMA\nVocê está aprendendo  Python e precisa entender como funcionam as variáveis em Python.\n\n",
+    "resultado": "RESULTADO\n As variáveis em Python são usadas para armazenar dados. Elas podem conter números inteiros, números de ponto flutuante, strings e outros tipos de dados.",
     "Material complementar": "Consulte o capítulo 2 do livro 'Python Programming for Beginners' para obter informações detalhadas sobre variáveis em Python.",
 
     "problemaComWorkedExampleCorreto": {
-        "reflexivo": "Variáveis em Python são como caixas que podem armazenar diferentes tipos de informações. Para criar uma variável, use um nome descritivo e atribua um valor a ela.",
+        "reflexivo": "REFLEXIVO CORRETO\n\nVariáveis em Python são como caixas que podem armazenar diferentes tipos de informações. Para criar uma variável, use um nome descritivo e atribua um valor a ela.\n\n",
         "propostaDeSolucao": {
-            "etapasDeSolucao": "[PASSO 1] Declare uma variável chamada 'idade' e atribua o valor 25 a ela. [PASSO 2] Declare uma variável chamada 'nome' e atribua o valor 'João' a ela. [PASSO 3] Imprima as variáveis idade e nome.",
+            "etapasDeSolucao": "ETAPAS DA SOLUÇÃO\n\n[PASSO 1] Declare uma variável chamada 'idade' e atribua o valor 25 a ela. [PASSO 2] Declare uma variável chamada 'nome' e atribua o valor 'João' a ela. [PASSO 3] Imprima as variáveis idade e nome.",
             "teste": "Execute o código e verifique se as variáveis 'idade' e 'nome' estão sendo impressas corretamente."
         },
-        "solucaoCorreta": "idade = 25\nnome = 'João'\nprint(idade)\nprint(nome)"
+        "solucaoCorreta": "# Execute o código e verifique se as variáveis 'idade' e 'nome' estão sendo impressas corretamente.\n\nidade = 25\nnome = 'João'\nprint(idade)\nprint(nome)"
     },
 
-    "Problema com Worked Example Incorreto": {
-        "Reflexivo": "Vamos explorar um exemplo com erro e entender o que está errado.",
-        "Solução Incorreta":  "idade = '25'\nnome = 'Maria'\nprint(idade)\nprint(nome)",
-        "Teste": "Execute o código e verifique se as variáveis 'idade' e 'nome' estão sendo impressas corretamente.",
-        "Você consegue identificar o erro?": "O erro ocorre na atribuição da variável 'idade', que foi definida como uma string ('25') em vez de um número inteiro (25).",
+    "problemaComWorkedExampleIncorreto": {
+        "reflexivo": "Vamos explorar um exemplo com erro e entender o que está errado.",
+        "solucaoIncorreta":  "idade = '25'\nnome = 'Maria'\nprint(idade)\nprint(nome)",
+        "teste": "Execute o código e verifique se as variáveis 'idade' e 'nome' estão sendo impressas corretamente.",
+        "voceConsegueIdentificarOErro?": "O erro ocorre na atribuição da variável 'idade', que foi definida como uma string ('25') em vez de um número inteiro (25).",
         "Resposta": "O erro ocorre na linha 'idade = '25'', onde a variável 'idade' é atribuída como uma string. Ela deveria ser atribuída como um número inteiro. As strings devem ser definidas com aspas simples ou duplas em Python. A linha correta seria 'idade = 25'.",
         "Proposta de solução correta": "[PASSO 1] Declare uma variável chamada 'idade' e atribua o valor 25 a ela. [PASSO 2] Declare uma variável chamada 'nome' e atribua o valor 'João' a ela. [PASSO 3] Imprima as variáveis idade e nome."
     }

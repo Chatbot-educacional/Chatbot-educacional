@@ -1,0 +1,33 @@
+{
+    "title": "Programação em Java",
+    "topic": "Soma de Números em um Array",
+    "knowledge": "Conhecimento básico em sintaxe Java",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Java que crie um array de números e imprima a soma de todos os números do array.",
+    "result": "O programa deve criar um array de números e imprimir corretamente a soma de todos os números do array.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array de números em Java e calcular a soma de seus elementos. Isso requer o uso de loops para preencher o array e calcular a soma.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um array de inteiros para armazenar os números. \n[PASSO 2]. Use um loop para preencher o array com números. \n[PASSO 3]. Utilize outro loop para calcular a soma dos números no array. \n[PASSO 4]. Imprima a soma calculada.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente a soma dos números."
+        },
+        "correctSolutionProposal": "public class SomaArrayNumeros {\n    public static void main(String[] args) {\n        int[] arrayNumeros = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};\n\n        // Calcular a soma dos números no array\n        int soma = 0;\n        for (int numero : arrayNumeros) {\n            soma += numero;\n        }\n\n        // Imprimir a soma\n        System.out.println(\"A soma dos números no array é: \" + soma);\n    }\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de arrays e cálculos.",
+        "incorrectSolution": "public class SomaArrayNumerosIncorreto {\n    public static void main(String[] args) {\n        int[] arrayNumeros = new int[10];\n\n        // Preencher o array com números (exemplo: 1 a 10)\n        for (int i = 1; i <= 10; i++) {\n            arrayNumeros[i] = i;\n        }\n\n        // Calcular a soma dos números no array\n        int soma = 0;\n        for (int i = 0; i < arrayNumeros.length; i++) {\n            soma += arrayNumeros[i];\n        }\n\n        // Imprimir a soma\n        System.out.println(\"A soma dos números no array é: \" + soma);\n    }\n}",
+        "test": "Execute o programa e verifique se a soma dos números é realizada incorretamente.",
+        "options": {
+            "one": "linha 12",
+            "two": "linha 6",
+            "three": "linha 13",
+            "four": "linha 4",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na linha 6, onde o índice 'i' ultrapassa o tamanho do array ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites.",
+        "response": "O erro ocorre na linha 11, onde o índice 'i' ultrapassa o tamanho do array ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites. A correção seria 'arrayNumeros[i - 1] = i;' para corrigir a manipulação do índice.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 11 para 'arrayNumeros[i - 1] = i;'. \n[PASSO 2] Execute o programa novamente para verificar se agora a soma dos números é realizada corretamente."
+    }
+}

@@ -14,13 +14,17 @@ import OptionsVariableWrong from "../Options/OptionsVariableWrong";
 import OptionsConditionalWrong from "../Options/OptionsConditionalWrong";
 import OptionsRepeatingLoopWrong from "../Options/OptionsRepeatingLoopWrong";
 import OptionsGoToMainMenu from "../Options/OptionsGoToMainMenu";
+import OptionsYesOrNo from "../Options/OptionsYesOrNo";
+import OptionsButtonsLines from "../Options/OptionsButtonsLines";
+import OptionsArray from "../Options/OptionsArray";
 import CustomMessage from "./CustomMessage";
-
+import OptionsArrayAnotherCorrect from "../Options/OptionsArrayAnotherCorrect";
+import OptionsArrayAnotherIncorrect from "../Options/OptionsArrayAnotherIncorrect";
 
 const config = {
   botName: "ChatBot de Educação",
   initialMessages: [
-    createChatBotMessage(`Olá, ! 👋  Sou o EducaBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
+    createChatBotMessage(`Olá, ! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
       widget: "options",
     }),
     createCustomMessage(<CustomMessage />)
@@ -61,6 +65,26 @@ const config = {
       widgetName: "identificarErroLacoRepeticao", // identificar erro laco de repeticao
       widgetFunc: (props) => <OptionsRepeatingLoopWrong {...props} />,
     },
+    {
+      widgetName: "identificarErroVariavelYesOrNo", // identificar erro variavel
+      widgetFunc: (props) => <OptionsYesOrNo {...props} />,
+    },
+    {
+      widgetName: "identificarErroVariavelLines", // identificar erro variavel
+      widgetFunc: (props) => <OptionsButtonsLines {...props} />,
+    },
+    {
+      widgetName: "vetores",
+      widgetFunc: (props) => <OptionsArray {...props} />,
+    },
+    {
+      widgetName: "vetoresanothercorrect",
+      widgetFunc: (props) => <OptionsArrayAnotherCorrect {...props} />,
+    },
+    {
+      widgetName: "vetoresanotherincorrect",
+      widgetFunc: (props) => <OptionsArrayAnotherIncorrect {...props} />,
+    }
   ],
 };
 

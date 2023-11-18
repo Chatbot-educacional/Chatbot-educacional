@@ -1,0 +1,33 @@
+{
+    "title": "Programação em Java",
+    "topic": "Interseção de Arrays de Números Inteiros",
+    "knowledge": "Conhecimento básico em sintaxe Java",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Java que crie dois arrays de números inteiros e crie um terceiro array que contém os números inteiros comuns nos dois arrays.",
+    "result": "O programa deve criar dois arrays de números inteiros e, em seguida, criar um terceiro array que contenha os números inteiros comuns nos dois arrays originais.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar dois arrays de números inteiros em Java e criar um terceiro array que contenha os números inteiros comuns nos dois arrays originais. Isso requer o uso de loops para preencher os arrays e encontrar a interseção.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie dois arrays de inteiros para armazenar os números. \n[PASSO 2]. Use loops para preencher os dois arrays. \n[PASSO 3]. Crie um terceiro array para armazenar a interseção. \n[PASSO 4]. Use loops aninhados para comparar os elementos dos dois arrays e adicionar os comuns ao terceiro array. \n[PASSO 5]. Imprima o terceiro array.",
+            "test": "Execute o programa e verifique se ele cria os arrays corretamente, encontra a interseção e imprime corretamente o terceiro array."
+        },
+        "correctSolutionProposal": "public class IntersecaoArraysInteiros {\n    public static void main(String[] args) {\n        int[] array1 = {1, 2, 3, 4, 5};\n        int[] array2 = {4, 5, 6, 7, 8};\n\n        int[] intersecao = encontrarIntersecao(array1, array2);\n        System.out.println(\"A interseção dos arrays é: \" + Arrays.toString(intersecao));\n    }\n\n    private static int[] encontrarIntersecao(int[] array1, int[] array2) {\n        int contadorComum = 0;\n        for (int numero1 : array1) {\n            for (int numero2 : array2) {\n                if (numero1 == numero2) {\n                    contadorComum ++;\n                    break; // Evitar duplicatas\n                }\n            }\n        }\n\n        int[] intersecaoArray = new int[contadorComum];\n        int contadorArray = 0;\n        for (int numero1 : array1) {\n            for (int numero2 : array2) {\n                if (numero1 == numero2) {\n                    intersecaoArray[contadorArray] = numero1; \n                    contadorArray ++;\n                    break; // Evitar duplicatas\n                }\n            }\n        }\n        return intersecaoArray;\n    }\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de arrays e cálculos.",
+        "incorrectSolution": "public class IntersecaoArraysInteiros {\n    public static void main(String[] args) {\n        int[] array1 = {1, 2, 3, 4, 5};\n        int[] array2 = {4, 5, 6, 7, 8};\n\n        int[] intersecao = encontrarIntersecao(array1, array2);\n        System.out.println(\"A interseção dos arrays é: \" + Arrays.toString(intersecao));\n    }\n\n    private static int[] encontrarIntersecao(int[] array1, int[] array2) {\n        int contadorComum = 0;\n        for (int numero1 : array1) {\n            for (int numero2 : array2) {\n                if (numero1 == numero2) {\n                    contadorComum ++;\n                    break; // Evitar duplicatas\n                }\n            }\n        }\n\n        int[] intersecaoArray = new int[contadorComum];\n        int contadorArray = 0;\n        for (int numero1 : array1) {\n            for (int numero2 : array2) {\n                if (numero1 == numero2) {\n                    intersecaoArray[contadorArray] = numero1; \n                    break; // Evitar duplicatas\n                }\n                contadorArray ++;\n            }\n        }\n        return intersecaoArray;\n    }\n}",
+        "test": "Execute o programa e verifique se a interseção dos arrays é encontrada incorretamente.",
+        "options": {
+            "one": "linha 19",
+            "two": "linha 20",
+            "three": "linha 25",
+            "four": "linha 29",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na lógica de comparação na linha 29, o incremento está fora do condicional if, fazendo o com que ocorra acesso a posição inexistente no array.",
+        "response": "Para corrigir é necessario colocar o incremento do vetor de intersecção dentro do if onde ocorre a inclusão do elemento.",
+        "correctSolutionProposal": "[PASSO 1] Remover a linha 19 ou adicionar 'break;' após a linha 19 para interromper o loop interno quando uma correspondência for encontrada. \n[PASSO 2] Execute o programa novamente para verificar se agora a interseção dos arrays é encontrada corretamente."
+    }
+}
