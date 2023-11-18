@@ -1,33 +1,33 @@
 {
     "title": "Programação em Java",
-    "topic": "Vetores (Arrays) em Java",
+    "topic": "Criação de Array com Números Aleatórios",
     "knowledge": "Conhecimento básico em sintaxe Java",
     "origin": "[Inserir de onde o material para o worked example foi retirado]",
-    "description": "Escreva um programa em Java que crie um vetor de números pares entre 1 e 20 e imprima a lista.",
-    "result": "O programa deve criar um vetor de números pares e imprimir a o vetor com esses números.",
+    "description": "Escreva um programa em Java que crie um array de 5 números aleatórios entre 1 e 100 e imprima o array.",
+    "result": "O programa deve criar um array de 5 números aleatórios entre 1 e 100 e imprimir corretamente o array.",
     "extra": "[Inserir material de apoio para resolução do problema]",
     "problemWECorrect": {
-        "thinking": "Este exemplo demonstra como criar um vetor em Java e preenchê-lo com números pares dentro de um intervalo específico. Isso requer o uso de um loop e condições para determinar se um número é par. É um exercício útil para praticar o uso de arrays e loops.",
+        "thinking": "Este exemplo visa demonstrar como criar um array de números aleatórios em Java e imprimir o array resultante. Isso requer o uso da classe Random para gerar números aleatórios e um loop para preencher o array.",
         "solutionProposal": {
-            "steps": "\n[PASSO 1]. Crie um vetor (array) de inteiros para armazenar os números pares. \n[PASSO 2]. Use um loop 'for' para iterar de 1 a 20. \n[PASSO 3]. Dentro do loop, verifique se o número é par (divisível por 2 com resto igual a 0) e, se for par, adicione-o ao vetor. \n[PASSO 4]. Após o loop, imprima os números no vetor.",
-            "test": "Execute o programa e verifique se ele cria um vetor de números pares entre 1 e 20 e imprime a lista corretamente."
+            "steps": "\n[PASSO 1]. Importe a classe Random. \n[PASSO 2]. Crie um array de inteiros com tamanho 5. \n[PASSO 3]. Use um loop para gerar e atribuir números aleatórios entre 1 e 100 ao array. \n[PASSO 4]. Imprima o array de números aleatórios.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente o array de números aleatórios."
         },
-        "correctSolutionProposal": "```java\npublic class NumerosPares {\n    public static void main(String[] args) {\n        int[] numerosPares = new int[10];\n        int index = 0;\n\n        for (int i = 1; i <= 20; i++) {\n            if (i % 2 == 0) {\n                numerosPares[index] = i;\n                index++;\n            }\n        }\n\n        for (int numero : numerosPares) {\n            System.out.println(numero);\n        }\n    }\n}\n```"
+        "correctSolutionProposal": "import java.util.Random;\n\npublic class NumerosAleatoriosArray {\n    public static void main(String[] args) {\n        // Importar a classe Random\n        Random random = new Random();\n\n        // Criar um array de inteiros com tamanho 5\n        int[] arrayAleatorio = new int[5];\n\n        // Preencher o array com números aleatórios entre 1 e 100\n        for (int i = 0; i < arrayAleatorio.length; i++) {\n            arrayAleatorio[i] = random.nextInt(100) + 1;\n        }\n\n        // Imprimir o array de números aleatórios\n        for (int numero : arrayAleatorio) {\n            System.out.print(numero + \" \");\n        }\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta identificação de números pares e o armazenamento deles no vetor.",
-        "incorrectSolution": "```java\npublic class NumerosParesIncorreto {\n    public static void main(String[] args) {\n        int[] numerosPares = new int[10];\n        int index = 0;\n\n        for (int i = 1; i <= 20; i++) {\n            if (i % 2 != 0) {\n                numerosPares[index] = i;\n                index++;\n            }\n        }\n\n        for (int numero : numerosPares) {\n            System.out.println(numero);\n        }\n    }\n}\n```",
-        "test": "Execute o programa e verifique se ele cria um vetor de números pares incorretamente.",
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de números aleatórios e preenchimento de arrays.",
+        "incorrectSolution": "import java.util.Random;\n\npublic class NumerosAleatoriosArrayIncorreto {\n    public static void main(String[] args) {\n        // Importar a classe Random\n        Random random = new Random();\n\n        // Criar um array de inteiros com tamanho 5\n        int[] arrayAleatorio = new int[5];\n\n        // Preencher o array com números aleatórios entre 0 e 100\n        for (int i = 0; i <= arrayAleatorio.length; i++) {\n            arrayAleatorio[i] = random.nextInt(101);\n        }\n\n        // Imprimir o array de números aleatórios\n        for (int numero : arrayAleatorio) {\n            System.out.print(numero + \" \");\n        }\n    }\n}",
+        "test": "Execute o programa e verifique se o array de números aleatórios é gerado incorretamente.",
         "options": {
-            "one": "linha 2",
-            "two": "linhas de 4 e 5",
-            "three": "linha de 7",
-            "four": "linha 8",
+            "one": "linha 12",
+            "two": "linha 14",
+            "three": "linha 16",
+            "four": "linha 17",
             "five": "não sei identificar"
         },
         "correctOption": "1",
-        "error": "O erro está na condição dentro do loop 'for'. A condição 'if (i % 2 != 0)' verifica se um número é ímpar em vez de par. Isso faz com que o programa armazene números ímpares no vetor.",
-        "response": "O erro ocorre na parte 'if (i % 2 != 0)'. Essa condição verifica se um número é ímpar, o que não é o objetivo do programa. A condição correta deve ser 'if (i % 2 == 0)' para verificar se um número é par.",
-        "correctSolutionProposal": "[PASSO 1] Modificar a condição do loop para 'if (i % 2 == 0)'. \n[PASSO 2] Execute o programa novamente para verificar se agora cria e imprime corretamente a lista de números pares."
+        "error": "O erro está na geração dos números aleatórios na linha 12, onde o sinal <= faz o laço acessar posição inexistente no array.",
+        "response": "O erro está na geração dos números aleatórios na linha 12, onde o sinal <= faz o laço acessar posição inexistente no array. Para corrigir basta mudar o sinal para apenas <",
+        "correctSolutionProposal": "[PASSO 1] Modificar a expressão na linha 16 para 'random.nextInt(100) + 1'. \n[PASSO 2] Execute o programa novamente para verificar se agora o array de números aleatórios é gerado corretamente."
     }
 }

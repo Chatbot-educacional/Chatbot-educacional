@@ -10,31 +10,32 @@ import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import dataArray from '../workedExamples/WorkedExamples';
 let dataArraysWE;
 
-const HeaderMessage = ({ desc, res }) => {
+const HeaderMessage = ({ descricao, resultado, reflexivo, teste }) => {
   return (
     <div>
       <p style={{ textAlign: 'center' }}><strong>WorkedExample</strong></p>
-      <p><strong>Descrição: </strong>{desc}</p>
-      <p><strong>Resultado: </strong>{res}</p>
+      <p><strong>Descrição: </strong>{descricao}</p>
+      <p><strong>Resultado: </strong>{resultado}</p>
+      <p><strong>Reflexivo: </strong>{reflexivo}</p>
+      <p><strong>Teste: </strong>{teste}</p>
     </div>
   );
 };
 
-const CorrectWE = ({ reflexivo, teste, passos, proposta }) => {
+const CorrectWE = ({ passos, proposta }) => {
   return (
     <div>
-      <p><strong>Reflexivo: </strong>{reflexivo}</p>
-      <p><strong>Teste: </strong>{teste}</p>
+      <p><strong>Ok, abaixo temos os passos para construção do código correto.</strong></p>
       <p><strong>Passos: </strong>{passos}</p>
       <CodeMessage code={proposta} />
     </div>
   )
 }
 
-const IncorrectWE = ({ reflexivo, incorreto, teste, opcoes }) => {
+const IncorrectWE = ({ incorreto, teste, opcoes }) => {
   return (
     <div>
-      <p><strong>Reflexivo: </strong>{reflexivo}</p>
+      <p><strong>Ok, abaixo segue um exemplo de código escrito de forma incorreta para o problema.</strong></p>
       <p><strong>Solução Incorreta: </strong></p>
       <CodeMessage code={incorreto} />
       <p><strong>Teste: </strong>{teste}</p>
@@ -86,14 +87,16 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   // vetores  
   const handleArraysQuiz = () => {
-    let random = 6;//Math.floor(Math.random() * dataArray.length);//TRANSFORMAR EM STATE???
+    let random = Math.floor(Math.random() * dataArray.length);
     dataArraysWE = dataArray[random];
 
     const descricaoDoProblema = dataArraysWE.description
     const resultado = dataArraysWE.result
+    const reflex = dataArraysWE.problemWECorrect.thinking;
+    const teste = dataArraysWE.problemWECorrect.solutionProposal.test;
 
     const botMessages = [
-      createChatBotMessage(<HeaderMessage desc={descricaoDoProblema} res={resultado} />,
+      createChatBotMessage(<HeaderMessage descricao={descricaoDoProblema} resultado={resultado} reflexivo={reflex} teste={teste} />,
         {
           widget: "vetores", // widget de vetores
         }),
@@ -105,13 +108,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleCorrectWEArray = () => {
-    const reflex = dataArraysWE.problemWECorrect.thinking;
-    const teste = dataArraysWE.problemWECorrect.solutionProposal.test;
     const passos = dataArraysWE.problemWECorrect.solutionProposal.steps;
     const proposta = dataArraysWE.problemWECorrect.correctSolutionProposal;
 
     const botMessages = [
-      createChatBotMessage(<CorrectWE reflexivo={reflex} teste={teste} passos={passos} proposta={proposta} />/*),
+      createChatBotMessage(<CorrectWE passos={passos} proposta={proposta} />/*),
       createChatBotMessage(<CodeMessage code={codigo} />*/,
         {
           widget: "vetoresanothercorrect", // widget de vetores
@@ -125,14 +126,13 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleIncorrectWEArray = () => {
-    const reflexivo = dataArraysWE.problemWEIncorrect.thinking;
     const incorreto = dataArraysWE.problemWEIncorrect.incorrectSolution;
     const teste = dataArraysWE.problemWEIncorrect.test;
     const opcoes = dataArraysWE.problemWEIncorrect.options;
 
     const botMessages = [
       createChatBotMessage(
-        <IncorrectWE reflexivo={reflexivo} teste={teste} incorreto={incorreto} opcoes={opcoes} />,
+        <IncorrectWE teste={teste} incorreto={incorreto} opcoes={opcoes} />,
         { widget: "identificarErroVariavelLines", /* widget de vetores*/ }
       )
     ];
@@ -170,8 +170,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
     if (resp === opcaoCorreta) {
       texto = "Parabéns! Você acertou.";
-    } else {
-      texto = "A resposta está incorreta.";
+    } else if (resp == 5) {
+      texto = "Tudo bem, eu irei te ajudar a identiticar."
+    }
+    else {
+      texto = "A resposta está incorreta. Não desanime, eu irei te ajudar a identificar corretamente.";
     }
 
     const botMessages = [
@@ -180,7 +183,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           erro={erro} resposta={resposta} solucao={solucao} code={proposta}
         />,
         {
-          widget: "vetoresfinal", // widget de vetores
+          widget: "vetoresanotherincorrect", // widget de vetores
         }
       )
     ];

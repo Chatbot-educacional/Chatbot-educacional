@@ -1,27 +1,33 @@
 {
-    "Título da disciplina": "Programação em Java",
-    "Tópico da disciplina": "Trabalhando com Vetores (Arrays) em Java",
-    "Conhecimento prévio": "Conhecimento básico em sintaxe Java",
-    "Local onde foi retirado": "[Inserir de onde o material para o worked example foi retirado]",
-    "Descrição do problema": "Escreva um programa em Java que imprima os números de 1 a 10 em um vetor.",
-    "Resultado": "O programa deve criar um vetor e imprimir os números de 1 a 10 nele.",
-    "Material complementar": "[Inserir material de apoio para resolução do problema]",
-
-    "Problema com worked Example Correto": {
-        "Reflexivo": "Este exemplo demonstra como criar um vetor em Java e preenchê-lo com números de 1 a 10. É um exercício simples, mas importante para entender como trabalhar com arrays em Java.",
-        "Proposta de solução": {
-            "Etapas de Solução": "1. Crie um vetor (array) de inteiros com tamanho 10. 2. Use um loop 'for' para preencher o vetor com números de 1 a 10. 3. Imprima os números no vetor.",
-            "Teste": "Execute o programa e verifique se ele cria o vetor e imprime os números de 1 a 10 corretamente."
+    "title": "Programação em Java",
+    "topic": "Impressão de Números Ímpares em um Array",
+    "knowledge": "Conhecimento básico em sintaxe Java",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Java que crie um array de números inteiros e imprima todos os números ímpares do array.",
+    "result": "O programa deve criar um array de números inteiros e imprimir corretamente todos os números ímpares presentes no array.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array de números inteiros em Java e imprimir todos os números ímpares presentes no array. Isso requer o uso de um loop para percorrer o array e uma condição para verificar se cada número é ímpar.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um array de números inteiros. \n[PASSO 2]. Use um loop para percorrer o array. \n[PASSO 3]. Dentro do loop, verifique se cada número é ímpar. \n[PASSO 4]. Se o número for ímpar, imprima-o.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente todos os números ímpares."
         },
-        "Solução Correta": "```java\npublic class NumerosNoVetor {\n    public static void main(String[] args) {\n        int[] numeros = new int[10];\n\n        for (int i = 0; i < numeros.length; i++) {\n            numeros[i] = i + 1;\n        }\n\n        for (int numero : numeros) {\n            System.out.println(numero);\n        }\n    }\n}\n```"
+        "correctSolutionProposal": "public class NumerosImparesArray {\n    public static void main(String[] args) {\n        int[] arrayNumeros = {2, 5, 8, 11, 14, 17, 20, 23};\n\n        // Imprimir números ímpares no array\n        for (int numero : arrayNumeros) {\n            if (numero % 2 != 0) {\n                System.out.println(numero);\n            }\n        }\n    }\n}"
     },
-
-    "Problema com worked Example Incorreto": {
-        "Reflexivo": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta inicialização do vetor e do loop.",
-        "Solução Incorreta":  "```java\npublic class NumerosNoVetorIncorreto {\n    public static void main(String[] args) {\n        int[] numeros = new int[10];\n\n        for (int i = 0; i < numeros.length; i++) {\n            numeros[i] = i;\n        }\n\n        for (int numero : numeros) {\n            System.out.println(numero);\n        }\n    }\n}\n```",
-        "Teste": "Execute o programa e verifique se ele cria o vetor e imprime os números incorretamente.",
-        "Você consegue identificar o erro?": "O erro está na lógica de preenchimento do vetor. O programa está preenchendo o vetor com valores de 0 a 9 em vez de 1 a 10.",
-        "Resposta" : "O erro ocorre na parte 'numeros[i] = i;'. O programa está preenchendo o vetor com os valores de 'i', que começam em 0 e vão até 9. O vetor deve ser preenchido com os valores de 'i + 1' para obter os números de 1 a 10.",
-        "Proposta de solução correta": "[PASSO 1] Modificar a linha 'numeros[i] = i;' para 'numeros[i] = i + 1;'. [PASSO 2] Execute o programa novamente para verificar se agora cria o vetor e imprime os números de 1 a 10 corretamente."
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de arrays e condições.",
+        "incorrectSolution": "public class NumerosImparesArrayIncorreto {\n    public static void main(String[] args) {\n        int[] arrayNumeros = {2, 5, 8, 11, 14, 17, 20, 23};\n\n        // Imprimir números ímpares no array\n        for (int numero : arrayNumeros) {\n            if (numero / 2 != 0) {\n                System.out.println(numero);\n            }\n        }\n    }\n}",
+        "test": "Execute o programa e verifique se os números ímpares no array são encontrados incorretamente.",
+        "options": {
+            "one": "linha 11",
+            "two": "linha 12",
+            "three": "linha 13",
+            "four": "linha 14",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na condição na linha 7, que verifica se o número é par (estaá como divisão por 2 e deveria ser divisível por 2). Isso resulta em uma impressão de todos os números.",
+        "response": "O erro está na condição na linha 11, que verifica se o número é par (divisível por 2). Isso resulta em uma impressão dos números pares em vez dos ímpares. A correção seria modificar a condição para 'if (numero % 2 != 0)' para verificar se o número é ímpar.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a condição na linha 11 para 'if (numero % 2 != 0)'. \n[PASSO 2] Execute o programa novamente para verificar se agora os números ímpares no array são encontrados corretamente."
     }
 }

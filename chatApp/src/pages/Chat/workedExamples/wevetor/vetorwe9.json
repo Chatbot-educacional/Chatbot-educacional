@@ -1,27 +1,33 @@
 {
-    "Título da disciplina": "Programação em Java",
-    "Tópico da disciplina": "Trabalhando com Vetores (Arrays) em Java",
-    "Conhecimento prévio": "Conhecimento básico em sintaxe Java e arrays",
-    "Local onde foi retirado": "[Inserir de onde o material para o worked example foi retirado]",
-    "Descrição do problema": "Escreva um programa em Java que crie um vetor de números e imprima o maior número do vetor.",
-    "Resultado": "O programa deve criar um vetor de números e imprimir o maior número contido no vetor.",
-    "Material complementar": "[Inserir material de apoio para resolução do problema]",
-
-    "Problema com worked Example Correto": {
-        "Reflexivo": "Este exemplo demonstra como criar um vetor em Java, preenchê-lo com números e encontrar o maior número no vetor. É um exercício útil para aprender a lidar com vetores e realizar comparações.",
-        "Proposta de solução": {
-            "Etapas de Solução": "1. Crie um vetor (array) de inteiros e preencha-o com números. 2. Inicialize uma variável 'maior' com um valor inicial (por exemplo, o primeiro número no vetor). 3. Use um loop para percorrer o vetor e comparar cada número com 'maior'. 4. Se um número for maior do que 'maior', atualize 'maior' para esse número. 5. No final, 'maior' conterá o maior número no vetor. 6. Imprima 'maior'.",
-            "Teste": "Execute o programa e verifique se ele cria o vetor e imprime o maior número corretamente."
+    "title": "Programação em Java",
+    "topic": "Encontrar o Maior Número em um Vetor",
+    "knowledge": "Conhecimento básico em sintaxe Java",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Java que crie um vetor de números e imprima o maior número do vetor.",
+    "result": "O programa deve criar um vetor de números e imprimir corretamente o maior número presente no vetor.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um vetor de números em Java e encontrar o maior número presente no vetor. Isso requer o uso de um loop para percorrer o vetor e uma variável para armazenar o maior número encontrado.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um vetor de números (array). \n[PASSO 2]. Use um loop para percorrer o vetor. \n[PASSO 3]. Dentro do loop, compare cada número com o maior número atualmente armazenado. \n[PASSO 4]. Se o número atual for maior, atualize a variável do maior número. \n[PASSO 5]. Após o loop, imprima o maior número encontrado.",
+            "test": "Execute o programa e verifique se ele cria o vetor e imprime corretamente o maior número."
         },
-        "Solução Correta": "```java\npublic class MaiorNumeroNoVetor {\n    public static void main(String[] args) {\n        int[] numeros = {12, 7, 45, 24, 8, 31, 56, 2, 19};\n        int maior = numeros[0];\n\n        for (int numero : numeros) {\n            if (numero > maior) {\n                maior = numero;\n            }\n        }\n\n        System.out.println(\"Maior número no vetor: \" + maior);\n    }\n}\n```"
+        "correctSolutionProposal": "public class MaiorNumeroVetor {\n    public static void main(String[] args) {\n        int[] vetorNumeros = {5, 10, 3, 8, 15, 7, 20};\n\n        // Encontrar o maior número no vetor\n        int maiorNumero = vetorNumeros[0];\n        for (int numero : vetorNumeros) {\n            if (numero > maiorNumero) {\n                maiorNumero = numero;\n            }\n        }\n\n        // Imprimir o maior número\n        System.out.println(\"O maior número no vetor é: \" + maiorNumero);\n    }\n}"
     },
-
-    "Problema com worked Example Incorreto": {
-        "Reflexivo": "O exemplo incorreto apresenta um erro que afeta a lógica de encontrar o maior número no vetor. Isso serve para destacar a importância da lógica correta na comparação de números.",
-        "Solução Incorreta":  "```java\npublic class MaiorNumeroNoVetorIncorreto {\n    public static void main(String[] args) {\n        int[] numeros = {12, 7, 45, 24, 8, 31, 56, 2, 19};\n        int maior = 0; // Valor inicial incorreto\n\n        for (int numero : numeros) {\n            if (numero > maior) {\n                maior = numero;\n            }\n        }\n\n        System.out.println(\"Maior número no vetor: \" + maior);\n    }\n}\n```",
-        "Teste": "Execute o programa e verifique se ele encontra o maior número incorretamente.",
-        "Você consegue identificar o erro?": "O erro está no valor inicial da variável 'maior', que está definido como 0. Isso afeta a lógica de encontrar o maior número no vetor.",
-        "Resposta" : "O erro ocorre na parte 'int maior = 0;', onde o valor inicial da variável 'maior' está definido como 0 em vez de um valor válido do vetor. Isso afeta a lógica de encontrar o maior número no vetor.",
-        "Proposta de solução correta": "[PASSO 1] Modificar o valor inicial da variável 'maior' para 'int maior = numeros[0];'. [PASSO 2] Execute o programa novamente para verificar se agora encontra o maior número corretamente no vetor."
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de vetores e cálculos.",
+        "incorrectSolution": "public class MaiorNumeroVetorIncorreto {\n    public static void main(String[] args) {\n        int[] vetorNumeros = {-5, -10, -3, -8, -15, -7, 20};\n\n        // Encontrar o maior número no vetor\n        int maiorNumero = 0;\n        for (int numero : vetorNumeros) {\n            if (numero >= maiorNumero) {\n                maiorNumero = numero;\n            }\n        }\n\n        // Imprimir o maior número\n        System.out.println(\"O maior número no vetor é: \" + maiorNumero);\n    }\n}",
+        "test": "Execute o programa e verifique se o maior número no vetor é encontrado incorretamente.",
+        "options": {
+            "one": "linha 10",
+            "two": "linha 11",
+            "three": "linha 12",
+            "four": "linha 6",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na inicialização da variável 'maiorNumero' na linha 6, que pode resultar em um resultado incorreto quando o vetor contém números negativos. Além disso, a condição na linha 11 não permite que o maior número seja o primeiro elemento do vetor.",
+        "response": "O erro está na inicialização da variável 'maiorNumero' na linha 10, que pode resultar em um resultado incorreto quando o vetor contém números negativos. Além disso, a condição na linha 11 não permite que o maior número seja o primeiro elemento do vetor. A correção seria iniciar 'maiorNumero' com o primeiro elemento do vetor e ajustar a condição para 'numero > maiorNumero'.",
+        "correctSolutionProposal": "[PASSO 1] Iniciar 'maiorNumero' com o primeiro elemento do vetor: 'int maiorNumero = vetorNumeros[0];'. \n[PASSO 2] Modificar a condição na linha 11 para 'if (numero > maiorNumero)'. \n[PASSO 3] Execute o programa novamente para verificar se agora o maior número no vetor é encontrado corretamente."
     }
 }

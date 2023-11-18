@@ -20,8 +20,6 @@ import OptionsArray from "../Options/OptionsArray";
 import CustomMessage from "./CustomMessage";
 import OptionsArrayAnotherCorrect from "../Options/OptionsArrayAnotherCorrect";
 import OptionsArrayAnotherIncorrect from "../Options/OptionsArrayAnotherIncorrect";
-import OptionArrayAnotherGoBack from "../Options/OptionArrayAnotherGoBack";
-
 
 const config = {
   botName: "ChatBot de Educação",
@@ -86,11 +84,7 @@ const config = {
     {
       widgetName: "vetoresanotherincorrect",
       widgetFunc: (props) => <OptionsArrayAnotherIncorrect {...props} />,
-    },
-    {
-      widgetName: "vetoresfinal",
-      widgetFunc: (props) => <OptionArrayAnotherGoBack {...props} />,
-    },
+    }
   ],
 };
 

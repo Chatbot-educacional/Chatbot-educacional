@@ -1,27 +1,33 @@
 {
-    "Título da disciplina": "Estruturas de Dados em Java",
-    "Tópico da disciplina": "Pesquisa em Vetores",
-    "Conhecimento prévio": "Conhecimento intermediário em Java e estruturas de dados.",
-    "Local onde foi retirado": "Material do curso universitário",
-    "Descrição do problema": "Desenvolver um programa em Java para realizar a pesquisa de um elemento em um vetor de números inteiros. O programa deve permitir que o usuário digite um número e verificar se ele está presente no vetor.",
-    "Resultado": "O programa deve imprimir se o número está presente ou ausente no vetor.",
-    "Material complementar": "Livros sobre estruturas de dados em Java e tutoriais sobre pesquisa em vetores.",
-
-    "Problema com worked Example Correto": {
-        "Reflexivo": "O problema do worked example correto envolve a implementação de um algoritmo de pesquisa em um vetor, o que é uma habilidade importante em estruturas de dados.",
-        "Proposta de solução": {
-            "Etapas de Solução": "1. Criar um vetor de números inteiros.\n2. Solicitar ao usuário um número a ser pesquisado.\n3. Percorrer o vetor e verificar se o número está presente.\n4. Imprimir se o número está presente ou ausente."
+    "title": "Programação em Java",
+    "topic": "Soma de Números em um Array",
+    "knowledge": "Conhecimento básico em sintaxe Java",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Java que crie um array de números e imprima a soma de todos os números do array.",
+    "result": "O programa deve criar um array de números e imprimir corretamente a soma de todos os números do array.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array de números em Java e calcular a soma de seus elementos. Isso requer o uso de loops para preencher o array e calcular a soma.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um array de inteiros para armazenar os números. \n[PASSO 2]. Use um loop para preencher o array com números. \n[PASSO 3]. Utilize outro loop para calcular a soma dos números no array. \n[PASSO 4]. Imprima a soma calculada.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente a soma dos números."
         },
-        "Teste": "Você pode testar o programa pesquisando por diferentes números no vetor. O resultado esperado é que o programa informe se o número está presente ou ausente no vetor.",
-        "Solução Correta": "Aqui está uma proposta de solução de código em Java que realiza a pesquisa em um vetor:\n\n```java\nimport java.util.Scanner;\n\nclass PesquisaVetor {\n    public static void main(String[] args) {\n        int[] vetor = {10, 20, 30, 40, 50};\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Digite um número a ser pesquisado: \");\n        int numero = scanner.nextInt();\n        boolean encontrado = false;\n\n        for (int elemento : vetor) {\n            if (elemento == numero) {\n                encontrado = true;\n                break;\n            }\n        }\n\n        if (encontrado) {\n            System.out.println(\"O número \" + numero + \" está presente no vetor.\");\n        } else {\n            System.out.println(\"O número \" + numero + \" não está presente no vetor.\");\n        }\n    }\n}\n```\n"
+        "correctSolutionProposal": "public class SomaArrayNumeros {\n    public static void main(String[] args) {\n        int[] arrayNumeros = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};\n\n        // Calcular a soma dos números no array\n        int soma = 0;\n        for (int numero : arrayNumeros) {\n            soma += numero;\n        }\n\n        // Imprimir a soma\n        System.out.println(\"A soma dos números no array é: \" + soma);\n    }\n}"
     },
-
-    "Problema com worked Example Incorreto": {
-        "Reflexivo": "O problema com worked example incorreto envolve um erro na implementação do algoritmo de pesquisa em vetores, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "Solução Incorreta": "Aqui está uma proposta de solução incorreta de código em Java que não realiza a pesquisa em vetores adequadamente:\n\n```java\nimport java.util.Scanner;\n\nclass PesquisaVetorIncorreto {\n    public static void main(String[] args) {\n        int[] vetor = {10, 20, 30, 40, 50};\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Digite um número a ser pesquisado: \");\n        int numero = scanner.nextInt();\n\n        if (vetor[0] == numero) {\n            System.out.println(\"O número \" + numero + \" está presente no vetor.\");\n        } else {\n            System.out.println(\"O número \" + numero + \" não está presente no vetor.\");\n        }\n    }\n}\n```\n",
-        "Teste": "Você pode testar o programa pesquisando por diferentes números no vetor. O resultado esperado é que o programa informe se o número está presente ou ausente no vetor, mas a solução proposta incorreta não faz isso corretamente.",
-        "Você consegue identificar o erro?": "O erro está na forma como a pesquisa é realizada na solução incorreta. Ela apenas verifica se o primeiro elemento do vetor é igual ao número, o que não é uma pesquisa eficaz.",
-        "Resposta": "O erro ocorre na parte em que a pesquisa é realizada de maneira inadequada na solução incorreta. Ela verifica apenas o primeiro elemento do vetor, o que não é uma pesquisa abrangente.",
-        "Proposta de solução correta": "[PASSO 1] Criar um vetor de números inteiros. [PASSO 2] Solicitar ao usuário um número a ser pesquisado. [PASSO 3] Percorrer o vetor e verificar se o número está presente. [PASSO 4] Imprimir se o número está presente ou ausente."
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de arrays e cálculos.",
+        "incorrectSolution": "public class SomaArrayNumerosIncorreto {\n    public static void main(String[] args) {\n        int[] arrayNumeros = new int[10];\n\n        // Preencher o array com números (exemplo: 1 a 10)\n        for (int i = 1; i <= 10; i++) {\n            arrayNumeros[i] = i;\n        }\n\n        // Calcular a soma dos números no array\n        int soma = 0;\n        for (int i = 0; i < arrayNumeros.length; i++) {\n            soma += arrayNumeros[i];\n        }\n\n        // Imprimir a soma\n        System.out.println(\"A soma dos números no array é: \" + soma);\n    }\n}",
+        "test": "Execute o programa e verifique se a soma dos números é realizada incorretamente.",
+        "options": {
+            "one": "linha 12",
+            "two": "linha 6",
+            "three": "linha 13",
+            "four": "linha 4",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na linha 6, onde o índice 'i' ultrapassa o tamanho do array ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites.",
+        "response": "O erro ocorre na linha 11, onde o índice 'i' ultrapassa o tamanho do array ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites. A correção seria 'arrayNumeros[i - 1] = i;' para corrigir a manipulação do índice.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 11 para 'arrayNumeros[i - 1] = i;'. \n[PASSO 2] Execute o programa novamente para verificar se agora a soma dos números é realizada corretamente."
     }
 }
