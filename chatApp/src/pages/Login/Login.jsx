@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <div className={styles.login}>
       <h1>Entrar</h1>
-      <p>Faça o login para poder utilizar o chatBot</p>
+      <p>Faça o login para poder utilizar o coderBot</p>
       <form onSubmit={handleSubmit}>
         <label>
           <span>E-mail: </span>
@@ -77,8 +77,8 @@ const Login = () => {
           />
         </label>
         <div className={styles.buttonsContainer}>
-          {!loading && <button className="btn">Entrar</button>}
-          {loading && <button className="btn" disabled>Aguarde...</button>}
+          {!loading && <button className={styles.lgBtn}>Entrar</button>}
+          {loading && <button className={styles.lgBtn} disabled>Aguarde...</button>}
           {error && <p className="error">{error}</p>}
 
           <div className={styles.lineWithText}>
@@ -87,7 +87,13 @@ const Login = () => {
             <div className={styles.line}></div>
           </div>
           
-          <GoogleButton onClick={handleClick} label={'Entrar com o Google'}/ >
+          <GoogleButton 
+            style={{
+              width: '100',
+            }}
+            onClick={handleClick} 
+            label={'Entrar com o Google'}
+          / >
         </div>
       </form>
     </div>

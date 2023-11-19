@@ -78,7 +78,7 @@
   top: 300px;
   right: -460px;
   z-index: 5;
-  user-select: none;
+  /* user-select: none; */
 }
 
 .home_image .home_image2 {

@@ -1,29 +1,124 @@
 .login {
+    max-width: 100%;
+    margin: auto;
+    padding: 50px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
+    background-color: var(--background-color);
+    position: relative; /* Adicionado para uso absoluto do botão Google */
+  }
+  
+  .login:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+  
+  .login h1 {
+    font-size: 3em;
     text-align: center;
-}
-
-.login p {
-    color: #AAA;
-}
-
-.buttonsContainer {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login p {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+  }
+  
+  .login form label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-color);
+  }
+  
+  .login form span {
+    font-weight: bold;
+  }
+  
+  .login form input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em;
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .login form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(113, 88, 226, 0.5);
+  }
+  
+  /* Estilização dos botões */
+  .login .lgBtn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.1em;
+  }
+  
+  .login .lgBtn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .login .lgBtn:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+  
+  .login form .error {
+    color: var(--error-color);
+    margin-top: 12px;
+    text-align: center;
+    font-size: 1em;
+  }
+  
+  /* Estilização dos botões de login com o Google */
+  .login .googleBtn {
+    width: 500px;
+    padding: 14px;
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.1em;
+  }
+  
+  .login .googleBtn:hover {
+    background-color: #1a73e8;
+    transform: translateY(-2px);
+  }
+  
+  .login .lineWithText {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px auto;
-}
+    margin: 20px 0;
+  }
   
-.lineWithText {
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-}
+  .login .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: var(--text-color);
+    margin: 0 10px;
+  }
   
-.line {
-    border-top: 1px solid black;
-}
-
-.text {
-    padding: 0 10px;
-}
+  .login .text {
+    color: var(--text-color);
+    font-size: 1em;
+  }
+  
