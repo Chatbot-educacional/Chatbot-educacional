@@ -1,7 +1,17 @@
+:root {
+  --primary-color: #7158e2; /* Tom de roxo escuro */
+  --secondary-color: #45368a;
+  --text-color: #fff; /* Texto branco para melhor contraste */
+  --background-color: #202830; /* Fundo mais escuro */
+  --border-color: #34495e; /* Bordas mais escuras */
+  --error-color: #e74c3c;
+}
+
 .div-container-chat {
   /* background-color: rgba(128, 128, 128, 0.13); */
   background-color: #AFABFC;
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 100vh; /* deixar assim*/
   /* min-height: 100vh; */
@@ -9,6 +19,44 @@
   gap: 10px;
   overflow: hidden;
 }
+
+.select-topic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color); 
+  padding: 25%;
+  border: 1px solid var(--border-color); 
+  border-radius: 8px;
+  margin: 20px;
+}
+
+.select-topic-container h2 {
+  color: var(--error-color);
+  font-size: 2rem; 
+  margin-bottom: 15px; 
+  font-weight: bold; 
+  text-align: center; 
+}
+
+
+.select-topic-container button {
+  background-color: var(--primary-color); 
+  color: var(--text-color);
+  padding: 50px 30px;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-topic-container button:hover {
+  background-color: var(--secondary-color);
+}
+
 
 .react-chatbot-kit-user-chat-message-container {
     display: flex;
