@@ -2,16 +2,75 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
+import { useInsertDocument } from '../../hooks/useInsertDocument'
 import styles from './Navbar.module.css';
 
 function Navbar() {
     const { user } = useAuthValue();
     const { logout } = useAuthentication();
+    const [loginTime, setLoginTime] = React.useState(null);
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [clicked, setClicked] = React.useState(false);
+    const [isInserting, setIsInserting] = React.useState(false);
+
+    const { insertDocument } = useInsertDocument("metrics-users");
+
+    const handleSubmit = async () => {
+        setIsInserting(true);
+        try {
+            const logoutTime = new Date();
+            const elapsedTimeInMilliseconds = logoutTime - loginTime;
+            const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60));
+            console.log(`O usuário ficou na aplicação por ${elapsedTimeInMinutes} minutos.`);
+            const documentData = {
+                uid: user.uid,
+                createdBy: user.displayName,
+                timeInMinutes: elapsedTimeInMinutes,
+            };
+            await insertDocument(documentData);
+            console.log('Documento inserido com sucesso:', documentData);
+            logout();
+        } catch (error) {
+            console.error('Erro ao inserir documento:', error);
+        } finally {
+            setIsInserting(false);
+        }
+    };    
+
+    // const handleLogout = async () => {
+    //     if (isLoggedIn) {
+    //         const logoutTime = new Date();
+    //         const elapsedTimeInMilliseconds = logoutTime - loginTime;
+    //         const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60)); // Converte para minutos
+            
+    //     }
+
+    //     setIsLoggedIn(false);
+    //     logout();
+    //     await handleSubmit(); // Aguarda a conclusão da inserção antes de continuar
+    // }
 
     const handleClick = () => {
         setClicked(!clicked);
     }
+
+    const handleLogin = () => {
+        setLoginTime(new Date());
+        setIsLoggedIn(true);
+    }
+
+    // const handleLogout = () => {
+    //     if (isLoggedIn) {
+    //         const logoutTime = new Date();
+    //         const elapsedTimeInMilliseconds = logoutTime - loginTime;
+    //         const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60)); // Converte para minutos
+    //         console.log(`O usuário ficou na aplicação por ${elapsedTimeInMinutes} minutos.`);
+    //     }
+
+    //     setIsLoggedIn(false);
+    //     logout();
+    // }
+
 
     return (
         <nav className={styles.navbar}>
@@ -46,7 +105,7 @@ function Navbar() {
                 {!user ? (
                     <>
                         <li className={styles.bottom_entrar}>
-                            <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')}>Entrar</NavLink>
+                            <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')} onClick={handleLogin}>Entrar</NavLink>
                         </li>
                         <li className={styles.bottom_cadastrar}>
                             <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
@@ -57,7 +116,7 @@ function Navbar() {
                 ) : (
                     <li className={styles.container_name_user}>
                         <span>{user.displayName}</span>
-                        <NavLink className={styles.bottom_sair} onClick={logout}>Sair</NavLink>
+                        <NavLink className={styles.bottom_sair} onClick={handleSubmit}>Sair</NavLink>
                     </li>
                 )}
             </ul>
