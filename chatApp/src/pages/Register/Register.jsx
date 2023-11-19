@@ -7,6 +7,7 @@ const Register = () => {
 
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
+  const [classInfo, setClassInfo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +22,7 @@ const Register = () => {
     const user = {
       displayName,
       email,
-      password,
+      password
     }
 
     if (password !== confirmPassword) {
@@ -31,6 +32,7 @@ const Register = () => {
 
     const res = await createUser(user)
     console.log(res)
+    console.log(res.displayName)
   }
 
   useEffect(() => {
@@ -42,58 +44,80 @@ const Register = () => {
   return (
     <div className={styles.register}>
       <h1>Cadastre-se para usar</h1>
-      <p>Crie seu usuário e aprenda com o chatBot Educacional</p>
+      <p>Crie seu usuário e aprenda com o coderBot</p>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className={styles.formLabel}>
           <span>Nome: </span>
-          <input 
-            type="text" 
+          <input
+            type="text"
             name="displayName"
             required
             placeholder="Nome do usuário"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
+            className={styles.formInput}
           />
         </label>
-        <label>
+        <label className={styles.formLabel}>
           <span>E-mail: </span>
-          <input 
-            type="email" 
+          <input
+            type="email"
             name="email"
             required
             placeholder="E-mail do usuário"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={styles.formInput}
           />
         </label>
-        <label>
+        <label className={styles.formLabel}>
+          <span>Turma/Professora/Conteúdo:</span>
+          <input
+            type="text"
+            name="classInfo"
+            required
+            placeholder="Algoritmo e prog, Profa Fulana, Vetores"
+            value={classInfo}
+            onChange={(e) => setClassInfo(e.target.value)}
+            className={styles.formInput}
+          />
+        </label>
+        <label className={styles.formLabel}>
           <span>Senha: </span>
-          <input 
-            type="password" 
+          <input
+            type="password"
             name="password"
             required
             placeholder="Insira sua senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={styles.formInput}
           />
         </label>
-        <label>
+        <label className={styles.formLabel}>
           <span>Confirmação de senha: </span>
-          <input 
-            type="password" 
+          <input
+            type="password"
             name="confirmPassword"
             required
             placeholder="Confirme a sua senha"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className={styles.formInput}
           />
         </label>
-        {!loading && <button className="btn">Cadastrar</button>}
-        {loading && <button className="btn" disabled>Aguarde...</button>}
-        {error && <p className="error">{error}</p>}
+        {!loading && (
+          <button className={`${styles.btn} ${styles.submitBtn}`}>Cadastrar</button>
+        )}
+        {loading && (
+          <button className={`${styles.btn} ${styles.submitBtn}`} disabled>
+            Aguarde...
+          </button>
+        )}
+        {error && <p className={styles.error}>{error}</p>}
       </form>
     </div>
-  )
+  );
 }
 
 export default Register

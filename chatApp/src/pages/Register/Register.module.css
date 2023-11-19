@@ -1,7 +1,95 @@
-.register {
+:root {
+    --primary-color: #7158e2; /* Tom de roxo escuro */
+    --secondary-color: #45368a;
+    --text-color: #fff; /* Texto branco para melhor contraste */
+    --background-color: #202830; /* Fundo mais escuro */
+    --border-color: #34495e; /* Bordas mais escuras */
+    --error-color: #e74c3c;
+  }
+  
+  .register {
+    max-width: 100; /* Ajustado para uma largura mais adequada */
+    margin: auto;
+    padding: 50px; /* Reduzido o espaço interno para uma aparência mais compacta */
+    border: 1px solid var(--border-color);
+    /* border-radius: 8px; */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
+    background-color: var(--background-color);
+  }
+  
+  .register:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+  
+  .register h1 {
+    font-size: 3em; /* Aumentado ainda mais o tamanho da fonte para maior destaque */
     text-align: center;
-}
-
-.register p {
-    color: #aaa;
-}
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Usando a cor primária para maior destaque */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adicionando sombra para destacar ainda mais o texto */
+  }
+  
+  .register p {
+    font-size: 1.2em; /* Aumentado o tamanho da fonte para melhor legibilidade */
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+  }
+  
+  .formLabel {
+    display: block;
+    margin-bottom: 10px; /* Ajustado o espaçamento inferior para melhor visualização */
+    color: var(--text-color);
+  }
+  
+  span {
+    font-weight: bold;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em;
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .formInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(113, 88, 226, 0.5);
+  }
+  
+  .submitBtn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.1em;
+  }
+  
+  .submitBtn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .submitBtn:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+  }
+  
+  .error {
+    color: var(--error-color);
+    margin-top: 12px;
+    text-align: center;
+    font-size: 1em;
+  }
+  
