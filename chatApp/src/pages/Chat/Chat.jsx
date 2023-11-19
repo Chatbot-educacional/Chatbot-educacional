@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
+import { FaArrowRight } from 'react-icons/fa';
 // import { FaArrowRight } from 'react-icons/fa';
 // import 'react-chatbot-kit/build/main.css';
 
@@ -26,15 +27,24 @@ function Chat(){
           <div className="div-lateral-bar">
             {/* <h1>CoderBOT</h1> */}
             {/* <span className="">Olá,<br/>{user.displayName}</span> */}
-            <Link className="startbutton2" to="/chat"><p>+ Novo Chat</p></Link>
-            <NavLink className="startbutton2" to="/home">Sair</NavLink>
+            {/* <Link className="startbutton2" to="/chat"><p>+ Novo Chat</p></Link>
+            <NavLink className="startbutton2" to="/home">Sair</NavLink> */}
           </div>
-          <Chatbot 
-            config={config} 
-            messageParser={MessageParser} 
-            actionProvider={ActionProvider}
-            headerText="CoderBOT"
-          />
+          <div className="div-chat-main-container">
+            <div className="chat-header">
+              {/* <span>Olá, {user.displayName}.</span> */}
+              <span>CoderBot <span className="span-version">1.0</span></span>
+              <NavLink className="button2" to="/home">Sair <svg><FaArrowRight/></svg></NavLink>
+            </div>
+            <div className="div-chat">
+              <Chatbot 
+                config={config} 
+                messageParser={MessageParser} 
+                actionProvider={ActionProvider}
+                headerText="CoderBOT"
+              />
+            </div>
+          </div>
         </div>
     );
 }
