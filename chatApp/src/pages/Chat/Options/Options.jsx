@@ -6,9 +6,9 @@ const Options = (props) => {
   const options = [
     {
       text: "1. Vetores (Arrays)",
-      handler: props.actionProvider.handleArraysQuiz,
+      handler: props.actionProvider.handleExampleChoice,//handleArraysQuiz,
       id: 1,
-    },
+    }/*,
     {
       text: "2. Variáveis 📦",
       handler: props.actionProvider.handleVariavelQuiz,
@@ -38,7 +38,7 @@ const Options = (props) => {
       text: "7. Funções 📋",
       handler: props.actionProvider.handleFuncoesQuiz,
       id: 7,
-    },
+    },*/
   ];
 
   const buttonsMarkup = options.map((option) => (

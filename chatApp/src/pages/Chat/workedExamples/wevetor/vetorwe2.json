@@ -1,5 +1,5 @@
 {
-    "title": "Estruturas de Dados em Java",
+    "title": "Ordenação",
     "topic": "Ordenação de Vetores",
     "knowledge": "Conhecimento básico em Java e arrays.",
     "origin": "Material didático da universidade",
@@ -27,7 +27,7 @@
         },
         "correctOption": "3",
         "error": "O erro está na linha 19, onde ocorre o laço permite alcançar uma posição inexistente no vetor (vetor.length + 1) estourando o limite.",
-        "response": "O erro ocorre na parte em que o algoritmo de ordenação é implementado na solução incorreta. Em vez de usar um algoritmo de ordenação personalizado, a solução incorreta utiliza `Arrays.sort(vetor)`, que não é adequado para o problema proposto.",
+        "response": "O erro ocorre na parte em que o algoritmo de ordenação é implementado na solução incorreta fazendo com que haja acesso em posição inexistente.",
         "correctSolutionProposal": "\n[PASSO 1] Criar um vetor de números inteiros. \n[PASSO 2] Implementar um algoritmo de ordenação personalizado, como o algoritmo de ordenação por inserção. \n[PASSO 3] Aplicar o algoritmo de ordenação ao vetor. \n[PASSO 4] Imprimir o vetor original e o vetor ordenado."
     }
 }

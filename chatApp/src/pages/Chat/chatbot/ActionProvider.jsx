@@ -64,6 +64,14 @@ const ResponseWE = ({ text, erro, resposta, solucao, code }) => {
   );
 }
 
+const ChoiceWE = ({ text }) => {
+  return (
+    <div>
+      <p>{text}</p>
+    </div>
+  );
+}
+
 const CodeMessage = ({ code }) => {
   return (
     <SyntaxHighlighter language="java" style={tomorrowNight} showLineNumbers={true}
@@ -85,13 +93,26 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleExampleChoice = () => {
+
+    const botMessages = [
+      createChatBotMessage(<ChoiceWE text={"Escolha um exemplo abaixo:"} />,
+        {
+          widget: "vetoreswe",
+        }),
+    ];
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, ...botMessages],
+    }));
+  }
+
   // vetores  
-  const handleArraysQuiz = () => {
-    let random = Math.floor(Math.random() * dataArray.length);
-    dataArraysWE = dataArray[random];
+  const handleArraysQuiz = (op) => {
+    dataArraysWE = dataArray[op];
 
     const descricaoDoProblema = dataArraysWE.description
-    const resultado = dataArraysWE.result
+    const resultado = dataArraysWE.r
     const reflex = dataArraysWE.problemWECorrect.thinking;
     const teste = dataArraysWE.problemWECorrect.solutionProposal.test;
 
@@ -461,7 +482,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleArrayResp2,
             handleArrayResp3,
             handleArrayResp4,
-            handleArrayResp5
+            handleArrayResp5,
+            handleExampleChoice, dataArray
           },
         });
       })}

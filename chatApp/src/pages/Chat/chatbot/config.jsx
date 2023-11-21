@@ -20,6 +20,7 @@ import OptionsArray from "../Options/OptionsArray";
 import CustomMessage from "./CustomMessage";
 import OptionsArrayAnotherCorrect from "../Options/OptionsArrayAnotherCorrect";
 import OptionsArrayAnotherIncorrect from "../Options/OptionsArrayAnotherIncorrect";
+import OptionsArrayWEs from "../Options/OptionsArrayWEs";
 
 const config = {
   botName: "ChatBot de Educação",
@@ -84,6 +85,10 @@ const config = {
     {
       widgetName: "vetoresanotherincorrect",
       widgetFunc: (props) => <OptionsArrayAnotherIncorrect {...props} />,
+    },
+    {
+      widgetName: "vetoreswe",
+      widgetFunc: (props) => <OptionsArrayWEs {...props} />
     }
   ],
 };
