@@ -21,11 +21,13 @@ import CustomMessage from "./CustomMessage";
 import OptionsArrayAnotherCorrect from "../Options/OptionsArrayAnotherCorrect";
 import OptionsArrayAnotherIncorrect from "../Options/OptionsArrayAnotherIncorrect";
 import OptionsArrayWEs from "../Options/OptionsArrayWEs";
+import OptionsFunctionsWEs from "../Options/OptionsFunctionsWEs";
+import OptionsButtonsLinesWE from "../Options/OptionsButtonsLinesWE";
 
 const config = {
   botName: "ChatBot de Educação",
   initialMessages: [
-    createChatBotMessage(`Olá, ! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
+    createChatBotMessage(`Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`, {
       widget: "options",
     }),
     createCustomMessage(<CustomMessage />)
@@ -89,6 +91,14 @@ const config = {
     {
       widgetName: "vetoreswe",
       widgetFunc: (props) => <OptionsArrayWEs {...props} />
+    },
+    {
+      widgetName: "funcoeswe",
+      widgetFunc: (props) => <OptionsFunctionsWEs {...props} />
+    },
+    {
+      widgetName: "questionswe",
+      widgetFunc: (props) => <OptionsButtonsLinesWE {...props} />
     }
   ],
 };

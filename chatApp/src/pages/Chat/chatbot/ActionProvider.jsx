@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import dataArraysWe1 from '../../Chat/workedExamples/wevetor/vetorwe1.json';
 import dataVariable from '../../../Data/VariableQuizData.json';
 import dataFor from '../../../Data/LoopsData.json';
 import dataCondicional from '../../../Data/ConditionalQuizData.json';
@@ -7,7 +6,7 @@ import { useAuthValue } from "../../../context/AuthContext";
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-import dataArray from '../workedExamples/WorkedExamples';
+import dataArray from '../workedExamples/WorkedExamplesArrays';
 let dataArraysWE;
 
 const HeaderMessage = ({ descricao, resultado, reflexivo, teste }) => {
@@ -64,7 +63,7 @@ const ResponseWE = ({ text, erro, resposta, solucao, code }) => {
   );
 }
 
-const ChoiceWE = ({ text }) => {
+const CustomText = ({ text }) => {
   return (
     <div>
       <p>{text}</p>
@@ -94,9 +93,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleExampleChoice = () => {
-
     const botMessages = [
-      createChatBotMessage(<ChoiceWE text={"Escolha um exemplo abaixo:"} />,
+      createChatBotMessage(<CustomText text={`${user.displayName}, eu posso te ajudar com os temas abaixo, basta efetuar um click no botão desejado:`} />,
         {
           widget: "vetoreswe",
         }),

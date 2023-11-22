@@ -2,55 +2,55 @@ import React from "react";
 
 import "./Options.css";
 
-const OptionsArrayWEs = (props) => {
+const OptionsFunctionsWEs = (props) => {
     const options = [//demanda refatoração para pegar os titulos em um array em loop
         {
-            text: props.actionProvider.dataArray[0].title,
+            text: props.actionProvider.dataFunc[0].title,
             handler: props.actionProvider.handleQuiz,
             id: 0,
         },
         {
-            text: props.actionProvider.dataArray[1].title,
+            text: props.actionProvider.dataFunc[1].title,
             handler: props.actionProvider.handleQuiz,
             id: 1,
         },
         {
-            text: props.actionProvider.dataArray[2].title,
+            text: props.actionProvider.dataFunc[2].title,
             handler: props.actionProvider.handleQuiz,
             id: 2,
         },
         {
-            text: props.actionProvider.dataArray[3].title,
+            text: props.actionProvider.dataFunc[3].title,
             handler: props.actionProvider.handleQuiz,
             id: 3,
         },
         {
-            text: props.actionProvider.dataArray[4].title,
+            text: props.actionProvider.dataFunc[4].title,
             handler: props.actionProvider.handleQuiz,
             id: 4,
         },
         {
-            text: props.actionProvider.dataArray[5].title,
+            text: props.actionProvider.dataFunc[5].title,
             handler: props.actionProvider.handleQuiz,
             id: 5,
         },
         {
-            text: props.actionProvider.dataArray[6].title,
+            text: props.actionProvider.dataFunc[6].title,
             handler: props.actionProvider.handleQuiz,
             id: 6,
         },
         {
-            text: props.actionProvider.dataArray[7].title,
+            text: props.actionProvider.dataFunc[7].title,
             handler: props.actionProvider.handleQuiz,
             id: 7,
         },
         {
-            text: props.actionProvider.dataArray[8].title,
+            text: props.actionProvider.dataFunc[8].title,
             handler: props.actionProvider.handleQuiz,
             id: 8,
         },
         {
-            text: props.actionProvider.dataArray[9].title,
+            text: props.actionProvider.dataFunc[9].title,
             handler: props.actionProvider.handleQuiz,
             id: 9,
         },
@@ -74,4 +74,4 @@ const OptionsArrayWEs = (props) => {
     return <div className="options-container">{buttonsMarkup}</div>;
 };
 
-export default OptionsArrayWEs;
+export default OptionsFunctionsWEs;

@@ -6,14 +6,14 @@ const Options = (props) => {
   const options = [
     {
       text: "1. Vetores (Arrays)",
-      handler: props.actionProvider.handleExampleChoice,//handleArraysQuiz,
+      handler: props.actionProvider.handleExampleChoice,
       id: 1,
-    }/*,
-    {
-      text: "2. Variáveis 📦",
-      handler: props.actionProvider.handleVariavelQuiz,
-      id: 2,
     },
+    {
+      text: "2. Funções ",
+      handler: props.actionProvider.handleExampleChoice,
+      id: 2,
+    }/*,
     {
       text: "3. Constantes 🔒",
       handler: props.actionProvider.handleConstantesQuiz,
@@ -44,7 +44,7 @@ const Options = (props) => {
   const buttonsMarkup = options.map((option) => (
     <button
       key={option.id}
-      onClick={option.handler}
+      onClick={() => option.handler(option.id)}
       className="option-button"
     >
       {option.text}

@@ -6,25 +6,25 @@ const OptionsArray = (props) => {
   const options = [
     {
       text: "Exemplo Correto ✅",
-      handler: props.actionProvider.handleCorrectWEArray,
-      id: 19,
+      handler: props.actionProvider.handleCorrectWE,
+      id: 1,
     },
     {
       text: "Exemplo Incorreto ❌",
-      handler: props.actionProvider.handleIncorrectWEArray,
-      id: 20,
+      handler: props.actionProvider.handleIncorrectWE,
+      id: 2,
     },
     {
       text: "Voltar ao menu",
       handler: props.actionProvider.handleGoToBackMenu,
-      id: 21,
+      id: 3,
     }
   ];
 
   const buttonsMarkup = options.map((option) => (
     <button
       key={option.id}
-      onClick={option.handler}
+      onClick={() => option.handler(option.id)}
       className="option-button"
     >
       {option.text}

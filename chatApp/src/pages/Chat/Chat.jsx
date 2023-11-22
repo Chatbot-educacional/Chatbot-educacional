@@ -3,6 +3,7 @@ import Chatbot from 'react-chatbot-kit';
 import config from './chatbot/config';
 import MessageParser from './chatbot/MessageParser.jsx';
 import ActionProvider from './chatbot/ActionProvider.jsx';
+import ActionProvider1 from './chatbot/ActionProvider1.jsx';
 import './main.css';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
@@ -34,18 +35,18 @@ function Chat() {
 
   return (
     <div className="div-container-chat">
-        {!selectedTopic ? (
-          <SelectTopic onSelectTopic={handleTopicSelect} />
-        ) : (
-          <>            
-            <Link className="startbutton2" to="/chat">
-              <p>+ Novo Chat</p>
-            </Link>
-            <NavLink className="startbutton2" to="/home">
-              Sair
-            </NavLink>
-          </>
-        )}
+      {!selectedTopic ? (
+        <SelectTopic onSelectTopic={handleTopicSelect} />
+      ) : (
+        <>
+          <Link className="startbutton2" to="/chat">
+            <p>+ Novo Chat</p>
+          </Link>
+          <NavLink className="startbutton2" to="/home">
+            Sair
+          </NavLink>
+        </>
+      )}
       {selectedTopic === 'Conteúdos de vetores' && (
         <Chatbot
           config={config}
@@ -58,7 +59,7 @@ function Chat() {
         <Chatbot
           config={config}
           messageParser={MessageParser}
-          actionProvider={ActionProvider}
+          actionProvider={ActionProvider1}
           headerText={`CoderBOT - ${selectedTopic}`}
         />
       )}
