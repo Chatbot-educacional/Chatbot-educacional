@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Options.css";
 
 const OptionsArray = (props) => {
+  const [clicked, setClicked] = useState(false);
   const options = [
     {
       text: "Exemplo Correto ✅",
@@ -21,11 +22,17 @@ const OptionsArray = (props) => {
     }
   ];
 
+  const myfunc = (option) => {
+    option.handler(option.id);
+    setClicked(true);
+  }
+
   const buttonsMarkup = options.map((option) => (
     <button
       key={option.id}
-      onClick={() => option.handler(option.id)}
+      onClick={() => myfunc(option)}
       className="option-button"
+      disabled={clicked}
     >
       {option.text}
     </button>

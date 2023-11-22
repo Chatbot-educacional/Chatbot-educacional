@@ -64,6 +64,7 @@ function Chat() {
           messageParser={MessageParser}
           actionProvider={ActionProvider2}
           headerText={`CoderBOT - ${selectedTopic}`}
+          disableScrollToBottom
         />
       )}
     </div>

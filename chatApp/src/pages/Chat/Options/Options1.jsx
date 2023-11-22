@@ -1,8 +1,10 @@
 import React from "react";
 
 import "./Options.css";
+import { useState } from "react";
 
 const Options1 = (props) => {
+  const [clicked, setClicked] = useState(false);
   const options = [
     {
       text: "1. Vetores (Arrays)",
@@ -41,11 +43,17 @@ const Options1 = (props) => {
     },*/
   ];
 
+  const myfunc = (option) => {
+    option.handler(option.id);
+    setClicked(true);
+  }
+
   const buttonsMarkup = options.map((option) => (
     <button
       key={option.id}
-      onClick={() => option.handler(option.id)}
+      onClick={() => myfunc(option)}
       className="option-button"
+      disabled={clicked}
     >
       {option.text}
     </button>

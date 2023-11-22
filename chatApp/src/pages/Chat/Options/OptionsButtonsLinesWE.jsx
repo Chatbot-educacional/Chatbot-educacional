@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Options.css";
 
 const OptionsButtonsLinesWE = (props) => {
+  const [clicked, setClicked] = useState(false);
   const options = [
     {
       text: props.actionProvider.dataWE.problemWEIncorrect.options.one,
@@ -31,11 +32,17 @@ const OptionsButtonsLinesWE = (props) => {
     },
   ];
 
+  const myfunc = (option) => {
+    option.handler(option.id);
+    setClicked(true);
+  }
+
   const buttonsMarkup = options.map((option) => (
     <button
       key={option.id}
-      onClick={() => option.handler(option.id)}
+      onClick={() => myfunc(option)}
       className="option-button"
+      disabled={clicked}
     >
       {option.text}
     </button>
