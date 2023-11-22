@@ -1,33 +1,34 @@
 {
-    "title": "Soma de Dois Números",
+    "title": "Número Primo",
     "topic": "Trabalhando com Funções em Java",
-    "knowledge": "Conhecimento básico de Java e funções.",
-    "origin": "Livro de Programação Java Básica",
-    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros e retorne a soma desses dois números.",
-    "result": "A função deve imprimir ou retornar a soma dos dois números.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java.",
+    "knowledge": "Conhecimento intermediário em Java e lógica de programação.",
+    "origin": "Livro de Programação Java Intermediária",
+    "description": "Desenvolver uma função em Java que aceite um número como parâmetro e determine se ele é primo ou não.",
+    "result": "A função deve imprimir ou retornar uma mensagem indicando se o número é primo ou não.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java e lógica para verificar números primos.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função que aceite dois números e retorne sua soma.",
-        "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
-            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
-        },
-        "correctSolutionProposal": "public class SomaNumeros {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 + numero2;\n    }\n}"
+      "thinking": "O problema do worked example correto envolve a criação de uma função que verifica se um número é primo.",
+      "solutionProposal": {
+        "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um parâmetro.\n[PASSO 2]. Verificar se o número é menor ou igual a 1; se sim, não é primo.\n[PASSO 3]. Usar um loop para verificar se o número é divisível por outros números.\n[PASSO 4]. Se encontrar um divisor diferente de 1 e do próprio número, então o número não é primo.\n[PASSO 5]. Se nenhum divisor é encontrado, o número é primo.",
+        "test": "Você pode testar a função com o número 7. O resultado esperado é 'Primo'."
+      },
+      "correctSolutionProposal": "public class VerificarPrimo {\n    public static void main(String[] args) {\n        int numero = 7;\n        if (ehPrimo(numero)) {\n            System.out.println(\"Primo\");\n        } else {\n            System.out.println(\"Não é Primo\");\n        }\n    }\n\n    public static boolean ehPrimo(int numero) {\n        if (numero <= 1) {\n            return false;\n        }\n        for (int i = 2; i <= Math.sqrt(numero); i++) {\n            if (numero % i == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "public class SomaNumerosIncorreto {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 - numero2;\n    }\n}",
-        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
-        "options": {
-            "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "line 2",
-            "five": "não sei identificar"
-        },
-        "correctOption": "2",
-        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
-        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+      "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+      "incorrectSolution": "public class VerificarPrimoIncorreto {\n    public static void main(String[] args) {\n        int numero = 7;\n        if (ehPrimo(numero)) {\n            System.out.println(\"Primo\");\n        } else {\n            System.out.println(\"Não é Primo\");\n        }\n    }\n\n    public static boolean ehPrimo(int numero) {\n        if (numero <= 1) {\n            return true;\n        }\n        for (int i = 2; i <= numero; i++) {\n            if (numero % i == 0) {\n                return true;\n            }\n        }\n        return false;\n    }\n}",
+      "test": "Você pode testar a função com o mesmo número: 7. O resultado esperado é 'Primo', mas a solução proposta incorreta produzirá resultados errados.",
+      "options": {
+        "one": "linha 11",
+        "two": "linha 13",
+        "three": "linha 17",
+        "four": "linha 12",
+        "five": "não sei identificar"
+      },
+      "correctOption": "3",
+      "error": "O erro está na lógica da condição na solução incorreta. A condição deveria ser 'return false' quando encontrar um divisor, indicando que o número não é primo.",
+      "response": "O erro ocorre na lógica da condição na solução incorreta. A condição deveria ser 'return false' quando encontrar um divisor, indicando que o número não é primo.",
+      "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um parâmetro.\n[PASSO 2]. Verificar se o número é menor ou igual a 1; se sim, não é primo.\n[PASSO 3]. Usar um loop para verificar se o número é divisível por outros números.\n[PASSO 4]. Se encontrar um divisor diferente de 1 e do próprio número, então o número não é primo.\n[PASSO 5]. Se nenhum divisor é encontrado, o número é primo."
     }
-}
+  }
+  

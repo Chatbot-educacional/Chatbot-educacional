@@ -1,33 +1,34 @@
 {
-    "title": "Soma de Dois Números",
+    "title": "Conversão de Temperatura",
     "topic": "Trabalhando com Funções em Java",
-    "knowledge": "Conhecimento básico de Java e funções.",
-    "origin": "Livro de Programação Java Básica",
-    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros e retorne a soma desses dois números.",
-    "result": "A função deve imprimir ou retornar a soma dos dois números.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java.",
+    "knowledge": "Conhecimento intermediário em Java e operações matemáticas.",
+    "origin": "Livro de Programação Java Intermediária",
+    "description": "Desenvolver uma função em Java que aceite uma temperatura e uma unidade (Celsius ou Fahrenheit) como parâmetros e retorne a temperatura convertida para a outra unidade.",
+    "result": "A função deve imprimir ou retornar a temperatura convertida para a unidade desejada.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java e operações matemáticas.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função que aceite dois números e retorne sua soma.",
-        "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
-            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
-        },
-        "correctSolutionProposal": "public class SomaNumeros {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 + numero2;\n    }\n}"
+      "thinking": "O problema do worked example correto envolve a criação de uma função que converte a temperatura de Celsius para Fahrenheit (ou vice-versa).",
+      "solutionProposal": {
+        "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita a temperatura e a unidade como parâmetros.\n[PASSO 2]. Verificar a unidade fornecida (Celsius ou Fahrenheit).\n[PASSO 3]. Realizar a conversão de acordo com a fórmula apropriada.\n[PASSO 4]. Retornar a temperatura convertida.",
+        "test": "Você pode testar a função com temperatura = 25 e unidade = 'Celsius'. O resultado esperado é a temperatura convertida para Fahrenheit."
+      },
+      "correctSolutionProposal": "public class ConversaoTemperatura {\n    public static void main(String[] args) {\n        double temperatura = 25.0;\n        String unidade = \"Celsius\";\n        double resultado = converterTemperatura(temperatura, unidade);\n        System.out.println(\"Temperatura convertida: \" + resultado);\n    }\n\n    public static double converterTemperatura(double temperatura, String unidade) {\n        if (unidade.equalsIgnoreCase(\"Celsius\")) {\n            return (temperatura * 9 / 5) + 32;\n        } else if (unidade.equalsIgnoreCase(\"Fahrenheit\")) {\n            return (temperatura - 32) * 5 / 9;\n        } else {\n            System.out.println(\"Unidade de temperatura inválida.\");\n            return 0.0;\n        }\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "public class SomaNumerosIncorreto {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 - numero2;\n    }\n}",
-        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
-        "options": {
-            "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "line 2",
-            "five": "não sei identificar"
-        },
-        "correctOption": "2",
-        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
-        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+      "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+      "incorrectSolution": "public class ConversaoTemperaturaIncorreto {\n    public static void main(String[] args) {\n        double temperatura = 25.0;\n        String unidade = \"Celsius\";\n        double resultado = converterTemperatura(temperatura, unidade);\n        System.out.println(\"Temperatura convertida: \" + resultado);\n    }\n\n    public static double converterTemperatura(double temperatura, String unidade) {\n        if (unidade.equalsIgnoreCase(\"Celsius\")) {\n            return (temperatura - 32) * 5 / 9;\n        } else if (unidade.equalsIgnoreCase(\"Fahrenheit\")) {\n            return (temperatura * 9 / 5) + 32;\n        } else {\n            System.out.println(\"Unidade de temperatura inválida.\");\n            return 0.0;\n        }\n    }\n}",
+      "test": "Você pode testar a função com os mesmos valores: temperatura = 25 e unidade = 'Celsius'. O resultado esperado é a temperatura convertida para Fahrenheit, mas a solução proposta incorreta produzirá resultados errados.",
+      "options": {
+        "one": "linha 15",
+        "two": "linha 19",
+        "three": "linha 21",
+        "four": "line 2",
+        "five": "não sei identificar"
+      },
+      "correctOption": "2",
+      "error": "O erro está na forma como a fórmula de conversão é aplicada na solução incorreta. A fórmula correta para converter de Celsius para Fahrenheit é (C * 9/5) + 32, e de Fahrenheit para Celsius é (F - 32) * 5/9.",
+      "response": "O erro está na forma como a fórmula de conversão é aplicada na solução incorreta. A fórmula correta para converter de Celsius para Fahrenheit é (C * 9/5) + 32, e de Fahrenheit para Celsius é (F - 32) * 5/9.",
+      "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita a temperatura e a unidade como parâmetros.\n[PASSO 2]. Verificar a unidade fornecida (Celsius ou Fahrenheit).\n[PASSO 3]. Realizar a conversão de acordo com a fórmula apropriada.\n[PASSO 4]. Retornar a temperatura convertida."
     }
-}
+  }
+  

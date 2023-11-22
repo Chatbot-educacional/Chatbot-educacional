@@ -1,33 +1,34 @@
 {
-    "title": "Soma de Dois Números",
+    "title": "Cálculo de Potência",
     "topic": "Trabalhando com Funções em Java",
-    "knowledge": "Conhecimento básico de Java e funções.",
-    "origin": "Livro de Programação Java Básica",
-    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros e retorne a soma desses dois números.",
-    "result": "A função deve imprimir ou retornar a soma dos dois números.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java.",
+    "knowledge": "Conhecimento intermediário em Java e operações matemáticas.",
+    "origin": "Livro de Programação Java Intermediária",
+    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros, base e expoente, e retorne o resultado da potência.",
+    "result": "A função deve imprimir ou retornar o resultado da potência.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java e operações matemáticas.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função que aceite dois números e retorne sua soma.",
-        "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
-            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
-        },
-        "correctSolutionProposal": "public class SomaNumeros {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 + numero2;\n    }\n}"
+      "thinking": "O problema do worked example correto envolve a criação de uma função que calcula a potência de um número.",
+      "solutionProposal": {
+        "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros, base e expoente.\n[PASSO 2]. Verificar se o expoente é não negativo.\n[PASSO 3]. Inicializar uma variável 'resultado' com o valor da base.\n[PASSO 4]. Usar um loop para multiplicar 'resultado' pela base 'expoente' vezes.\n[PASSO 5]. Retornar o resultado.",
+        "test": "Você pode testar a função com base = 2 e expoente = 3. O resultado esperado é 8."
+      },
+      "correctSolutionProposal": "public class CalculoPotencia {\n    public static void main(String[] args) {\n        int base = 2;\n        int expoente = 3;\n        double resultado = calcularPotencia(base, expoente);\n        System.out.println(\"Resultado da potência: \" + resultado);\n    }\n\n    public static double calcularPotencia(int base, int expoente) {\n        if (expoente < 0) {\n            System.out.println(\"Expoente deve ser não negativo.\");\n            return -1;\n        }\n        double resultado = 1.0;\n        for (int i = 0; i < expoente; i++) {\n            resultado *= base;\n        }\n        return resultado;\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "public class SomaNumerosIncorreto {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 - numero2;\n    }\n}",
-        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
-        "options": {
-            "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "line 2",
-            "five": "não sei identificar"
-        },
-        "correctOption": "2",
-        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
-        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+      "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+      "incorrectSolution": "public class CalculoPotenciaIncorreto {\n    public static void main(String[] args) {\n        int base = 2;\n        int expoente = 3;\n        double resultado = calcularPotencia(base, expoente);\n        System.out.println(\"Resultado da potência: \" + resultado);\n    }\n\n    public static double calcularPotencia(int base, int expoente) {\n        double resultado = 1.0;\n        for (int i = 0; i <= expoente; i++) {\n            resultado *= base;\n        }\n        return resultado;\n    }\n}",
+      "test": "Você pode testar a função com os mesmos valores: base = 2 e expoente = 3. O resultado esperado é 8, mas a solução proposta incorreta produzirá resultados errados.",
+      "options": {
+        "one": "linha 11",
+        "two": "linha 15",
+        "three": "linha 16",
+        "four": "linha 14",
+        "five": "não sei identificar"
+      },
+      "correctOption": "2",
+      "error": "O erro está na forma como o loop é configurado na solução incorreta. A condição deve ser 'i < expoente' em vez de 'i <= expoente'.",
+      "response": "O erro está na forma como o loop é configurado na solução incorreta. A condição deve ser 'i < expoente' em vez de 'i <= expoente'.",
+      "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros, base e expoente.\n[PASSO 2]. Verificar se o expoente é não negativo.\n[PASSO 3]. Inicializar uma variável 'resultado' com o valor da base.\n[PASSO 4]. Usar um loop para multiplicar 'resultado' pela base 'expoente' vezes.\n[PASSO 5]. Retornar o resultado."
     }
-}
+  }
+  

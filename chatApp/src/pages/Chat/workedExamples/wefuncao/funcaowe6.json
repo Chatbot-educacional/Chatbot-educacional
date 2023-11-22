@@ -1,33 +1,34 @@
 {
-    "title": "Soma de Dois Números",
+    "title": "Cálculo da Média (Matriz)",
     "topic": "Trabalhando com Funções em Java",
-    "knowledge": "Conhecimento básico de Java e funções.",
-    "origin": "Livro de Programação Java Básica",
-    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros e retorne a soma desses dois números.",
-    "result": "A função deve imprimir ou retornar a soma dos dois números.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java.",
+    "knowledge": "Conhecimento intermediário em Java e manipulação de matrizes.",
+    "origin": "Livro de Programação Java Intermediária",
+    "description": "Desenvolver uma função em Java que aceite uma matriz de números como parâmetro e retorne a média desses números.",
+    "result": "A função deve imprimir ou retornar a média da matriz.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java e manipulação de matrizes.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função que aceite dois números e retorne sua soma.",
-        "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
-            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
-        },
-        "correctSolutionProposal": "public class SomaNumeros {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 + numero2;\n    }\n}"
+      "thinking": "O problema do worked example correto envolve a criação de uma função que calcula a média de uma matriz de números.",
+      "solutionProposal": {
+        "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma matriz de números como parâmetro.\n[PASSO 2]. Verificar se a matriz é válida e se possui elementos.\n[PASSO 3]. Percorrer a matriz somando todos os elementos.\n[PASSO 4]. Calcular a média dividindo a soma pelo número de elementos.\n[PASSO 5]. Retornar a média calculada.",
+        "test": "Você pode testar a função com a matriz: [[3.0, 5.5, 7.8], [2.0, 4.5, 6.0]]. O resultado esperado é a média 4.8."
+      },
+      "correctSolutionProposal": "public class CalculoMediaMatriz {\n    public static void main(String[] args) {\n        double[][] matriz = {{3.0, 5.5, 7.8}, {2.0, 4.5, 6.0}};\n        double resultado = calcularMediaMatriz(matriz);\n        System.out.println(\"Média da matriz: \" + resultado);\n    }\n\n    public static double calcularMediaMatriz(double[][] matriz) {\n        if (matriz == null || matriz.length == 0 || matriz[0].length == 0) {\n            return 0.0;\n        }\n        double soma = 0.0;\n        int totalElementos = 0;\n        for (int i = 0; i < matriz.length; i++) {\n            for (int j = 0; j < matriz[0].length; j++) {\n                soma += matriz[i][j];\n                totalElementos++;\n            }\n        }\n        return soma / totalElementos;\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "public class SomaNumerosIncorreto {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 - numero2;\n    }\n}",
-        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
-        "options": {
-            "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "line 2",
-            "five": "não sei identificar"
-        },
-        "correctOption": "2",
-        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
-        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+      "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+      "incorrectSolution": "public class CalculoMediaMatrizIncorreto {\n    public static void main(String[] args) {\n        double[][] matriz = {{3.0, 5.5, 7.8}, {2.0, 4.5, 6.0}};\n        double resultado = calcularMediaMatriz(matriz);\n        System.out.println(\"Média da matriz: \" + resultado);\n    }\n\n    public static double calcularMediaMatriz(double[][] matriz) {\n        if (matriz == null || matriz.length == 0 || matriz[0].length == 0) {\n            return 0.0;\n        }\n        double soma = 0.0;\n        int totalElementos = 0;\n        for (int i = 0; i < matriz.length; i++) {\n            for (int j = 0; j < matriz[0].length; j++) {\n                soma += matriz[i][j];\n            }\n        }\n        return soma / totalElementos;\n    }\n}",
+      "test": "Você pode testar a função com a mesma matriz: [[3.0, 5.5, 7.8], [2.0, 4.5, 6.0]]. O resultado esperado é a média 4.8, mas a solução proposta incorreta produzirá resultados errados.",
+      "options": {
+        "one": "linha 15",
+        "two": "linha 19",
+        "three": "linha 16",
+        "four": "linha 14",
+        "five": "não sei identificar"
+      },
+      "correctOption": "2",
+      "error": "O erro acontece, pois a variável 'totalElementos' não foi incrementada como na solução correta. Ela deve ser incrementada dentro do loop interno.",
+      "response": "Sem o incremento da variável 'totalElementos' a divisão acaba sendo por zero, retornando o resultado 'Infinity'.",
+      "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma matriz de números como parâmetro.\n[PASSO 2]. Verificar se a matriz é válida e se possui elementos.\n[PASSO 3]. Percorrer a matriz somando todos os elementos.\n[PASSO 4]. Calcular a média dividindo a soma pelo número de elementos.\n[PASSO 5]. Retornar a média calculada."
     }
-}
+  }
+  

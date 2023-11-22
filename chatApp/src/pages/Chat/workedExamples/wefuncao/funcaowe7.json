@@ -1,33 +1,34 @@
 {
-    "title": "Soma de Dois Números",
+    "title": "Palíndromo",
     "topic": "Trabalhando com Funções em Java",
-    "knowledge": "Conhecimento básico de Java e funções.",
-    "origin": "Livro de Programação Java Básica",
-    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros e retorne a soma desses dois números.",
-    "result": "A função deve imprimir ou retornar a soma dos dois números.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java.",
+    "knowledge": "Conhecimento intermediário em Java e manipulação de strings.",
+    "origin": "Livro de Programação Java Intermediária",
+    "description": "Desenvolver uma função em Java que aceite uma string como parâmetro e verifique se ela é um palíndromo.",
+    "result": "A função deve imprimir ou retornar uma mensagem indicando se a string é um palíndromo.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java e manipulação de strings.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função que aceite dois números e retorne sua soma.",
-        "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
-            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
-        },
-        "correctSolutionProposal": "public class SomaNumeros {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 + numero2;\n    }\n}"
+      "thinking": "O problema do worked example correto envolve a criação de uma função que verifica se uma string é um palíndromo.",
+      "solutionProposal": {
+        "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Remover espaços em branco e converter a string para minúsculas para garantir uma comparação insensível a maiúsculas/minúsculas.\n[PASSO 3]. Usar dois índices, um do início e outro do final, para comparar os caracteres da string.\n[PASSO 4]. Se todos os pares de caracteres correspondentes forem iguais, a string é um palíndromo.\n[PASSO 5]. Retornar verdadeiro se a string for um palíndromo, falso caso contrário.",
+        "test": "Você pode testar a função com a string 'Ame a ema'. O resultado esperado é 'true'."
+      },
+      "correctSolutionProposal": "public class VerificarPalindromo {\n    public static void main(String[] args) {\n        String texto = \"Ame a ema\";\n        boolean resultado = verificarPalindromo(texto);\n        System.out.println(\"É palíndromo: \" + resultado);\n    }\n\n    public static boolean verificarPalindromo(String texto) {\n        if (texto == null) {\n            return false;\n        }\n        texto = texto.replaceAll(\"\\s\", \"\").toLowerCase();\n        int inicio = 0;\n        int fim = texto.length() - 1;\n        while (inicio < fim) {\n            if (texto.charAt(inicio) != texto.charAt(fim)) {\n                return false;\n            }\n            inicio++;\n            fim--;\n        }\n        return true;\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "public class SomaNumerosIncorreto {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 - numero2;\n    }\n}",
-        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
-        "options": {
-            "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "line 2",
-            "five": "não sei identificar"
-        },
-        "correctOption": "2",
-        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
-        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+      "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+      "incorrectSolution": "public class VerificarPalindromoIncorreto {\n    public static void main(String[] args) {\n        String texto = \"Ame a ema\";\n        boolean resultado = verificarPalindromo(texto);\n        System.out.println(\"É palíndromo: \" + resultado);\n    }\n\n    public static boolean verificarPalindromo(String texto) {\n        if (texto == null) {\n            return true;\n        }\n        texto = texto.replaceAll(\"\\s\", \"\").toLowerCase();\n        int inicio = 0;\n        int fim = texto.length();\n        while (inicio < fim) {\n            if (texto.charAt(inicio) != texto.charAt(fim)) {\n                return false;\n            }\n            inicio++;\n            fim--;\n        }\n        return true;\n    }\n}",
+      "test": "Você pode testar a função com a mesma string: 'Ame a ema'. O resultado esperado é 'true', mas a solução proposta incorreta produzirá resultados errados.",
+      "options": {
+        "one": "linha 13",
+        "two": "linha 17",
+        "three": "linha 16",
+        "four": "linha 18",
+        "five": "não sei identificar"
+      },
+      "correctOption": "3",
+      "error": "O erro está na forma como o índice 'fim' é inicializado e comparado na solução incorreta. O problema maior ocorre no acesso a posição indevida na linha 16.",
+      "response": "O erro acontece na inicialização do índice 'fim' que deveria ser 'fim = length() - 1;' ",
+      "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Remover espaços em branco e converter a string para minúsculas para garantir uma comparação insensível a maiúsculas/minúsculas.\n[PASSO 3]. Usar dois índices, um do início e outro do final, para comparar os caracteres da string.\n[PASSO 4]. Se todos os pares de caracteres correspondentes forem iguais, a string é um palíndromo.\n[PASSO 5]. Retornar verdadeiro se a string for um palíndromo, falso caso contrário."
     }
-}
+  }
+  

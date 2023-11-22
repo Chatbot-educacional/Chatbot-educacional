@@ -1,33 +1,34 @@
 {
-    "title": "Soma de Dois Números",
+    "title": "Reversão de String",
     "topic": "Trabalhando com Funções em Java",
-    "knowledge": "Conhecimento básico de Java e funções.",
-    "origin": "Livro de Programação Java Básica",
-    "description": "Desenvolver uma função em Java que aceite dois números como parâmetros e retorne a soma desses dois números.",
-    "result": "A função deve imprimir ou retornar a soma dos dois números.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java.",
+    "knowledge": "Conhecimento intermediário em Java e manipulação de strings.",
+    "origin": "Livro de Programação Java Intermediária",
+    "description": "Desenvolver uma função em Java que aceite uma string como parâmetro e retorne a versão reversa dessa string.",
+    "result": "A função deve imprimir ou retornar a string revertida.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em Java e manipulação de strings.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função que aceite dois números e retorne sua soma.",
-        "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
-            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
-        },
-        "correctSolutionProposal": "public class SomaNumeros {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 + numero2;\n    }\n}"
+      "thinking": "O problema do worked example correto envolve a criação de uma função que reverta uma string.",
+      "solutionProposal": {
+        "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Converter a string em um array de caracteres.\n[PASSO 3]. Usar um loop para inverter a ordem dos caracteres.\n[PASSO 4]. Construir uma nova string a partir do array invertido.\n[PASSO 5]. Retornar a string revertida.",
+        "test": "Você pode testar a função com a string 'Java'. O resultado esperado é 'avaJ'."
+      },
+      "correctSolutionProposal": "public class ReversaoString {\n    public static void main(String[] args) {\n        String texto = \"Java\";\n        String resultado = reverterString(texto);\n        System.out.println(\"String revertida: \" + resultado);\n    }\n\n    public static String reverterString(String texto) {\n        if (texto == null || texto.isEmpty()) {\n            return texto;\n        }\n        char[] caracteres = texto.toCharArray();\n        int inicio = 0;\n        int fim = caracteres.length - 1;\n        while (inicio < fim) {\n            char temp = caracteres[inicio];\n            caracteres[inicio] = caracteres[fim];\n            caracteres[fim] = temp;\n            inicio++;\n            fim--;\n        }\n        return new String(caracteres);\n    }\n}"
     },
     "problemWEIncorrect": {
-        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "public class SomaNumerosIncorreto {\n    public static void main(String[] args) {\n        int resultado = somarNumeros(5, 7);\n        System.out.println(\"Resultado da soma: \" + resultado);\n    }\n\n    public static int somarNumeros(int numero1, int numero2) {\n        return numero1 - numero2;\n    }\n}",
-        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
-        "options": {
-            "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "line 2",
-            "five": "não sei identificar"
-        },
-        "correctOption": "2",
-        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
-        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+      "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+      "incorrectSolution": "public class ReversaoStringIncorreto {\n    public static void main(String[] args) {\n        String texto = \"Java\";\n        String resultado = reverterString(texto);\n        System.out.println(\"String revertida: \" + resultado);\n    }\n\n    public static String reverterString(String texto) {\n        if (texto == null || texto.isEmpty()) {\n            return texto;\n        }\n        char[] caracteres = texto.toCharArray();\n        int inicio = 0;\n        int fim = caracteres.length;\n        while (inicio < fim) {\n            char temp = caracteres[inicio];\n            caracteres[inicio] = caracteres[fim];\n            caracteres[fim] = temp;\n            inicio++;\n            fim--;\n        }\n        return new String(caracteres);\n    }\n}",
+      "test": "Você pode testar a função com a mesma string: 'Java'. O resultado esperado é 'avaJ', mas a solução proposta incorreta produzirá resultados errados.",
+      "options": {
+        "one": "linha 17",
+        "two": "linha 12",
+        "three": "linha 11",
+        "four": "linha 13",
+        "five": "não sei identificar"
+      },
+      "correctOption": "1",
+      "error": "O erro está na forma como a variável fim foi inicializada. A condição 'inicio < fim', faz com que o acesso chegue até posição inexistente no array devido ao array começar a contagem na posição 0. ",
+      "response": "O erro acaba por ocorrer na linha xxx, por acesso indevido a posição inexistente do array.",
+      "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Converter a string em um array de caracteres.\n[PASSO 3]. Usar um loop para inverter a ordem dos caracteres.\n[PASSO 4]. Construir uma nova string a partir do array invertido.\n[PASSO 5]. Retornar a string revertida."
     }
-}
+  }
+  
