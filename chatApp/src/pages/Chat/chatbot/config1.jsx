@@ -26,11 +26,11 @@ import OptionsButtonsLinesWE from "../Options/OptionsButtonsLinesWE";
 import Options2 from "../Options/Options2";
 import Options1 from "../Options/Options1";
 
-const config = {
+const config1 = {
   botName: "ChatBot de Educação",
   initialMessages: [
     createChatBotMessage(`Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`, {
-      widget: "options",
+      widget: "options1",
     }),
     createCustomMessage(<CustomMessage />)
   ],
@@ -113,4 +113,4 @@ const config = {
   ],
 };
 
-export default config;
+export default config1;

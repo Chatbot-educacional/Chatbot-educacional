@@ -79,7 +79,7 @@ const CodeMessage = ({ code }) => {
   );
 };
 
-const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
+const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   const { user } = useAuthValue();
 
   const greet = () => {
@@ -223,7 +223,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
       Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:
         `,
       {
-        widget: "options1",
+        widget: "options2",
       }
     );
 
@@ -237,7 +237,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     const botMessage = createChatBotMessage(
       `Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`,
       {
-        widget: "options1",
+        widget: "options2",
       }
     );
 
@@ -251,7 +251,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     const botMessage = createChatBotMessage(
       "Desculpe, não entendi. Poderia repetir ou selecionar uma das opções abaixo?",
       {
-        widget: "options1",
+        widget: "options2",
       }
     );
 
@@ -282,4 +282,4 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
   )
 }
 
-export default ActionProvider1;
+export default ActionProvider2;

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Chatbot from 'react-chatbot-kit';
 import config from './chatbot/config';
+import config1 from './chatbot/config1';
+import config2 from './chatbot/config2';
 import MessageParser from './chatbot/MessageParser.jsx';
 import ActionProvider from './chatbot/ActionProvider.jsx';
 import ActionProvider1 from './chatbot/ActionProvider1.jsx';
+import ActionProvider2 from './chatbot/ActionProvider2.jsx';
 import './main.css';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
@@ -49,17 +52,17 @@ function Chat() {
       )}
       {selectedTopic === 'Conteúdos de vetores' && (
         <Chatbot
-          config={config}
+          config={config1}
           messageParser={MessageParser}
-          actionProvider={ActionProvider}
+          actionProvider={ActionProvider1}
           headerText={`CoderBOT - ${selectedTopic}`}
         />
       )}
       {selectedTopic === 'Conteúdos de funções' && (
         <Chatbot
-          config={config}
+          config={config2}
           messageParser={MessageParser}
-          actionProvider={ActionProvider1}
+          actionProvider={ActionProvider2}
           headerText={`CoderBOT - ${selectedTopic}`}
         />
       )}

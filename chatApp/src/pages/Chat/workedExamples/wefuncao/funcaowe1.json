@@ -20,9 +20,9 @@
         "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
         "options": {
             "one": "linha 9",
-            "two": "linha 11",
-            "three": "linha 15",
-            "four": "linha 2",
+            "two": "linha 8",
+            "three": "linha 10",
+            "four": "linha 6",
             "five": "não sei identificar"
         },
         "correctOption": "2",
