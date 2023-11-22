@@ -81,6 +81,7 @@ const CodeMessage = ({ code }) => {
 
 const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   const { user } = useAuthValue();
+  const [visitado, setVisitado] = React.useState([]);
 
   const greet = () => {
     const botMessage = createChatBotMessage(`Olá, ${user.displayName}`);
@@ -128,6 +129,7 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
 
   const handleQuiz = (op) => {
     idDataWE = op;//armazenando o id do exemplo escolhido
+    visitado.push(op)
     dataWE = data[idDataWE];
     const descricaoDoProblema = dataWE.description
     const resultado = dataWE.result
@@ -234,6 +236,7 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleGoToBackMenu = () => {
+    console.log(visitado);
     const botMessage = createChatBotMessage(
       `Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`,
       {

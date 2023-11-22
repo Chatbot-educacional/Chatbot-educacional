@@ -55,7 +55,7 @@ function Chat() {
           config={config1}
           messageParser={MessageParser}
           actionProvider={ActionProvider1}
-          headerText={`CoderBOT - ${selectedTopic}`}
+          headerText={`CoderBot - ${selectedTopic}`}
         />
       )}
       {selectedTopic === 'Conteúdos de funções' && (
@@ -63,7 +63,7 @@ function Chat() {
           config={config2}
           messageParser={MessageParser}
           actionProvider={ActionProvider2}
-          headerText={`CoderBOT - ${selectedTopic}`}
+          headerText={`CoderBot - ${selectedTopic}`}
           disableScrollToBottom
         />
       )}

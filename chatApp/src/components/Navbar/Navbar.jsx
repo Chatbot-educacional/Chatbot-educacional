@@ -5,7 +5,7 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import styles from './Navbar.module.css';
 
-function Navbar() {
+function Navbar({ clicks, local }) {
     const { user } = useAuthValue();
     const { logout } = useAuthentication();
     const [loginTime, setLoginTime] = React.useState(null);
@@ -26,6 +26,8 @@ function Navbar() {
                 uid: user.uid,
                 createdBy: user.displayName,
                 timeInMinutes: elapsedTimeInMinutes,
+                totalClicks: clicks,
+                localClicks: local
             };
             await insertDocument(documentData);
             console.log('Documento inserido com sucesso:', documentData);
@@ -35,14 +37,14 @@ function Navbar() {
         } finally {
             setIsInserting(false);
         }
-    };    
+    };
 
     // const handleLogout = async () => {
     //     if (isLoggedIn) {
     //         const logoutTime = new Date();
     //         const elapsedTimeInMilliseconds = logoutTime - loginTime;
     //         const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60)); // Converte para minutos
-            
+
     //     }
 
     //     setIsLoggedIn(false);
@@ -79,39 +81,39 @@ function Navbar() {
             </NavLink>
             <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>
-                    <NavLink to="/" className={({isActive}) => (isActive ? styles.active : '')}>Home</NavLink>
+                    <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : '')}>Home</NavLink>
                 </li>
                 {user && (
                     <>
                         <li>
-                            <NavLink to="/chat" className={({isActive}) => (isActive ? styles.active : '')}>Chat</NavLink>
+                            <NavLink to="/chat" className={({ isActive }) => (isActive ? styles.active : '')}>Chat</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/create-example" className={({isActive}) => (isActive ? styles.active : '')}>Criar novo exemplo</NavLink>
+                            <NavLink to="/create-example" className={({ isActive }) => (isActive ? styles.active : '')}>Criar novo exemplo</NavLink>
                         </li>
                     </>
                 )}
                 <li>
-                    <NavLink to="/about" className={({isActive}) => (isActive ? styles.active : '')}>Sobre</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : '')}>Sobre</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/contact" className={({isActive}) => (isActive ? styles.active : '')}>Contato</NavLink>
+                    <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.active : '')}>Contato</NavLink>
                 </li>
                 <li>
-                     <NavLink to="/researchers" className={({isActive}) => (isActive ? styles.active : '')}>Pesquisadores</NavLink>
+                    <NavLink to="/researchers" className={({ isActive }) => (isActive ? styles.active : '')}>Pesquisadores</NavLink>
                 </li>
             </ul>
             <ul className={styles.links_list_right}>
                 {!user ? (
                     <>
                         <li className={styles.bottom_entrar}>
-                            <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : '')} onClick={handleLogin}>Entrar</NavLink>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : '')} onClick={handleLogin}>Entrar</NavLink>
                         </li>
                         <li className={styles.bottom_cadastrar}>
-                            <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
+                            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
                         </li>
-                        
-                      
+
+
                     </>
                 ) : (
                     <li className={styles.container_name_user}>

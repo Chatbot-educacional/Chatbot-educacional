@@ -27,17 +27,33 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import PageError404 from './pages/404/PageError404';
 
 function App() {
-
+  const [clickCount, setClickCount] = useState(0);
+  const [clickLocal, setClickLocal] = useState([]);
   const [user, setUser] = useState(undefined);
-  const {auth} = useAuthentication();
+  const { auth } = useAuthentication();
 
   const loadingUser = user === undefined;
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
+      setClickCount(0);
     })
-  }, [auth])
+  }, [auth]);
+
+  useEffect(() => {
+    // Adiciona um ouvinte de eventos para capturar todos os cliques
+    const handleClick = (event) => {
+      setClickCount((prevClickCount) => prevClickCount + 1);
+      clickLocal.push(event.target.localName);
+    };
+    document.addEventListener('click', handleClick);
+
+    // Remove o ouvinte de eventos ao desmontar o componente
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
 
   if (loadingUser) {
     return (
@@ -51,21 +67,21 @@ function App() {
     <div className="App">
       <AuthProvider value={{ user }}>
         <Router>
-            <HeaderChat/>
-              <Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/login" element={!user ? <Login /> : <Navigate to="/home" />} />
-                <Route path="/register" element={!user ? <Register /> : <Navigate to="/home" />} />
-                <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
-                <Route path="/create-example" element={user ? <CreateExample /> : <Navigate to="/login" />} />
-                <Route path="/researchers" element={ <Researchers /> } />
-                
-                <Route index element={<Navigate to="/home" />} />
+          <HeaderChat clicks={clickCount} local={clickLocal} />
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={!user ? <Login /> : <Navigate to="/home" />} />
+            <Route path="/register" element={!user ? <Register /> : <Navigate to="/home" />} />
+            <Route path="/chat" element={user ? <Chat /> : <Navigate to="/login" />} />
+            <Route path="/create-example" element={user ? <CreateExample /> : <Navigate to="/login" />} />
+            <Route path="/researchers" element={<Researchers />} />
 
-                <Route path='*' element={<PageError404 />} />
-              </Routes>
+            <Route index element={<Navigate to="/home" />} />
+
+            <Route path='*' element={<PageError404 />} />
+          </Routes>
           <FooterConditional />
         </Router>
       </AuthProvider>

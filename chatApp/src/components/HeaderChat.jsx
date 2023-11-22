@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 
-function HeaderChat() {
+function HeaderChat({ clicks, local }) {
   const location = useLocation();
   const isChatPage = location.pathname === '/chat';
 
@@ -11,14 +11,14 @@ function HeaderChat() {
       transform: 'translateY(-100%)',
       transition: 'transform 0.3s ease-in-out',
     };
-  
+
     return (
       <div style={divStyle}>
       </div>
     );
   }
 
-  return <Navbar />;
+  return <Navbar clicks={clicks} local={local} />;
 }
 
 export default HeaderChat;
