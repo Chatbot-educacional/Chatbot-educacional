@@ -18,9 +18,9 @@ function Navbar({ clicks, local }) {
     const handleSubmit = async () => {
         setIsInserting(true);
         try {
-            const logoutTime = new Date();
-            const elapsedTimeInMilliseconds = logoutTime - loginTime;
-            const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60));
+            let logoutTime = new Date();
+            let elapsedTimeInMilliseconds = logoutTime - loginTime;
+            let elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60));
             console.log(`O usuário ficou na aplicação por ${elapsedTimeInMinutes} minutos.`);
             const documentData = {
                 uid: user.uid,
