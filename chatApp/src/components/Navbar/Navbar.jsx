@@ -77,7 +77,7 @@ function Navbar({ clicks, local }) {
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
-                WEBOT
+                CoderBot
             </NavLink>
             <ul className={`${styles.links_list} ${clicked ? styles.active : ''}`}>
                 <li>
@@ -117,7 +117,7 @@ function Navbar({ clicks, local }) {
                     </>
                 ) : (
                     <li className={styles.container_name_user}>
-                        <span>{user.displayName}</span>
+                        <span style={{ paddingRight: '25px' }}>{user.displayName}</span>
                         <NavLink className={styles.bottom_sair} onClick={handleSubmit}>Sair</NavLink>
                     </li>
                 )}

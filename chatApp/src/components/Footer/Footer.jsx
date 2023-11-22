@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.footerContent}>
-        <p>&copy; {new Date().getFullYear()} StudyBot. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} CoderBot. All rights reserved.</p>
       </div>
     </footer>
   )
