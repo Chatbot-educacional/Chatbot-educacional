@@ -19,6 +19,11 @@ const OptionsArrayAnotherCorrect = (props) => {
             text: "Voltar ao menu",
             handler: props.actionProvider.handleGoToBackMenu,
             id: 3,
+        },
+        {
+            text: "Finalizar a sessão ",
+            handler: props.actionProvider.handleExampleChoice,
+            id: 0,
         }
     ]
 

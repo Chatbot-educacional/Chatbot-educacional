@@ -14,7 +14,13 @@ const Options2 = (props) => {
       text: "2. Funções ",
       handler: props.actionProvider.handleExampleChoice,
       id: 2,
-    }/*,
+    },
+    {
+      text: "Finalizar a sessão ",
+      handler: props.actionProvider.handleGoOut,
+      id: 0,
+    }
+    /*,
     {
       text: "3. Constantes 🔒",
       handler: props.actionProvider.handleConstantesQuiz,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chatbot from 'react-chatbot-kit';
 import config from './chatbot/config';
 import config1 from './chatbot/config1';
@@ -20,9 +20,9 @@ const SelectTopic = ({ onSelectTopic }) => {
 
   return (
     <div className="select-topic-container">
-      <h2>Selecione um tópico</h2>
-      <button onClick={() => handleTopicSelect('Conteúdos de vetores')}>Conteúdos de vetores</button>
-      <button onClick={() => handleTopicSelect('Conteúdos de funções')}>Conteúdos de funções</button>
+      <h2>Selecione a turma a qual você pertence:</h2>
+      <button onClick={() => handleTopicSelect('Conteúdos de vetores')}>Turma da Professora Brenda</button>
+      <button onClick={() => handleTopicSelect('Conteúdos de funções')}>Turma da Professora Raquel</button>
     </div>
   );
 };
@@ -32,8 +32,13 @@ function Chat() {
   const { logout } = useAuthentication();
   const [selectedTopic, setSelectedTopic] = useState(null);
 
+  useEffect(() => {
+    setSelectedTopic(localStorage.getItem('turmaEscolhida'));
+  }, []);
+
   const handleTopicSelect = (topic) => {
     setSelectedTopic(topic);
+    localStorage.setItem('turmaEscolhida', topic);
   };
 
   return (
@@ -64,7 +69,6 @@ function Chat() {
           messageParser={MessageParser}
           actionProvider={ActionProvider2}
           headerText={`CoderBot - ${selectedTopic}`}
-          disableScrollToBottom
         />
       )}
     </div>

@@ -10,7 +10,13 @@ const Options1 = (props) => {
       text: "1. Vetores (Arrays)",
       handler: props.actionProvider.handleExampleChoice,
       id: 1,
-    }/*,
+    },
+    {
+      text: "Finalizar a sessão ",
+      handler: props.actionProvider.handleExampleChoice,
+      id: 2,
+    }
+    /*,
     {
       text: "2. Funções ",
       handler: props.actionProvider.handleExampleChoice,

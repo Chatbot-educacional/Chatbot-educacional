@@ -19,6 +19,11 @@ const OptionsArray = (props) => {
       text: "Voltar ao menu",
       handler: props.actionProvider.handleGoToBackMenu,
       id: 3,
+    },
+    {
+      text: "Finalizar sessão",
+      handler: props.actionProvider.handleGoToBackMenu,
+      id: 4,
     }
   ];
 
