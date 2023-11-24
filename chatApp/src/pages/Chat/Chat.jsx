@@ -70,7 +70,7 @@ function Chat(){
             <div className="chat-header">
               {/* <span>Olá, {user.displayName}.</span> */}
               <span>CoderBot <span className="span-version">1.0</span></span>
-              <NavLink className="button2" to="/home">Sair</NavLink>
+              {/* <NavLink className="button2" to="/home">Sair</NavLink> */}
             </div>
             <div className="div-chat">
               <Chatbot 
@@ -80,6 +80,12 @@ function Chat(){
                 headerText="CoderBOT"
               />
             </div>
+          </div>
+          <div className="div-lateral-bar">
+            {/* <h1>CoderBOT</h1> */}
+            {/* <span className="">Olá,<br/>{user.displayName}</span> */}
+            {/* <Link className="startbutton2" to="/chat"><p>+ Novo Chat</p></Link>
+            <NavLink className="startbutton2" to="/home">Sair</NavLink> */}
           </div>
         </div>
     );

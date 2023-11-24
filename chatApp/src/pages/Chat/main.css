@@ -260,7 +260,8 @@
     position: sticky;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: center;
     z-index: 5;
     top: 0;
     min-height: 50px;
