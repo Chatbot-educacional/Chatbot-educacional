@@ -24,7 +24,7 @@ import OptionsArrayAnotherIncorrect from "../Options/OptionsArrayAnotherIncorrec
 const config = {
   botName: "ChatBot de Educação",
   initialMessages: [
-    createChatBotMessage(`Olá, ! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar a aprender conceitos de programação 💻. Escolha qual a opção que deseja aprender.`, {
+    createChatBotMessage(`Olá! Sou o CoderBot, e estou aqui para te auxiliar a aprender conceitos de programação. Escolha qual a opção que deseja aprender.`, {
       widget: "options",
     }),
     createCustomMessage(<CustomMessage />)
