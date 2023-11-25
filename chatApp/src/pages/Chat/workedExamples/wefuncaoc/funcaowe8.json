@@ -1,0 +1,33 @@
+{
+    "title": "Multiplicação de array por valor",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento básico de C e funções.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite um vetor de inteiros e o seu tamanho como parâmetros, e retorne o vetor com cada valor multiplicado por um fator específico.",
+    "result": "A função deve imprimir ou retornar o vetor resultante da multiplicação.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função em C que multiplica os valores de um array de inteiros por um fator específico.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um vetor de inteiros e um inteiro como parâmetros.\n[PASSO 2]. Utilizar um loop para percorrer cada elemento do vetor e multiplicá-lo pelo fator específico.\n[PASSO 3]. Retornar o vetor resultante.",
+            "test": "Você pode testar a função com o seguinte vetor: {3, 7, 2, 5} e um fator de multiplicação de 2. O resultado esperado é {6, 14, 4, 10}."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nvoid multiplicarValores(int vetor[], int tamanho, int fator) {\n    for (int i = 0; i < tamanho; i++) {\n        vetor[i] *= fator;\n    }\n}\n\nint main() {\n    int meuVetor[] = {3, 7, 2, 5};\n    int tamanhoVetor = sizeof(meuVetor) / sizeof(meuVetor[0]);\n    int fatorMultiplicacao = 2;\n\n    multiplicarValores(meuVetor, tamanhoVetor, fatorMultiplicacao);\n\n    printf(\"Vetor resultante da multiplicação: { \");\n    for (int i = 0; i < tamanhoVetor; i++) {\n        printf(\"%d \", meuVetor[i]);\n    }\n    printf(\"}\\n\");\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\nvoid multiplicarValoresIncorreto(int vetor[], int tamanho, int fator) {\n    for (int i = 0; i <= tamanho; i++) {\n        vetor[i] *= fator;\n    }\n}\n\nint main() {\n    int meuVetor[] = {3, 7, 2, 5};\n    int tamanhoVetor = sizeof(meuVetor) / sizeof(meuVetor[0]);\n    int fatorMultiplicacao = 2;\n\n    multiplicarValoresIncorreto(meuVetor, tamanhoVetor, fatorMultiplicacao);\n\n    printf(\"Vetor resultante da multiplicação: { \");\n    for (int i = 0; i < tamanhoVetor; i++) {\n        printf(\"%d \", meuVetor[i]);\n    }\n    printf(\"}\\n\");\n\n    return 0;\n}",
+        "test": "Você pode testar a função com o mesmo vetor: {3, 7, 2, 5} e um fator de multiplicação de 2. O resultado esperado é {6, 14, 4, 10}, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 9",
+            "two": "linha 8",
+            "three": "linha 12",
+            "four": "linha 4",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na forma como a função percorre o vetor. A solução incorreta não ajusta corretamente os limites do loop, acontecendo acesso em posição inexistente do vetor.",
+        "response": "O erro está na forma como a função percorre o vetor. A solução incorreta não ajusta corretamente os limites do loop.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um vetor de inteiros e um inteiro como parâmetros.\n[PASSO 2]. Utilizar um loop para percorrer cada elemento do vetor e multiplicá-lo pelo fator específico.\n[PASSO 3]. Retornar o vetor resultante."
+    }
+}

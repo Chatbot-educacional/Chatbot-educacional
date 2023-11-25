@@ -1,0 +1,33 @@
+{
+  "title": "Contagem de Consoantes",
+  "topic": "Trabalhando com Funções em C",
+  "knowledge": "Conhecimento básico de C e funções.",
+  "origin": "Livro de Programação em Linguagem C",
+  "description": "Desenvolver uma função em C que aceite um vetor de caracteres (palavra) e uma variável inteira com o tamanho do vetor e retorne a quantidade de consoantes na palavra.",
+  "result": "A função deve imprimir ou retornar a contagem de consoantes na palavra.",
+  "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+  "problemWECorrect": {
+    "thinking": "O problema do worked example correto envolve a criação de uma função em C que conta as consoantes em uma palavra.",
+    "solutionProposal": {
+      "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um vetor de caracteres e um inteiro como parâmetros.\n[PASSO 2]. Utilizar um loop para percorrer cada caractere da palavra.\n[PASSO 3]. Verificar se o caractere é uma consoante (não é uma vogal) e incrementar o contador.\n[PASSO 4]. Retornar o resultado do contador.",
+      "test": "Você pode testar a função com a seguinte palavra: 'programming'. O resultado esperado é 7, pois 'p', 'r', 'g', 'r', 'm', 'm', 'n' são consoantes."
+    },
+    "correctSolutionProposal": "#include <stdio.h>\n#include <ctype.h>\n\nint contarConsoantes(char palavra[], int tamanho) {\n    int contadorConsoantes = 0;\n\n    for (int i = 0; i < tamanho; i++) {\n        char caractere = tolower(palavra[i]);\n\n        if (isalpha(caractere) && strchr(\"aeiou\", caractere) == NULL) {\n            contadorConsoantes++;\n        }\n    }\n\n    return contadorConsoantes;\n}\n\nint main() {\n    char minhaPalavra[] = \"programming\";\n    int tamanhoPalavra = sizeof(minhaPalavra) - 1;\n    int resultado = contarConsoantes(minhaPalavra, tamanhoPalavra);\n    printf(\"Número de consoantes: %d\\n\", resultado);\n    return 0;\n}"
+  },
+  "problemWEIncorrect": {
+    "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+    "incorrectSolution": "#include <stdio.h>\n#include <ctype.h>\n\nint contarConsoantesIncorreto(char palavra[], int tamanho) {\n    int contadorConsoantes = 0;\n\n    for (int i = 0; i <= tamanho; i++) {\n        char caractere = tolower(palavra[i]);\n\n        if (!isalpha(caractere) || strchr(\"aeiou\", caractere) != NULL) {\n            contadorConsoantes++;\n        }\n    }\n\n    return contadorConsoantes;\n}\n\nint main() {\n    char minhaPalavra[] = \"programming\";\n    int tamanhoPalavra = sizeof(minhaPalavra) - 1;\n    int resultado = contarConsoantesIncorreto(minhaPalavra, tamanhoPalavra);\n    printf(\"Número de consoantes: %d\\n\", resultado);\n    return 0;\n}",
+    "test": "Você pode testar a função com a mesma palavra: 'programming'. O resultado esperado é 7, mas a solução proposta incorreta produzirá resultados errados.",
+    "options": {
+      "one": "linha 11",
+      "two": "linha 10",
+      "three": "linha 12",
+      "four": "linha 7",
+      "five": "não sei identificar"
+    },
+    "correctOption": "2",
+    "error": "O erro está na forma como a função verifica se o caractere é uma consoante. A solução incorreta incrementa o contador para caracteres que não são alfabéticos ou são vogais.",
+    "response": "O erro está na forma como a função verifica se o caractere é uma consoante. A solução incorreta incrementa o contador para caracteres que não são alfabéticos ou são vogais.",
+    "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um vetor de caracteres e um inteiro como parâmetros.\n[PASSO 2]. Utilizar um loop para percorrer cada caractere da palavra.\n[PASSO 3]. Verificar se o caractere é uma consoante (não é uma vogal) e incrementar o contador.\n[PASSO 4]. Retornar o resultado do contador."
+  }
+}

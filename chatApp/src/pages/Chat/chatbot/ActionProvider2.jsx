@@ -4,7 +4,8 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import dataArray from '../workedExamples/WorkedExamplesArrays';
-import dataFunc from '../workedExamples/WorkedExamplesFunctions';
+//import dataFunc from '../workedExamples/WorkedExamplesFunctions';
+import dataFunc from '../workedExamples/WorkedExamplesFunctionsC';
 
 let data, dataWE, idDataWE, currentWETheme, currentExWETheme, correctWETheme, incorrectWETheme, questionWETheme, variavelLugar;
 
@@ -105,7 +106,7 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   const handleExampleChoice = (id) => {
     if (!primeiraExecucao) {
       let totalTime = calcTime();
-      visitado.push({ user: user.uid, example: op, time: totalTime, category: variavelLugar, respostaCorreta: 'T|F|N' })//de onde veio(D, C, I)
+      visitado.push({ user: user.uid, example: 0, time: totalTime, category: variavelLugar, correctAnswer: 'N' })//de onde veio(D, C, I)
       setExampleTime(new Date())
     } else {
       setExampleTime(new Date());

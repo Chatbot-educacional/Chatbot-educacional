@@ -1,0 +1,33 @@
+{
+    "title": "Soma de Dois Números",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento básico de C e funções.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite dois números como parâmetros e retorne a soma desses dois números.",
+    "result": "A função deve imprimir ou retornar a soma dos dois números.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função em C que aceite dois números e retorne sua soma.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números.",
+            "test": "Você pode testar a função com os seguintes valores: 5 e 7. O resultado esperado é 12."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint somarNumeros(int numero1, int numero2) {\n    return numero1 + numero2;\n}\n\nint main() {\n    int resultado = somarNumeros(5, 7);\n    printf(\"Resultado da soma: %d\\n\", resultado);\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\nint somarNumerosIncorreto(int numero1, int numero2) {\n    return numero1 - numero2;\n}\n\nint main() {\n    int resultado = somarNumerosIncorreto(5, 7);\n    printf(\"Resultado da soma: %d\\n\", resultado);\n    return 0;\n}",
+        "test": "Você pode testar a função com os mesmos valores: 5 e 7. O resultado esperado é a soma correta dos dois números, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 3",
+            "two": "linha 4",
+            "three": "linha 8",
+            "four": "linha 9",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na forma como a função retorna a soma. A solução incorreta está subtraindo os números em vez de somá-los.",
+        "response": "O erro ocorre na parte em que a função retorna a soma na solução incorreta. Em vez de usar o operador de adição, a solução incorreta usa o operador de subtração.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois parâmetros.\n[PASSO 2]. Dentro da função, adicionar os dois números.\n[PASSO 3]. Retornar a soma dos dois números."
+    }
+}

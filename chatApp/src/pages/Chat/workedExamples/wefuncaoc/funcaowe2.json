@@ -1,0 +1,33 @@
+{
+    "title": "Cálculo do Fatorial",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento básico de C e funções.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite um número como parâmetro e retorne o fatorial desse número.",
+    "result": "A função deve imprimir ou retornar o fatorial do número.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função em C que calcule o fatorial de um número.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um parâmetro.\n[PASSO 2]. Dentro da função, calcular o fatorial usando um loop.\n[PASSO 3]. Retornar o resultado do fatorial.",
+            "test": "Você pode testar a função com o seguinte valor: 5. O resultado esperado é 120."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint calcularFatorial(int numero) {\n    int fatorial = 1;\n    for (int i = 1; i <= numero; i++) {\n        fatorial *= i;\n    }\n    return fatorial;\n}\n\nint main() {\n    int resultado = calcularFatorial(5);\n    printf(\"Resultado do fatorial: %d\\n\", resultado);\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\nint calcularFatorialIncorreto(int numero) {\n    int fatorial = 1;\n    for (int i = 1; i <= numero; i++) {\n        fatorial += i;\n    }\n    return fatorial;\n}\n\nint main() {\n    int resultado = calcularFatorialIncorreto(5);\n    printf(\"Resultado do fatorial: %d\\n\", resultado);\n    return 0;\n}",
+        "test": "Você pode testar a função com o mesmo valor: 5. O resultado esperado é o fatorial correto do número, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 9",
+            "two": "linha 7",
+            "three": "linha 11",
+            "four": "linha 6",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na forma como a função calcula o fatorial. A solução incorreta está usando o operador de adição em vez de multiplicação.",
+        "response": "O erro ocorre na parte em que a função calcula o fatorial na solução incorreta. Em vez de multiplicar o fatorial pelo valor de 'i', a solução incorreta está usando o operador de adição.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um parâmetro.\n[PASSO 2]. Dentro da função, calcular o fatorial usando um loop.\n[PASSO 3]. Retornar o resultado do fatorial."
+    }
+}

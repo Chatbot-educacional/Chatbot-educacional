@@ -1,0 +1,33 @@
+{
+    "title": "Conversão de Temperatura em C",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento intermediário em C e operações matemáticas.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite uma temperatura e uma unidade (Celsius ou Fahrenheit) como parâmetros e retorne a temperatura convertida para a outra unidade.",
+    "result": "A função deve imprimir ou retornar a temperatura convertida para a unidade desejada.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C e operações matemáticas.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função que converte a temperatura de Celsius para Fahrenheit (ou vice-versa).",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita a temperatura e a unidade como parâmetros.\n[PASSO 2]. Verificar a unidade fornecida (Celsius ou Fahrenheit).\n[PASSO 3]. Realizar a conversão de acordo com a fórmula apropriada.\n[PASSO 4]. Retornar a temperatura convertida.",
+            "test": "Você pode testar a função com temperatura = 25 e unidade = 'Celsius'. O resultado esperado é a temperatura convertida para Fahrenheit."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\ndouble converterTemperatura(double temperatura, char unidade) {\n    if (unidade == 'C') {\n        return (temperatura * 9 / 5) + 32;\n    } else if (unidade == 'F') {\n        return (temperatura - 32) * 5 / 9;\n    } else {\n        printf(\"Unidade de temperatura inválida.\\n\");\n        return 0.0;\n    }\n}\n\nint main() {\n    double temperatura = 25.0;\n    char unidade = 'C';\n    double resultado = converterTemperatura(temperatura, unidade);\n    printf(\"Temperatura convertida: %.2f\\n\", resultado);\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\ndouble converterTemperaturaIncorreto(double temperatura, char unidade) {\n    if (unidade == 'C') {\n        return (temperatura - 32) * 5 / 9;\n    } else if (unidade == 'F') {\n        return (temperatura * 9 / 5) + 32;\n    } else {\n        printf(\"Unidade de temperatura inválida.\\n\");\n        return 0.0;\n    }\n}\n\nint main() {\n    double temperatura = 25.0;\n    char unidade = 'C';\n    double resultado = converterTemperaturaIncorreto(temperatura, unidade);\n    printf(\"Temperatura convertida: %.2f\\n\", resultado);\n\n    return 0;\n}",
+        "test": "Você pode testar a função com os mesmos valores: temperatura = 25 e unidade = 'Celsius'. O resultado esperado é a temperatura convertida para Fahrenheit, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 15",
+            "two": "linha 19",
+            "three": "linha 21",
+            "four": "linha 5",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na forma como a fórmula de conversão é aplicada na solução incorreta. A fórmula correta para converter de Celsius para Fahrenheit é (C * 9/5) + 32, e de Fahrenheit para Celsius é (F - 32) * 5/9. No exemplo elas foram invertidas.",
+        "response": "O erro está na forma como a fórmula de conversão é aplicada na solução incorreta. A fórmula correta para converter de Celsius para Fahrenheit é (C * 9/5) + 32, e de Fahrenheit para Celsius é (F - 32) * 5/9.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita a temperatura e a unidade como parâmetros.\n[PASSO 2]. Verificar a unidade fornecida (Celsius ou Fahrenheit).\n[PASSO 3]. Realizar a conversão de acordo com a fórmula apropriada.\n[PASSO 4]. Retornar a temperatura convertida."
+    }
+}

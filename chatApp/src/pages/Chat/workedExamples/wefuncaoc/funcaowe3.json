@@ -1,0 +1,33 @@
+{
+    "title": "Verificação de Número Primo",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento básico de C e funções.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite um número como parâmetro e determine se esse número é primo.",
+    "result": "A função deve imprimir ou retornar se o número é primo ou não.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função em C que verifica se um número é primo.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um parâmetro.\n[PASSO 2]. Dentro da função, verificar se o número é menor ou igual a 1 (números menores ou iguais a 1 não são primos).\n[PASSO 3]. Utilizar um loop para verificar se o número é divisível por algum outro número até a sua metade.\n[PASSO 4]. Se o número for divisível por algum outro número, ele não é primo. Caso contrário, é primo.\n[PASSO 5]. Retornar se o número é primo ou não.",
+            "test": "Você pode testar a função com o seguinte valor: 7. O resultado esperado é que 7 seja considerado primo."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n#include <stdbool.h>//biblioteca para usar os tipo bool(true/false)\n\nbool verificarNumeroPrimo(int numero) {\n    if (numero <= 1) {\n        return false;\n    }\n\n    for (int i = 2; i <= numero / 2; i++) {\n        if (numero % i == 0) {\n            return false;\n        }\n    }\n\n    return true;\n}\n\nint main() {\n    int numero = 7;\n    if (verificarNumeroPrimo(numero)) {\n        printf(\"%d é primo.\\n\", numero);\n    } else {\n        printf(\"%d não é primo.\\n\", numero);\n    }\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n#include <stdbool.h>\n\nbool verificarNumeroPrimoIncorreto(int numero) {\n    if (numero == 2) {\n        return true;\n    }\n\n    for (int i = 2; i < numero; i++) {\n        if (numero % i == 0) {\n            return false;\n        }\n    }\n\n    return true;\n}\n\nint main() {\n    int numero = 7;\n    if (verificarNumeroPrimoIncorreto(numero)) {\n        printf(\"%d é primo.\\n\", numero);\n    } else {\n        printf(\"%d não é primo.\\n\", numero);\n    }\n    return 0;\n}",
+        "test": "Você pode testar a função com o mesmo valor: 7. O resultado esperado é que 7 seja considerado primo, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 11",
+            "two": "linha 5",
+            "three": "linha 10",
+            "four": "linha 20",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na forma como a função verifica se o número é primo. A solução incorreta não considera o caso especial do número 2 e verifica a divisibilidade até o número, em vez de até sua metade.",
+        "response": "O erro está na forma como a função verifica se o número é primo. A solução incorreta não considera o caso especial do número 2 e verifica a divisibilidade até o número, em vez de até sua metade.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um parâmetro.\n[PASSO 2]. Dentro da função, verificar se o número é menor ou igual a 1 (números menores ou iguais a 1 não são primos).\n[PASSO 3]. Utilizar um loop para verificar se o número é divisível por algum outro número até a sua metade.\n[PASSO 4]. Se o número for divisível por algum outro número, ele não é primo. Caso contrário, é primo.\n[PASSO 5]. Retornar se o número é primo ou não."
+    }
+}

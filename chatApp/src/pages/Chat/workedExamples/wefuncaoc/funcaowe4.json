@@ -1,0 +1,33 @@
+{
+    "title": "Inversão de String",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento básico de C e funções.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite uma string como parâmetro e retorne a versão invertida dessa string.",
+    "result": "A função deve imprimir ou retornar a string invertida.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função em C que inverta uma string.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Utilizar um loop para percorrer a string e inverter os caracteres.\n[PASSO 3]. Retornar a string invertida.",
+            "test": "Você pode testar a função com a seguinte string: 'hello'. O resultado esperado é 'olleh'."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n#include <string.h>\n\nvoid inverterString(char *str) {\n    int comprimento = strlen(str);\n    for (int i = 0, j = comprimento - 1; i < j; i++, j--) {\n        char temp = str[i];\n        str[i] = str[j];\n        str[j] = temp;\n    }\n}\n\nint main() {\n    char minhaString[] = \"hello\";\n    inverterString(minhaString);\n    printf(\"String invertida: %s\\n\", minhaString);\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n#include <string.h>\n\nvoid inverterStringIncorreto(char *str) {\n    int comprimento = strlen(str);\n    for (int i = 0; i < comprimento; i++) {\n        char temp = str[i];\n        str[i] = str[comprimento - i - 1];\n        str[comprimento - i - 1] = temp;\n    }\n}\n\nint main() {\n    char minhaString[] = \"hello\";\n    inverterStringIncorreto(minhaString);\n    printf(\"String invertida: %s\\n\", minhaString);\n    return 0;\n}",
+        "test": "Você pode testar a função com a mesma string: 'hello'. O resultado esperado é a string invertida 'olleh', mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 10",
+            "two": "linha 9",
+            "three": "linha 11",
+            "four": "linha 6",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na forma como a função percorre a string. A solução incorreta não atualiza corretamente os índices durante a inversão.",
+        "response": "O erro ocorre na parte em que a função percorre a string na solução incorreta. Em vez de inverter os caracteres corretamente, a solução incorreta não atualiza corretamente os índices durante a inversão.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Utilizar um loop para percorrer a string e inverter os caracteres.\n[PASSO 3]. Retornar a string invertida."
+    }
+}
