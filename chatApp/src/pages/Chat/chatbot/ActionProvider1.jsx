@@ -298,7 +298,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
       Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:
         `,
       {
-        widget: "options2",
+        widget: "options1",
       }
     );
 
@@ -321,7 +321,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     const botMessage = createChatBotMessage(
       `Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`,
       {
-        widget: "options2",
+        widget: "options1",
       }
     );
 
@@ -336,7 +336,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     const botMessage = createChatBotMessage(
       "Obrigado por participar deste experimento!",
       {
-        widget: "options2",
+        widget: "options1",
       }
     );
 
@@ -350,7 +350,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     const botMessage = createChatBotMessage(
       "Desculpe, não entendi. Poderia repetir ou selecionar uma das opções abaixo?",
       {
-        widget: "options2",
+        widget: "options1",
       }
     );
 
@@ -378,6 +378,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
         });
       })}
     </div>
+
   )
 }
 
