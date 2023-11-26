@@ -9,14 +9,15 @@
 
 .div-container-chat {
   /* background-color: rgba(128, 128, 128, 0.13); */
-  background-color: #AFABFC;
+  /* background-color: #AFABFC; */
+  background-color: hsl(0, 0%, 100%);
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100vh; /* deixar assim*/
   /* min-height: 100vh; */
-  padding: 12px;
-  gap: 10px;
+  /* padding: 12px; */
+  /* gap: 10px; */
   overflow: hidden;
 }
 
@@ -107,6 +108,7 @@
     display: flex;
     margin: 15px 0;
     justify-content: flex-start;
+    width: 100%;
   }
 
   .react-chatbot-kit-chat-bot-message-container span {
@@ -138,17 +140,20 @@
   }
   
   .react-chatbot-kit-chat-bot-message {
-    background-color: #afabfc9d;
+    /* background-color: #afabfc9d; */
+    /* background-color: #ebebeb; */
+    background-color: #ebebeb;
     padding: 20px;
     border-radius: 24px;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     color: black;
-    font-weight: medium !important;
+    /* color:#FAFAFA; */
+    font-weight: 300;
     position: relative;
     width: 100%;
     margin-left: auto;
     text-align: left;
-    font-size: 18px;
+    font-size: 15px;
     white-space: pre-line;
 }
 
@@ -161,7 +166,8 @@
     height: 0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-right: 8px solid #afabfc9d;
+    /* border-right: 8px solid #afabfc9d; */
+    border-right: 8px solid #EBEBEB;
     position: absolute;
     left: -7px;
     top: 14px;
@@ -205,19 +211,49 @@
     }
   }
   
+  .button2 {
+    align-content: center;
+    align-items: center;
+    /* background: linear-gradient(180deg,#CBC9F3 0%, #5c7cff 100%); */
+    background-color: #5c7cff;
+    border-radius: 10px;
+    /* box-shadow: 0 0.7065919983928324px 0.7065919983928324px -0.625px #00000026, 0 1.8065619053231785px 1.8065619053231785px -1.25px #00000025, 0 3.6217592146567767px 3.6217592146567767px -1.875px #00000023, 0 6.8655999097303715px 6.8655999097303715px -2.5px #00000020, 0 13.646761411524492px 13.646761411524492px -3.125px #0000001b, 0 30px 30px -3.75px #0000000d; */
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 70px;
+    height: 35px;
+    justify-content: center;
+    overflow: visible;
+    padding: 12px;
+    z-index: 1;
+    color: #FFFFFF;
+    transition: 0.5s;
+    transition-delay: 10ms;
+  }
+
   .div-lateral-bar {
+    background-image: url('../../assets/lateralbar-bg.jpg');
+    background-size:cover;
+    background-repeat: no-repeat; 
     display: flex;
     flex-direction: column;
     gap: 20px;
     justify-content: start;
-    background-color: #ffffff;
-    border: 1px solid red;
+    /* background-color: #ffffff; */
+    background-color: #161616;
+    /* background-color: #5c7cff; */
+
+    /* border: 1px solid red; */
     /* height: fit-content; */
     height: auto;
-    width: 300px;
-    min-width: 300px;
+    width: 270px;
+    min-width: 270px;
     padding: 18px;
-    border-radius: 20px;
+    flex: 0 0 270px;
+    /* border-radius: 20px; */
   }
 
   .div-lateral-bar h1{
@@ -260,23 +296,94 @@
   .div-lateral-bar .startbutton2:hover{
     box-shadow: inset 0 0 0 #CBC9F3, 0 0 1.5em #5c7cff
   }
+  
+  .div-chat-main-container {
+    display:flex;
+    flex-direction: column;
+    flex: 1;
+    /* height: auto; */
+    /* width: 100%; */
+    /* max-height: 100%; */
+    overflow-y: auto;
+    /* overflow: hidden; */
+  }
+
+  .chat-header{
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    justify-content: center;
+    z-index: 5;
+    top: 0;
+    min-height: 50px;
+    height: min-content;
+    padding: 10px 12px;
+    /* background-color: transparent; */
+    background-color:  rgba(255, 255, 255, 0.450);
+    backdrop-filter: blur(20px);   
+  }
+
+  .chat-header span {
+    color: #514f4f;
+    font-weight: 600;
+    letter-spacing: -0.030em;
+  }
+
+  .chat-header .span-version {
+    color: #b9b9c4;
+  }
+
+  .div-chat {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: min-content;
+    /* overflow-y: scroll; */
+  }
+
+  .button2 {
+    background-image: url('../../assets/lateralbar-bg.jpg');
+    background-repeat: no-repeat;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    color: #FFFFFF;
+    transition: 0.7s;
+    transition-delay: 10ms;
+  }
+
+  .button2:hover {
+    background-position: center;
+    background-size: cover;
+    color: #FFFFFF;
+    /* border: 1px solid #5c7cff; */
+  }
 
   .react-chatbot-kit-chat-container {
+    display: flex;
+    flex-wrap: wrap;
     position: relative; /* was relative */
-    top: 1;
+    top: 0;
     left: 0;
     right: 0;
     margin: 0 auto;
     width: 100%;
-    height: 760px; /* altura do container é aqui */
-    min-height: 100%;
+    height: min-content; /* altura do container é aqui */
     /* max-height: 100%; */
     border-radius: 20px;
   }
   
   .react-chatbot-kit-chat-inner-container {
     position: relative;
-    width: 100%;
+    width: 850px;
     /* height: 100vh; */
     /* height: auto; */
     height: 100%;
@@ -286,7 +393,6 @@
     border-radius: 5px; */
     border-radius: 20px;
     /* box-sizing: border-box; */
-    border: 1px solid green;
   }
   
   .react-chatbot-kit-chat-header {
@@ -302,6 +408,7 @@
     color: #514f4f;
     padding: 12.5px;
     font-weight: bold;
+    display:none;
   }
   
   .react-chatbot-kit-chat-input-container {
@@ -316,15 +423,20 @@
   
   .react-chatbot-kit-chat-message-container {
     /* position: relative; */
+    display: flex;
+    flex-wrap: wrap;
     padding: 0 17.5px 10px 17.5px;
     overflow: scroll;
+    width: auto;
     /* height: min-content; */
-    height: 80%;
-    /* max-height: 915px; */
+    /* min-height: 90%; */
+    /* height: 90%; */
+    /* max-height: 90%; */
     /* max-height: 100%; */
     /* height: 100%; */
-    overflow-x: auto;
     box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
     
   }
   
@@ -400,4 +512,22 @@
     font-size: 1rem;
   }
   
-  
+  /* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9c9c9c; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

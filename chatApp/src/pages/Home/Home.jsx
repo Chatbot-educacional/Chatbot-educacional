@@ -37,7 +37,7 @@ const Home = () => {
       </div>
       <div className={styles.content}>
         <h1 className={styles.title} data-aos="zoom-out" data-aos-duration="1500">CoderBot</h1>
-        <p className={styles.description} data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="250">Desperte o potencial dos programadores do futuro com o CoderBot - <span>A chave para o sucesso.</span></p>
+        <p className={styles.description} data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="250">Desperte o potencial dos programadores do futuro com o WeBot - <span>A chave para o sucesso.</span></p>
         <Link to="/chat" className={styles.startButton} data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="350">Iniciar</Link>
       </div>
 

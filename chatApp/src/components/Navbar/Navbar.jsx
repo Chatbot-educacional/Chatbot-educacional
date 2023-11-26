@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
@@ -74,6 +75,7 @@ function Navbar({ clicks, local }) {
     // }
 
 
+  
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
