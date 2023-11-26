@@ -56,12 +56,13 @@ function Chat() {
               <span>
                 CoderBot <span className="span-version">1.0</span>
               </span>
+              {/* <NavLink className="button2" to="/home">Sair</NavLink> */}
             </div>
             <div className="div-chat">
               <Chatbot
-                config={config}
+                config={config1}
                 messageParser={MessageParser}
-                actionProvider={ActionProvider}
+                actionProvider={ActionProvider1}
                 headerText="CoderBOT"
               />
             </div>
@@ -81,9 +82,9 @@ function Chat() {
             </div>
             <div className="div-chat">
               <Chatbot
-                config={config}
+                config={config2}
                 messageParser={MessageParser}
-                actionProvider={ActionProvider}
+                actionProvider={ActionProvider2}
                 headerText="CoderBOT"
               />
             </div>
