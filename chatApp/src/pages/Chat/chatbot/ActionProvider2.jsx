@@ -3,7 +3,7 @@ import { useAuthValue } from "../../../context/AuthContext";
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { useInsertDocument } from '../../../hooks/useInsertDocument';
-
+import { useNavigate } from 'react-router-dom';
 
 import dataArray from '../workedExamples/WorkedExamplesArrays';
 //import dataFunc from '../workedExamples/WorkedExamplesFunctions';
@@ -89,6 +89,7 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   const [primeiraExecucao, setPrimeiraExecucao] = React.useState(true);
   const { insertDocument } = useInsertDocument("metrics-example");
   const [isInserting, setIsInserting] = React.useState(false);
+  const navigate = useNavigate();
 
   const greet = () => {
     const botMessage = createChatBotMessage(`Olá, ${user.displayName}`);
@@ -332,7 +333,16 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleGoOut = () => {
+    if (!primeiraExecucao) {
+      if (variavelLugar == 'C' || variavelLugar == 'I' || variavelLugar == 'D' || variavelLugar == 'Q') {
+        let totalTime = calcTime();
+        visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)  
+        handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+        variavelLugar = null;
+      }
+    }
     console.log(visitado);
+    navigate('/');
     const botMessage = createChatBotMessage(
       "Obrigado por participar deste experimento!",
       {

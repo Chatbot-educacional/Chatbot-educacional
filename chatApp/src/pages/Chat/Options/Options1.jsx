@@ -13,7 +13,7 @@ const Options1 = (props) => {
     },
     {
       text: "Finalizar a sessão ",
-      handler: props.actionProvider.handleExampleChoice,
+      handler: props.actionProvider.handleGoOut,
       id: 2,
     }
     /*,

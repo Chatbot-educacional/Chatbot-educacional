@@ -22,7 +22,7 @@ const OptionsArrayAnotherCorrect = (props) => {
         },
         {
             text: "Finalizar a sessão ",
-            handler: props.actionProvider.handleExampleChoice,
+            handler: props.actionProvider.handleGoOut,
             id: 0,
         }
     ]

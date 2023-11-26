@@ -22,7 +22,7 @@ const OptionsArray = (props) => {
     },
     {
       text: "Finalizar sessão",
-      handler: props.actionProvider.handleGoToBackMenu,
+      handler: props.actionProvider.handleGoOut,
       id: 4,
     }
   ];
