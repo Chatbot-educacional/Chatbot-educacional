@@ -512,22 +512,58 @@
     font-size: 1rem;
   }
   
-  /* width */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 12px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #ffffff; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #9c9c9c; 
+  background: #f2f2f2; 
 }
 
-/* Handle on hover */
+::-webkit-scrollbar-thumb {
+  background: #6a737d; 
+  border-radius: 8px;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
+}
+
+@media only screen and (max-width: 600px) {
+  .div-lateral-bar {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .div-lateral-bar {
+    width: 5%;
+    min-width: 5%;
+    flex: 0 0 5%;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  .div-lateral-bar {
+    width: 15%;
+    min-width: 15%;
+    flex: 0 0 15%;
+  }
+
+  .react-chatbot-kit-chat-inner-container {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .div-lateral-bar {
+    width: 250px;
+    min-width: 250px;
+    flex: 0 0 250px;
+  }
+
+  .react-chatbot-kit-chat-inner-container {
+    padding: 0 20px 0;
+    width: 100%;
+  }
 }

@@ -58,14 +58,12 @@ function Chat() {
               </span>
               {/* <NavLink className="button2" to="/home">Sair</NavLink> */}
             </div>
-            <div className="div-chat">
               <Chatbot
                 config={config1}
                 messageParser={MessageParser}
                 actionProvider={ActionProvider1}
                 headerText="CoderBOT"
               />
-            </div>
           </div>
           <div className="div-lateral-bar">{/* Seu conteúdo aqui */}</div>
         </>
@@ -80,14 +78,12 @@ function Chat() {
               </span>
               {/* <NavLink className="button2" to="/home">Sair</NavLink> */}
             </div>
-            <div className="div-chat">
               <Chatbot
                 config={config2}
                 messageParser={MessageParser}
                 actionProvider={ActionProvider2}
                 headerText="CoderBOT"
               />
-            </div>
           </div>
           <div className="div-lateral-bar">{/* Seu conteúdo aqui */}</div>
         </>
