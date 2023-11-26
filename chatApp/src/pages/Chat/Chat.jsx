@@ -56,6 +56,7 @@ function Chat() {
               <span>
                 CoderBot <span className="span-version">1.0</span>
               </span>
+               <span> - {selectedTopic}</span>
               {/* <NavLink className="button2" to="/home">Sair</NavLink> */}
             </div>
               <Chatbot
@@ -76,6 +77,7 @@ function Chat() {
               <span>
                 CoderBot <span className="span-version">1.0</span>
               </span>
+                <span> - {selectedTopic}</span>
               {/* <NavLink className="button2" to="/home">Sair</NavLink> */}
             </div>
               <Chatbot
