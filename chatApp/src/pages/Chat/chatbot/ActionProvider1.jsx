@@ -2,11 +2,14 @@ import React from 'react';
 import { useAuthValue } from "../../../context/AuthContext";
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { useInsertDocument } from '../../../hooks/useInsertDocument';
+
 
 import dataArray from '../workedExamples/WorkedExamplesArrays';
-import dataFunc from '../workedExamples/WorkedExamplesFunctions';
+//import dataFunc from '../workedExamples/WorkedExamplesFunctions';
+import dataFunc from '../workedExamples/WorkedExamplesFunctionsC';
 
-let data, dataWE, idDataWE, currentWETheme, currentExWETheme, correctWETheme, incorrectWETheme, questionWETheme;
+let data, dataWE, idDataWE, currentWETheme, currentExWETheme, correctWETheme, incorrectWETheme, questionWETheme, variavelLugar, acertouResposta = 'N';
 
 const HeaderMessage = ({ descricao, resultado, reflexivo, teste }) => {
   return (
@@ -54,7 +57,7 @@ const ResponseWE = ({ text, erro, resposta, solucao, code }) => {
     <div>
       <p>{text}</p>
       <p><strong>Identificando o erro: </strong>{erro}</p>
-      <p><strong>Resposta correta: </strong>{resposta}</p>
+      {/*<p><strong>Resposta correta: </strong>{resposta}</p>*/}
       <p><strong>Veja abaixo uma proposta de solução correta: </strong></p>
       <p>{solucao}</p>
       <CodeMessage code={code} />
@@ -81,6 +84,11 @@ const CodeMessage = ({ code }) => {
 
 const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
   const { user } = useAuthValue();
+  const [visitado, setVisitado] = React.useState([]);
+  const [exampleTime, setExampleTime] = React.useState(null);
+  const [primeiraExecucao, setPrimeiraExecucao] = React.useState(true);
+  const { insertDocument } = useInsertDocument("metrics-example");
+  const [isInserting, setIsInserting] = React.useState(false);
 
   const greet = () => {
     const botMessage = createChatBotMessage(`Olá, ${user.displayName}`);
@@ -91,7 +99,48 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const calcTime = () => {
+    let finalExampleTime = new Date();
+    let elapsedTimeInMilliseconds = finalExampleTime - exampleTime;
+    let elapsedTimeInMinutes = elapsedTimeInMilliseconds / (1000 * 60);
+    return elapsedTimeInMinutes;
+  }
+
+  const handleMetricsStore = async (uID, exID, tempo, lugar, cAnswer) => {
+    setIsInserting(true);
+    try {
+      const documentData = {
+        user: uID,
+        example: exID,
+        time: tempo,
+        category: lugar,
+        correctAnswer: cAnswer
+      };
+      await insertDocument(documentData);
+      console.log('Documento inserido com sucesso:', documentData);
+    } catch (error) {
+      console.error('Erro ao inserir documento:', error);
+    } finally {
+      setIsInserting(false);
+    }
+  };
+
+  /*#Métrica - 1 primeira execução sem cálculo
+               2 proximas execuções precisa calcular de onde veio e armazenar C ou I*/
   const handleExampleChoice = (id) => {
+    if (!primeiraExecucao) {
+      let totalTime = calcTime();
+      if (variavelLugar == 'C' || variavelLugar == 'I' || variavelLugar == 'D' || variavelLugar == 'Q') {
+        visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(D, C, I)
+        handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+        variavelLugar = null;
+      }
+      setExampleTime(new Date())
+    } else {
+      //setExampleTime(new Date());
+      setPrimeiraExecucao(false)
+      acertouResposta = 'N';
+    }
     switch (id) {
       case 1:
         currentWETheme = "vetoreswe";
@@ -127,13 +176,17 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleQuiz = (op) => {
+    //let totalTime = calcTime();
+    //visitado.push({ user: user.uid, example: op, time: totalTime, category: variavelLugar })//de onde veio(WE, C, I)
+    setExampleTime(new Date());
+
     idDataWE = op;//armazenando o id do exemplo escolhido
     dataWE = data[idDataWE];
     const descricaoDoProblema = dataWE.description
     const resultado = dataWE.result
     const reflex = dataWE.problemWECorrect.thinking;
     const teste = dataWE.problemWECorrect.solutionProposal.test;
-
+    variavelLugar = 'D';
     const botMessages = [
       createChatBotMessage(<HeaderMessage descricao={descricaoDoProblema} resultado={resultado} reflexivo={reflex} teste={teste} />,
         {
@@ -147,6 +200,12 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleCorrectWE = (op) => {
+    let totalTime = calcTime();
+    visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)
+    handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+    setExampleTime(new Date());
+    variavelLugar = 'C';
+
     dataWE = data[idDataWE];
     const passos = dataWE.problemWECorrect.solutionProposal.steps;
     const proposta = dataWE.problemWECorrect.correctSolutionProposal;
@@ -165,6 +224,12 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleIncorrectWE = (op) => {
+    let totalTime = calcTime();
+    visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)
+    handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+    setExampleTime(new Date());
+    variavelLugar = 'I';
+
     dataWE = data[idDataWE];
     const incorreto = dataWE.problemWEIncorrect.incorrectSolution;
     const teste = dataWE.problemWEIncorrect.test;
@@ -183,7 +248,14 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
+  /**Recebe a resposta da questão e mostra o feedback  */
   const handleQuestionWE = (resp) => {
+    let totalTime = calcTime();
+    visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)
+    handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+    setExampleTime(new Date());
+    variavelLugar = 'Q';
+
     const opcaoCorreta = dataWE.problemWEIncorrect.correctOption;
     const erro = dataWE.problemWEIncorrect.error;
     const resposta = dataWE.problemWEIncorrect.response;
@@ -193,11 +265,14 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
 
     if (resp === Number(opcaoCorreta)) {
       texto = "Parabéns! Você acertou.";
+      acertouResposta = 'T';
     } else if (resp == 5) {
       texto = "Tudo bem, eu irei te ajudar a identiticar."
+      acertouResposta = '5';
     }
     else {
       texto = "A resposta está incorreta. Não desanime, eu irei te ajudar a identificar corretamente.";
+      acertouResposta = 'F';
     }
 
     const botMessages = [
@@ -223,7 +298,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
       Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:
         `,
       {
-        widget: "options1",
+        widget: "options2",
       }
     );
 
@@ -234,10 +309,19 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleGoToBackMenu = () => {
+    if (!primeiraExecucao) {
+      if (variavelLugar == 'C' || variavelLugar == 'I' || variavelLugar == 'D' || variavelLugar == 'Q') {
+        let totalTime = calcTime();
+        visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)  
+        handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+        variavelLugar = null;
+      }
+    }
+    console.log(visitado);
     const botMessage = createChatBotMessage(
       `Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`,
       {
-        widget: "options1",
+        widget: "options2",
       }
     );
 
@@ -247,11 +331,26 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleGoOut = () => {
+    console.log(visitado);
+    const botMessage = createChatBotMessage(
+      "Obrigado por participar deste experimento!",
+      {
+        widget: "options2",
+      }
+    );
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  }
+
   const handleDefaultMessage = () => {
     const botMessage = createChatBotMessage(
       "Desculpe, não entendi. Poderia repetir ou selecionar uma das opções abaixo?",
       {
-        widget: "options1",
+        widget: "options2",
       }
     );
 
@@ -272,7 +371,7 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
             handleGoToBackMenu,
             handleDefaultMessage,
             handleExampleChoice,
-            handleQuiz, handleCorrectWE, handleIncorrectWE, handleQuestionWE,
+            handleQuiz, handleCorrectWE, handleIncorrectWE, handleQuestionWE, handleGoOut,
             //variáveis de dados 
             dataWE, dataArray, dataFunc
           },
