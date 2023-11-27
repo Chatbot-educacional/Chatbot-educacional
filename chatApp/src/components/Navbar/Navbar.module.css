@@ -25,7 +25,7 @@
 }
 
 .brand {
-    font-size: 16px;
+    font-size: 20px;
     margin-left: 80px;
     margin: 0;
     color: #ffffff;
@@ -50,7 +50,7 @@
 .navbar .links_list li {
     /* margin-right: 2em; */
     /* letter-spacing: -0.35px; */
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     color: #ffffff;
 }
@@ -130,15 +130,19 @@
     background-color: #AFABFC;
 }
 
-/* .links_list_right li a:hover {
+.links_list_right li:hover {
     background-position: right center;
-    color: #fff;
+    background-color: #3c3691;
     text-decoration: none;
 }
 
-.links_list_right li a:active {
+.links_list_right li a:hover {
+    color: white;
+}
+
+/* .links_list_right li a:active {
     transform: scale(0.95);
-} */
+}  */
 
 .container_name_user {
     display: flex;

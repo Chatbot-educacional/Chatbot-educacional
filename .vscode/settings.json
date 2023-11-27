@@ -2,5 +2,5 @@
     "conventionalCommits.scopes": [
         "Tela pesquisadores"
     ],
-    "editor.inlineSuggest.showToolbar": "onHover"
+    "editor.inlineSuggest.showToolbar": "always"
 }

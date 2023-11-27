@@ -12,30 +12,31 @@ import imgPesquisador5 from "./will.png"; // Substitua pelo caminho correto da i
 
 const researchersData = [
   {
-    name: "André L M Miranda",
-    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA. ",
+    name: "Andre Luiz Mendes Miranda",
+    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA - Alegrete/RS.",
     email: "andremendes0113@gmail.com",
     github:"Mendes113",
     img: imgPesquisador1,
   },
   {
-    name: "João ",
-    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA.",
+    name: "João Emilio Antonio Villa",
+    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA - Alegrete/RS.",
     img: imgPesquisador3,
   },
   {
-    name: "Mateus Balda",
-    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA.",
+    name: "Mateus Balda Mota",
+    description: "Estudante de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA - Alegrete/RS.",
+    email: "mateusbalda89@gmail.com",
     img: imgPesquisador2,
   },
   {
-    name: "Renato",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    name: "Renato de Souza Garcia",
+    description: "Mestrando de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA - Alegrete/RS.",
     img: imgPesquisador4,
   },
   {
-    name: "Williamson Silva",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    name: "Williamson Alison Freitas Silva",
+    description: "Professor e Coordenador do curso de Engenharia de Software na universidade de Federal do Pampa - UNIPAMPA - Alegrete/RS.",
     img: imgPesquisador5,
   },
 ];

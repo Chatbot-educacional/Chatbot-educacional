@@ -1,4 +1,3 @@
-// import React from "react";
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
@@ -65,17 +64,18 @@ function Navbar({ clicks, local, loginTime }) {
                         <li>
                             <NavLink to="/chat" className={({ isActive }) => (isActive ? styles.active : '')}>Chat</NavLink>
                         </li>
-                        <li>
+                        {/* ocultado para o experimento 26/11 */}
+                        {/* <li>
                             <NavLink to="/create-example" className={({ isActive }) => (isActive ? styles.active : '')}>Criar novo exemplo</NavLink>
-                        </li>
+                        </li> */}
                     </>
                 )}
-                <li>
+                {/* <li>
                     <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : '')}>Sobre</NavLink>
                 </li>
                 <li>
                     <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.active : '')}>Contato</NavLink>
-                </li>
+                </li> */}
                 <li>
                     <NavLink to="/researchers" className={({ isActive }) => (isActive ? styles.active : '')}>Pesquisadores</NavLink>
                 </li>

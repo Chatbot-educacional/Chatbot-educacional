@@ -12,8 +12,8 @@ const Footer = () => {
           <div className={styles.footer_col}>
             <h4>Conta</h4>
             <ul>
-              <li><a href="#">login</a></li>
-              <li><a href="#">registrar</a></li>
+              <li><NavLink to="/login">login</NavLink></li>
+              <li><NavLink to="/register">registrar</NavLink></li>
               <li><a href="#">ajuda</a></li>
             </ul>
           </div>
@@ -30,7 +30,7 @@ const Footer = () => {
             <ul>
               <li><a href="#">Sobre</a></li>
               <li><a href="#">Contato</a></li>
-              <li><a href="#">Time</a></li>
+              <li><NavLink to="/researchers">Time</NavLink></li>
             </ul>
           </div>
         </div>
