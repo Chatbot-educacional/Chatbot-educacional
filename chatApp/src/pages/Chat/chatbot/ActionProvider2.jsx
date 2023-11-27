@@ -115,7 +115,8 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
         example: exID,
         time: tempo,
         category: lugar,
-        correctAnswer: cAnswer
+        correctAnswer: cAnswer,
+        createdBy: user.displayName
       };
       await insertDocument(documentData);
       console.log('Documento inserido com sucesso:', documentData);
@@ -135,6 +136,7 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
         visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(D, C, I)
         handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
         variavelLugar = null;
+        acertouResposta = 'N';
       }
       setExampleTime(new Date())
     } else {

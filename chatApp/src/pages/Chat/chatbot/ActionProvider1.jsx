@@ -115,7 +115,8 @@ const ActionProvider1 = ({ createChatBotMessage, setState, children }) => {
         example: exID,
         time: tempo,
         category: lugar,
-        correctAnswer: cAnswer
+        correctAnswer: cAnswer,
+        createdBy: user.displayName
       };
       await insertDocument(documentData);
       console.log('Documento inserido com sucesso:', documentData);

@@ -1,11 +1,11 @@
 // CSS
-import styles from './About.module.css'; 
+import styles from './About.module.css';
 
 const About = () => {
   return (
     <div className={styles.aboutContainer}>
       <h1>Sobre o Chatbot CoderBot</h1>
-      <p>Bem-vindo ao chatbot CoderBot! O CoderBot tempo por objetivo aplicar o uso de Aprendizagem Baseada em Exempplos (métodologia ativa)  no apoio à aprendizagem de programação</p>
+      <p>Bem-vindo ao chatbot CoderBot! O CoderBot tempo por objetivo aplicar o uso de Aprendizagem Baseada em Exemplos (métodologia ativa)  no apoio à aprendizagem de programação</p>
       <p>Por meio de exemplos construidos com apoio e adaptação de um template realizado pelo estudo <strong>"<a href="">Projeto e Avaliação de um Template de Worked Exemplos para o Ensino de Programação</a>"</strong>,  o chatbot fornece um apoio e feedback quase instantâneo para as dúvidas de iniciantes em programação.</p>
       <h2>Exemplos Corretos e Incorretos</h2>
       <p>Diante do pressuposto que a habilidade de resolução de problemas se dá pela formação de mapas mentais, conhecer exemplos corretos e incorretos auxilia o aprendiz a possuir um <i>background</i> mais completo para definir seus modelos mentais.</p>
