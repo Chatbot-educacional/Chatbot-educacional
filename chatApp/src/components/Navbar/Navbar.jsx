@@ -28,7 +28,8 @@ function Navbar({ clicks, local, loginTime }) {
                 createdBy: user.displayName,
                 timeInMinutes: elapsedTimeInMinutes,
                 totalClicks: clicks,
-                localClicks: local
+                localClicks: local,
+                turma: localStorage.getItem("turmaEscolhida")
             };
             await insertDocument(documentData);
             console.log('Documento inserido com sucesso:', documentData);
@@ -70,7 +71,7 @@ function Navbar({ clicks, local, loginTime }) {
                         </li> */}
                     </>
                 )}
-                { <li>
+                {<li>
                     <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : '')}>Sobre</NavLink>
                 </li>/*
                 <li>
