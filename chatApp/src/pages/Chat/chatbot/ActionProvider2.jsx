@@ -87,7 +87,7 @@ const ActionProvider2 = ({ createChatBotMessage, setState, children }) => {
   const [visitado, setVisitado] = React.useState([]);
   const [exampleTime, setExampleTime] = React.useState(null);
   const [primeiraExecucao, setPrimeiraExecucao] = React.useState(true);
-  const { insertDocument } = useInsertDocument("metrics-example");
+  const { insertDocument } = useInsertDocument("metrics-example-functions");
   const [isInserting, setIsInserting] = React.useState(false);
   const navigate = useNavigate();
 

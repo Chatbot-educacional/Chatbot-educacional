@@ -6,10 +6,9 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import styles from './Navbar.module.css';
 
-function Navbar({ clicks, local }) {
+function Navbar({ clicks, local, loginTime }) {
     const { user } = useAuthValue();
     const { logout } = useAuthentication();
-    const [loginTime, setLoginTime] = React.useState(null);
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [clicked, setClicked] = React.useState(false);
     const [isInserting, setIsInserting] = React.useState(false);
@@ -20,8 +19,10 @@ function Navbar({ clicks, local }) {
         setIsInserting(true);
         try {
             let logoutTime = new Date();
+            console.log('Login time:', loginTime)
+            console.log('Logout time:', logoutTime);
             let elapsedTimeInMilliseconds = logoutTime - loginTime;
-            let elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60));
+            let elapsedTimeInMinutes = elapsedTimeInMilliseconds / (1000 * 60);
             console.log(`O usuário ficou na aplicação por ${elapsedTimeInMinutes} minutos.`);
             const documentData = {
                 uid: user.uid,
@@ -40,42 +41,16 @@ function Navbar({ clicks, local }) {
         }
     };
 
-    // const handleLogout = async () => {
-    //     if (isLoggedIn) {
-    //         const logoutTime = new Date();
-    //         const elapsedTimeInMilliseconds = logoutTime - loginTime;
-    //         const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60)); // Converte para minutos
-
-    //     }
-
-    //     setIsLoggedIn(false);
-    //     logout();
-    //     await handleSubmit(); // Aguarda a conclusão da inserção antes de continuar
-    // }
-
     const handleClick = () => {
         setClicked(!clicked);
     }
 
-    const handleLogin = () => {
-        setLoginTime(new Date());
-        setIsLoggedIn(true);
-    }
-
-    // const handleLogout = () => {
-    //     if (isLoggedIn) {
-    //         const logoutTime = new Date();
-    //         const elapsedTimeInMilliseconds = logoutTime - loginTime;
-    //         const elapsedTimeInMinutes = Math.floor(elapsedTimeInMilliseconds / (1000 * 60)); // Converte para minutos
-    //         console.log(`O usuário ficou na aplicação por ${elapsedTimeInMinutes} minutos.`);
-    //     }
-
-    //     setIsLoggedIn(false);
-    //     logout();
+    // const handleLogin = () => {
+    //     setLoginTime(new Date());
+    //     console.log(loginTime)
+    //     setIsLoggedIn(true);
     // }
 
-
-  
     return (
         <nav className={styles.navbar}>
             <NavLink to="/" className={styles.brand}>
@@ -109,10 +84,10 @@ function Navbar({ clicks, local }) {
                 {!user ? (
                     <>
                         <li className={styles.bottom_entrar}>
-                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : '')} onClick={handleLogin}>Entrar</NavLink>
+                            <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : '')}>Entrar</NavLink>
                         </li>
                         <li className={styles.bottom_cadastrar}>
-                            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : '')}>Cadastrar</NavLink>
+                            <NavLink to="/register" className={({ isActive }) => (isActive ? styles.active : '')} >Cadastrar</NavLink>
                         </li>
 
 

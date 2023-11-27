@@ -29,6 +29,7 @@ import PageError404 from './pages/404/PageError404';
 function App() {
   const [clickCount, setClickCount] = useState(0);
   const [clickLocal, setClickLocal] = useState([]);
+  const [loginTime, setLoginTime] = useState(new Date());
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
 
@@ -38,6 +39,7 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
       setClickCount(0);
+      setLoginTime(new Date());
     })
   }, [auth]);
 
@@ -67,7 +69,7 @@ function App() {
     <div className="App">
       <AuthProvider value={{ user }}>
         <Router>
-          <HeaderChat clicks={clickCount} local={clickLocal} />
+          <HeaderChat clicks={clickCount} local={clickLocal} loginTime={loginTime}/>
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 
-function HeaderChat({ clicks, local }) {
+function HeaderChat({ clicks, local, loginTime }) {
   const location = useLocation();
   const isChatPage = location.pathname === '/chat';
 
@@ -18,7 +18,7 @@ function HeaderChat({ clicks, local }) {
     );
   }
 
-  return <Navbar clicks={clicks} local={local} />;
+  return <Navbar clicks={clicks} local={local} loginTime={loginTime}/>;
 }
 
 export default HeaderChat;
