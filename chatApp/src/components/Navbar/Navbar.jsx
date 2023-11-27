@@ -70,9 +70,9 @@ function Navbar({ clicks, local, loginTime }) {
                         </li> */}
                     </>
                 )}
-                {/* <li>
+                { <li>
                     <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : '')}>Sobre</NavLink>
-                </li>
+                </li>/*
                 <li>
                     <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.active : '')}>Contato</NavLink>
                 </li> */}
