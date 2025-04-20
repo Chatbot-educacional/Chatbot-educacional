@@ -1,0 +1,33 @@
+{
+    "title": "Impressão",
+    "topic": "Impressão de Números em um Array",
+    "knowledge": "Conhecimento básico em sintaxe Python",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Python que imprima os números de 1 a 10 em uma lista.",
+    "result": "O programa deve criar uma lista e imprimir os números de 1 a 10.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar uma lista em Python e preenchê-la com números de 1 a 10. É um exercício simples para praticar a criação e impressão de listas.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie uma lista de inteiros para armazenar os números de 1 a 10. \n[PASSO 2]. Use um loop 'for' para iterar de 1 a 10. \n[PASSO 3]. Dentro do loop, adicione cada número à lista. \n[PASSO 4]. Após o loop, imprima os números na lista.",
+            "test": "Execute o programa e verifique se ele cria uma lista e imprime os números de 1 a 10 corretamente."
+        },
+        "correctSolutionProposal": "numeros = []\n\nfor i in range(1, 11):\n    numeros.append(i)\n\nfor numero in numeros:\n    print(numero)"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação dos índices ao preencher a lista.",
+        "incorrectSolution": "numeros = []\n\nfor i in range(1, 11):\n    numeros[i] = i\n\nfor numero in numeros:\n    print(numero)",
+        "test": "Execute o programa e verifique se ele cria uma lista e imprime os números incorretamente.",
+        "options": {
+            "one": "linha 3",
+            "two": "linha 4",
+            "three": "linha 5",
+            "four": "linha 6",
+            "five": "não sei identificar"
+        },
+        "correctOption": "3",
+        "error": "O erro está na manipulação dos índices ao adicionar os números à lista. O índice 'i'. Lists em python precisam incluir os elementos pelo método append.",
+        "response": "O erro ocorre na linha 5, onde o índice 'i' deveria ser 'i - 1' para garantir que os números sejam adicionados nas posições corretas da lista.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 5 para 'numeros.append(i)'. \n[PASSO 2] Execute o programa novamente para verificar se agora cria e imprime corretamente os números de 1 a 10."
+    }
+}

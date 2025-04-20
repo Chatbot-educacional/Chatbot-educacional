@@ -1,33 +1,33 @@
 {
-    "title": "Verificação de Palíndromo",
+    "title": "Somatório de Intervalo",
     "topic": "Trabalhando com Funções em C",
-    "knowledge": "Conhecimento básico de C e funções.",
+    "knowledge": "Conhecimento básico de C e operações matemáticas.",
     "origin": "Livro de Programação em Linguagem C",
-    "description": "Desenvolver uma função em C que aceite uma string como parâmetro e retorne verdadeiro se a string for um palíndromo e falso caso contrário.",
-    "result": "A função deve imprimir ou retornar se a string é um palíndromo.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "description": "Desenvolver uma função em C que aceite dois números como parâmetros, determinando um intervalo onde o segundo elemento deve ser maior que o primeiro, e calcule o somatório dos valores compreendidos no intervalo.",
+    "result": "A função deve imprimir ou retornar o somatório dos valores compreendidos no intervalo especificado.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C e operações matemáticas.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função em C que verifica se uma string é um palíndromo.",
+        "thinking": "O problema do worked example correto envolve a criação de uma função que calcula o somatório dos valores compreendidos em um intervalo.",
         "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Utilizar dois ponteiros para percorrer a string, um do início ao fim e outro do fim ao início.\n[PASSO 3]. Comparar os caracteres correspondentes nos dois ponteiros.\n[PASSO 4]. Se todos os pares de caracteres correspondentes forem iguais, a string é um palíndromo.\n[PASSO 5]. Retornar verdadeiro se a string for um palíndromo, falso caso contrário.",
-            "test": "Você pode testar a função com a seguinte string: 'radar'. O resultado esperado é verdadeiro, pois 'radar' é um palíndromo."
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois números como parâmetros.\n[PASSO 2]. Verificar se o segundo número é maior que o primeiro, caso contrário, imprimir uma mensagem de erro.\n[PASSO 3]. Calcular o somatório dos valores compreendidos no intervalo utilizando um loop.\n[PASSO 4]. Retornar o resultado do somatório.",
+            "test": "Você pode testar a função com os seguintes números: 3 e 7. O resultado esperado é o somatório dos valores de 3 a 7, ou seja, 3 + 4 + 5 + 6 + 7 = 25."
         },
-        "correctSolutionProposal": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool verificarPalindromo(char *str) {\n    int comprimento = strlen(str);\n\n    for (int i = 0, j = comprimento - 1; i < j; i++, j--) {\n        if (str[i] != str[j]) {\n            return false;\n        }\n    }\n\n    return true;\n}\n\nint main() {\n    char minhaString[] = \"radar\";\n    if (verificarPalindromo(minhaString)) {\n        printf(\"A string é um palíndromo.\\n\");\n    } else {\n        printf(\"A string não é um palíndromo.\\n\");\n    }\n    return 0;\n}"
+        "correctSolutionProposal": "#include <stdio.h>\n\nint somatorioIntervalo(int inicio, int fim) {\n    if (fim <= inicio) {\n        printf(\"Erro: O segundo elemento deve ser maior que o primeiro.\\n\");\n        return 0;\n    }\n\n    int somatorio = 0;\n\n    for (int i = inicio; i <= fim; i++) {\n        somatorio += i;\n    }\n\n    return somatorio;\n}\n\nint main() {\n    int resultado = somatorioIntervalo(3, 7);\n    printf(\"Somatório do intervalo: %d\\n\", resultado);\n\n    return 0;\n}"
     },
     "problemWEIncorrect": {
         "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool verificarPalindromoIncorreto(char *str) {\n    int comprimento = strlen(str);\n\n    for (int i = 0; i <= comprimento; i++) {\n        if (str[i] != str[comprimento - i - 1]) {\n            return false;\n        }\n    }\n\n    return true;\n}\n\nint main() {\n    char minhaString[] = \"radar\";\n    if (verificarPalindromoIncorreto(minhaString)) {\n        printf(\"A string é um palíndromo.\\n\");\n    } else {\n        printf(\"A string não é um palíndromo.\\n\");\n    }\n    return 0;\n}",
-        "test": "Você pode testar a função com a mesma string: 'radar'. O resultado esperado é verdadeiro, mas a solução proposta incorreta produzirá resultados errados.",
+        "incorrectSolution": "#include <stdio.h>\n\nint somatorioIntervaloIncorreto(int inicio, int fim) {\n    if (fim < inicio) {\n        printf(\"Erro: O segundo elemento deve ser maior ou igual ao primeiro.\\n\");\n        return 0;\n    }\n\n    int somatorio = 0;\n\n    for (int i = inicio; i < fim; i++) {\n        somatorio += i;\n    }\n\n    return somatorio;\n}\n\nint main() {\n    int resultado = somatorioIntervaloIncorreto(3, 7);\n    printf(\"Somatório do intervalo: %d\\n\", resultado);\n\n    return 0;\n}",
+        "test": "Você pode testar a função com os mesmos números: 3 e 7. O resultado esperado é o somatório dos valores de 3 a 7, ou seja, 3 + 4 + 5 + 6 + 7 = 25, mas a solução proposta incorreta produzirá resultados errados.",
         "options": {
-            "one": "linha 10",
-            "two": "linha 9",
-            "three": "linha 12",
-            "four": "linha 7",
+            "one": "linha 7",
+            "two": "linha 11",
+            "three": "linha 15",
+            "four": "linha 5",
             "five": "não sei identificar"
         },
         "correctOption": "2",
-        "error": "O erro está na forma como a função percorre a string. A solução incorreta não compara os caracteres correspondentes corretamente.",
-        "response": "O erro está na forma como a função percorre a string. A solução incorreta não compara os caracteres correspondentes corretamente.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma string como parâmetro.\n[PASSO 2]. Utilizar dois ponteiros para percorrer a string, um do início ao fim e outro do fim ao início.\n[PASSO 3]. Comparar os caracteres correspondentes nos dois ponteiros.\n[PASSO 4]. Se todos os pares de caracteres correspondentes forem iguais, a string é um palíndromo.\n[PASSO 5]. Retornar verdadeiro se a string for um palíndromo, falso caso contrário."
+        "error": "O erro está na forma como a condição é verificada na solução incorreta. O segundo elemento deve ser maior que o primeiro, não apenas maior ou igual.",
+        "response": "O erro está na forma como a condição é verificada na solução incorreta. O segundo elemento deve ser maior que o primeiro, não apenas maior ou igual.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois números como parâmetros.\n[PASSO 2]. Verificar se o segundo número é maior que o primeiro, caso contrário, imprimir uma mensagem de erro.\n[PASSO 3]. Calcular o somatório dos valores compreendidos no intervalo utilizando um loop.\n[PASSO 4]. Retornar o resultado do somatório."
     }
 }

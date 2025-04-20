@@ -1,0 +1,33 @@
+{
+    "title": "Ordenação",
+    "topic": "Ordenação de Listas",
+    "knowledge": "Conhecimento básico em Python e listas.",
+    "origin": "Material didático da universidade",
+    "description": "Implementar um algoritmo de ordenação de lista em Python. O objetivo é classificar uma lista de números inteiros em ordem crescente.",
+    "result": "O programa deve imprimir a lista original e a lista ordenada em ordem crescente.",
+    "extra": "Livros sobre algoritmos de ordenação e tutoriais sobre implementação de algoritmos de ordenação em Python.",
+    "problemWECorrect": {
+        "thinking": "O problema com worked example correto envolve a implementação de um algoritmo de ordenação de lista, o que é uma habilidade fundamental em programação.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Criar uma lista de números inteiros.\n[PASSO 2]. Implementar um algoritmo de ordenação, como o algoritmo de ordenação por inserção.\n[PASSO 3]. Aplicar o algoritmo de ordenação à lista.\n[PASSO 4]. Imprimir a lista original e a lista ordenada.",
+            "test": "Você pode testar o programa com a lista: [5, 2, 9, 1, 5, 3]. O resultado esperado é a lista original [5, 2, 9, 1, 5, 3] e a lista ordenada [1, 2, 3, 5, 5, 9]."
+        },
+        "correctSolutionProposal": "def ordenar_lista(lista):\n    for i in range(1, len(lista)):\n        chave = lista[i]\n        j = i - 1\n        while j >= 0 and lista[j] > chave:\n            lista[j + 1] = lista[j]\n            j -= 1\n        lista[j + 1] = chave\n\nlista_original = [5, 2, 9, 1, 5, 3]\nordenar_lista(lista_original)\nprint(f'Lista Original: {lista_original}')"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na implementação do algoritmo de ordenação, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "def ordenar_lista(lista):\n    for i in range(1, len(lista) + 1):\n        chave = lista[i]\n        j = i - 1\n        while j >= 0 and lista[j] > chave:\n            lista[j + 1] = lista[j]\n            j -= 1\n        lista[j + 1] = chave\n\nlista_original = [5, 2, 9, 1, 5, 3]\nordenar_lista(lista_original)\nprint(f'Lista Original: {lista_original}')",
+        "test": "Você pode testar o programa com a lista: [5, 2, 9, 1, 5, 3]. O resultado esperado é a lista original [5, 2, 9, 1, 5, 3] e a lista ordenada em ordem crescente [1, 2, 3, 5, 5, 9], mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 2",
+            "two": "linhas de 4 e 5",
+            "three": "linha 10",
+            "four": "linha 8",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na linha 19, onde ocorre o laço permite alcançar uma posição inexistente na lista (len(lista) + 1) estourando o limite.",
+        "response": "O erro ocorre na parte em que o algoritmo de ordenação é implementado na solução incorreta, fazendo com que haja acesso em posição inexistente.",
+        "correctSolutionProposal": "\n[PASSO 1] Criar uma lista de números inteiros. \n[PASSO 2] Implementar um algoritmo de ordenação personalizado, como o algoritmo de ordenação por inserção. \n[PASSO 3] Aplicar o algoritmo de ordenação à lista. \n[PASSO 4] Imprimir a lista original e a lista ordenada."
+    }
+}

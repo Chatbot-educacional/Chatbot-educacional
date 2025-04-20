@@ -1,0 +1,33 @@
+{
+    "title": "Multiplicação de Matrizes",
+    "topic": "Multiplicação de Matrizes em Python",
+    "knowledge": "Conhecimento intermediário em Python, especialmente em manipulação de listas",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Desenvolva um programa em Python que realize a multiplicação de duas matrizes. O programa deve ser capaz de receber duas matrizes como entrada e produzir a matriz resultante da multiplicação.",
+    "result": "O programa deve multiplicar corretamente as duas matrizes de entrada e imprimir a matriz resultante. A matriz resultante para os valores do código é \n[58, 64]\n[139, 154]",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como realizar a multiplicação de duas matrizes em Python. Isso requer o uso de loops aninhados para iterar sobre as matrizes e calcular os elementos da matriz resultante.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie funções para receber as matrizes como entrada. \n[PASSO 2]. Verifique se as matrizes são multiplicáveis (número de colunas da primeira matriz igual ao número de linhas da segunda matriz). \n[PASSO 3]. Crie loops aninhados para calcular cada elemento da matriz resultante. \n[PASSO 4]. Imprima a matriz resultante.",
+            "test": "Execute o programa com matrizes apropriadas e verifique se a multiplicação é realizada corretamente."
+        },
+        "correctSolutionProposal": "def matrizes_multiplicaveis(matrizA, matrizB):\n    return len(matrizA[0]) == len(matrizB)\n\n\ndef multiplicar_matrizes(matrizA, matrizB):\n    linhasA, colunasA = len(matrizA), len(matrizA[0])\n    colunasB = len(matrizB[0])\n\n    resultado = [[0] * colunasB for _ in range(linhasA)]\n\n    for i in range(linhasA):\n        for j in range(colunasB):\n            for k in range(colunasA):\n                resultado[i][j] += matrizA[i][k] * matrizB[k][j]\n\n    return resultado\n\n\ndef imprimir_matriz(matriz):\n    for linha in matriz:\n        print(linha)\n\n\nmatrizA = [[1, 2, 3], [4, 5, 6]]\nmatrizB = [[7, 8], [9, 10], [11, 12]]\n\nif matrizes_multiplicaveis(matrizA, matrizB):\n    resultado = multiplicar_matrizes(matrizA, matrizB)\n    imprimir_matriz(resultado)\nelse:\n    print('Matrizes não são multiplicáveis.')"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica da multiplicação de matrizes. Isso serve para destacar a importância da correta manipulação dos índices e cálculos.",
+        "incorrectSolution": "def matrizes_multiplicaveis_incorreto(matrizA, matrizB):\n    return len(matrizA[0]) == len(matrizB)\n\n\ndef multiplicar_matrizes_incorreto(matrizA, matrizB):\n    linhasA, colunasA = len(matrizA), len(matrizA[0])\n    colunasB = len(matrizB[0])\n\n    resultado = [[0] * colunasB for _ in range(linhasA)]\n\n    for i in range(linhasA):\n        for j in range(colunasB):\n            for k in range(colunasA):\n                resultado[i][j] += matrizA[i][k] * matrizB[k][i]\n\n    return resultado\n\n\ndef imprimir_matriz(matriz):\n    for linha in matriz:\n        print(linha)\n\n\nmatrizA = [[1, 2, 3], [4, 5, 6]]\nmatrizB = [[7, 8], [9, 10], [11, 12]]\n\nif matrizes_multiplicaveis_incorreto(matrizA, matrizB):\n    resultado = multiplicar_matrizes_incorreto(matrizA, matrizB)\n    imprimir_matriz(resultado)\nelse:\n    print('Matrizes não são multiplicáveis.')",
+        "test": "Execute o programa e verifique se a multiplicação de matrizes é realizada incorretamente.",
+        "options": {
+            "one": "linha 12",
+            "two": "linha 14",
+            "three": "linha 16",
+            "four": "linha 20",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na manipulação dos índices ao calcular a multiplicação de matrizes. O índice 'k' deveria ser 'k' em vez de 'i' na linha 31.",
+        "response": "O erro ocorre na linha 31, onde o índice 'k' deveria ser 'k' em vez de 'i' para corretamente calcular a multiplicação de matrizes.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 31 para 'resultado[i][j] += matrizA[i][k] * matrizB[k][j]'. \n[PASSO 2] Execute o programa novamente para verificar se agora a multiplicação de matrizes é realizada corretamente."
+    }
+}

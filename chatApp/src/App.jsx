@@ -47,7 +47,7 @@ function App() {
     // Adiciona um ouvinte de eventos para capturar todos os cliques
     const handleClick = (event) => {
       setClickCount((prevClickCount) => prevClickCount + 1);
-      clickLocal.push(event.target.localName);
+      clickLocal.push(event.target.localName + ' - ' + event.target.textContent);
     };
     document.addEventListener('click', handleClick);
 
@@ -69,7 +69,7 @@ function App() {
     <div className="App">
       <AuthProvider value={{ user }}>
         <Router>
-          <HeaderChat clicks={clickCount} local={clickLocal} loginTime={loginTime}/>
+          <HeaderChat clicks={clickCount} local={clickLocal} loginTime={loginTime} />
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />

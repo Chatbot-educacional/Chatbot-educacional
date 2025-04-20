@@ -2,17 +2,17 @@ import React, { useState } from "react";
 
 import "./Options.css";
 
-const OptionsArrayAnotherCorrect = (props) => {
+const OptionsAnotherIncorrect = (props) => {
     const [clicked, setClicked] = useState(false);
     const options = [
         {
-            text: "Ver outro Exemplo 🔍",
-            handler: props.actionProvider.handleExampleChoice,
-            id: -1,
+            text: "Exemplo Correto ✅",
+            handler: props.actionProvider.handleCorrectWE,
+            id: 1,
         },
         {
-            text: "Exemplo Incorreto ❌",
-            handler: props.actionProvider.handleIncorrectWE,
+            text: "Ver outro Exemplo 🔍",
+            handler: props.actionProvider.handleExampleChoice,
             id: 2,
         },
         {
@@ -46,4 +46,4 @@ const OptionsArrayAnotherCorrect = (props) => {
     return <div className="options-container">{buttonsMarkup}</div>;
 };
 
-export default OptionsArrayAnotherCorrect;
+export default OptionsAnotherIncorrect;

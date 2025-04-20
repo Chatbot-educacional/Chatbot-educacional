@@ -1,33 +1,33 @@
 {
-    "title": "Ordenação Crescente",
+    "title": "Cálculo de Porcentagem",
     "topic": "Trabalhando com Funções em C",
-    "knowledge": "Conhecimento básico de C e funções.",
+    "knowledge": "Conhecimento básico de C e operações matemáticas.",
     "origin": "Livro de Programação em Linguagem C",
-    "description": "Desenvolver uma função em C que aceite um vetor de inteiros e o seu tamanho como parâmetros, e retorne o vetor ordenado em ordem crescente.",
-    "result": "A função deve imprimir ou retornar o vetor ordenado.",
-    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "description": "Desenvolver uma função em C que aceite dois números como parâmetros, onde o primeiro representa o valor total e o segundo a porcentagem. A função deve calcular a porcentagem do primeiro valor.",
+    "result": "A função deve imprimir ou retornar o resultado do cálculo da porcentagem.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C e operações matemáticas.",
     "problemWECorrect": {
-        "thinking": "O problema do worked example correto envolve a criação de uma função em C que ordena um array de inteiros em ordem crescente.",
+        "thinking": "O problema do worked example correto envolve a criação de uma função que calcula a porcentagem de um valor total.",
         "solutionProposal": {
-            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um vetor de inteiros e um inteiro como parâmetros.\n[PASSO 2]. Utilizar um algoritmo de ordenação, como o Bubble Sort, para ordenar os elementos do vetor.\n[PASSO 3]. Retornar o vetor ordenado.",
-            "test": "Você pode testar a função com o seguinte vetor: {5, 2, 8, 1, 3}. O resultado esperado é {1, 2, 3, 5, 8}."
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois números como parâmetros.\n[PASSO 2]. Calcular a porcentagem do valor total usando a fórmula: (valor_total * porcentagem) / 100.\n[PASSO 3]. Retornar o resultado do cálculo da porcentagem.",
+            "test": "Você pode testar a função com os seguintes números: valor_total = 200 e porcentagem = 15. O resultado esperado é a porcentagem de 15% sobre 200, ou seja, 30."
         },
-        "correctSolutionProposal": "#include <stdio.h>\n\nvoid ordenarCrescente(int vetor[], int tamanho) {\n    for (int i = 0; i < tamanho - 1; i++) {\n        for (int j = 0; j < tamanho - i - 1; j++) {\n            if (vetor[j] > vetor[j + 1]) {\n                // Trocar os elementos se estiverem fora de ordem\n                int temp = vetor[j];\n                vetor[j] = vetor[j + 1];\n                vetor[j + 1] = temp;\n            }\n        }\n    }\n}\n\nint main() {\n    int meuVetor[] = {5, 2, 8, 1, 3};\n    int tamanhoVetor = sizeof(meuVetor) / sizeof(meuVetor[0]);\n\n    ordenarCrescente(meuVetor, tamanhoVetor);\n\n    printf(\"Vetor ordenado em ordem crescente: { \");\n    for (int i = 0; i < tamanhoVetor; i++) {\n        printf(\"%d \", meuVetor[i]);\n    }\n    printf(\"}\\n\");\n\n    return 0;\n}"
+        "correctSolutionProposal": "#include <stdio.h>\n\ndouble calcularPorcentagem(double valor_total, double porcentagem) {\n    return (valor_total * porcentagem) / 100;\n}\n\nint main() {\n    double resultado = calcularPorcentagem(200, 15);\n    printf(\"Resultado do cálculo de porcentagem: %.2f\\n\", resultado);\n\n    return 0;\n}"
     },
     "problemWEIncorrect": {
         "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
-        "incorrectSolution": "#include <stdio.h>\n\nvoid ordenarCrescenteIncorreto(int vetor[], int tamanho) {\n    for (int i = 0; i < tamanho; i++) {\n        for (int j = 0; j < tamanho - i - 1; j++) {\n            if (vetor[j] == vetor[j + 1]) {\n                // Trocar os elementos se estiverem fora de ordem\n                int temp = vetor[j];\n                vetor[j] = vetor[j + 1];\n                vetor[j + 1] = temp;\n            }\n        }\n    }\n}\n\nint main() {\n    int meuVetor[] = {5, 2, 8, 1, 3};\n    int tamanhoVetor = sizeof(meuVetor) / sizeof(meuVetor[0]);\n\n    ordenarCrescenteIncorreto(meuVetor, tamanhoVetor);\n\n    printf(\"Vetor ordenado em ordem crescente: { \");\n    for (int i = 0; i < tamanhoVetor; i++) {\n        printf(\"%d \", meuVetor[i]);\n    }\n    printf(\"}\\n\");\n\n    return 0;\n}",
-        "test": "Você pode testar a função com o mesmo vetor: {5, 2, 8, 1, 3}. O resultado esperado é {1, 2, 3, 5, 8}, mas a solução proposta incorreta produzirá resultados errados.",
+        "incorrectSolution": "#include <stdio.h>\n\ndouble calcularPorcentagemIncorreto(double valor_total, double porcentagem) {\n    return valor_total * porcentagem / 100;\n}\n\nint main() {\n    double resultado = calcularPorcentagemIncorreto(200, 15);\n    printf(\"Resultado do cálculo de porcentagem: %.2f\\n\", resultado);\n\n    return 0;\n}",
+        "test": "Você pode testar a função com os mesmos números: valor_total = 200 e porcentagem = 15. O resultado esperado é a porcentagem de 15% sobre 200, ou seja, 30, mas a solução proposta incorreta produzirá resultados errados.",
         "options": {
-            "one": "linha 7",
-            "two": "linha 8",
-            "three": "linha 6",
-            "four": "linha 5",
+            "one": "linha 4",
+            "two": "linha 9",
+            "three": "linha 11",
+            "four": "linha 7",
             "five": "não sei identificar"
         },
-        "correctOption": "4",
-        "error": "O erro está na forma como a função compara os elementos do vetor. A solução incorreta não compara para saber se um elemento é maior que o outro.",
-        "response": "O erro está na forma como a função percorre o vetor. A solução incorreta não ajusta corretamente os limites do loop externo.",
-        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita um vetor de inteiros e um inteiro como parâmetros.\n[PASSO 2]. Utilizar um algoritmo de ordenação, como o Bubble Sort, para ordenar os elementos do vetor.\n[PASSO 3]. Retornar o vetor ordenado."
+        "correctOption": "1",
+        "error": "O erro está na ordem de precedência dos operadores na solução incorreta. A multiplicação deve ser realizada antes da divisão.",
+        "response": "O erro está na ordem de precedência dos operadores na solução incorreta. A multiplicação deve ser realizada antes da divisão.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita dois números como parâmetros.\n[PASSO 2]. Calcular a porcentagem do valor total usando a fórmula: (valor_total * porcentagem) / 100.\n[PASSO 3]. Retornar o resultado do cálculo da porcentagem."
     }
 }

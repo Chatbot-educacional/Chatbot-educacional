@@ -1,0 +1,33 @@
+{
+    "title": "Somatório",
+    "topic": "Soma de Números em uma Lista",
+    "knowledge": "Conhecimento básico em sintaxe Python",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Python que crie uma lista de números e imprima a soma de todos os números da lista.",
+    "result": "O programa deve criar uma lista de números e imprimir corretamente a soma de todos os números da lista.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar uma lista de números em Python e calcular a soma de seus elementos. Isso requer o uso de loops para preencher a lista e calcular a soma.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie uma lista de inteiros para armazenar os números. \n[PASSO 2]. Use um loop para preencher a lista com números. \n[PASSO 3]. Utilize outro loop para calcular a soma dos números na lista. \n[PASSO 4]. Imprima a soma calculada.",
+            "test": "Execute o programa e verifique se ele cria a lista e imprime corretamente a soma dos números."
+        },
+        "correctSolutionProposal": "lista_numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\n# Calcular a soma dos números na lista\nsoma = sum(lista_numeros)\n\n# Imprimir a soma\nprint(f'A soma dos números na lista é: {soma}')"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de listas e cálculos.",
+        "incorrectSolution": "lista_numeros = []\n\n# Preencher a lista com números (exemplo: 1 a 10)\nfor i in range(1, 11):\n    lista_numeros[i] = i\n\n# Calcular a soma dos números na lista\nsoma = 0\nfor i in range(len(lista_numeros)):\n    soma += lista_numeros[i]\n\n# Imprimir a soma\nprint(f'A soma dos números na lista é: {soma}')",
+        "test": "Execute o programa e verifique se a soma dos números é realizada incorretamente.",
+        "options": {
+            "one": "linha 4",
+            "two": "linha 5",
+            "three": "linha 10",
+            "four": "linha 12",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na linha 5, onde o índice 'i' ultrapassa o tamanho da lista ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites.",
+        "response": "O erro ocorre na linha 5, onde o índice 'i' ultrapassa o tamanho da lista ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites. A correção seria 'lista_numeros.append(i)' para corrigir a manipulação do índice.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 5 para 'lista_numeros.append(i)'. \n[PASSO 2] Execute o programa novamente para verificar se agora a soma dos números é realizada corretamente."
+    }
+}

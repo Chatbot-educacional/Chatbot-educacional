@@ -1,0 +1,33 @@
+{
+    "title": "Maior Elemento",
+    "topic": "Encontrar o Maior Número em um Vetor",
+    "knowledge": "Conhecimento básico em sintaxe C",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em C que crie um vetor de números e imprima o maior número do vetor.",
+    "result": "O programa deve criar um vetor de números e imprimir corretamente o maior número presente no vetor.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um vetor de números em C e encontrar o maior número presente no vetor. Isso requer o uso de um loop para percorrer o vetor e uma variável para armazenar o maior número encontrado.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um vetor de números (array). \n[PASSO 2]. Use um loop para percorrer o vetor. \n[PASSO 3]. Dentro do loop, compare cada número com o maior número atualmente armazenado. \n[PASSO 4]. Se o número atual for maior, atualize a variável do maior número. \n[PASSO 5]. Após o loop, imprima o maior número encontrado.",
+            "test": "Execute o programa e verifique se ele cria o vetor e imprime corretamente o maior número."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint main() {\n    int vetorNumeros[] = {5, 10, 3, 8, 15, 7, 20};\n\n    // Encontrar o maior número no vetor\n    int maiorNumero = vetorNumeros[0];\n    for (int i = 1; i < sizeof(vetorNumeros) / sizeof(vetorNumeros[0]); i++) {\n        if (vetorNumeros[i] > maiorNumero) {\n            maiorNumero = vetorNumeros[i];\n        }\n    }\n\n    // Imprimir o maior número\n    printf(\"O maior número no vetor é: %d\", maiorNumero);\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de vetores e cálculos.",
+        "incorrectSolution": "#include <stdio.h>\n\nint main() {\n    int vetorNumeros[] = {-5, -10, -3, -8, -15, -7, -20};\n\n    // Encontrar o maior número no vetor\n    int maiorNumero = 0;\n    for (int i = 0; i < sizeof(vetorNumeros) / sizeof(vetorNumeros[0]); i++) {\n        if (vetorNumeros[i] >= maiorNumero) {\n            maiorNumero = vetorNumeros[i];\n        }\n    }\n\n    // Imprimir o maior número\n    printf(\"O maior número no vetor é: %d\", maiorNumero);\n\n    return 0;\n}",
+        "test": "Execute o programa e verifique se o maior número no vetor é encontrado incorretamente.",
+        "options": {
+            "one": "linha 10",
+            "two": "linha 7",
+            "three": "linha 8",
+            "four": "linha 11",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na inicialização da variável 'maiorNumero' na linha 7, que pode resultar em um resultado incorreto quando o vetor contém números negativos. Além disso, a condição na linha 11 não permite que o maior número seja o primeiro elemento do vetor.",
+        "response": "O erro está na inicialização da variável 'maiorNumero' na linha 7, que pode resultar em um resultado incorreto quando o vetor contém números negativos.",
+        "correctSolutionProposal": "[PASSO 1] Iniciar 'maiorNumero' com o primeiro elemento do vetor: 'int maiorNumero = vetorNumeros[0];'. \n[PASSO 2] Execute o programa novamente para verificar se agora o maior número no vetor é encontrado corretamente."
+    }
+}

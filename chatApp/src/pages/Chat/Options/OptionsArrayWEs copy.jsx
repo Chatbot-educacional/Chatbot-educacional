@@ -4,7 +4,6 @@ import "./Options.css";
 
 const OptionsArrayWEs = (props) => {
     const [clicked, setClicked] = useState(false);
-    
     const options = [//demanda refatoração para pegar os titulos em um array em loop
         {
             text: props.actionProvider.dataArray[0].title,

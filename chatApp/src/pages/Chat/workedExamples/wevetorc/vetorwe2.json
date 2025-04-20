@@ -1,0 +1,33 @@
+{
+    "title": "Ordenação",
+    "topic": "Ordenação de Vetores",
+    "knowledge": "Conhecimento básico em C e arrays.",
+    "origin": "Material didático da universidade",
+    "description": "Implementar um algoritmo de ordenação de vetor em C. O objetivo é classificar um vetor de números inteiros em ordem crescente.",
+    "result": "O programa deve imprimir o vetor original e o vetor ordenado em ordem crescente.",
+    "extra": "Livros sobre algoritmos de ordenação e tutoriais sobre implementação de algoritmos de ordenação em C.",
+    "problemWECorrect": {
+        "thinking": "O problema com worked example correto envolve a implementação de um algoritmo de ordenação de vetor, o que é uma habilidade fundamental em programação.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Criar um vetor de números inteiros.\n[PASSO 2]. Implementar um algoritmo de ordenação, como o algoritmo de ordenação por inserção.\n[PASSO 3]. Aplicar o algoritmo de ordenação ao vetor.\n[PASSO 4]. Imprimir o vetor original e o vetor ordenado.",
+            "test": "Você pode testar o programa com o vetor: {5, 2, 9, 1, 5, 3}. O resultado esperado é o vetor original {5, 2, 9, 1, 5, 3} e o vetor ordenado {1, 2, 3, 5, 5, 9}."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nvoid ordenarVetor(int vetor[], int tamanho) {\n    for (int i = 1; i < tamanho; i++) {\n        int chave = vetor[i];\n        int j = i - 1;\n        while (j >= 0 && vetor[j] > chave) {\n            vetor[j + 1] = vetor[j];\n            j--;\n        }\n        vetor[j + 1] = chave;\n    }\n}\n\nvoid imprimirVetor(int vetor[], int tamanho) {\n    for (int i = 0; i < tamanho; i++) {\n        printf(\"%d \", vetor[i]);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int vetor[] = {5, 2, 9, 1, 5, 3};\n    int tamanho = sizeof(vetor) / sizeof(vetor[0]);\n\n    ordenarVetor(vetor, tamanho);\n\n    printf(\"Vetor Original: \");\n    imprimirVetor(vetor, tamanho);\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na implementação do algoritmo de ordenação, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\nvoid ordenarVetor(int vetor[], int tamanho) {\n    for (int i = 1; i < tamanho + 1; i++) {\n        int chave = vetor[i];\n        int j = i - 1;\n        while (j >= 0 && vetor[j] > chave) {\n            vetor[j + 1] = vetor[j];\n            j--;\n        }\n        vetor[j + 1] = chave;\n    }\n}\n\nvoid imprimirVetor(int vetor[], int tamanho) {\n    for (int i = 0; i < tamanho; i++) {\n        printf(\"%d \", vetor[i]);\n    }\n    printf(\"\\n\");\n}\n\nint main() {\n    int vetor[] = {5, 2, 9, 1, 5, 3};\n    int tamanho = sizeof(vetor) / sizeof(vetor[0]);\n\n    ordenarVetor(vetor, tamanho);\n\n    printf(\"Vetor Original: \");\n    imprimirVetor(vetor, tamanho);\n\n    return 0;\n}",
+        "test": "Você pode testar o programa com o vetor: {5, 2, 9, 1, 5, 3}. O resultado esperado é o vetor original {5, 2, 9, 1, 5, 3} e o vetor ordenado em ordem crescente {1, 2, 3, 5, 5, 9}, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 2",
+            "two": "linha 4",
+            "three": "linha 10",
+            "four": "linha 8",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na linha 4, onde ocorre o laço permite alcançar uma posição inexistente no vetor (tamanho + 1) estourando o limite.",
+        "response": "O erro ocorre na parte em que o algoritmo de ordenação é implementado na solução incorreta fazendo com que haja acesso em posição inexistente.",
+        "correctSolutionProposal": "\n[PASSO 1] Criar um vetor de números inteiros. \n[PASSO 2] Implementar um algoritmo de ordenação personalizado, como o algoritmo de ordenação por inserção. \n[PASSO 3] Aplicar o algoritmo de ordenação ao vetor. \n[PASSO 4] Imprimir o vetor original e o vetor ordenado."
+    }
+}

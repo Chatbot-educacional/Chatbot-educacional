@@ -11,8 +11,9 @@ function Navbar({ clicks, local, loginTime }) {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [clicked, setClicked] = React.useState(false);
     const [isInserting, setIsInserting] = React.useState(false);
+    const [isSaved, setIsSaved] = React.useState(false);
 
-    const { insertDocument } = useInsertDocument("metrics-users");
+    const { insertDocument } = useInsertDocument("metrics-users3-ana");
 
     const handleSubmit = async () => {
         setIsInserting(true);
@@ -31,8 +32,9 @@ function Navbar({ clicks, local, loginTime }) {
                 localClicks: local,
                 turma: localStorage.getItem("turmaEscolhida")
             };
-            await insertDocument(documentData);
+           // await insertDocument(documentData);
             console.log('Documento inserido com sucesso:', documentData);
+            setIsSaved(true);
             logout();
         } catch (error) {
             console.error('Erro ao inserir documento:', error);

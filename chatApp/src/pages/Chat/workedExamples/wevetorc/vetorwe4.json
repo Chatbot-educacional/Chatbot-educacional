@@ -1,0 +1,33 @@
+{
+    "title": "Busca Binária",
+    "topic": "Busca Binária em Vetor Ordenado",
+    "knowledge": "Conhecimento intermediário em C e algoritmo de busca binária",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Codifique o algoritmo de busca binária em um vetor ordenado em C. O programa deve ser capaz de encontrar um elemento específico no vetor e retornar sua posição, se existir.",
+    "result": "O programa deve realizar a busca binária corretamente e retornar a posição do elemento no vetor, ou indicar que o elemento não foi encontrado.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como implementar o algoritmo de busca binária em um vetor ordenado em C. A busca binária é eficiente para vetores ordenados e reduz o tempo de busca.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Certifique-se de que o vetor está ordenado. \n[PASSO 2]. Defina os índices 'esquerda' e 'direita' para delimitar a busca. \n[PASSO 3]. Enquanto 'esquerda' for menor ou igual a 'direita', calcule o 'meio'. \n[PASSO 4]. Se o elemento no 'meio' for igual ao alvo, retorne a posição. \n[PASSO 5]. Se o elemento no 'meio' for menor que o alvo, atualize 'esquerda' para 'meio + 1'. \n[PASSO 6]. Se o elemento no 'meio' for maior que o alvo, atualize 'direita' para 'meio - 1'. \n[PASSO 7]. Se o loop terminar, o elemento não foi encontrado.",
+            "test": "Execute o programa com um vetor ordenado e verifique se ele encontra corretamente o elemento específico."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint buscaBinaria(int vetor[], int tamanho, int alvo) {\n    int esquerda = 0;\n    int direita = tamanho - 1;\n\n    while (esquerda <= direita) {\n        int meio = esquerda + (direita - esquerda) / 2;\n\n        if (vetor[meio] == alvo) {\n            return meio;\n        }\n\n        if (vetor[meio] < alvo) {\n            esquerda = meio + 1;\n        } else {\n            direita = meio - 1;\n        }\n    }\n\n    return -1; // Elemento não encontrado\n}\n\nint main() {\n    int vetorOrdenado[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};\n    int tamanho = sizeof(vetorOrdenado) / sizeof(vetorOrdenado[0]);\n    int alvo = 7;\n\n    int resultado = buscaBinaria(vetorOrdenado, tamanho, alvo);\n\n    if (resultado != -1) {\n        printf(\"Elemento encontrado na posição: %d\\n\", resultado);\n    } else {\n        printf(\"Elemento não encontrado no vetor.\\n\");\n    }\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica da busca binária. Isso serve para destacar a importância da correta implementação do algoritmo.",
+        "incorrectSolution": "#include <stdio.h>\n\nint buscaBinariaIncorreta(int vetor[], int tamanho, int alvo) {\n    int esquerda = 0;\n    int direita = tamanho - 1;\n\n    while (esquerda <= direita) {\n        int meio = esquerda + (direita - esquerda) / 2;\n\n        if (vetor[meio] == alvo) {\n            return meio + 1; \n        }\n\n        if (vetor[meio] < alvo) {\n            esquerda = meio + 1;\n        } else {\n            direita = meio - 1;\n        }\n    }\n\n    return -1; // Elemento não encontrado\n}\n\nint main() {\n    int vetorOrdenado[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};\n    int tamanho = sizeof(vetorOrdenado) / sizeof(vetorOrdenado[0]);\n    int alvo = 7;\n\n    int resultado = buscaBinariaIncorreta(vetorOrdenado, tamanho, alvo);\n\n    if (resultado != -1) {\n        printf(\"Elemento encontrado na posição: %d\\n\", resultado);\n    } else {\n        printf(\"Elemento não encontrado no vetor.\\n\");\n    }\n\n    return 0;\n}",
+        "test": "Execute o programa e verifique se a busca binária é realizada incorretamente.",
+        "options": {
+            "one": "linha 11",
+            "two": "linha 10",
+            "three": "linha 8",
+            "four": "linha 7",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na linha 11, onde a posição retornada é 'meio + 1' em vez de apenas 'meio'. Isso resulta em uma posição incorreta quando o elemento é encontrado.",
+        "response": "O erro ocorre na linha 11, onde a posição retornada é 'meio + 1' em vez de apenas 'meio'. Isso resulta em uma posição incorreta quando o elemento é encontrado.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 1 para 'return meio;' em vez de 'return meio + 1;'. \n[PASSO 2] Execute o programa novamente para verificar se agora a busca binária é realizada corretamente."
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "title": "Maior Elemento",
+    "topic": "Encontrar o Maior Número em uma Lista",
+    "knowledge": "Conhecimento básico em sintaxe Python",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Python que crie uma lista de números e imprima o maior número da lista.",
+    "result": "O programa deve criar uma lista de números e imprimir corretamente o maior número presente na lista.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar uma lista de números em Python e encontrar o maior número presente na lista. Isso requer o uso de um loop para percorrer a lista e uma variável para armazenar o maior número encontrado.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie uma lista de números. \n[PASSO 2]. Use um loop para percorrer a lista. \n[PASSO 3]. Dentro do loop, compare cada número com o maior número atualmente armazenado. \n[PASSO 4]. Se o número atual for maior, atualize a variável do maior número. \n[PASSO 5]. Após o loop, imprima o maior número encontrado.",
+            "test": "Execute o programa e verifique se ele cria a lista e imprime corretamente o maior número."
+        },
+        "correctSolutionProposal": "lista_numeros = [-5, -10, -3, -8, -15, -7, 20]\n\n# Encontrar o maior número na lista\nmaior_numero = lista_numeros[0]\nfor numero in lista_numeros:\n    if numero >= maior_numero:\n        maior_numero = numero\n\n# Imprimir o maior número\nprint(f'O maior número na lista é: {maior_numero}')"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de listas e cálculos.",
+        "incorrectSolution": "lista_numeros = [-5, -10, -3, -8, -15, -7, -20]\n\n# Encontrar o maior número na lista\nmaior_numero = 0\nfor numero in lista_numeros:\n    if numero >= maior_numero:\n        maior_numero = numero\n\n# Imprimir o maior número\nprint(f'O maior número na lista é: {maior_numero}')",
+        "test": "Execute o programa e verifique se o maior número na lista é encontrado incorretamente.",
+        "options": {
+            "one": "linha 7",
+            "two": "linha 6",
+            "three": "linha 5",
+            "four": "linha 4",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na inicialização da variável 'maior_numero' na linha 6, que pode resultar em um resultado incorreto quando a lista contém números negativos.",
+        "response": "O erro está na inicialização da variável 'maior_numero' na linha 6, que pode resultar em um resultado incorreto quando a lista contém números negativos. A correção seria iniciar 'maior_numero' com o primeiro elemento da lista.",
+        "correctSolutionProposal": "[PASSO 1] Iniciar 'maior_numero' com o primeiro elemento da lista: 'maior_numero = lista_numeros[0]'. \n[PASSO 2] Execute o programa novamente para verificar se agora o maior número na lista é encontrado corretamente."
+    }
+}

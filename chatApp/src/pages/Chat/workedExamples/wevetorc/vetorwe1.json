@@ -1,0 +1,33 @@
+{
+    "title": "Cálculo de média e classificação",
+    "topic": "Trabalhando com Vetores",
+    "knowledge": "Conhecimento básico de C, estruturas de controle e vetores.",
+    "origin": "Livro de Programação em C Avançada",
+    "description": "Desenvolver um programa em C que calcule a média de notas de alunos e determine a situação deles (Aprovado, Reprovado, Recuperação) com base nas notas. O programa deve utilizar vetores para armazenar as notas dos alunos.",
+    "result": "O programa deve imprimir a média de notas de cada aluno e sua situação.",
+    "extra": "Vídeo tutorial sobre como trabalhar com vetores em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve calcular a média de notas e determinar a situação do aluno com base na média. Isso pode ser resolvido com uma abordagem passo a passo.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Receber as notas dos alunos e armazená-las em um vetor.\n[PASSO 2]. Percorrer o array somando todos os valores.\n[PASSO 3]. Calcular a média das notas.\n[PASSO 4]. Usar uma estrutura condicional para determinar a situação de cada aluno.\n[PASSO 5]. Imprimir a média e a situação de cada aluno.",
+            "test": "Você pode testar o programa com as seguintes notas: {7.5, 6.0, 8.3, 5.5, 9.2}. O resultado esperado é a média 7.3 para as notas desse aluno."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint main() {\n    double notas[] = {7.5, 6.0, 8.3, 5.5, 9.2};\n    double media = 0.0;\n\n    for (int i = 0; i < sizeof(notas) / sizeof(notas[0]); i++) {\n        media += notas[i];\n    }\n\n    media /= sizeof(notas) / sizeof(notas[0]);\n\n    printf(\"Média das notas: %.2f\\n\", media);\n\n    if (media >= 7.0) {\n        printf(\"Situação: Aprovado\\n\");\n    } else if (media >= 5.0) {\n        printf(\"Situação: Recuperação\\n\");\n    } else {\n        printf(\"Situação: Reprovado\\n\");\n    }\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução do programa, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\nint main() {\n    double notas[] = {7.5, 6.0, 8.3, 5.5, 9.2};\n    double media = 0.0;\n\n    for (int i = 1; i < sizeof(notas) / sizeof(notas[0]); i++) {\n        media += notas[i];\n    }\n\n    media /= sizeof(notas) / sizeof(notas[0]);\n\n    printf(\"Média das notas: %.2f\\n\", media);\n\n    if (media >= 7.0) {\n        printf(\"Situação: Aprovado\\n\");\n    } else if (media >= 5.0) {\n        printf(\"Situação: Recuperação\\n\");\n    } else {\n        printf(\"Situação: Reprovado\\n\");\n    }\n\n    return 0;\n}",
+        "test": "Você pode testar o programa com as mesmas notas: {7.5, 6.0, 8.3, 5.5, 9.2}. O resultado esperado é a média de cada aluno e sua situação, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 7",
+            "two": "linha 5",
+            "three": "linha 11",
+            "four": "linha 2",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na forma como a média é calculada na solução incorreta. A média deve começar a somar os valores começando da posição zero do array. Repare que o laço for começa no valor 1, portanto não atingirá o valor esperado de média 7.3",
+        "response": "O erro ocorre na parte em que a média é calculada na solução incorreta. Em vez de usar a função `average()` para calcular a média corretamente, a solução incorreta utiliza um loop e calcula a média de maneira incorreta.",
+        "correctSolutionProposal": "\n[PASSO 1]. Receber as notas dos alunos e armazená-las em um vetor.\n[PASSO 2]. Percorrer o array somando todos os valores.\n[PASSO 3]. Calcular a média das notas.\n[PASSO 4]. Usar uma estrutura condicional para determinar a situação de cada aluno.\n[PASSO 5]. Imprimir a média e a situação de cada aluno."
+    }
+}

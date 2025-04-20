@@ -1,0 +1,33 @@
+{
+    "title": "Criação com números aleatórios",
+    "topic": "Criação de Lista com Números Aleatórios",
+    "knowledge": "Conhecimento básico em sintaxe Python",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Python que crie uma lista de 5 números aleatórios entre 1 e 100 e imprima a lista.",
+    "result": "O programa deve criar uma lista de 5 números aleatórios entre 1 e 100 e imprimir corretamente a lista.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar uma lista de números aleatórios em Python e imprimir a lista resultante. Isso requer o uso do módulo random para gerar números aleatórios e um loop para preencher a lista.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Importe o módulo random. \n[PASSO 2]. Crie uma lista de inteiros com tamanho 5. \n[PASSO 3]. Use um loop para gerar e atribuir números aleatórios entre 1 e 100 à lista. \n[PASSO 4]. Imprima a lista de números aleatórios.",
+            "test": "Execute o programa e verifique se ele cria a lista e imprime corretamente a lista de números aleatórios."
+        },
+        "correctSolutionProposal": "import random\n\n# Criar uma lista de inteiros com tamanho 5\nlista_aleatoria = [random.randint(1, 100) for _ in range(5)]\n\n# Imprimir a lista de números aleatórios\nprint(lista_aleatoria)"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de números aleatórios e preenchimento de listas.",
+        "incorrectSolution": "import random\n\n# Criar uma lista de inteiros com tamanho 5\nlista_aleatoria = [0] * 5\n\n# Preencher a lista com números aleatórios entre 0 e 100\nfor i in range(6):\n    lista_aleatoria[i] = random.randint(1, 100)\n\n# Imprimir a lista de números aleatórios\nprint(lista_aleatoria)",
+        "test": "Execute o programa e verifique se a lista de números aleatórios é gerada incorretamente.",
+        "options": {
+            "one": "linha 8",
+            "two": "linha 4",
+            "three": "linha 7",
+            "four": "linha 10",
+            "five": "não sei identificar"
+        },
+        "correctOption": "3",
+        "error": "O erro está na geração dos números aleatórios na linha 7, onde o índice 'i' ultrapassa o tamanho da lista ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites.",
+        "response": "O erro está na geração dos números aleatórios na linha 9, onde o índice 'i' ultrapassa o tamanho da lista ao adicionar os números. Isso resulta em uma exceção de índice fora dos limites. A correção seria 'lista_aleatoria[i] = random.randint(1, 100)' para corrigir a manipulação do índice.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 9 para 'lista_aleatoria[i] = random.randint(1, 100)'. \n[PASSO 2] Execute o programa novamente para verificar se agora a lista de números aleatórios é gerada corretamente."
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "title": "Impressão",
+    "topic": "Impressão de Números em um Array",
+    "knowledge": "Conhecimento básico em sintaxe C",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em C que imprima os números de 1 a 10 em um array.",
+    "result": "O programa deve criar um array e imprimir os números de 1 a 10.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array em C e preenchê-lo com números de 1 a 10. É um exercício simples para praticar a criação e impressão de arrays.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um array de inteiros para armazenar os números de 1 a 10. \n[PASSO 2]. Use um loop 'for' para iterar de 1 a 10. \n[PASSO 3]. Dentro do loop, adicione cada número ao array. \n[PASSO 4]. Após o loop, imprima os números no array.",
+            "test": "Execute o programa e verifique se ele cria um array e imprime os números de 1 a 10 corretamente."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint main() {\n    int numeros[10];\n    int i, j;\n\n    for (i = 1; i <= 10; i++) {\n        numeros[i - 1] = i;\n    }\n\n    for (j = 0; j < 10; j++) {\n        printf(\"%d\\n\", numeros[j]);\n    }\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação dos índices ao preencher o array.",
+        "incorrectSolution": "#include <stdio.h>\n\nint main() {\n    int numeros[10];\n    int i;\n\n    for (i = 1; i <= 10; i++) {\n        numeros[i] = i;\n    }\n\n    for (i = 1; i <= 10; i++) {\n        printf(\"%d\\n\", numero);\n    }\n\n    return 0;\n}",
+        "test": "Execute o programa e verifique se ele cria um array e imprime os números incorretamente.",
+        "options": {
+            "one": "linha 14",
+            "two": "linha 13",
+            "three": "linha 12",
+            "four": "linha 8",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na linha 8, onde ocorre a manipulação dos índices ao adicionar os números ao array. O índice 'i' deveria comecar em zero e parar antes de 10 para garantir que os números sejam adicionados nas posições corretas do array.",
+        "response": "O erro ocorre na linha 7, onde o índice 'i' deveria ser 'i - 1' para garantir que os números sejam adicionados nas posições corretas do array.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a linha 8 para 'numeros[i - 1] = i;'. \n[PASSO 2] Execute o programa novamente para verificar se agora cria e imprime corretamente os números de 1 a 10."
+    }
+}

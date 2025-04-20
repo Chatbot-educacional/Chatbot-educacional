@@ -1,0 +1,33 @@
+{
+    "title": "Cálculo de média e classificação",
+    "topic": "Trabalhando com Listas",
+    "knowledge": "Conhecimento básico de Python, estruturas de controle e listas.",
+    "origin": "Livro de Programação Python Avançada",
+    "description": "Desenvolver um programa em Python que calcule a média de notas de alunos e determine a situação deles (Aprovado, Reprovado, Recuperação) com base nas notas. O programa deve utilizar listas para armazenar as notas dos alunos.",
+    "result": "O programa deve imprimir a média de notas de cada aluno e sua situação.",
+    "extra": "Vídeo tutorial sobre como trabalhar com listas em Python.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve calcular a média de notas e determinar a situação do aluno com base na média. Isso pode ser resolvido com uma abordagem passo a passo.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Receber as notas dos alunos e armazená-las em uma lista.\n[PASSO 2]. Percorrer a lista somando todos os valores.\n[PASSO 3]. Calcular a média das notas.\n[PASSO 4]. Usar uma estrutura condicional para determinar a situação de cada aluno.\n[PASSO 5]. Imprimir a média e a situação de cada aluno.",
+            "test": "Você pode testar o programa com as seguintes notas: [7.5, 6.0, 8.3, 5.5, 9.2]. O resultado esperado é a média 7.3 para as notas desse aluno."
+        },
+        "correctSolutionProposal": "notas = [7.5, 6.0, 8.3, 5.5, 9.2]\nmedia = sum(notas) / len(notas)\nprint(f'Média das notas: {media}')\nif media >= 7.0:\n    print('Situação: Aprovado')\nelif media >= 5.0:\n    print('Situação: Recuperação')\nelse:\n    print('Situação: Reprovado')"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução do programa, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "notas = [7.5, 6.0, 8.3, 5.5, 9.2]\nmedia = 0.0\nfor i in range(1, len(notas)):\n    media += notas[i]\nmedia /= len(notas)\nprint(f'Média das notas: {media}')\nif media >= 7.0:\n    print('Situação: Aprovado')\nelif media >= 5.0:\n    print('Situação: Recuperação')\nelse:\n    print('Situação: Reprovado')",
+        "test": "Você pode testar o programa com as mesmas notas: [7.5, 6.0, 8.3, 5.5, 9.2]. O resultado esperado é a média de cada aluno e sua situação, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 7",
+            "two": "linha 3",
+            "three": "linha 11",
+            "four": "linha 2",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na forma como a média é calculada na solução incorreta. A média deve começar a somar os valores começando da posição zero do array. Repare que o laço for começa no valor 1, portanto não atingirá o valor esperado de média 7.3",
+        "response": "O erro ocorre na parte em que a média é calculada na solução incorreta. Em vez de usar a função `sum()` para calcular a média corretamente, a solução incorreta utiliza um loop e calcula a média de maneira incorreta.",
+        "correctSolutionProposal": "\n[PASSO 1]. Receber as notas dos alunos e armazená-las em uma lista.\n[PASSO 2]. Percorrer a lista somando todos os valores.\n[PASSO 3]. Calcular a média das notas.\n[PASSO 4]. Usar uma estrutura condicional para determinar a situação de cada aluno.\n[PASSO 5]. Imprimir a média e a situação de cada aluno."
+    }
+}

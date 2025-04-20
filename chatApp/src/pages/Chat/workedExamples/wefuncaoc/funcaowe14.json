@@ -1,0 +1,33 @@
+{
+    "title": "Cálculo da Média de valores Matriz (nxn)",
+    "topic": "Trabalhando com Funções em C",
+    "knowledge": "Conhecimento básico de C e funções.",
+    "origin": "Livro de Programação em Linguagem C",
+    "description": "Desenvolver uma função em C que aceite uma matriz quadrada (nxn) e a sua dimensão 'n' como parâmetros, e retorne a média dos valores da matriz.",
+    "result": "A função deve imprimir ou retornar a média dos valores da matriz.",
+    "extra": "Vídeo tutorial sobre como trabalhar com funções em C.",
+    "problemWECorrect": {
+        "thinking": "O problema do worked example correto envolve a criação de uma função em C que calcula a média dos valores de uma matriz quadrada.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma matriz e um inteiro 'n' como parâmetros.\n[PASSO 2]. Utilizar dois loops aninhados para percorrer cada elemento da matriz e calcular a soma total.\n[PASSO 3]. Dividir a soma total pelo número de elementos para obter a média.\n[PASSO 4]. Retornar a média.",
+            "test": "Você pode testar a função com a seguinte matriz de dimensão 3x3: {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}. O resultado esperado é a média 5.0."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nfloat calcularMediaMatriz(int matriz[][3], int n) {\n    float somaTotal = 0.0;\n\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            somaTotal += matriz[i][j];\n        }\n    }\n\n    return somaTotal / (float)(n * n);\n}\n\nint main() {\n    int minhaMatriz[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n    int dimensao = 3;\n\n    float media = calcularMediaMatriz(minhaMatriz, dimensao);\n\n    printf(\"Média da matriz: %.2f\\n\", media);\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O problema com worked example incorreto envolve um erro na solução da função, o que pode ser uma oportunidade de aprendizado para os alunos.",
+        "incorrectSolution": "#include <stdio.h>\n\nfloat calcularMediaMatrizIncorreto(int matriz[][3], int n) {\n    float somaTotal = 0.0;\n\n    for (int i = 0; i <= n; i++) {\n        for (int j = 0; j <= n; j++) {\n            somaTotal += matriz[i][j];\n        }\n    }\n\n    return somaTotal / (float)(n * n);\n}\n\nint main() {\n    int minhaMatriz[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n    int dimensao = 3;\n\n    float media = calcularMediaMatrizIncorreto(minhaMatriz, dimensao);\n\n    printf(\"Média da matriz: %.2f\\n\", media);\n\n    return 0;\n}",
+        "test": "Você pode testar a função com a mesma matriz de dimensão 3x3: {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}. O resultado esperado é a média 5.0, mas a solução proposta incorreta produzirá resultados errados.",
+        "options": {
+            "one": "linha 6 e 7",
+            "two": "linha 8 e 9",
+            "three": "linha 13 e 15",
+            "four": "linha 6 e 9",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na forma como os loops percorrem a matriz. A solução incorreta não deixa estourar os limites da matriz, causando um acesso a posição inexistente.",
+        "response": "O erro está na forma como os loops percorrem a matriz. A solução incorreta não ajusta corretamente os limites dos loops.",
+        "correctSolutionProposal": "\n[PASSO 1]. Definir a assinatura da função, indicando que ela aceita uma matriz e um inteiro 'n' como parâmetros.\n[PASSO 2]. Utilizar dois loops aninhados para percorrer cada elemento da matriz e calcular a soma total.\n[PASSO 3]. Dividir a soma total pelo número de elementos para obter a média.\n[PASSO 4]. Retornar a média."
+    }
+}

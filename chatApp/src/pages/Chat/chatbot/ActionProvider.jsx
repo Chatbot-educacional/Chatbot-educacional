@@ -1,13 +1,43 @@
-import React, { useState } from 'react';
-import dataVariable from '../../../Data/VariableQuizData.json';
-import dataFor from '../../../Data/LoopsData.json';
-import dataCondicional from '../../../Data/ConditionalQuizData.json';
+import React, { useState, useEffect } from 'react';
 import { useAuthValue } from "../../../context/AuthContext";
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { useInsertDocument } from '../../../hooks/useInsertDocument';
+import { useNavigate } from 'react-router-dom';
 
-import dataArray from '../workedExamples/WorkedExamplesArrays';
-let dataArraysWE;
+import dataArray from '../workedExamples/WorkedExamplesArraysC';
+import dataFunc from '../workedExamples/WorkedExamplesFunctionsC';
+
+import dataArrayJava from '../workedExamples/WorkedExamplesArraysJava';
+import dataFuncJava from '../workedExamples/WorkedExamplesFunctionsJava';
+
+import dataListPY from '../workedExamples/WorkedExamplesListspy';
+
+let data, dataWE, idDataWE, currentWETheme, currentExWETheme, correctWETheme, incorrectWETheme, questionWETheme, variavelLugar, acertouResposta = 'N';
+
+
+const langConfigs = {
+  "Linguagem C": {
+    themes: {
+      1: { name: "Vetores", widget: "vetoreswe" },
+      2: { name: "Funções", widget: "funcoeswe" },
+    },
+    data: [dataArray, dataFunc]
+  },
+  "Linguagem Java": {
+    themes: {
+      1: { name: "Arrays", widget: "vetoreswe" },
+      2: { name: "Funções", widget: "funcoeswe" },
+    },
+    data: [dataArrayJava, dataFuncJava]
+  },
+  "Linguagem Python": {
+    themes: {
+      1: { name: "Listas", widget: "vetoreswe" },
+    },
+    data: [dataListPY]
+  }
+}
 
 const HeaderMessage = ({ descricao, resultado, reflexivo, teste }) => {
   return (
@@ -55,7 +85,7 @@ const ResponseWE = ({ text, erro, resposta, solucao, code }) => {
     <div>
       <p>{text}</p>
       <p><strong>Identificando o erro: </strong>{erro}</p>
-      <p><strong>Resposta correta: </strong>{resposta}</p>
+      {/*<p><strong>Resposta correta: </strong>{resposta}</p>*/}
       <p><strong>Veja abaixo uma proposta de solução correta: </strong></p>
       <p>{solucao}</p>
       <CodeMessage code={code} />
@@ -82,6 +112,35 @@ const CodeMessage = ({ code }) => {
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const { user } = useAuthValue();
+  const [visitado, setVisitado] = React.useState([]);
+  const [exampleTime, setExampleTime] = React.useState(null);
+  const [primeiraExecucao, setPrimeiraExecucao] = React.useState(true);
+  const { insertDocument } = useInsertDocument("metrics-example-functions");
+  const [isInserting, setIsInserting] = React.useState(false);
+  const navigate = useNavigate();
+  const [language, setLanguage] = useState('');
+  const [langConfig, setLangConfig] = useState(null);
+  const [themeNames, setThemeNames] = useState([]);
+
+
+  //adaptação temp para pegar linguagem
+  useEffect(() => {
+    setLanguage(localStorage.getItem("conteudo"));
+    selectLang();
+  }, []);
+
+  const selectLang = () => {
+    const lang = localStorage.getItem("conteudo");
+    setLanguage(lang);
+
+    const selectedLangConfig = langConfigs[lang];
+    setLangConfig(selectedLangConfig);
+
+    // Pega os nomes de todos os temas da linguagem selecionada
+    const themeNames = Object.values(selectedLangConfig?.themes || {}).map(theme => theme.name);
+
+    setThemeNames(themeNames); // Atualiza o estado com os nomes dos temas
+  };
 
   const greet = () => {
     const botMessage = createChatBotMessage(`Olá, ${user.displayName}`);
@@ -92,11 +151,65 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
-  const handleExampleChoice = () => {
+  const calcTime = () => {
+    let finalExampleTime = new Date();
+    let elapsedTimeInMilliseconds = finalExampleTime - exampleTime;
+    let elapsedTimeInMinutes = elapsedTimeInMilliseconds / (1000 * 60);
+    return elapsedTimeInMinutes;
+  }
+
+  const handleMetricsStore = async (uID, exID, tempo, lugar, cAnswer) => {
+    setIsInserting(true);
+    try {
+      const documentData = {
+        user: uID,
+        example: exID,
+        time: tempo,
+        category: lugar,
+        correctAnswer: cAnswer,
+        createdBy: user.displayName
+      };
+      await insertDocument(documentData);
+      console.log('Documento inserido com sucesso:', documentData);
+    } catch (error) {
+      console.error('Erro ao inserir documento:', error);
+    } finally {
+      setIsInserting(false);
+    }
+  };
+
+  /*#Métrica - 1 primeira execução sem cálculo
+               2 proximas execuções precisa calcular de onde veio e armazenar C ou I*/
+  const handleExampleChoice = (id) => {
+    if (!primeiraExecucao) {
+      let totalTime = calcTime();
+      if (variavelLugar == 'C' || variavelLugar == 'I' || variavelLugar == 'D' || variavelLugar == 'Q') {
+        visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(D, C, I)
+        handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+        variavelLugar = null;
+        acertouResposta = 'N';
+      }
+      setExampleTime(new Date())
+    } else {
+      //setExampleTime(new Date());
+      setPrimeiraExecucao(false)
+      acertouResposta = 'N';
+    }
+    const theme = langConfig?.themes[id];
+    if (!theme) return;
+
+    currentWETheme = theme.widget;
+    currentExWETheme = "optionswe";
+    correctWETheme = "anothercorrect";
+    incorrectWETheme = "questionswe";
+    questionWETheme = "anotherincorrect";
+
+    data = langConfig?.data[id - 1];
+
     const botMessages = [
       createChatBotMessage(<CustomText text={`${user.displayName}, eu posso te ajudar com os temas abaixo, basta efetuar um click no botão desejado:`} />,
         {
-          widget: "vetoreswe",
+          widget: currentWETheme,
         }),
     ];
     setState((prev) => ({
@@ -105,19 +218,22 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
-  // vetores  
-  const handleArraysQuiz = (op) => {
-    dataArraysWE = dataArray[op];
+  const handleQuiz = (op) => {
+    //let totalTime = calcTime();
+    //visitado.push({ user: user.uid, example: op, time: totalTime, category: variavelLugar })//de onde veio(WE, C, I)
+    setExampleTime(new Date());
 
-    const descricaoDoProblema = dataArraysWE.description
-    const resultado = dataArraysWE.r
-    const reflex = dataArraysWE.problemWECorrect.thinking;
-    const teste = dataArraysWE.problemWECorrect.solutionProposal.test;
-
+    idDataWE = op;//armazenando o id do exemplo escolhido
+    dataWE = data[idDataWE];
+    const descricaoDoProblema = dataWE.description
+    const resultado = dataWE.result
+    const reflex = dataWE.problemWECorrect.thinking;
+    const teste = dataWE.problemWECorrect.solutionProposal.test;
+    variavelLugar = 'D';
     const botMessages = [
       createChatBotMessage(<HeaderMessage descricao={descricaoDoProblema} resultado={resultado} reflexivo={reflex} teste={teste} />,
         {
-          widget: "vetores", // widget de vetores
+          widget: currentExWETheme, // widget de vetores
         }),
     ];
     setState((prev) => ({
@@ -126,15 +242,21 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
-  const handleCorrectWEArray = () => {
-    const passos = dataArraysWE.problemWECorrect.solutionProposal.steps;
-    const proposta = dataArraysWE.problemWECorrect.correctSolutionProposal;
+  const handleCorrectWE = (op) => {
+    let totalTime = calcTime();
+    visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)
+    handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+    setExampleTime(new Date());
+    variavelLugar = 'C';
+
+    dataWE = data[idDataWE];
+    const passos = dataWE.problemWECorrect.solutionProposal.steps;
+    const proposta = dataWE.problemWECorrect.correctSolutionProposal;
 
     const botMessages = [
-      createChatBotMessage(<CorrectWE passos={passos} proposta={proposta} />/*),
-      createChatBotMessage(<CodeMessage code={codigo} />*/,
+      createChatBotMessage(<CorrectWE passos={passos} proposta={proposta} />,
         {
-          widget: "vetoresanothercorrect", // widget de vetores
+          widget: correctWETheme, // widget de vetores
         }),
     ];
 
@@ -144,15 +266,22 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
-  const handleIncorrectWEArray = () => {
-    const incorreto = dataArraysWE.problemWEIncorrect.incorrectSolution;
-    const teste = dataArraysWE.problemWEIncorrect.test;
-    const opcoes = dataArraysWE.problemWEIncorrect.options;
+  const handleIncorrectWE = (op) => {
+    let totalTime = calcTime();
+    visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)
+    handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+    setExampleTime(new Date());
+    variavelLugar = 'I';
+
+    dataWE = data[idDataWE];
+    const incorreto = dataWE.problemWEIncorrect.incorrectSolution;
+    const teste = dataWE.problemWEIncorrect.test;
+    const opcoes = dataWE.problemWEIncorrect.options;
 
     const botMessages = [
       createChatBotMessage(
         <IncorrectWE teste={teste} incorreto={incorreto} opcoes={opcoes} />,
-        { widget: "identificarErroVariavelLines", /* widget de vetores*/ }
+        { widget: incorrectWETheme, /* widget de vetores*/ }
       )
     ];
 
@@ -162,38 +291,31 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
-  const handleArrayResp1 = () => {
-    //mandar o switch para saber se é array, function, dentre outros, pegar tema no json?
-    handleQuestionArray("1");
-  }
-  const handleArrayResp2 = () => {
-    handleQuestionArray("2");
-  }
-  const handleArrayResp3 = () => {
-    handleQuestionArray("3");
-  }
-  const handleArrayResp4 = () => {
-    handleQuestionArray("4");
-  }
-  const handleArrayResp5 = () => {
-    handleQuestionArray("5");
-  }
+  /**Recebe a resposta da questão e mostra o feedback  */
+  const handleQuestionWE = (resp) => {
+    let totalTime = calcTime();
+    visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)
+    handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+    setExampleTime(new Date());
+    variavelLugar = 'Q';
 
-  const handleQuestionArray = (resp) => {
-    const opcaoCorreta = dataArraysWE.problemWEIncorrect.correctOption;
-    const erro = dataArraysWE.problemWEIncorrect.error;
-    const resposta = dataArraysWE.problemWEIncorrect.response;
-    const proposta = dataArraysWE.problemWECorrect.correctSolutionProposal;
-    const solucao = dataArraysWE.problemWEIncorrect.correctSolutionProposal;
+    const opcaoCorreta = dataWE.problemWEIncorrect.correctOption;
+    const erro = dataWE.problemWEIncorrect.error;
+    const resposta = dataWE.problemWEIncorrect.response;
+    const proposta = dataWE.problemWECorrect.correctSolutionProposal;
+    const solucao = dataWE.problemWEIncorrect.correctSolutionProposal;
     let texto = "";
 
-    if (resp === opcaoCorreta) {
+    if (resp === Number(opcaoCorreta)) {
       texto = "Parabéns! Você acertou.";
+      acertouResposta = 'T';
     } else if (resp == 5) {
       texto = "Tudo bem, eu irei te ajudar a identiticar."
+      acertouResposta = '5';
     }
     else {
       texto = "A resposta está incorreta. Não desanime, eu irei te ajudar a identificar corretamente.";
+      acertouResposta = 'F';
     }
 
     const botMessages = [
@@ -202,7 +324,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           erro={erro} resposta={resposta} solucao={solucao} code={proposta}
         />,
         {
-          widget: "vetoresanotherincorrect", // widget de vetores
+          widget: questionWETheme, // widget de vetores
         }
       )
     ];
@@ -210,205 +332,13 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, ...botMessages],
-    }));
-  }
-
-  const handleVariavelQuiz = () => {
-    const descricaoDoProblema = dataVariable.descricaoDoProblema
-
-    const resultado = dataVariable.resultado
-
-    const botMessages = [
-      createChatBotMessage(descricaoDoProblema + resultado,
-        {
-          widget: "variavel", // widget de variavel
-        })
-    ];
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, ...botMessages],
-    }));
-  };
-
-  const handleCondicionalQuiz = () => {
-    const botMessage = createChatBotMessage(
-      dataCondicional.definicao,
-      {
-        widget: "condicional", // widget de condicionais
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  const handleLacoRepeticao = () => {
-    const botMessage = createChatBotMessage(
-      dataFor.definicao,
-      {
-        widget: "lacoRepeticao", // widget de laco de repeticao
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  const handleExemploCorretoVariavel = () => {
-    const botMessages = [
-      createChatBotMessage(dataVariable.problemaComWorkedExampleCorreto.reflexivo + dataVariable.problemaComWorkedExampleCorreto.propostaDeSolucao.etapasDeSolucao),
-      createChatBotMessage(<CodeMessage code={dataVariable.problemaComWorkedExampleCorreto.solucaoCorreta} />,
-        {
-          widget: "variavel", // widget de variavel
-        })
-    ];
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, ...botMessages],
-    }));
-  };
-
-  const handleExemploIncorretoVariavel = () => {
-    const botMessages = [
-      createChatBotMessage(dataVariable.problemaComWorkedExampleIncorreto.reflexivo),
-      createChatBotMessage(<CodeMessage code={dataVariable.problemaComWorkedExampleIncorreto.solucaoIncorreta} />),
-      createChatBotMessage('Você conseguiu identificar o erro?',
-        {
-          widget: "identificarErroVariavelYesOrNo",
-        }
-      )
-    ];
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, ...botMessages],
-    }));
-  };
-
-  const handleIdentificarErroVariavelSim = () => {
-    const botMessages = [
-      createChatBotMessage('Em qual linha do código acima está o erro ?',
-        {
-          widget: "identificarErroVariavelLines",
-        }
-      ),
-    ];
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, ...botMessages],
-    }));
-  };
-
-
-  const handleIdentificarErroVariavel = () => {
-    const botMessage = createChatBotMessage(
-      dataVariable.identificaProblema,
-      {
-        widget: "volteMenuPrincipal", // widget para voltar menu principal
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  }
-
-  const handleExemploCorretoCondicional = () => {
-    const botMessage = createChatBotMessage(
-      dataCondicional.exemploCorreto,
-      {
-        widget: "condicional", // widget de condiocional
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  const handleExemploIncorretoCondicional = () => {
-    const botMessage = createChatBotMessage(
-      dataCondicional.exemploIncorreto,
-      {
-        widget: "identificarErroCondicional", // widget de condiocional
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  const handleIdentificarErroCondicional = () => {
-    const botMessage = createChatBotMessage(
-      dataCondicional.identificaProblema,
-      {
-        widget: "volteMenuPrincipal", // widget para voltar menu principal
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  }
-
-  const handleExemploCorretoLacoRepeticao = () => {
-    const botMessage = createChatBotMessage(
-      dataFor.exemploCorreto,
-      {
-        widget: "lacoRepeticao", // widget de laco de repeticao
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  const handleExemploIncorretoLacoRepeticao = () => {
-    const botMessage = createChatBotMessage(
-      dataFor.exemploIncorreto,
-      {
-        widget: "identificarErroLacoRepeticao", // widget de erro de laco de repeticao
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  const handleIdentificarErroLacoRepeticao = () => {
-    const botMessage = createChatBotMessage(
-      dataFor.identificaProblema,
-      {
-        widget: "volteMenuPrincipal", // widget para voltar menu principal
-      }
-    );
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
     }));
   }
 
   const handleGoToMainMenu = () => {
     const botMessage = createChatBotMessage(
       `Você voltou ao menu principal.
-        Olá! Sou o EducaBot, e estou aqui para te auxiliar a aprender conceitos de programação. Escolha qual a opção que deseja aprender.
+      Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:
         `,
       {
         widget: "options",
@@ -422,10 +352,17 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleGoToBackMenu = () => {
+    if (!primeiraExecucao) {
+      if (variavelLugar == 'C' || variavelLugar == 'I' || variavelLugar == 'D' || variavelLugar == 'Q') {
+        let totalTime = calcTime();
+        visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)  
+        handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+        variavelLugar = null;
+      }
+    }
+    console.log(visitado);
     const botMessage = createChatBotMessage(
-      `
-        Olá! Sou o EducaBot, e estou aqui para te auxiliar a aprender conceitos de programação. Escolha qual a opção que deseja aprender.
-        `,
+      `Olá! 👋  Sou o CoderBot 🤖 , e estou aqui para te auxiliar na aprendizagem de programação 💻 por meio de exemplos. Escolha um dos temas abaixo:`,
       {
         widget: "options",
       }
@@ -436,6 +373,30 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       messages: [botMessage],
     }));
   };
+
+  const handleGoOut = () => {
+    if (!primeiraExecucao) {
+      if (variavelLugar == 'C' || variavelLugar == 'I' || variavelLugar == 'D' || variavelLugar == 'Q') {
+        let totalTime = calcTime();
+        visitado.push({ user: user.uid, example: idDataWE, time: totalTime, category: variavelLugar, correctAnswer: acertouResposta })//de onde veio(WE, C, I)  
+        handleMetricsStore(user.uid, idDataWE, totalTime, variavelLugar, acertouResposta);
+        variavelLugar = null;
+      }
+    }
+    console.log(visitado);
+    navigate('/');
+    const botMessage = createChatBotMessage(
+      "Obrigado por participar deste experimento!",
+      {
+        widget: "options",
+      }
+    );
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  }
 
   const handleDefaultMessage = () => {
     const botMessage = createChatBotMessage(
@@ -451,37 +412,25 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
+  const handleLang = (id) => {
+    return "teste"
+  }
+
   return (
     <div>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           actions: {
+            //handlers
             greet,
-            handleVariavelQuiz,
-            handleCondicionalQuiz,
-            handleLacoRepeticao,
-            handleExemploCorretoVariavel,
-            handleExemploIncorretoVariavel,
-            handleIdentificarErroVariavel,
-            handleExemploCorretoCondicional,
-            handleExemploIncorretoCondicional,
-            handleIdentificarErroCondicional,
-            handleExemploCorretoLacoRepeticao,
-            handleExemploIncorretoLacoRepeticao,
-            handleIdentificarErroLacoRepeticao,
+            handleLang,
             handleGoToMainMenu,
             handleGoToBackMenu,
             handleDefaultMessage,
-            handleIdentificarErroVariavelSim,
-            handleArraysQuiz,
-            handleCorrectWEArray,
-            handleIncorrectWEArray,
-            handleArrayResp1,
-            handleArrayResp2,
-            handleArrayResp3,
-            handleArrayResp4,
-            handleArrayResp5,
-            handleExampleChoice, dataArray
+            handleExampleChoice,
+            handleQuiz, handleCorrectWE, handleIncorrectWE, handleQuestionWE, handleGoOut,
+            //variáveis de dados 
+            dataWE, dataArray, dataFunc, dataArrayJava, dataFunc, dataListPY, themeNames
           },
         });
       })}

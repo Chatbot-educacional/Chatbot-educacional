@@ -1,0 +1,33 @@
+{
+    "title": "Interseção",
+    "topic": "Interseção de Listas de Números Inteiros",
+    "knowledge": "Conhecimento básico em sintaxe Python",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Python que crie duas listas de números inteiros e crie uma terceira lista que contenha os números inteiros comuns nas duas listas originais.",
+    "result": "O programa deve criar duas listas de números inteiros e, em seguida, criar uma terceira lista que contenha os números inteiros comuns nas duas listas originais.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar duas listas de números inteiros em Python e criar uma terceira lista que contenha os números inteiros comuns nas duas listas originais. Isso requer o uso de loops para preencher as listas e encontrar a interseção.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie duas listas de inteiros para armazenar os números. \n[PASSO 2]. Use loops para preencher as duas listas. \n[PASSO 3]. Crie uma terceira lista para armazenar a interseção. \n[PASSO 4]. Use loops aninhados para comparar os elementos das duas listas e adicionar os comuns à terceira lista. \n[PASSO 5]. Imprima a terceira lista.",
+            "test": "Execute o programa e verifique se ele cria as listas corretamente, encontra a interseção e imprime corretamente a terceira lista."
+        },
+        "correctSolutionProposal": "lista1 = [1, 2, 3, 4, 5]\nlista2 = [4, 5, 6, 7, 8]\n\n# Encontrar a interseção das listas\nintersecao_lista = [numero for numero in lista1 if numero in lista2]\n\nprint(f'A interseção das listas é: {intersecao_lista}')"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de listas e cálculos.",
+        "incorrectSolution": "lista1 = [1, 2, 3, 4, 5]\nlista2 = [4, 5, 6, 7, 8]\n\n# Encontrar a interseção das listas\nintersecao_lista = []\nfor numero1 in range(1, len(lista1)):\n    for numero2 in lista2:\n        if numero1 == numero2:\n            intersecao_lista.append(numero1)\n        \nprint(f'A interseção das listas é: {intersecao_lista}')",
+        "test": "Execute o programa e verifique se a interseção das listas é encontrada incorretamente.",
+        "options": {
+            "one": "linha 5",
+            "two": "linha 6",
+            "three": "linha 7",
+            "four": "linha 8",
+            "five": "não sei identificar"
+        },
+        "correctOption": "2",
+        "error": "O erro está na lógica de comparação na linha 6, o range não passa pela primeira posição na lista1 e acaba perdendo o valor 4.",
+        "response": "Para corrigir, é necessário remover a linha 20 ou colocar 'contador_lista += 1' dentro do if para incrementar apenas quando uma correspondência for encontrada.",
+        "correctSolutionProposal": "[PASSO 1] Remover a linha 20 ou adicionar 'contador_lista += 1' após a linha 19 para interromper o loop interno quando uma correspondência for encontrada. \n[PASSO 2] Execute o programa novamente para verificar se agora a interseção das listas é encontrada corretamente."
+    }
+}

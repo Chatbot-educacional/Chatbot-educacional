@@ -1,0 +1,33 @@
+{
+    "title": "Impressão números ímpares",
+    "topic": "Impressão de Números Ímpares em uma Lista",
+    "knowledge": "Conhecimento básico em sintaxe Python",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em Python que crie uma lista de números inteiros e imprima todos os números ímpares da lista.",
+    "result": "O programa deve criar uma lista de números inteiros e imprimir corretamente todos os números ímpares presentes na lista.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar uma lista de números inteiros em Python e imprimir todos os números ímpares presentes na lista. Isso requer o uso de um loop para percorrer a lista e uma condição para verificar se cada número é ímpar.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie uma lista de números inteiros. \n[PASSO 2]. Use um loop para percorrer a lista. \n[PASSO 3]. Dentro do loop, verifique se cada número é ímpar. \n[PASSO 4]. Se o número for ímpar, imprima-o.",
+            "test": "Execute o programa e verifique se ele cria a lista e imprime corretamente todos os números ímpares."
+        },
+        "correctSolutionProposal": "lista_numeros = [2, 5, 8, 11, 14, 17, 20, 23]\n\n# Imprimir números ímpares na lista\nfor numero in lista_numeros:\n    if numero % 2 != 0:\n        print(numero)"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de listas e condições.",
+        "incorrectSolution": "lista_numeros = [2, 5, 8, 11, 14, 17, 20, 23]\n\n# Imprimir números ímpares na lista\nfor numero in lista_numeros:\n    if numero / 2 != 0:\n        print(numero)",
+        "test": "Execute o programa e verifique se os números ímpares na lista são encontrados incorretamente.",
+        "options": {
+            "one": "linha 1",
+            "two": "linha 4",
+            "three": "linha 5",
+            "four": "linha 6",
+            "five": "não sei identificar"
+        },
+        "correctOption": "3",
+        "error": "O erro está na condição na linha 11, que verifica se o número é par (divisível por 2). Isso resulta em uma impressão dos números pares em vez dos ímpares. A correção seria modificar a condição para 'if numero % 2 != 0' para verificar se o número é ímpar.",
+        "response": "O erro está na condição na linha 11, que verifica se o número é par (divisível por 2). Isso resulta em uma impressão dos números pares em vez dos ímpares. A correção seria modificar a condição para 'if numero % 2 != 0' para verificar se o número é ímpar.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a condição na linha 11 para 'if numero % 2 != 0'. \n[PASSO 2] Execute o programa novamente para verificar se agora os números ímpares na lista são encontrados corretamente."
+    }
+}

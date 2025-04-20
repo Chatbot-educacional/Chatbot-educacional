@@ -1,0 +1,33 @@
+{
+    "title": "Criação com números aleatórios",
+    "topic": "Criação de Array com Números Aleatórios",
+    "knowledge": "Conhecimento básico em sintaxe C",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em C que crie um array de 5 números aleatórios entre 1 e 100 e imprima o array.",
+    "result": "O programa deve criar um array de 5 números aleatórios entre 1 e 100 e imprimir corretamente o array.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array de números aleatórios em C e imprimir o array resultante. Isso requer o uso da função `rand()` para gerar números aleatórios e um loop para preencher o array.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Inclua a biblioteca necessária. \n[PASSO 2]. Crie um array de inteiros com tamanho 5. \n[PASSO 3]. Use um loop para gerar e atribuir números aleatórios entre 1 e 100 ao array. \n[PASSO 4]. Imprima o array de números aleatórios.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente o array de números aleatórios."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n#include <stdlib.h>\n#include <time.h>\n\nint main() {\n    // Seed para a função rand()\n    srand(time(NULL));\n\n    // Criar um array de inteiros com tamanho 5\n    int arrayAleatorio[5];\n\n    // Preencher o array com números aleatórios entre 1 e 100\n    for (int i = 0; i < sizeof(arrayAleatorio) / sizeof(arrayAleatorio[0]); i++) {\n        arrayAleatorio[i] = rand() % 100 + 1;\n    }\n\n    // Imprimir o array de números aleatórios\n    for (int i = 0; i < sizeof(arrayAleatorio) / sizeof(arrayAleatorio[0]); i++) {\n        printf(\"%d \", arrayAleatorio[i]);\n    }\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de números aleatórios e preenchimento de arrays.",
+        "incorrectSolution": "#include <stdio.h>\n#include <stdlib.h>\n#include <time.h>\n\nint main() {\n    // Seed para a função rand()\n    srand(time(NULL));\n\n    // Criar um array de inteiros com tamanho 5\n    int arrayAleatorio[5];\n\n    // Preencher o array com números aleatórios entre 0 e 100\n    for (int i = 0; i <= sizeof(arrayAleatorio) / sizeof(arrayAleatorio[0]); i++) {\n        arrayAleatorio[i] = rand() % 101;\n    }\n\n    // Imprimir o array de números aleatórios\n    for (int i = 0; i <= sizeof(arrayAleatorio) / sizeof(arrayAleatorio[0]); i++) {\n        printf(\"%d \", arrayAleatorio[i]);\n    }\n\n    return 0;\n}",
+        "test": "Execute o programa e verifique se o array de números aleatórios é gerado incorretamente.",
+        "options": {
+            "one": "linha 13 e 18",
+            "two": "linha 15 e 18",
+            "three": "linha 17 e 13",
+            "four": "linha 18 e 17",
+            "five": "não sei identificar"
+        },
+        "correctOption": "1",
+        "error": "O erro está na geração dos números aleatórios na linha 13 e 18, onde o sinal <= faz o laço acessar posição inexistente no array.",
+        "response": "O erro está na geração dos números aleatórios na linha 13 e 18, onde o sinal <= faz o laço acessar posição inexistente no array. Para corrigir basta mudar o sinal para apenas <",
+        "correctSolutionProposal": "[PASSO 1] Modificar a expressão na linha 13 e 18 para '<'. \n[PASSO 2] Execute o programa novamente para verificar se agora o array de números aleatórios é gerado corretamente."
+    }
+}

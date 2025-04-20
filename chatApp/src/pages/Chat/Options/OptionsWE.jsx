@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./Options.css";
 
-const OptionsArray = (props) => {
+const OptionsWE = (props) => {
   const [clicked, setClicked] = useState(false);
   const options = [
     {
@@ -46,4 +46,4 @@ const OptionsArray = (props) => {
   return <div className="options-container">{buttonsMarkup}</div>;
 };
 
-export default OptionsArray;
+export default OptionsWE;

@@ -1,0 +1,33 @@
+{
+    "title": "Impressão números ímpares",
+    "topic": "Impressão de Números Ímpares em um Array",
+    "knowledge": "Conhecimento básico em sintaxe C",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em C que crie um array de números inteiros e imprima todos os números ímpares do array.",
+    "result": "O programa deve criar um array de números inteiros e imprimir corretamente todos os números ímpares presentes no array.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar um array de números inteiros em C e imprimir todos os números ímpares presentes no array. Isso requer o uso de um loop para percorrer o array e uma condição para verificar se cada número é ímpar.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie um array de números inteiros. \n[PASSO 2]. Use um loop para percorrer o array. \n[PASSO 3]. Dentro do loop, verifique se cada número é ímpar. \n[PASSO 4]. Se o número for ímpar, imprima-o.",
+            "test": "Execute o programa e verifique se ele cria o array e imprime corretamente todos os números ímpares."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint main() {\n    int arrayNumeros[] = {2, 5, 8, 11, 14, 17, 20, 23};\n\n    // Imprimir números ímpares no array\n    for (int i = 0; i < sizeof(arrayNumeros) / sizeof(arrayNumeros[0]); i++) {\n        if (arrayNumeros[i] % 2 != 0) {\n            printf(\"%d\\n\", arrayNumeros[i]);\n        }\n    }\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de arrays e condições.",
+        "incorrectSolution": "#include <stdio.h>\n\nint main() {\n    int arrayNumeros[] = {2, 5, 8, 11, 14, 17, 20, 23};\n    int tamanho = 8;\n\n    // Imprimir números ímpares no array\n    for(int i = 0; i < 8; ++i)  {\n        if (numero / 2 != 0) {\n            printf(\"%d\\n\", numero);\n        }\n    }\n\n    return 0;\n}",
+        "test": "Execute o programa e verifique se os números ímpares no array são encontrados incorretamente.",
+        "options": {
+            "one": "linha 7",
+            "two": "linha 9",
+            "three": "linha 8",
+            "four": "linha 10",
+            "five": "não sei identificar"
+        },
+        "correctOption": "3",
+        "error": "O erro está na condição na linha 8, que verifica se o número é par (está como divisão por 2 e deveria ser divisível por 2). Isso resulta em uma impressão de todos os números.",
+        "response": "O erro está na condição na linha 11, que verifica se o número é par (divisível por 2). Isso resulta em uma impressão dos números pares em vez dos ímpares. A correção seria modificar a condição para 'if (numero % 2 != 0)' para verificar se o número é ímpar.",
+        "correctSolutionProposal": "[PASSO 1] Modificar a condição na linha 8 para 'if (numero % 2 != 0)'. \n[PASSO 2] Execute o programa novamente para verificar se agora os números ímpares no array são encontrados corretamente."
+    }
+}

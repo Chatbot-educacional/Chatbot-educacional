@@ -1,0 +1,33 @@
+{
+    "title": "Interseção",
+    "topic": "Interseção de Arrays de Números Inteiros",
+    "knowledge": "Conhecimento básico em sintaxe C",
+    "origin": "[Inserir de onde o material para o worked example foi retirado]",
+    "description": "Escreva um programa em C que crie dois arrays de números inteiros e crie um terceiro array que contém os números inteiros comuns nos dois arrays.",
+    "result": "O programa deve criar dois arrays de números inteiros e, em seguida, criar um terceiro array que contenha os números inteiros comuns nos dois arrays originais.",
+    "extra": "[Inserir material de apoio para resolução do problema]",
+    "problemWECorrect": {
+        "thinking": "Este exemplo visa demonstrar como criar dois arrays de números inteiros em C e criar um terceiro array que contenha os números inteiros comuns nos dois arrays originais. Isso requer o uso de loops para preencher os arrays e encontrar a interseção.",
+        "solutionProposal": {
+            "steps": "\n[PASSO 1]. Crie dois arrays de inteiros para armazenar os números. \n[PASSO 2]. Use loops para preencher os dois arrays. \n[PASSO 3]. Crie um terceiro array para armazenar a interseção. \n[PASSO 4]. Use loops aninhados para comparar os elementos dos dois arrays e adicionar os comuns ao terceiro array. \n[PASSO 5]. Imprima o terceiro array.",
+            "test": "Execute o programa e verifique se ele cria os arrays corretamente, encontra a interseção e imprime corretamente o terceiro array."
+        },
+        "correctSolutionProposal": "#include <stdio.h>\n\nint main() {\n    int array1[] = {1, 2, 3, 4, 5};\n    int array2[] = {4, 5, 6, 7, 8};\n\n    int tamanhoIntersecao = 0;\n\n    // Encontrar tamanho da interseção\n    for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++) {\n        for (int j = 0; j < sizeof(array2) / sizeof(array2[0]); j++) {\n            if (array1[i] == array2[j]) {\n                tamanhoIntersecao++;\n                break;\n            }\n        }\n    }\n\n    int intersecao[tamanhoIntersecao];\n    int contadorArray = 0;\n\n    // Preencher a interseção\n    for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++) {\n        for (int j = 0; j < sizeof(array2) / sizeof(array2[0]); j++) {\n            if (array1[i] == array2[j]) {\n                intersecao[contadorArray] = array1[i];\n                contadorArray++;\n                break;\n            }\n        }\n    }\n\n    // Imprimir a interseção\n    printf(\"A interseção dos arrays é: \");\n    for (int i = 0; i < tamanhoIntersecao; i++) {\n        printf(\"%d \", intersecao[i]);\n    }\n\n    return 0;\n}"
+    },
+    "problemWEIncorrect": {
+        "thinking": "O exemplo incorreto apresenta um erro que afeta a lógica do programa. Isso serve para destacar a importância da correta manipulação de arrays e cálculos.",
+        "incorrectSolution": "#include <stdio.h>\n\nint main() {\n    int array1[] = {1, 2, 3, 4, 5};\n    int array2[] = {4, 5, 6, 7, 8};\n\n    int tamanhoIntersecao = 0;\n\n    // Encontrar tamanho da interseção\n    for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++) {\n        for (int j = 0; j < sizeof(array2) / sizeof(array2[0]); j++) {\n            if (array1[i] == array2[j]) {\n                tamanhoIntersecao++;\n                break;\n            }\n        }\n    }\n\n    int intersecao[tamanhoIntersecao];\n    int contadorArray = 0;\n\n    // Preencher a interseção\n    for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++) {\n        for (int j = 0; j < sizeof(array2) / sizeof(array2[0]); j++) {\n            if (array1[i] == array2[j]) {\n                intersecao[contadorArray] = array1[i];\n                break;\n            }\n            contadorArray++;\n        }\n    }\n\n    // Imprimir a interseção\n    printf(\"A interseção dos arrays é: \");\n    for (int i = 0; i < tamanhoIntersecao; i++) {\n        printf(\"%d \", intersecao[i]);\n    }\n\n    return 0;\n}",
+        "test": "Execute o programa e verifique se a interseção dos arrays é encontrada incorretamente.",
+        "options": {
+            "one": "linha 20",
+            "two": "linha 21",
+            "three": "linha 26",
+            "four": "linha 29",
+            "five": "não sei identificar"
+        },
+        "correctOption": "4",
+        "error": "O erro está na lógica de comparação na linha 29, o incremento está fora do condicional if, fazendo o com que ocorra acesso a posição inexistente no array.",
+        "response": "Para corrigir é necessario colocar o incremento do vetor de intersecção dentro do if onde ocorre a inclusão do elemento.",
+        "correctSolutionProposal": "[PASSO 1] reposicionar a linha 29 dentro do condicional if antes do 'break;' após a linha 29 interrompe o loop interno quando uma correspondência for encontrada. \n[PASSO 2] Execute o programa novamente para verificar se agora a interseção dos arrays é encontrada corretamente."
+    }
+}

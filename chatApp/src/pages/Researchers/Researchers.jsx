@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import imgPesquisador1 from "./Andre.jpeg"; // Substitua pelo caminho correto da imagem
 import imgPesquisador3 from "./joao.png"; // Substitua pelo caminho correto da imagem
 import imgPesquisador4 from "./renato.png"; // Substitua pelo caminho correto da imagem
-import imgPesquisador2 from "./mateus.png"; // Substitua pelo caminho correto da imagem
+import imgPesquisador2 from "./balda.jpeg"; // Substitua pelo caminho correto da imagem
 import imgPesquisador5 from "./will.png"; // Substitua pelo caminho correto da imagem
 import imgPesquisador6 from "./Pedro.jpeg"; // Substitua pelo caminho correto da imagem
 // Adicione os demais caminhos para as imagens dos outros pesquisadores
@@ -46,14 +46,14 @@ const researchersData = [
 
 
 const verifyIfHasGithub = (researcher) => {
-    if(researcher.github){
-        return <p> <FaGithub /> {researcher.github}</p>
-    }
+  if (researcher.github) {
+    return <p> <FaGithub /> {researcher.github}</p>
+  }
 
 }
 const verifyIfHasEmail = (researcher) => {
-  if(researcher.email){
-      return <p> <FaEnvelope /> {researcher.email}</p>
+  if (researcher.email) {
+    return <p> <FaEnvelope /> {researcher.email}</p>
   }
 
 }
@@ -62,50 +62,50 @@ const verifyIfHasEmail = (researcher) => {
 
 
 const Researchers = () => {
-    const chunkedResearchers = chunkArray(researchersData, 2);
-  
-    return (
-      <div className={styles.container}>
-        <h1>Pesquisadores</h1>
-        {/* <p>Os pesquisadores são:</p> */}
-        <div className={styles.researcherContainer}>
-          {chunkedResearchers.map((researcherGroup, groupIndex) => (
-            <div key={groupIndex} className={styles.researcherGroup}>
-              {researcherGroup.map((researcher, index) => (
-                <div key={index} className={styles.researcher}>
-                  <div className={styles.researcherNameAndPic}>
-                    <div className={styles.researcherImage}>
-                      <img className={styles.img} src={researcher.img} alt={`${researcher.name} - Foto`} />
-                    </div>
-                    <div className={styles.researcherName}>
-                      <h2>{researcher.name}</h2>
-                    </div>
+  const chunkedResearchers = chunkArray(researchersData, 2);
+
+  return (
+    <div className={styles.container}>
+      <h1>Pesquisadores</h1>
+      {/* <p>Os pesquisadores são:</p> */}
+      <div className={styles.researcherContainer}>
+        {chunkedResearchers.map((researcherGroup, groupIndex) => (
+          <div key={groupIndex} className={styles.researcherGroup}>
+            {researcherGroup.map((researcher, index) => (
+              <div key={index} className={styles.researcher}>
+                <div className={styles.researcherNameAndPic}>
+                  <div className={styles.researcherImage}>
+                    <img className={styles.img} src={researcher.img} alt={`${researcher.name} - Foto`} />
                   </div>
-                  <div className={styles.researcherDescription}>
-                    <p>{researcher.description}</p>
-                    
-                    <div className={researcher.contact}>
-                    {verifyIfHasEmail(researcher)}
-                   {verifyIfHasGithub(researcher)}
-                   </div>
+                  <div className={styles.researcherName}>
+                    <h2>{researcher.name}</h2>
                   </div>
                 </div>
-              ))}
-            </div>
-          ))}
-        </div>
+                <div className={styles.researcherDescription}>
+                  <p>{researcher.description}</p>
+
+                  <div className={researcher.contact}>
+                    {verifyIfHasEmail(researcher)}
+                    {verifyIfHasGithub(researcher)}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
-    );
-  };
-  
-  // Função para dividir o array de pesquisadores em grupos de tamanho específico
-  function chunkArray(arr, chunkSize) {
-    const chunkedArr = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      chunkedArr.push(arr.slice(i, i + chunkSize));
-    }
-    return chunkedArr;
+    </div>
+  );
+};
+
+// Função para dividir o array de pesquisadores em grupos de tamanho específico
+function chunkArray(arr, chunkSize) {
+  const chunkedArr = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    chunkedArr.push(arr.slice(i, i + chunkSize));
   }
+  return chunkedArr;
+}
 
 
 export default Researchers;

@@ -9,6 +9,6 @@ import funcaowe8 from './wefuncao/funcaowe8.json';
 import funcaowe9 from './wefuncao/funcaowe9.json';
 import funcaowe10 from './wefuncao/funcaowe10.json';
 
-const dataFunc = [funcaowe1, funcaowe2, funcaowe3, funcaowe4, funcaowe5, funcaowe6, funcaowe7, funcaowe8, funcaowe9, funcaowe10];
+const dataFuncJava = [funcaowe1, funcaowe2, funcaowe3, funcaowe4, funcaowe5, funcaowe6, funcaowe7, funcaowe8, funcaowe9, funcaowe10];
 
-export default dataFunc;
+export default dataFuncJava;
