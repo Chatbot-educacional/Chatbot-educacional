@@ -1,0 +1,7 @@
+# requirements.txt
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+openai>=1.0.0         # Biblioteca para interagir com APIs compatíveis (como DeepSeek)
+requests>=2.28.0      # Opcional, para chamadas HTTP diretas se necessário
