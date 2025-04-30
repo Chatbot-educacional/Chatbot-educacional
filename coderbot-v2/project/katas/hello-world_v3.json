@@ -1,0 +1,7 @@
+{
+  "title": "V3",
+  "content": "Hello returns a personalised greeting.",
+  "correct_code": "package main\n\nimport \"fmt\"\n\n// Hello returns a personalised greeting.\nfunc Hello(name string) string {\n\treturn \"Hello, \" + name\n}\n\nfunc main() {\n\tfmt.Println(Hello(\"world\"))\n}",
+  "test_code": "package main\n\nimport \"testing\"\n\nfunc TestHello(t *testing.T) {\n\tgot := Hello(\"Chris\")\n\twant := \"Hello, Chris\"\n\n\tif got != want {\n\t\tt.Errorf(\"got %q want %q\", got, want)\n\t}\n}",
+  "difficulty": "Intermediário"
+}

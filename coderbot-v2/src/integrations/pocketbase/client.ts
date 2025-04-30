@@ -38,3 +38,12 @@ export const getCurrentUser = (): UserRecord | undefined => {
   if (!model) return undefined;
   return model as unknown as UserRecord;
 };
+
+
+export interface ChatMessageRecord extends PBRecord {
+  user: string;
+  content: string;
+  isAi: boolean;
+  sessionId: string;
+  timestamp: string;
+}

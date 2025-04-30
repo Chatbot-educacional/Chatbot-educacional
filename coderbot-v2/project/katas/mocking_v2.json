@@ -1,0 +1,7 @@
+{
+  "title": "V2",
+  "content": "Countdown prints a countdown from 3 to out.",
+  "correct_code": "package main\n\nimport (\n\t\"fmt\"\n\t\"io\"\n\t\"os\"\n)\n\nconst finalWord = \"Go!\"\nconst countdownStart = 3\n\n// Countdown prints a countdown from 3 to out.\nfunc Countdown(out io.Writer) {\n\tfor i := countdownStart; i > 0; i-- {\n\t\tfmt.Fprintln(out, i)\n\t}\n\tfmt.Fprint(out, finalWord)\n}\n\nfunc main() {\n\tCountdown(os.Stdout)\n}",
+  "test_code": "package main\n\nimport (\n\t\"bytes\"\n\t\"testing\"\n)\n\nfunc TestCountdown(t *testing.T) {\n\tbuffer := &bytes.Buffer{}\n\n\tCountdown(buffer)\n\n\tgot := buffer.String()\n\twant := `3\n2\n1\nGo!`\n\n\tif got != want {\n\t\tt.Errorf(\"got %q want %q\", got, want)\n\t}\n}",
+  "difficulty": "Fácil"
+}

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import deepseek_router, judge_router  # Importa os roteadores
+from .routers import deepseek_router, judge_router, exercises_router  # Importa os roteadores
 from app.config import settings  # Importa para garantir que a config seja lida na inicialização
 from supabase import create_client, Client
 from fastapi.middleware.cors import CORSMiddleware
@@ -55,7 +55,11 @@ app.include_router(deepseek_router.router)
 # app.include_router(claude_router.router)
 app.include_router(judge_router.router)  # Adicione outros roteadores aqui
 
+app.include_router(exercises_router.router)  # Adicione outros roteadores aqui
+
 # Rota raiz simples para teste
 @app.get("/", tags=["Root"])
 async def read_root():
     return {"message": "Bem-vindo ao backend do serviço!"}
+
+

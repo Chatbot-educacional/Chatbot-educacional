@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "Repeat returns character repeated 5 times.",
+  "correct_code": "package iteration\n\n// Repeat returns character repeated 5 times.\nfunc Repeat(character string) string {\n\tvar repeated string\n\tfor i := 0; i < 5; i++ {\n\t\trepeated = repeated + character\n\t}\n\treturn repeated\n}",
+  "test_code": "package iteration\n\nimport \"testing\"\n\nfunc TestRepeat(t *testing.T) {\n\trepeated := Repeat(\"a\")\n\texpected := \"aaaaa\"\n\n\tif repeated != expected {\n\t\tt.Errorf(\"expected %q but got %q\", expected, repeated)\n\t}\n}",
+  "difficulty": "Fácil"
+}

@@ -54,7 +54,7 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
     { id: "chat", label: "Chat", icon: MessageSquare, accessKey: "c" , to: "/chat"},
     { id: "playground", label: "Playground", icon: Code, accessKey: "p" , to: "/playground" },
     { id: "exercises", label: "Exercícios", icon: FileText, accessKey: "e" , to: "/exercises" },
-    { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m" , to: "/exercises" },
+    { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m" , to: "/metrics" },
     { id: "teacher", label: "Professor", icon: GraduationCap, accessKey: "t", to: "/teacher" },
     {id: "whiteboard", label: "Quadro", icon: LayoutDashboard, accessKey: "q", to: "/whiteboard" },
   ];
@@ -88,10 +88,15 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
               <SidebarItem
                 key={item.id}
                 icon={item.icon}
-                label={item.label} active={false} onClick={function (): void {
-                  throw new Error("Function not implemented.");
-                } }
-               />
+                label={item.label} 
+                active={location.pathname === item.to}
+                onClick={() => {
+                  if (isMobile) setIsOpen(false);
+                  onNavChange(item.id);
+                }}
+                to={item.to}
+                accessKey={item.accessKey}
+              />
             ))}
             
 

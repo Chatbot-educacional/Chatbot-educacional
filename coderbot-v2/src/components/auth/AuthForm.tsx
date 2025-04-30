@@ -40,6 +40,7 @@ interface AuthFormProps {
 
 export default function AuthForm({ isLoading, setIsLoading }: AuthFormProps) {
   const [isRegister, setIsRegister] = useState(false);
+  const [error, setError] = useState<string | null>(null); // Add error state
   const navigate = useNavigate();
 
   // Use the correct type based on form mode

@@ -1,0 +1,19 @@
+{
+  "title": "V1",
+  "content": "Sum calculates the total from an array of numbers.",
+  "correct_code": "package main\n\n// Sum calculates the total from an array of numbers.\nfunc Sum(numbers [5]int) int {\n\tsum := 0\n\tfor i := 0; i < 5; i++ {\n\t\tsum += numbers[i]\n\t}\n\treturn sum\n}",
+  "test_code": "package main\n\nimport \"testing\"\n\nfunc TestSum(t *testing.T) {\n\n\tnumbers := [5]int{1, 2, 3, 4, 5}\n\n\tgot := Sum(numbers)\n\twant := 15\n\n\tif want != got {\n\t\tt.Errorf(\"got %d want %d given, %v\", got, want, numbers)\n\t}\n}",
+  "difficulty": "Fácil",
+  "tests": [
+    {
+      "input": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "expected": 15
+    }
+  ]
+}

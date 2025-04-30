@@ -1,0 +1,7 @@
+{
+  "title": "Vx",
+  "content": "Repeat returns character repeated 5 times.",
+  "correct_code": "package iteration\n\nconst repeatCount = 5\n\n// Repeat returns character repeated 5 times.\nfunc Repeat(character string) string {\n\tvar repeated string\n\tfor i := 0; i < repeatCount; i++ {\n\t\trepeated += character\n\t}\n\treturn repeated\n}",
+  "test_code": "package iteration\n\nimport \"testing\"\n\nfunc TestRepeat(t *testing.T) {\n\trepeated := Repeat(\"a\")\n\texpected := \"aaaaa\"\n\n\tif repeated != expected {\n\t\tt.Errorf(\"expected %q but got %q\", expected, repeated)\n\t}\n}\n\nfunc BenchmarkRepeat(b *testing.B) {\n\tfor i := 0; i < b.N; i++ {\n\t\tRepeat(\"a\")\n\t}\n}",
+  "difficulty": "Intermediário"
+}

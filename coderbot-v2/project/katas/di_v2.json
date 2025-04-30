@@ -1,0 +1,7 @@
+{
+  "title": "V2",
+  "content": "Greet sends a personalised greeting to writer.",
+  "correct_code": "package main\n\nimport (\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n)\n\n// Greet sends a personalised greeting to writer.\nfunc Greet(writer io.Writer, name string) {\n\tfmt.Fprintf(writer, \"Hello, %s\", name)\n}\n\n// MyGreeterHandler says Hello, world over HTTP.\nfunc MyGreeterHandler(w http.ResponseWriter, r *http.Request) {\n\tGreet(w, \"world\")\n}\n\nfunc main() {\n\tlog.Fatal(http.ListenAndServe(\":5000\", http.HandlerFunc(MyGreeterHandler)))\n}",
+  "test_code": "package main\n\nimport (\n\t\"bytes\"\n\t\"testing\"\n)\n\nfunc TestGreet(t *testing.T) {\n\tbuffer := bytes.Buffer{}\n\tGreet(&buffer, \"Chris\")\n\n\tgot := buffer.String()\n\twant := \"Hello, Chris\"\n\n\tif got != want {\n\t\tt.Errorf(\"got %q want %q\", got, want)\n\t}\n}",
+  "difficulty": "Fácil"
+}

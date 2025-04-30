@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "Store fetches data.",
+  "correct_code": "package context1\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n)\n\n// Store fetches data.\ntype Store interface {\n\tFetch() string\n}\n\n// Server returns a handler for calling Store.\nfunc Server(store Store) http.HandlerFunc {\n\treturn func(w http.ResponseWriter, r *http.Request) {\n\t\tfmt.Fprint(w, store.Fetch())\n\t}\n}",
+  "test_code": "package context1\n\nimport (\n\t\"net/http\"\n\t\"net/http/httptest\"\n\t\"testing\"\n)\n\ntype StubStore struct {\n\tresponse string\n}\n\nfunc (s *StubStore) Fetch() string {\n\treturn s.response\n}\n\nfunc TestServer(t *testing.T) {\n\tdata := \"hello, world\"\n\tsvr := Server(&StubStore{data})\n\n\trequest := httptest.NewRequest(http.MethodGet, \"/\", nil)\n\tresponse := httptest.NewRecorder()\n\n\tsvr.ServeHTTP(response, request)\n\n\tif response.Body.String() != data {\n\t\tt.Errorf(`got \"%s\", want \"%s\"`, response.Body.String(), data)\n\t}\n}",
+  "difficulty": "Fácil"
+}

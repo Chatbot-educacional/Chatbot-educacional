@@ -52,7 +52,7 @@ export const fetchChatResponse = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "deepseek-chat",
+        model: "gpt-3.5-turbo",
         messages: messages,
         max_tokens: 350,
         temperature: 0.7,
