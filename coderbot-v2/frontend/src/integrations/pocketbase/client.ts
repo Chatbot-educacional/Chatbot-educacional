@@ -47,3 +47,10 @@ export interface ChatMessageRecord extends PBRecord {
   sessionId: string;
   timestamp: string;
 }
+
+
+export interface DrawingRecord extends PBRecord {
+  title: string;
+  data: string; // o JSON serializado do Excalidraw
+  user: string; // ID do usuário
+}
