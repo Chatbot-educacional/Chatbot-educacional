@@ -134,13 +134,13 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
             />
           </div>
           {!isCollapsed && (
-            <div className="text-xs text-muted-foreground">
-              <p>Learn Code Bot v1.0</p>
-              <p>©2025 Educational Platform</p>
+          <div className="text-xs text-muted-foreground">
+            <p>Learn Code Bot v1.0</p>
+            <p>©2025 Educational Platform</p>
             </div>
           )}
+          </div>
         </div>
-      </div>
      
       {isMobile && isOpen && (
         <div 

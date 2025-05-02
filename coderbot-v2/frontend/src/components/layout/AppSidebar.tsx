@@ -24,7 +24,7 @@ export const AppSidebar = ({ currentNav, onNavChange }: AppSidebarProps) => {
 
   // Map navigation items to their corresponding routes
   const mainNavItems = [
-    { id: "chat", label: "Chat", icon: MessageSquare, accessKey: "c", path: "/" },
+    { id: "chat", label: "Chat", icon: MessageSquare, accessKey: "c", path: "/chat" },
     { id: "playground", label: "Playground", icon: Code, accessKey: "p", path: "/playground" },
     { id: "exercises", label: "Exercícios", icon: FileText, accessKey: "e", path: "/exercises" },
     { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m", path: "/metrics" },

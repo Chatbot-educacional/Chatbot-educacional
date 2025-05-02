@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +16,7 @@ import ExerciseInterface from "./pages/ExerciseInterface";
 import LearningMetrics from "./pages/LearningMetrics";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import Whiteboard from "./pages/Whiteboard";
+import Home from "./home/Home";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,8 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<RequireAuth><Index /></RequireAuth>}>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<RequireAuth><Index /></RequireAuth>}>
               <Route path="chat" element={<ChatInterface />} />
               <Route path="playground" element={<CodeEditor />} />
               <Route path="exercises" element={<ExerciseInterface />} />

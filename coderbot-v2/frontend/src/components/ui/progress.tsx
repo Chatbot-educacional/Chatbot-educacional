@@ -17,7 +17,7 @@ const Progress = React.forwardRef<
     {showToggle && (
       <button
         onClick={onToggle}
-        className={cn(
+    className={cn(
           "flex items-center justify-center",
           "w-8 h-8 rounded-lg bg-primary hover:bg-primary/90",
           "text-primary-foreground transition-colors"

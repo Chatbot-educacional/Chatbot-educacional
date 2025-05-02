@@ -426,7 +426,7 @@ export const CodeEditor: React.FC = () => {
               {showTerminal ? (
                 <MiniChat onSendMessage={handleChatMessage} />
               ) : (
-                <div ref={xtermEl} className="h-full" />
+              <div ref={xtermEl} className="h-full" />
               )}
             </Panel>
           </PanelGroup>
