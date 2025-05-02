@@ -9,7 +9,7 @@
 
 import * as React from "react";
 import { Suspense, lazy, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -184,6 +184,49 @@ function TypewriterText({ text }: TypewriterTextProps) {
   );
 }
 
+// Video Modal Component
+function VideoModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="relative w-full max-w-4xl rounded-2xl bg-white p-2 shadow-2xl"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute -right-4 -top-4 rounded-full bg-white p-2 shadow-lg hover:bg-gray-100"
+              onClick={onClose}
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="relative aspect-video rounded-xl overflow-hidden">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/seu-video-id"
+                title="CoderBot - O Futuro do Ensino de Programação"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 // Home —————————————————————————————————————————————————————————————————
 export default function Home() {
   return (
@@ -203,8 +246,10 @@ export default function Home() {
 
 // CTA Section —————————————————————————————————————————————————————————
 function CtaSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-purple-700 via-purple-600 to-purple-800 px-6 py-32 lg:px-24">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-purple-50/30 to-purple-100/20 px-6 py-32 lg:px-24">
       {/* Animated background elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-1/4 top-0 h-[500px] w-[500px] animate-pulse-slow rounded-full bg-blue-400 opacity-20 blur-[100px]" />
@@ -261,7 +306,7 @@ function CtaSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="bg-gradient-to-r from-purple-100from-purple-200 viapurplp-300le-200 to-purple-300 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
+                <h2 className="bg-gradient-to-r from-purple-500 via-purple-800 to-purple-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
                   Pronto para transformar seu ensino de programação?
                 </h2>
                 <p className="mx-auto mt-6 max-w-2xl text-lg/relaxed text-black">
@@ -271,7 +316,7 @@ function CtaSection() {
               </motion.div>
             </div>
 
-            {/* Action buttons */}
+            {/* Action buttons with video */}
             <motion.div 
               className="flex flex-col gap-4 sm:flex-row sm:gap-6"
               initial={{ opacity: 0, y: 20 }}
@@ -280,24 +325,29 @@ function CtaSection() {
             >
               <Button
                 size="lg"
-                className="bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800"
+                className="bg-purple-600 text-white hover:bg-purple-700"
+                onClick={() => window.location.href = '/dashboard'}
               >
-                <a href="/dashboard" className="flex items-center gap-2">
-                  Começar gratuitamente
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                </a>
+                Começar gratuitamente
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-purple-200 bg-purple-500 text-purple-100 backdrop-blur hover:bg-purple-500/60"
+                className="border-purple-200 bg-purple-800/10 text-black backdrop-blur hover:bg-purple-500/10 hover:text-black"
+                onClick={() => setIsVideoOpen(true)}
               >
-                <a href="/auth">Saber mais</a>
+                <div className="flex items-center gap-2">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z" />
+                  </svg>
+                  Ver vídeo
+                </div>
               </Button>
             </motion.div>
 
@@ -373,6 +423,8 @@ function CtaSection() {
           </CardContent>
         </SpotlightCard>
       </div>
+
+      <VideoModal isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} />
     </section>
   );
 }

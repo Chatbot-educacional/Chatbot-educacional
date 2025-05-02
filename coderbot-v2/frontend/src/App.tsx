@@ -33,7 +33,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<RequireAuth><Index /></RequireAuth>}>
+            <Route path="dashboard" element={<RequireAuth><Index /></RequireAuth>}>
               <Route path="chat" element={<ChatInterface />} />
               <Route path="playground" element={<CodeEditor />} />
               <Route path="exercises" element={<ExerciseInterface />} />

@@ -1,4 +1,3 @@
-
 import { User, MessageSquare, Code, BarChart3, GraduationCap, FileText, Presentation } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -24,12 +23,12 @@ export const AppSidebar = ({ currentNav, onNavChange }: AppSidebarProps) => {
 
   // Map navigation items to their corresponding routes
   const mainNavItems = [
-    { id: "chat", label: "Chat", icon: MessageSquare, accessKey: "c", path: "/chat" },
-    { id: "playground", label: "Playground", icon: Code, accessKey: "p", path: "/playground" },
-    { id: "exercises", label: "Exercícios", icon: FileText, accessKey: "e", path: "/exercises" },
-    { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m", path: "/metrics" },
-    { id: "teacher", label: "Professor", icon: GraduationCap, accessKey: "t", path: "/teacher" },
-    { id: "whiteboard", label: "Quadro", icon: Presentation, accessKey: "w", path: "/whiteboard" },
+    { id: "chat", label: "Chat", icon: MessageSquare, accessKey: "c", path: "/dashboard/chat" },
+    { id: "playground", label: "Playground", icon: Code, accessKey: "p", path: "/dashboard/playground" },
+    { id: "exercises", label: "Exercícios", icon: FileText, accessKey: "e", path: "/dashboard/exercises" },
+    { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m", path: "/dashboard/metrics" },
+    { id: "teacher", label: "Professor", icon: GraduationCap, accessKey: "t", path: "/dashboard/teacher" },
+    { id: "whiteboard", label: "Quadro", icon: Presentation, accessKey: "w", path: "/dashboard/whiteboard" },
   ];
 
   return (
