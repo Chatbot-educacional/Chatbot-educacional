@@ -1,9 +1,9 @@
-
 import { useState, useEffect } from "react";
-import { MessageSquare, Code, BarChart3, GraduationCap, FileText, Menu, X, User, LayoutDashboard } from "lucide-react";
+import { MessageSquare, Code, BarChart3, GraduationCap, FileText, Menu, X, User, LayoutDashboard, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link, useLocation } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
 
 type SidebarItemProps = {
   icon: React.ElementType;
@@ -12,16 +12,17 @@ type SidebarItemProps = {
   onClick: () => void;
   accessKey?: string;
   to?: string;
+  isCollapsed: boolean;
 };
 
-const SidebarItem = ({ icon: Icon, label, active, onClick, accessKey, to }: SidebarItemProps) => {
+const SidebarItem = ({ icon: Icon, label, active, onClick, accessKey, to, isCollapsed }: SidebarItemProps) => {
   const Component = to ? Link : "button";
   
   return (
     <Component
       to={to}
       className={cn(
-        "flex items-center gap-3 px-3 py-3 rounded-md text-sm font-medium w-full transition-all",
+        "flex items-center gap-3 px-3 py-3 rounded-md text-sm font-medium w-full transition-all group relative",
         active
           ? "bg-coderbot-purple text-white"
           : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
@@ -31,7 +32,12 @@ const SidebarItem = ({ icon: Icon, label, active, onClick, accessKey, to }: Side
       aria-current={active ? "page" : undefined}
     >
       <Icon className="h-5 w-5" />
-      <span>{label}</span>
+      {!isCollapsed && <span>{label}</span>}
+      {isCollapsed && (
+        <div className="absolute left-full ml-2 px-2 py-1 bg-popover text-popover-foreground rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
+          {label}
+        </div>
+      )}
     </Component>
   );
 };
@@ -44,6 +50,7 @@ type SidebarProps = {
 export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(!isMobile);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
   
   useEffect(() => {
@@ -76,11 +83,23 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
           "h-screen bg-sidebar flex flex-col border-r border-sidebar-border transition-all duration-300",
           isMobile ? "fixed z-40 left-0 top-0" : "w-64",
           isMobile && !isOpen ? "-translate-x-full" : "translate-x-0",
-          isMobile && isOpen ? "w-[80%] max-w-[250px]" : ""
+          isMobile && isOpen ? "w-[80%] max-w-[250px]" : "",
+          isCollapsed && !isMobile ? "w-16" : ""
         )}
       >
-        <div className="p-4 border-b border-sidebar-border">
-          <h1 className="text-xl font-bold text-coderbot-purple">Learn Code Bot</h1>
+        <div className="p-2 border-b border-sidebar-border">
+          <div className="flex items-center justify-between gap-2">
+            {!isCollapsed && <h1 className="text-xl font-bold text-coderbot-purple truncate">Learn Code Bot</h1>}
+            {!isMobile && (
+              <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="flex items-center justify-center w-8 h-8 rounded-lg bg-coderbot-purple hover:bg-coderbot-purple/90 text-white transition-colors"
+                aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+              </button>
+            )}
+          </div>
         </div>
         <div className="flex-1 p-3 overflow-y-auto">
           <nav className="space-y-1">
@@ -96,13 +115,10 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
                 }}
                 to={item.to}
                 accessKey={item.accessKey}
+                isCollapsed={isCollapsed}
               />
             ))}
-            
-
           </nav>
-
-        </div>
         </div>
         <div className="p-3 border-t border-sidebar-border">
           <div className="mb-3">
@@ -114,13 +130,17 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
                 if (isMobile) setIsOpen(false);
               }}
               to="/profile"
+              isCollapsed={isCollapsed}
             />
           </div>
-          <div className="text-xs text-muted-foreground">
-            <p>Learn Code Bot v1.0</p>
-            <p>©2025 Educational Platform</p>
-          </div>
+          {!isCollapsed && (
+            <div className="text-xs text-muted-foreground">
+              <p>Learn Code Bot v1.0</p>
+              <p>©2025 Educational Platform</p>
+            </div>
+          )}
         </div>
+      </div>
      
       {isMobile && isOpen && (
         <div 

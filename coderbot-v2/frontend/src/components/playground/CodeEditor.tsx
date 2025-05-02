@@ -1,8 +1,6 @@
-/*
-  Modern IDE-like Code Editor – VS Code mini (no direct monaco import)
-  ------------------------------------------------------------------
-  • Theme defined via beforeMount → no ts error
-*/
+// CodeEditor.tsx
+// Enhanced IDE-like editor with real filesystem support and native terminal via Tauri plugins
+// ----------------------------------------------------------------------------
 
 import React, {
   useCallback,
@@ -12,26 +10,22 @@ import React, {
   KeyboardEvent,
 } from "react";
 import Editor, { OnMount, BeforeMount } from "@monaco-editor/react";
-
-import {
-  PanelGroup,
-  Panel,
-  PanelResizeHandle,
-} from "react-resizable-panels";
+import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
 import { Terminal as XTerm } from "xterm";
-import { FitAddon } from "xterm-addon-fit"; 
+import { FitAddon } from "xterm-addon-fit";
 import "xterm/css/xterm.css";
-import {
-  Play,
-  Plus,
-  Save as SaveIcon,
-  Files,
-  Trash,
-} from "lucide-react";
+import { Play, Plus, Save as SaveIcon, Files, MessageSquare } from "lucide-react";
 import { toast, Toaster } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+
+// Tauri imports
+import { invoke } from "@tauri-apps/api/core";
+import { Command } from "@tauri-apps/plugin-shell";
+
+// Monaco imports
+import * as monaco from 'monaco-editor';
 
 // ------- Types & constants -------------------------------------------
 export type Language = "javascript" | "python";
@@ -43,50 +37,213 @@ interface FileNode {
   dirty: boolean;
 }
 
-const LS_KEY = "ide-files-v1";
 const DEFAULT_FILES: FileNode[] = [
-  {
-    id: "1",
-    name: "main.py",
-    lang: "python",
-    code: "print('Hello, world!')",
-    dirty: false,
-  },
+  { id: "1", name: "main.py", lang: "python", code: "print('Hello, world!')", dirty: false },
 ];
 
-// ---------- localStorage helpers -------------------------------------
-const loadFiles = (): FileNode[] => {
-  try {
-    const raw = localStorage.getItem(LS_KEY);
-    return raw ? (JSON.parse(raw) as FileNode[]) : DEFAULT_FILES;
-  } catch {
-    return DEFAULT_FILES;
+// Manokai theme definition
+const manokaiTheme: monaco.editor.IStandaloneThemeData = {
+  base: 'vs-dark' as monaco.editor.BuiltinTheme,
+  inherit: true,
+  rules: [
+    { token: '', foreground: 'd4d4d4', background: '1e1e1e' },
+    { token: 'comment', foreground: '6a9955' },
+    { token: 'keyword', foreground: 'c586c0' },
+    { token: 'string', foreground: 'ce9178' },
+    { token: 'number', foreground: 'b5cea8' },
+    { token: 'function', foreground: 'dcdcaa' },
+    { token: 'variable', foreground: '9cdcfe' },
+    { token: 'type', foreground: '4ec9b0' },
+    { token: 'class', foreground: '4ec9b0' },
+    { token: 'interface', foreground: '4ec9b0' },
+    { token: 'enum', foreground: '4ec9b0' },
+    { token: 'parameter', foreground: '9cdcfe' },
+    { token: 'property', foreground: '9cdcfe' },
+    { token: 'method', foreground: 'dcdcaa' },
+    { token: 'macro', foreground: 'c586c0' },
+    { token: 'operator', foreground: 'd4d4d4' },
+    { token: 'punctuation', foreground: 'd4d4d4' },
+    { token: 'regexp', foreground: 'd16969' },
+    { token: 'tag', foreground: '569cd6' },
+    { token: 'attribute', foreground: '9cdcfe' },
+  ],
+  colors: {
+    'editor.background': '#1e1e1e',
+    'editor.foreground': '#d4d4d4',
+    'editor.lineHighlightBackground': '#2d2d2d',
+    'editor.selectionBackground': '#264f78',
+    'editor.inactiveSelectionBackground': '#3a3d41',
+    'editorCursor.foreground': '#d4d4d4',
+    'editorWhitespace.foreground': '#404040',
+    'editorLineNumber.foreground': '#858585',
+    'editorLineNumber.activeForeground': '#c6c6c6',
+    'editorGutter.background': '#1e1e1e',
+    'editorGutter.modifiedBackground': '#0c2d1b',
+    'editorGutter.addedBackground': '#0c2d1b',
+    'editorGutter.deletedBackground': '#2a0d0d',
   }
 };
-const saveFiles = (files: FileNode[]) => {
+
+// ------- Workspace helpers -------------------------------------------
+async function getWorkspaceDir(): Promise<string> {
   try {
-    localStorage.setItem(LS_KEY, JSON.stringify(files));
-  } catch {/* ignore */}
+    return await invoke<string>("get_workspace_dir");
+  } catch (error) {
+    console.error("Error getting workspace directory:", error);
+    return "./";
+  }
+}
+
+async function listFiles(): Promise<string[]> {
+  try {
+    // First ensure the workspace directory exists
+    await invoke("ensure_dir", { dirname: "" });
+    
+    // Then list files
+    return await invoke<string[]>("list_workspace_files");
+  } catch (error) {
+    console.error("Error listing files:", error);
+    return [];
+  }
+}
+
+async function loadFile(name: string): Promise<string> {
+  try {
+    console.log('Loading file:', name);
+    return await invoke<string>("read_file", { filename: name });
+  } catch (error) {
+    console.error(`Error loading file ${name}:`, error);
+    return `# Error loading file: ${error}`;
+  }
+}
+
+async function saveFileToDisk(name: string, content: string): Promise<void> {
+  try {
+    console.log('Saving file:', name);
+    
+    // Ensure directory exists
+    await invoke("ensure_dir", { dirname: "" });
+    
+    // Write file
+    await invoke("write_file", { filename: name, content });
+    console.log('File saved successfully');
+  } catch (error) {
+    console.error("Error saving file:", error);
+    toast.error(`Failed to save: ${error}`);
+    throw error;
+  }
+}
+
+// ------- Chat Component -------------------------------------------
+const MiniChat: React.FC<{ onSendMessage: (message: string) => void }> = ({ onSendMessage }) => {
+  const [message, setMessage] = useState("");
+  const [chatHistory, setChatHistory] = useState<string[]>([]);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+    
+    // Add user message to history
+    setChatHistory(prev => [...prev, `Você: ${message}`]);
+    
+    // Send message to parent
+    onSendMessage(message);
+    
+    // Clear input
+    setMessage("");
+  };
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [chatHistory]);
+
+  return (
+    <div className="flex flex-col h-full">
+      <div 
+        ref={chatContainerRef}
+        className="flex-1 overflow-y-auto p-2 space-y-2 bg-black/20"
+      >
+        {chatHistory.map((msg, idx) => (
+          <div 
+            key={idx} 
+            className={cn(
+              "p-2 rounded text-sm",
+              msg.startsWith('Você:') ? "bg-blue-500/20" : "bg-green-500/20"
+            )}
+          >
+            {msg}
+          </div>
+        ))}
+      </div>
+      <div className="p-2 border-t border-border">
+        <div className="flex gap-2">
+          <Input
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Digite sua mensagem..."
+            className="flex-1"
+          />
+          <Button onClick={handleSend} size="sm">
+            Enviar
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-// ----------------------------------------------------------------------
+// ----------------- Component -----------------------------------------
 export const CodeEditor: React.FC = () => {
-  const [files, setFiles] = useState<FileNode[]>(loadFiles());
-  const [activeId, setActiveId] = useState(files[0].id);
-  const activeFile = files.find((f) => f.id === activeId)!;
+  const [files, setFiles] = useState<FileNode[]>([]);
+  const [activeId, setActiveId] = useState<string>("1");
+  const activeFile = files.find(f => f.id === activeId) || DEFAULT_FILES[0];
+  const [showTerminal, setShowTerminal] = useState(false);
+  const [chatHistory, setChatHistory] = useState<string[]>([]);
 
   const xtermRef = useRef<XTerm>();
   const fitAddonRef = useRef<FitAddon>();
   const xtermEl = useRef<HTMLDivElement>(null);
-
   const monacoRef = useRef<Parameters<OnMount>[0]>();
 
   const [isRunning, setIsRunning] = useState(false);
 
-  // -------- persistence ----------------------------------------------
-  useEffect(() => saveFiles(files), [files]);
+  // Load files from disk on mount
+  useEffect(() => {
+    (async () => {
+      const names = await listFiles();
+      if (names.length === 0) {
+        // Initialize with default if empty
+        await saveFileToDisk(DEFAULT_FILES[0].name, DEFAULT_FILES[0].code);
+      }
+      const fileObjs = await Promise.all(
+        (names.length ? names : [DEFAULT_FILES[0].name]).map(async (name, idx) => {
+          const lang = name.endsWith(".py") ? "python" as Language : "javascript" as Language;
+          return {
+          id: crypto.randomUUID(),
+          name,
+            lang,
+          code: await loadFile(name),
+          dirty: false,
+          };
+        })
+      );
+      setFiles(fileObjs);
+      setActiveId(fileObjs[0].id);
+    })();
+  }, []);
 
-  // -------- XTerm init -----------------------------------------------
+  // Initialize xterm
   useEffect(() => {
     xtermRef.current = new XTerm({ convertEol: true, fontFamily: "JetBrains Mono" });
     fitAddonRef.current = new FitAddon();
@@ -94,6 +251,7 @@ export const CodeEditor: React.FC = () => {
     return () => xtermRef.current?.dispose();
   }, []);
 
+  // Attach xterm to DOM
   useEffect(() => {
     if (xtermEl.current && xtermRef.current) {
       xtermRef.current.open(xtermEl.current);
@@ -101,79 +259,142 @@ export const CodeEditor: React.FC = () => {
     }
   }, []);
 
-  const print = (msg: string, clear = false) => {
+  // Print to terminal
+  const print = useCallback((msg: string, clear = false) => {
     if (!xtermRef.current) return;
     if (clear) xtermRef.current.clear();
     xtermRef.current.write(msg.replace(/\n/g, "\r\n"));
-  };
+  }, []);
 
-  // -------- actions ---------------------------------------------------
-  const addFile = () => {
-    const id = Date.now().toString();
-    setFiles((prev) => [
-      ...prev,
-      { id, name: `script_${prev.length + 1}.js`, lang: "javascript", code: "console.log('new')", dirty: false },
-    ]);
-    setActiveId(id);
-  };
+  // Save file to disk
+  const handleSave = useCallback(async () => {
+    await saveFileToDisk(activeFile.name, monacoRef.current?.getValue() || activeFile.code);
+    setFiles(prev => prev.map(f => f.id === activeId ? { ...f, dirty: false } : f));
+    toast.success("Saved to disk");
+  }, [activeFile, activeId]);
 
-  const updateCode = (code: string) => {
-    setFiles((prev) => prev.map((f) => (f.id === activeId ? { ...f, code, dirty: true } : f)));
-  };
-
-  const saveFile = () => {
-    setFiles((prev) => prev.map((f) => (f.id === activeId ? { ...f, dirty: false } : f)));
-    toast.success("Saved");
-  };
-
-  const run = async () => {
+  // Run file natively
+  const runNative = useCallback(async () => {
     if (isRunning) return;
     setIsRunning(true);
     print("Running...\n", true);
-    await new Promise((r) => setTimeout(r, 500));
-    print(activeFile.code);
-    toast.success("Done");
-    setIsRunning(false);
+    await handleSave();
+
+    const dir = await getWorkspaceDir();
+    try {
+      const command = Command.create(
+      activeFile.lang === "python" ? "python" : "node",
+        [activeFile.name],
+        { cwd: dir }
+    );
+      command.on("close", () => {
+        setIsRunning(false);
+      toast.success("Execution finished");
+      });
+      command.stdout.on("data", line => print(line));
+      command.stderr.on("data", line => print(`[err] ${line}`));
+      await command.spawn();
+    } catch (e) {
+      console.error("Execution error:", e);
+      toast.error("Error during execution");
+      setIsRunning(false);
+    }
+  }, [activeFile, handleSave, isRunning, print]);
+
+  // Editor change
+  const updateCode = (code: string) => {
+    setFiles(prev => prev.map(f => f.id === activeId ? { ...f, code, dirty: true } : f));
   };
 
+  // Keybindings
   const handleKey = (e: KeyboardEvent) => {
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
-      run();
+      runNative();
     }
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
       e.preventDefault();
-      saveFile();
+      handleSave();
     }
   };
 
-  const beforeMount: BeforeMount = (monaco) => {
-    // register theme once
-    // monaco.editor.defineTheme("vscode-dark", vsTheme as any);
+  // Monaco theme setup
+  const beforeMount: BeforeMount = monaco => {
+    monaco.editor.defineTheme('manokai', manokaiTheme);
+    monaco.editor.setTheme('manokai');
   };
 
-  // -------- render ----------------------------------------------------
+  // Create a new file
+  const createNewFile = useCallback(async () => {
+    const newFileName = prompt("Enter filename (e.g. script.py):");
+    if (!newFileName) return;
+    
+    const fileExtension = newFileName.split('.').pop() || "";
+    const lang = fileExtension === "py" ? "python" as Language : "javascript" as Language;
+    const defaultCode = lang === "python" ? "# New Python file\n\nprint('Hello, world!')" : 
+      "// New JavaScript file\n\nconsole.log('Hello, world!');";
+    
+    const newFile: FileNode = {
+      id: crypto.randomUUID(),
+      name: newFileName,
+      lang,
+      code: defaultCode,
+      dirty: true
+    };
+    
+    setFiles(prev => [...prev, newFile]);
+    setActiveId(newFile.id);
+    
+    try {
+      await saveFileToDisk(newFile.name, newFile.code);
+      toast.success(`Created ${newFile.name}`);
+    } catch (error) {
+      console.error("Error creating file:", error);
+      toast.error("Failed to create file");
+    }
+  }, []);
+
+  const handleChatMessage = async (message: string) => {
+    try {
+      // Envia a mensagem para o backend Rust
+      const response = await invoke<string>("chat_with_continue", { message });
+      setChatHistory(prev => [...prev, `Continue: ${response}`]);
+    } catch (error) {
+      console.error("Erro ao processar mensagem:", error);
+      toast.error("Erro ao processar mensagem");
+    }
+  };
+
   return (
-    <div className="flex h-full flex-col bg-code" onKeyDown={handleKey}>
+    <div className="flex h-full flex-col" onKeyDown={handleKey}>
       <Toaster />
       {/* Toolbar */}
       <div className="flex items-center gap-2 px-3 h-9 border-b bg-muted/30">
-        <Button size="icon" variant="ghost" onClick={addFile}>
+        <Button size="icon" variant="ghost" onClick={createNewFile}>
           <Plus className="w-4 h-4" />
         </Button>
         <span className="flex-1 text-sm truncate">{activeFile.name}</span>
-        <Button size="icon" variant="ghost" onClick={saveFile}>
+        <Button size="icon" variant="ghost" onClick={handleSave}>
           <SaveIcon className={cn("w-4 h-4", activeFile.dirty && "text-yellow-500")} />
         </Button>
-        <Button size="icon" onClick={run} disabled={isRunning}>
+        <Button size="icon" onClick={runNative} disabled={isRunning}>
           <Play className="w-4 h-4" />
+        </Button>
+        <Button 
+          size="icon" 
+          variant="ghost" 
+          onClick={() => setShowTerminal(!showTerminal)}
+          className={cn(showTerminal && "text-blue-500")}
+        >
+          <MessageSquare className="w-4 h-4" />
         </Button>
       </div>
 
       <PanelGroup direction="horizontal" className="flex-1">
+        {/* File Explorer Panel */}
         <Panel defaultSize={18} minSize={10} className="border-r bg-muted/10">
           <div className="font-mono text-xs p-2">EXPLORER</div>
-          {files.map((f) => (
+          {files.map(f => (
             <div
               key={f.id}
               onClick={() => setActiveId(f.id)}
@@ -184,23 +405,29 @@ export const CodeEditor: React.FC = () => {
           ))}
         </Panel>
         <PanelResizeHandle className="w-2 bg-border" />
+
+        {/* Editor + Chat/Terminal */}
         <Panel>
           <PanelGroup direction="vertical" className="h-full">
             <Panel defaultSize={70} minSize={30}>
               <Editor
                 beforeMount={beforeMount}
-                onMount={(editor) => (monacoRef.current = editor)}
-                theme="vscode-dark"
+                onMount={editor => (monacoRef.current = editor)}
+                theme="manokai"
                 language={activeFile.lang}
                 value={activeFile.code}
-                onChange={(v) => updateCode(v || "")}
+                onChange={v => updateCode(v || "")}
                 options={{ fontSize: 14, minimap: { enabled: false }, automaticLayout: true }}
                 height="100%"
               />
             </Panel>
             <PanelResizeHandle className="h-2 bg-border" />
             <Panel minSize={20} className="bg-black text-white text-xs">
-              <div ref={xtermEl} className="h-full" />
+              {showTerminal ? (
+                <MiniChat onSendMessage={handleChatMessage} />
+              ) : (
+                <div ref={xtermEl} className="h-full" />
+              )}
             </Panel>
           </PanelGroup>
         </Panel>
