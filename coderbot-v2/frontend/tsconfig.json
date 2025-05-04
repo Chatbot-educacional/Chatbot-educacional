@@ -1,3 +1,4 @@
+// tsconfig.json
 {
   "files": [],
   "references": [
@@ -7,7 +8,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "magicui": ["./src/components/magicui"],
+      "magicui/*": ["./src/components/magicui/*"]
     },
     "noImplicitAny": false,
     "noUnusedParameters": false,

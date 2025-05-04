@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MessageSquare, Code, BarChart3, GraduationCap, FileText, Menu, X, User, LayoutDashboard, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageSquare, Code, BarChart3, GraduationCap, FileText, Menu, X, User, LayoutDashboard, ChevronLeft, ChevronRight, GitBranch } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link, useLocation } from "react-router-dom";
@@ -63,7 +63,8 @@ export const Sidebar = ({ onNavChange, currentNav }: SidebarProps) => {
     { id: "exercises", label: "Exercícios", icon: FileText, accessKey: "e" , to: "/exercises" },
     { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m" , to: "/metrics" },
     { id: "teacher", label: "Professor", icon: GraduationCap, accessKey: "t", to: "/teacher" },
-    {id: "whiteboard", label: "Quadro", icon: LayoutDashboard, accessKey: "q", to: "/whiteboard" },
+    { id: "whiteboard", label: "Quadro", icon: LayoutDashboard, accessKey: "q", to: "/whiteboard" },
+    { id: "mermaid", label: "Diagramas", icon: GitBranch, accessKey: "d", to: "/mermaid" },
   ];
 
   return (

@@ -1,4 +1,4 @@
-import { User, MessageSquare, Code, BarChart3, GraduationCap, FileText, Presentation } from "lucide-react";
+import { User, MessageSquare, Code, BarChart3, GraduationCap, FileText, Presentation, GitBranch, ClipboardEdit} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -29,6 +29,8 @@ export const AppSidebar = ({ currentNav, onNavChange }: AppSidebarProps) => {
     { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m", path: "/dashboard/metrics" },
     { id: "teacher", label: "Professor", icon: GraduationCap, accessKey: "t", path: "/dashboard/teacher" },
     { id: "whiteboard", label: "Quadro", icon: Presentation, accessKey: "w", path: "/dashboard/whiteboard" },
+    { id: "mermaid", label: "Diagramas", icon: GitBranch, accessKey: "d", path: "/dashboard/mermaid" },
+    { id: "flashcard", label: "Flashcards", icon: ClipboardEdit, accessKey: "f", path: "/dashboard/flashcard" },
   ];
 
   return (

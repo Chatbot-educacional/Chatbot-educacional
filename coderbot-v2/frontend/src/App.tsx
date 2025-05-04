@@ -17,6 +17,8 @@ import LearningMetrics from "./pages/LearningMetrics";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import Whiteboard from "./pages/Whiteboard";
 import Home from "./home/Home";
+import Mermaid from "./pages/Mermaid";
+import FlashCardPage from "./pages/FlashCardPage";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const App = () => {
               <Route path="metrics" element={<LearningMetrics />} />
               <Route path="teacher" element={<TeacherDashboard />} />
               <Route path="whiteboard" element={<Whiteboard />} />
+              <Route path="mermaid" element={<Mermaid />} />
+              <Route path="flashcard" element={<FlashCardPage />} />
             </Route>
             <Route path="/profile" element={<RequireAuth><UserProfile /></RequireAuth>} />
             <Route path="/auth" element={<Auth />} />

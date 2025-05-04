@@ -108,6 +108,54 @@ fn chat_with_continue(message: String) -> Result<String, String> {
   Ok(format!("Resposta simulada para: {}", message))
 }
 
+#[tauri::command]
+fn list_files_in_dir(dir_path: String) -> Result<Vec<String>, String> {
+  let base_dir = PathBuf::from(dir_path);
+  match fs::read_dir(&base_dir) {
+    Ok(entries) => {
+      let files: Vec<String> = entries
+        .filter_map(|entry| {
+          let entry = entry.ok()?;
+          if entry.file_type().ok()?.is_file() {
+            Some(entry.file_name().to_string_lossy().to_string())
+          } else {
+            None
+          }
+        })
+        .collect();
+      Ok(files)
+    },
+    Err(e) => Err(e.to_string()),
+  }
+}
+
+#[tauri::command]
+fn read_file_in_dir(dir_path: String, filename: String) -> Result<String, String> {
+  let file_path = PathBuf::from(dir_path).join(filename);
+  match std::fs::read_to_string(&file_path) {
+    Ok(content) => Ok(content),
+    Err(e) => Err(e.to_string()),
+  }
+}
+
+#[tauri::command]
+fn write_file_in_dir(dir_path: String, filename: String, content: String) -> Result<(), String> {
+  let file_path = PathBuf::from(dir_path).join(filename);
+  match std::fs::write(&file_path, content) {
+    Ok(_) => Ok(()),
+    Err(e) => Err(e.to_string()),
+  }
+}
+
+#[tauri::command]
+fn ensure_dir_in_dir(dir_path: String, dirname: String) -> Result<String, String> {
+  let dir_path = PathBuf::from(dir_path).join(dirname);
+  match fs::create_dir_all(&dir_path) {
+    Ok(_) => Ok(dir_path.to_string_lossy().to_string()),
+    Err(e) => Err(e.to_string()),
+  }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
   tauri::Builder::default()
@@ -141,7 +189,11 @@ pub fn run() {
       read_file,
       write_file,
       ensure_dir,
-      chat_with_continue
+      chat_with_continue,
+      list_files_in_dir,
+      read_file_in_dir,
+      write_file_in_dir,
+      ensure_dir_in_dir
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import SpotlightCard from "@/components/SpotlightCard/SpotlightCard";
+import Waves from "@/Backgrounds/Waves/Waves";
+import { invoke } from "@tauri-apps/api/core"; // or plugin-fs if using plugin
 
 // Lazy sections (code-splitting) ————————————————————————————————————————————
 const Features     = lazy(() => import("./sections/FeaturesSection"));
@@ -41,6 +43,8 @@ function Hero() {
       style={{ backgroundPositionY: `${offsetY}px` }}
       className="relative isolate flex min-h-[88vh] flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-700 via-purple-600 to-fuchsia-500 px-6 py-24 text-center text-white lg:px-24"
     >
+      {/* Waves Background */}
+      <Waves className="-z-20" lineColor="#B39DFF" backgroundColor="transparent" waveAmpX={36} waveAmpY={18} />
       {/* Background Blur Blob */}
       <motion.div
         aria-hidden
@@ -52,54 +56,60 @@ function Hero() {
         <div className="absolute -top-20 right-1/4 aspect-square w-[60rem] rounded-full bg-purple-400 opacity-40 blur-3xl" />
       </motion.div>
 
-      {/* Logo */}
-      <motion.img
-        src="/coderbot2.png"
-        alt="CoderBot logo"
-        className="mb-6 w-36 drop-shadow-lg lg:w-44"
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "backOut" }}
-      />
+      {/* Overlay para suavizar o fundo (opcional, pode ser removido se quiser só o card) */}
+      {/* <div className="absolute inset-0 z-0 bg-white/30 backdrop-blur-sm pointer-events-none" /> */}
 
-      {/* Heading */}
-      <motion.h1
-        className="max-w-4xl bg-gradient-to-r from-white via-indigo-200 to-white/60 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent sm:text-6xl md:text-7xl"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: {
-            transition: { staggerChildren: 0.04 },
-          },
-        }}
-      >
-        {"CoderBot".split("").map((c, i) => (
-          <motion.span
-            key={i}
-            variants={{
-              hidden: { y: 30, opacity: 0 },
-              visible: { y: 0, opacity: 1 },
-            }}
-          >
-            {c}
-          </motion.span>
-        ))}
-      </motion.h1>
+      {/* Card centralizado para destaque do produto */}
+      <div className="relative z-10 mx-auto w-full max-w-xl rounded-2xl bg-white/70 backdrop-blur-md shadow-2xl p-8 flex flex-col items-center">
+        {/* Logo */}
+        <motion.img
+          src="/coderbot_colorfull.png"
+          alt="CoderBot logo"
+          className="mb-6 w-36 drop-shadow-lg lg:w-44"
+          initial={{ scale: 0.85, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "backOut" }}
+        />
 
-      <p className="mt-4 max-w-xl text-lg/relaxed text-white/90">
-        Plataforma inteligente que conecta professores e alunos por meio de aprendizado ativo
-        e experiências de codificação imersivas.
-      </p>
+        {/* Heading */}
+        <motion.h1
+          className="max-w-4xl bg-gradient-to-r from-indigo-700 via-purple-600 to-fuchsia-500 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent sm:text-6xl md:text-7xl drop-shadow-md"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.04 },
+            },
+          }}
+        >
+          {"CoderBot".split("").map((c, i) => (
+            <motion.span
+              key={i}
+              variants={{
+                hidden: { y: 30, opacity: 0 },
+                visible: { y: 0, opacity: 1 },
+              }}
+            >
+              {c}
+            </motion.span>
+          ))}
+        </motion.h1>
 
-      {/* CTA */}
-      <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-        <Button asChild size="lg" className="shadow-lg">
-          <a href="/dashboard">Começar agora</a>
-        </Button>
-        <Button asChild variant="outline" size="lg" className="border-white/40 bg-white/10 backdrop-blur">
-          <a href="/auth">Saiba mais</a>
-        </Button>
+        <p className="mt-4 max-w-xl text-lg/relaxed text-gray-800 text-center">
+          Plataforma inteligente que conecta professores e alunos por meio de aprendizado ativo
+          e experiências de codificação imersivas.
+        </p>
+
+        {/* CTA */}
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+          <Button asChild size="lg" className="shadow-lg">
+            <a href="/dashboard">Começar agora</a>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="border-white/40 bg-white/10 backdrop-blur">
+            <a href="/auth">Saiba mais</a>
+          </Button>
+        </div>
       </div>
 
       {/* Floating code card */}
@@ -441,3 +451,17 @@ function SectionLoader() {
 // Default export ends above – sub‑sections live in ./sections/* ————
 //   Each section is isolated: accepts no props, exports memo‑ized FC.
 //   This keeps Home.tsx tidy and boosts maintainability.
+
+type FileEntry = { path: string; entry_type: "file" | "directory" };
+
+export const CodeEditor = () => {
+  const [fileEntries, setFileEntries] = useState<FileEntry[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const entries = await invoke<FileEntry[]>("list_workspace_files");
+      setFileEntries(entries);
+      // ...load file contents for editor as needed
+    })();
+  }, []);
+};

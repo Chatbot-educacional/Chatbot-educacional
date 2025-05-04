@@ -14,7 +14,7 @@ import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
 import { Terminal as XTerm } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import "xterm/css/xterm.css";
-import { Play, Plus, Save as SaveIcon, Files, MessageSquare } from "lucide-react";
+import { Play, Plus, Save as SaveIcon, Files, MessageSquare, FolderPlus } from "lucide-react";
 import { toast, Toaster } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 // Tauri imports
 import { invoke } from "@tauri-apps/api/core";
 import { Command } from "@tauri-apps/plugin-shell";
+import { open } from '@tauri-apps/plugin-dialog';
 
 // Monaco imports
 import * as monaco from 'monaco-editor';
@@ -35,6 +36,15 @@ interface FileNode {
   lang: Language;
   code: string;
   dirty: boolean;
+}
+
+// File tree node type
+interface FileTreeNode {
+  id: string;
+  name: string;
+  type: "file" | "directory";
+  children?: FileTreeNode[];
+  fileId?: string; // link to FileNode.id
 }
 
 const DEFAULT_FILES: FileNode[] = [
@@ -203,6 +213,73 @@ const MiniChat: React.FC<{ onSendMessage: (message: string) => void }> = ({ onSe
   );
 };
 
+// Utility: build file tree from paths
+function buildFileTree(files: FileNode[]): FileTreeNode[] {
+  const root: FileTreeNode[] = [];
+  for (const file of files) {
+    const parts = file.name.split("/");
+    let current = root;
+    for (let i = 0; i < parts.length; i++) {
+      const name = parts[i];
+      let node = current.find(n => n.name === name);
+      if (!node) {
+        node = {
+          id: crypto.randomUUID(),
+          name,
+          type: i === parts.length - 1 ? "file" : "directory",
+          children: i === parts.length - 1 ? undefined : [],
+        };
+        if (i === parts.length - 1) node.fileId = file.id;
+        current.push(node);
+      }
+      if (node.type === "directory") {
+        current = node.children!;
+      }
+    }
+  }
+  return root;
+}
+
+// FileTree component
+const FileTree: React.FC<{
+  nodes: FileTreeNode[];
+  activeId: string;
+  onSelect: (fileId: string) => void;
+}> = ({ nodes, activeId, onSelect }) => {
+  const [open, setOpen] = useState<{ [id: string]: boolean }>({});
+  return (
+    <ul className="pl-2 select-none">
+      {nodes.map(node => (
+        <li key={node.id}>
+          {node.type === "directory" ? (
+            <>
+              <span
+                className="cursor-pointer font-semibold text-purple-700 hover:underline"
+                onClick={() => setOpen(o => ({ ...o, [node.id]: !o[node.id] }))}
+              >
+                {open[node.id] ? "▼" : "▶"} {node.name}
+              </span>
+              {open[node.id] && node.children && (
+                <FileTree nodes={node.children} activeId={activeId} onSelect={onSelect} />
+              )}
+            </>
+          ) : (
+            <span
+              className={cn(
+                "cursor-pointer pl-5 block py-0.5 rounded hover:bg-purple-100",
+                node.fileId === activeId && "bg-purple-200 font-bold"
+              )}
+              onClick={() => onSelect(node.fileId!)}
+            >
+              {node.name}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 // ----------------- Component -----------------------------------------
 export const CodeEditor: React.FC = () => {
   const [files, setFiles] = useState<FileNode[]>([]);
@@ -210,6 +287,7 @@ export const CodeEditor: React.FC = () => {
   const activeFile = files.find(f => f.id === activeId) || DEFAULT_FILES[0];
   const [showTerminal, setShowTerminal] = useState(false);
   const [chatHistory, setChatHistory] = useState<string[]>([]);
+  const [folderPath, setFolderPath] = useState<string | null>(null);
 
   const xtermRef = useRef<XTerm>();
   const fitAddonRef = useRef<FitAddon>();
@@ -354,6 +432,34 @@ export const CodeEditor: React.FC = () => {
     }
   }, []);
 
+  // Create a new folder
+  const createNewFolder = useCallback(async () => {
+    const newFolderName = prompt("Enter folder name (e.g. src or src/utils):");
+    if (!newFolderName) return;
+    try {
+      await invoke("ensure_dir", { dirname: newFolderName });
+      toast.success(`Created folder ${newFolderName}`);
+      // Refresh file list
+      const names = await listFiles();
+      const fileObjs = await Promise.all(
+        (names.length ? names : [DEFAULT_FILES[0].name]).map(async (name, idx) => {
+          const lang = name.endsWith(".py") ? "python" as Language : "javascript" as Language;
+          return {
+            id: crypto.randomUUID(),
+            name,
+            lang,
+            code: await loadFile(name),
+            dirty: false,
+          };
+        })
+      );
+      setFiles(fileObjs);
+    } catch (error) {
+      console.error("Error creating folder:", error);
+      toast.error("Failed to create folder");
+    }
+  }, []);
+
   const handleChatMessage = async (message: string) => {
     try {
       // Envia a mensagem para o backend Rust
@@ -365,6 +471,15 @@ export const CodeEditor: React.FC = () => {
     }
   };
 
+  const handleOpenFolder = async () => {
+    const selected = await open({ directory: true });
+    if (selected) {
+      setFolderPath(selected as string);
+      // Chame sua função para listar arquivos dessa pasta
+      // Ex: listFiles(selected)
+    }
+  };
+
   return (
     <div className="flex h-full flex-col" onKeyDown={handleKey}>
       <Toaster />
@@ -372,6 +487,12 @@ export const CodeEditor: React.FC = () => {
       <div className="flex items-center gap-2 px-3 h-9 border-b bg-muted/30">
         <Button size="icon" variant="ghost" onClick={createNewFile}>
           <Plus className="w-4 h-4" />
+        </Button>
+        <Button size="icon" variant="ghost" onClick={createNewFolder}>
+          <FolderPlus className="w-4 h-4" />
+        </Button>
+        <Button size="icon" variant="ghost" onClick={handleOpenFolder}>
+          <Files className="w-4 h-4" />
         </Button>
         <span className="flex-1 text-sm truncate">{activeFile.name}</span>
         <Button size="icon" variant="ghost" onClick={handleSave}>
@@ -392,18 +513,7 @@ export const CodeEditor: React.FC = () => {
 
       <PanelGroup direction="horizontal" className="flex-1">
         {/* File Explorer Panel */}
-        <Panel defaultSize={18} minSize={10} className="border-r bg-muted/10">
-          <div className="font-mono text-xs p-2">EXPLORER</div>
-          {files.map(f => (
-            <div
-              key={f.id}
-              onClick={() => setActiveId(f.id)}
-              className={cn("px-2 py-1 text-sm cursor-pointer", f.id === activeId && "bg-accent")}
-            >
-              <Files className="w-3 h-3 inline-block mr-1" /> {f.name}
-            </div>
-          ))}
-        </Panel>
+       
         <PanelResizeHandle className="w-2 bg-border" />
 
         {/* Editor + Chat/Terminal */}
