@@ -137,7 +137,7 @@ export const ClassDetails: React.FC = () => {
         
         const mappedStudents = enrollments.items.map(item => ({
           id: item.student,
-          name: item.expand?.student?.fullName || item.expand?.student?.username || 'Aluno',
+          name: item.expand?.student?.name || item.expand?.student?.username || 'Aluno',
           email: item.expand?.student?.email || '',
           progress: Math.floor(Math.random() * 100), // Simulado por enquanto
           joinDate: new Date(item.created).toLocaleDateString()

@@ -11,7 +11,8 @@ export const registerSchema = z
     email: z.string().email({ message: "Email inválido" }),
     password: z.string().min(6, { message: "Mín. 6 caracteres" }),
     passwordConfirm: z.string().min(6, { message: "Confirmação obrigatória" }),
-    fullName: z.string().min(2, { message: "Nome completo obrigatório" }),
+    name: z.string().min(2, { message: "Nome completo obrigatório" }),
+    role: z.enum(["student", "teacher", "admin"]),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     message: "Senhas não coincidem",

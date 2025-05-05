@@ -94,7 +94,7 @@ const CodeEditor = () => {
         </div>
         {/* Editor */}
         <div className="flex-1 h-full">
-          <CodeEditorComponent />
+        <CodeEditorComponent />
         </div>
       </TabsContent>
       <TabsContent value="filesystem" className="flex-grow p-4">

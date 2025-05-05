@@ -54,7 +54,7 @@ export const StudentInvitations: React.FC = () => {
           id: item.id,
           classId: item.class,
           className: item.expand?.class?.name || 'Turma',
-          teacherName: item.expand?.createdBy?.fullName || 'Professor',
+          teacherName: item.expand?.createdBy?.name || 'Professor',
           date: new Date(item.created).toLocaleDateString()
         }));
         setInvitations(mappedInvitations);

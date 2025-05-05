@@ -15,8 +15,12 @@ export const pb = new PocketBase(POCKETBASE_URL);
  */
 export interface UserRecord extends PBRecord {
   email: string;
-  fullName: string;
+  name: string;          // Nome completo
   emailVisibility: boolean;
+  role: string;
+  bio?: string;
+  avatar?: string;
+  
   // acrescente outros campos customizados se houver
 }
 
@@ -36,7 +40,11 @@ export interface AuthResponse {
 export const getCurrentUser = (): UserRecord | undefined => {
   const model = pb.authStore.model;
   if (!model) return undefined;
-  return model as unknown as UserRecord;
+  
+  // Cast do modelo do PocketBase para nosso tipo UserRecord
+  const user = model as unknown as UserRecord;
+  
+  return user;
 };
 
 

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -13,16 +12,26 @@ const Index = () => {
   
   // Update currentNav based on the current route
   useEffect(() => {
-    if (location.pathname === "/" || location.pathname === "") {
+    const path = location.pathname;
+    
+    if (path.includes("chat")) {
       setCurrentNav("chat");
-    } else if (location.pathname === "/playground") {
+    } else if (path.includes("playground")) {
       setCurrentNav("playground");
-    } else if (location.pathname === "/exercises") {
+    } else if (path.includes("exercises")) {
       setCurrentNav("exercises");
-    } else if (location.pathname === "/metrics") {
+    } else if (path.includes("metrics")) {
       setCurrentNav("metrics");
-    } else if (location.pathname === "/teacher") {
+    } else if (path.includes("teacher")) {
       setCurrentNav("teacher");
+    } else if (path.includes("student")) {
+      setCurrentNav("student");
+    } else if (path.includes("whiteboard")) {
+      setCurrentNav("whiteboard");
+    } else if (path.includes("mermaid")) {
+      setCurrentNav("mermaid");
+    } else if (path.includes("flashcard")) {
+      setCurrentNav("flashcard");
     }
   }, [location.pathname]);
 

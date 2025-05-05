@@ -11,7 +11,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Whiteboard from "@/pages/Whiteboard";
+import { useEffect, useState } from "react";
+import { getCurrentUser } from "@/integrations/pocketbase/client";
+import { toast } from "sonner";
 
 type AppSidebarProps = {
   currentNav: string;
@@ -20,6 +22,17 @@ type AppSidebarProps = {
 
 export const AppSidebar = ({ currentNav, onNavChange }: AppSidebarProps) => {
   const location = useLocation();
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Get current user role
+    const user = getCurrentUser();
+    if (user) {
+      setUserRole(user.role);
+    }
+    setIsLoading(false);
+  }, []);
 
   // Map navigation items to their corresponding routes
   const mainNavItems = [
@@ -27,11 +40,52 @@ export const AppSidebar = ({ currentNav, onNavChange }: AppSidebarProps) => {
     { id: "playground", label: "Playground", icon: Code, accessKey: "p", path: "/dashboard/playground" },
     { id: "exercises", label: "Exercícios", icon: FileText, accessKey: "e", path: "/dashboard/exercises" },
     { id: "metrics", label: "Métricas", icon: BarChart3, accessKey: "m", path: "/dashboard/metrics" },
-    { id: "teacher", label: "Professor", icon: GraduationCap, accessKey: "t", path: "/dashboard/teacher" },
+    // Only show teacher dashboard for teachers and admins
+    { 
+      id: "teacher", 
+      label: "Professor", 
+      icon: GraduationCap, 
+      accessKey: "t", 
+      path: "/dashboard/teacher",
+      roles: ["teacher", "admin"]
+    },
+    // Show student dashboard for students (can also be visible to teachers/admins)
+    { 
+      id: "student", 
+      label: "Aluno", 
+      icon: GraduationCap, 
+      accessKey: "s", 
+      path: "/dashboard/student",
+      roles: ["student", "teacher", "admin"]
+    },
     { id: "whiteboard", label: "Quadro", icon: Presentation, accessKey: "w", path: "/dashboard/whiteboard" },
     { id: "mermaid", label: "Diagramas", icon: GitBranch, accessKey: "d", path: "/dashboard/mermaid" },
     { id: "flashcard", label: "Flashcards", icon: ClipboardEdit, accessKey: "f", path: "/dashboard/flashcard" },
   ];
+
+  // Filter items based on user role
+  const filteredNavItems = mainNavItems.filter(item => {
+    // If the item doesn't specify roles, show it to everyone
+    if (!item.roles) return true;
+    
+    // If we don't know the user role yet or there's an error, hide role-specific items
+    if (!userRole) return false;
+    
+    // Show the item if the user's role is in the item's roles array
+    return item.roles.includes(userRole);
+  });
+
+  if (isLoading) {
+    return (
+      <Sidebar>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Carregando...</SidebarGroupLabel>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+    );
+  }
 
   return (
     <Sidebar>
@@ -40,7 +94,7 @@ export const AppSidebar = ({ currentNav, onNavChange }: AppSidebarProps) => {
           <SidebarGroupLabel>Menu Principal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {mainNavItems.map((item) => (
+              {filteredNavItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     asChild

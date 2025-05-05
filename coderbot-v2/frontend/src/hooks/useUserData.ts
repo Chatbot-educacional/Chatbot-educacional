@@ -9,16 +9,20 @@ interface ProfileRecord {
   created: string;
   updated: string;
   email: string;
-  full_name?: string;
+  name?: string;
   avatar_url?: string;
+  bio?: string;
+  role?: string;
 }
 
 // 2) A interface que seu hook expõe:
 export interface UserProfile {
   id: string;
   email: string;
-  full_name: string | null;
+  name: string | null;
   avatar_url: string | null;
+  bio: string | null;
+  role: string | null;
   created_at: string;
 }
 
@@ -34,25 +38,20 @@ export function useUserData() {
       setLoading(false);
       return;
     }
-
-    // 3) Use o ProfileRecord explicitamente:
-    pb
-      .collection("profiles")
-      .getOne<ProfileRecord>(user.id)
-      .then((rec) => {
-        setProfile({
-          id: rec.id,
-          email: rec.email,
-          full_name: rec.full_name ?? null,
-          avatar_url: rec.avatar_url ?? null,
-          created_at: rec.created,  // agora existe no ProfileRecord
-        });
-      })
-      .catch((err) => {
-        console.error("Erro ao carregar perfil:", err);
-        toast.error("Erro ao carregar dados do usuário");
-      })
-      .finally(() => setLoading(false));
+    
+    // Get user data directly from auth store instead of making another request
+    setProfile({
+      id: user.id,
+      email: user.email,
+      name: user.name || null,
+      // Convert avatar to URL if it exists
+      avatar_url: user.avatar ? `${pb.baseUrl}/api/files/${user.collectionId}/${user.id}/${user.avatar}` : null,
+      bio: user.bio || null,
+      role: user.role || null,
+      created_at: user.created,
+    });
+    
+    setLoading(false);
   }, [navigate]);
 
   return { profile, loading };

@@ -15,6 +15,7 @@ import CodeEditor from "./pages/CodeEditor";
 import ExerciseInterface from "./pages/ExerciseInterface";
 import LearningMetrics from "./pages/LearningMetrics";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import StudentDashboard from "./pages/StudentDashboard";
 import Whiteboard from "./pages/Whiteboard";
 import Home from "./home/Home";
 import Mermaid from "./pages/Mermaid";
@@ -41,6 +42,7 @@ const App = () => {
               <Route path="exercises" element={<ExerciseInterface />} />
               <Route path="metrics" element={<LearningMetrics />} />
               <Route path="teacher" element={<TeacherDashboard />} />
+              <Route path="student" element={<StudentDashboard />} />
               <Route path="whiteboard" element={<Whiteboard />} />
               <Route path="mermaid" element={<Mermaid />} />
               <Route path="flashcard" element={<FlashCardPage />} />
