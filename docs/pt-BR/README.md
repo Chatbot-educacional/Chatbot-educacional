@@ -27,6 +27,7 @@ Um chatbot educacional moderno para o ensino de programação, construído com t
 - [Comunidade](#-comunidade)
 - [Roadmap](#-roadmap)
 - [Licença](#-licença)
+- [Justificativa Científica e Técnica](#-justificativa-científica-e-técnica)
 
 ## 🎯 Sobre o Projeto
 
@@ -184,6 +185,46 @@ Agradecemos a todos os [contribuidores](https://github.com/Chatbot-educacional/C
 ## 📝 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](../../LICENSE) para mais detalhes.
+
+## 📈 Justificativa Científica, Estatísticas e Alternativas Open Source
+
+### Panorama Atual: IA e Chatbots na Educação
+
+- **Crescimento do Mercado**: O mercado global de IA na educação deve atingir US$ 80 bilhões até 2032, com taxa de crescimento anual de 43,3%. O e-learning, impulsionado por IA, deve alcançar US$ 239,3 bilhões até 2027. ([Rask AI, 2024](https://pt.rask.ai/research/ai-in-education), [BureauWorks, 2025](https://www.bureauworks.com/fr/blog/ai-estatisticas-500-fatos-impulsionando-a-inovacao-global))
+- **Adoção de Chatbots**: Até 2025, chatbots com IA devem gerenciar 95% das interações digitais, economizando bilhões de horas em suporte e tutoria. ([BureauWorks, 2025](https://www.bureauworks.com/fr/blog/ai-estatisticas-500-fatos-impulsionando-a-inovacao-global))
+- **Engajamento e Personalização**: Conteúdos educativos gerados por IA são tão cativantes quanto os criados por humanos, e a IA aumenta a produtividade em média 66% em ambientes educacionais. ([Rask AI, 2024](https://pt.rask.ai/research/ai-in-education))
+
+### Justificativas para Alternativas Open Source
+
+#### 1. **Transparência e Confiabilidade**
+- O código aberto permite auditoria independente, aumentando a confiança e a segurança.
+- Facilita a identificação e correção de vulnerabilidades.
+- Promove a confiança da comunidade educacional e institucional.
+
+#### 2. **Colaboração e Inovação**
+- Permite que educadores, desenvolvedores e pesquisadores contribuam com melhorias e adaptações.
+- Acelera o desenvolvimento e a adoção de novas metodologias e tecnologias.
+- Exemplo: O uso de PocketBase, React e FastAPI permite customização, integração e evolução contínua.
+
+#### 3. **Sustentabilidade e Acessibilidade**
+- Reduz dependência de soluções proprietárias e custos de licenciamento.
+- Facilita a manutenção e evolução pela comunidade.
+- Permite adaptações para necessidades especiais, ampliando o acesso à educação de qualidade.
+
+#### 4. **Benefícios Práticos e Sociais**
+- **Personalização do Ensino**: IA adapta o conteúdo ao ritmo e estilo de cada aluno, aumentando retenção e engajamento.
+- **Apoio ao Professor**: Chatbots automatizam dúvidas frequentes, liberando tempo para atividades estratégicas e fornecendo relatórios detalhados.
+- **Colaboração e Aprendizado Ativo**: Ferramentas colaborativas e feedback em tempo real estimulam o aprendizado ativo e o trabalho em equipe.
+
+#### 5. **Base Científica e Relatórios**
+- O Banco Mundial destaca que a IA na educação promove inovação, personalização e eficiência, reduzindo desigualdades e apoiando professores com feedback em tempo real. ([Relatório Banco Mundial, 2024](https://documents1.worldbank.org/curated/en/099735306272422279/pdf/IDU1c4bdb3b81e51f1481118de31d54c57446821.pdf))
+
+---
+
+> **Referências:**
+> - [Rask AI: Estatísticas de IA na Educação 2024](https://pt.rask.ai/research/ai-in-education)
+> - [BureauWorks: Estatísticas de IA 2025](https://www.bureauworks.com/fr/blog/ai-estatisticas-500-fatos-impulsionando-a-inovacao-global)
+> - [Banco Mundial: A Revolução da IA na Educação (2024)](https://documents1.worldbank.org/curated/en/099735306272422279/pdf/IDU1c4bdb3b81e51f1481118de31d54c57446821.pdf)
 
 ---
 

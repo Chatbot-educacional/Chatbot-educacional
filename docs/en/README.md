@@ -27,6 +27,7 @@ A modern educational chatbot for programming education, built with cutting-edge 
 - [Community](#-community)
 - [Roadmap](#-roadmap)
 - [License](#-license)
+- [Scientific and Technical Justification](#-scientific-and-technical-justification)
 
 ## 🎯 About the Project
 
@@ -221,6 +222,73 @@ We thank all [contributors](https://github.com/Chatbot-educacional/Chatbot-educa
 ## 📝 License
 
 This project is under the MIT license. See the [LICENSE](../../LICENSE) file for more details.
+
+## Scientific and Technical Justification
+
+### Why Open Source?
+
+1. **Transparency and Reliability**
+   - Open source code allows independent verification of security and quality
+   - Facilitates identification and correction of vulnerabilities
+   - Promotes trust in the educational community
+
+2. **Collaboration and Innovation**
+   - Enables educators and developers to contribute improvements
+   - Facilitates adaptation to different educational contexts
+   - Accelerates development through collaborative work
+
+3. **Sustainability**
+   - Reduces dependency on proprietary solutions
+   - Enables continuous maintenance by the community
+   - Facilitates platform migration and evolution
+
+### Chosen Tools
+
+1. **PocketBase**
+   - Lightweight and efficient database
+   - Native support for authentication and authorization
+   - Real-time features for immediate feedback
+   - Ideal for small to medium-sized educational applications
+
+2. **React + TypeScript**
+   - Static typing for greater reliability
+   - Componentization for code reuse
+   - Large ecosystem of libraries
+   - Excellent performance for interactive interfaces
+
+3. **Python (Backend)**
+   - Ideal language for natural language processing
+   - Strong support for AI/ML libraries
+   - Easy integration with educational tools
+   - Excellent for rapid prototyping
+
+4. **Docker**
+   - Environment isolation
+   - Easy deployment
+   - Consistency between development and production environments
+   - Simplified scalability
+
+### Benefits for Education
+
+1. **Personalization**
+   - Adaptation to specific institutional needs
+   - Flexibility to implement different methodologies
+   - Support for multiple languages and cultures
+
+2. **Accessibility**
+   - Open source allows adaptations for special needs
+   - Facilitates implementation in different contexts
+   - Reduces cost barriers for institutions
+
+3. **Continuous Innovation**
+   - Active community of developers
+   - Frequent updates and improvements
+   - Integration with new technologies and methodologies
+
+4. **Research and Development**
+   - Facilitates academic studies on platform usage
+   - Enables data collection for educational research
+   - Supports development of new features
 
 ---
 
