@@ -62,3 +62,57 @@ export interface DrawingRecord extends PBRecord {
   data: string; // o JSON serializado do Excalidraw
   user: string; // ID do usuário
 }
+
+/**
+ * Modelo de gamificação para armazenar pontos, conquistas, níveis, badges, etc.
+ * Recomenda-se criar uma collection "gamification" no PocketBase ou adicionar campos ao usuário.
+ */
+export interface GamificationRecord extends PBRecord {
+  user: string; // ID do usuário relacionado
+  points: number;
+  level: number;
+  badges: string[]; // Lista de badges/conquistas
+  // Adicione outros campos conforme necessário (ex: missões, streaks, etc)
+}
+
+// Exemplo de como buscar dados de gamificação de um usuário
+// (supondo que exista a collection "gamification" no PocketBase)
+export const getUserGamification = async (userId: string): Promise<GamificationRecord | null> => {
+  try {
+    const record = await pb.collection('gamification').getFirstListItem(`user = "${userId}"`);
+    return record as GamificationRecord;
+  } catch (error) {
+    // Se não encontrar, retorna null
+    return null;
+  }
+};
+
+/**
+ * Modelo de ação de gamificação (ex: enviar mensagem, resolver exercício, etc.)
+ * Recomenda-se criar uma collection "actions" ou "gamification_actions" no PocketBase.
+ */
+export interface ActionRecord extends PBRecord {
+  name: string; // Nome da ação (ex: "send_message", "solve_exercise")
+  description?: string;
+  points: number; // Pontos/XP atribuídos
+  multiplier?: number; // Multiplicador de XP (opcional)
+  badge?: string; // Badge concedido (opcional)
+  context?: string; // Contexto especial (opcional)
+}
+
+// Buscar todas as ações de gamificação
+export const getAllActions = async (): Promise<ActionRecord[]> => {
+  const records = await pb.collection('actions').getFullList();
+  return records as ActionRecord[];
+};
+
+// Registrar uma ação realizada pelo usuário (pode ser via backend ou diretamente, conforme arquitetura)
+export const registerUserAction = async (userId: string, actionName: string, context?: string) => {
+  // Exemplo: criar um registro em uma collection "user_actions" (recomendado para histórico)
+  return pb.collection('user_actions').create({
+    user: userId,
+    action: actionName,
+    context: context || null,
+    timestamp: new Date().toISOString(),
+  });
+};

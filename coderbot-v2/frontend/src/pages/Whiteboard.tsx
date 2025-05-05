@@ -9,6 +9,7 @@ import {
   pb,
   getCurrentUser,
   type DrawingRecord,
+  registerUserAction,
 } from "@/integrations/pocketbase/client";
 import { useDrawings } from "@/hooks/useDrawings";
 import { DrawingList } from "@/components/whiteboard/DrawingList";
@@ -18,6 +19,8 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 // ---------- Tipos auxiliares ----------
 /** Estrutura mínima do JSON exportado pelo Excalidraw */
 type SceneJSON = Record<string, unknown>;
+
+const getToday = () => new Date().toISOString().slice(0, 10);
 
 const Whiteboard: React.FC = () => {
   const apiRef = useRef<ExcalidrawImperativeAPI>(null);
@@ -31,6 +34,23 @@ const Whiteboard: React.FC = () => {
   const [editorVisible, setEditorVisible] = useState(false);
   const [scene, setScene] = useState<SceneJSON | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null); // controla update vs create
+  const [excalidrawAccessed, setExcalidrawAccessed] = useState(false); // novo estado
+  const [lastSaveTime, setLastSaveTime] = useState<number>(0);
+  const [dailyBonusGiven, setDailyBonusGiven] = useState(false);
+  const [createdBoards, setCreatedBoards] = useState<number>(0);
+
+  // Bônus diário ao acessar pela primeira vez no dia
+  React.useEffect(() => {
+    if (user && !dailyBonusGiven) {
+      const lastBonus = localStorage.getItem('whiteboard_daily_bonus');
+      const today = getToday();
+      if (lastBonus !== today) {
+        registerUserAction(user.id, 'whiteboard_daily_bonus'); // 200 pontos
+        localStorage.setItem('whiteboard_daily_bonus', today);
+        setDailyBonusGiven(true);
+      }
+    }
+  }, [user, dailyBonusGiven]);
 
   /* ===================== FUNÇÃO DE SALVAR ===================== */
   const saveScene = useCallback(async () => {
@@ -58,6 +78,21 @@ const Whiteboard: React.FC = () => {
           user: user.id,
         });
         setActiveId(record.id);
+        setCreatedBoards((prev) => {
+          const newCount = prev + 1;
+          // Bônus a cada 10 quadros criados
+          if (newCount % 10 === 0) {
+            registerUserAction(user.id, 'whiteboard_10_boards'); // 500 pontos
+          }
+          return newCount;
+        });
+        registerUserAction(user.id, 'whiteboard_create_board'); // 50 pontos
+      }
+      // Salvar quadro: 10 pontos, limitado a 1x por minuto
+      const now = Date.now();
+      if (now - lastSaveTime > 60000) {
+        registerUserAction(user.id, 'whiteboard_save_board');
+        setLastSaveTime(now);
       }
       toast.success("Quadro salvo");
       refresh();
@@ -67,15 +102,24 @@ const Whiteboard: React.FC = () => {
     } finally {
       inflightRef.current = false;
     }
-  }, [activeId, user, refresh]);
+  }, [activeId, user, refresh, lastSaveTime]);
 
   /* ===================== AÇÕES DO MENU INICIAL ===================== */
+  const handleOpenEditor = useCallback(() => {
+    setEditorVisible(true);
+    if (!excalidrawAccessed && user) {
+      registerUserAction(user.id, "access_excalidraw");
+      setExcalidrawAccessed(true);
+    }
+  }, [excalidrawAccessed, user]);
+
   const openLocalFile = async (file: File) => {
     try {
       const jsonObj = JSON.parse(await file.text());
       setScene(jsonObj);
       setActiveId(null);
-      setEditorVisible(true);
+      handleOpenEditor();
+      if (user) registerUserAction(user.id, 'whiteboard_upload_file'); // 30 pontos
     } catch {
       toast.error("Arquivo inválido");
     }
@@ -86,7 +130,8 @@ const Whiteboard: React.FC = () => {
       const jsonObj: SceneJSON = typeof d.data === "string" ? JSON.parse(d.data) : (d.data as SceneJSON);
       setScene(jsonObj);
       setActiveId(d.id);
-      setEditorVisible(true);
+      handleOpenEditor();
+      if (user) registerUserAction(user.id, 'whiteboard_open_board'); // 20 pontos
     } catch {
       toast.error("Não foi possível abrir o quadro");
     }
@@ -95,7 +140,8 @@ const Whiteboard: React.FC = () => {
   const newBoard = () => {
     setScene(null);
     setActiveId(null);
-    setEditorVisible(true);
+    handleOpenEditor();
+    // Criar novo quadro: 50 pontos (será registrado no saveScene ao criar)
   };
 
   /* ===================== RENDER ===================== */
