@@ -41,6 +41,20 @@ O CoderBot v2 é uma plataforma educacional open source projetada para auxiliar 
 - 💻 Interface desktop com Tauri
 - 🔐 Autenticação e armazenamento com PocketBase
 
+## 🧠 Metodologias Pedagógicas Embutidas
+
+O grande diferencial do CoderBot v2 não está apenas no uso de IA, mas em como a IA é projetada para ensinar. O sistema utiliza técnicas pedagógicas consagradas, embutidas diretamente na engenharia de prompt, para transformar a experiência de aprendizado:
+
+- **Questionamento Socrático:** A IA nunca entrega a resposta pronta. Ela conduz o aluno por meio de perguntas, incentivando o raciocínio e a descoberta ativa.
+- **Worked Examples (Exemplos Resolvidos):** O bot apresenta exemplos similares, mas não idênticos, ao problema do aluno, estimulando a compreensão por analogia.
+- **Feedback de Erro:** Em vez de apenas corrigir, a IA aponta onde está o erro e sugere hipóteses, promovendo a reflexão sobre o processo.
+- **Analogias e Desafios:** Utiliza analogias simples e desafios progressivos para facilitar a compreensão de conceitos complexos.
+- **Espaçamento e Revisão Ativa:** O sistema pode relembrar conteúdos e propor revisões para reforçar o aprendizado ao longo do tempo.
+
+Cada modo pedagógico é "pluggável": o usuário pode escolher como quer ser guiado (ex: modo Socrático, modo com analogias, modo com dicas programadas, etc).
+
+> O objetivo do CoderBot v2 é ensinar a pensar, não apenas entregar respostas. A IA atua como um instrutor pedagógico, guiando o aluno a desenvolver autonomia e confiança na resolução de problemas.
+
 ## 💡 Propostas em Discussão
 
 Estamos discutindo com a comunidade a implementação das seguintes funcionalidades:
