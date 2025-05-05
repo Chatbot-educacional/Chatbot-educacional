@@ -28,6 +28,7 @@ A modern educational chatbot for programming education, built with cutting-edge 
 - [Roadmap](#-roadmap)
 - [License](#-license)
 - [Scientific and Technical Justification](#-scientific-and-technical-justification)
+- [Embedded Pedagogical Methodologies](#-embedded-pedagogical-methodologies)
 
 ## 🎯 About the Project
 
@@ -46,6 +47,20 @@ CoderBot v2 is an open source educational platform designed to assist students a
 - 🎯 Personalized learning objectives
 - 📊 Individual progress metrics
 - 🎮 Adaptive gamification
+
+## 🧠 Embedded Pedagogical Methodologies
+
+The true differentiator of CoderBot v2 is not just the use of AI, but how the AI is designed to teach. The system leverages proven pedagogical techniques, embedded directly into prompt engineering, to transform the learning experience:
+
+- **Socratic Questioning:** The AI never gives the answer directly. It guides the student through questions, encouraging reasoning and active discovery.
+- **Worked Examples:** The bot presents similar, but not identical, examples to the student's problem, stimulating understanding by analogy.
+- **Error Feedback:** Instead of just correcting, the AI points out where the error is and suggests hypotheses, promoting reflection on the process.
+- **Analogies and Challenges:** Uses simple analogies and progressive challenges to facilitate the understanding of complex concepts.
+- **Spaced Repetition and Active Review:** The system can recall content and propose reviews to reinforce learning over time.
+
+Each pedagogical mode is "pluggable": the user can choose how they want to be guided (e.g., Socratic mode, analogy mode, programmed hints, etc).
+
+> The goal of CoderBot v2 is to teach you how to think, not just to deliver answers. The AI acts as a pedagogical instructor, guiding the student to develop autonomy and confidence in problem-solving.
 
 ## 💡 Proposals Under Discussion
 
