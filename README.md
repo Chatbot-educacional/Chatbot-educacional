@@ -1,7 +1,7 @@
 # Chatbot-educacional (CoderBot v2)
 
 <p align="center">
-  <img src="docs/assets/logo.png" alt="CoderBot Logo" width="200"/>
+  <img src="docs/assets/coderbot_colorfull.png" alt="CoderBot Logo" width="200"/>
 </p>
 
 <p align="center">
