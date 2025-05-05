@@ -8,6 +8,10 @@
 - **Colaboração:** Mapas mentais colaborativos melhoram a organização, retenção de informações e motivação dos estudantes, além de promoverem criatividade e pensamento crítico.
 
 ### Estudos Recentes
+- [The Effectiveness of Visual Mind Mapping Strategy for Improving English Language Learners' Critical Thinking Skills and Reading Ability](https://pdf.eu-jer.com/EU-JER_11_1_141.pdf) — European Journal of Educational Research, 2022
+  - Estudo experimental com estudantes de inglês mostrou que o uso de mapas mentais visuais teve impacto positivo e significativo nas habilidades de pensamento crítico e compreensão de leitura. O grupo experimental apresentou melhora estatisticamente significativa em todos os indicadores de pensamento crítico.
+- [Mind mapping as a tool of teaching English vocabulary at transport university](https://www.e3s-conferences.org/articles/e3sconf/pdf/2021/71/e3sconf_wfsdi2021_05021.pdf) — E3S Web of Conferences, 2021
+  - O uso de mapas mentais digitais, com apelo visual, ajudou significativamente alunos universitários a memorizar novas palavras em inglês. O grupo experimental memorizou mais palavras novas do que o grupo controle, destacando o potencial do mapeamento mental para ampliar vocabulário e engajamento.
 - [O uso de mapas mentais como metodologia ativa para o ensino](https://ime.events/iii-cinped/pdf/46491) — 2024
 - [A eficácia dos mapas mentais colaborativos na aprendizagem](https://revistas.uece.br/index.php/redufor/article/view/13292) — 2024
   - Mapas mentais colaborativos promovem aprendizagem colaborativa e ambiente mais interativo.
@@ -47,6 +51,8 @@
 ---
 
 ### Referências
+- [The Effectiveness of Visual Mind Mapping Strategy for Improving English Language Learners' Critical Thinking Skills and Reading Ability](https://pdf.eu-jer.com/EU-JER_11_1_141.pdf)
+- [Mind mapping as a tool of teaching English vocabulary at transport university](https://www.e3s-conferences.org/articles/e3sconf/pdf/2021/71/e3sconf_wfsdi2021_05021.pdf)
 - [O uso de mapas mentais como metodologia ativa para o ensino](https://ime.events/iii-cinped/pdf/46491)
 - [A eficácia dos mapas mentais colaborativos na aprendizagem](https://revistas.uece.br/index.php/redufor/article/view/13292)
 - [Digital Multimodal Composing Using Visme](https://www.ncbi.nlm.nih.gov/pmc/articles/9548306)

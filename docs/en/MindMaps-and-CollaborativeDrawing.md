@@ -3,11 +3,15 @@
 ## 🧠 Mind Maps and Learning
 
 ### Evidence and Benefits
-- **Student Agency and Critical Thinking:** Mind maps foster student agency, stimulate critical thinking, and promote more meaningful learning.
+- **Agency and Critical Thinking:** Mind maps foster student agency, stimulate critical thinking, and promote more meaningful learning.
 - **Active Participation:** Students who use mind maps participate more actively, assimilate content better, and develop creativity.
 - **Collaboration:** Collaborative mind maps improve organization, information retention, and student motivation, as well as foster creativity and critical thinking.
 
 ### Recent Studies
+- [The Effectiveness of Visual Mind Mapping Strategy for Improving English Language Learners' Critical Thinking Skills and Reading Ability](https://pdf.eu-jer.com/EU-JER_11_1_141.pdf) — European Journal of Educational Research, 2022
+  - An experimental study with English learners showed that using visual mind maps had a positive and significant impact on critical thinking skills and reading comprehension. The experimental group showed statistically significant improvement in all critical thinking indicators.
+- [Mind mapping as a tool of teaching English vocabulary at transport university](https://www.e3s-conferences.org/articles/e3sconf/pdf/2021/71/e3sconf_wfsdi2021_05021.pdf) — E3S Web of Conferences, 2021
+  - The use of digital mind maps with visual appeal significantly helped university students memorize new English words. The experimental group memorized more new words than the control group, highlighting the potential of mind mapping to expand vocabulary and engagement.
 - [The use of mind maps as an active methodology for teaching](https://ime.events/iii-cinped/pdf/46491) — 2024
 - [The effectiveness of collaborative mind maps in learning](https://revistas.uece.br/index.php/redufor/article/view/13292) — 2024
   - Collaborative mind maps promote collaborative learning and a more interactive environment.
@@ -47,6 +51,8 @@
 ---
 
 ### References
+- [The Effectiveness of Visual Mind Mapping Strategy for Improving English Language Learners' Critical Thinking Skills and Reading Ability](https://pdf.eu-jer.com/EU-JER_11_1_141.pdf)
+- [Mind mapping as a tool of teaching English vocabulary at transport university](https://www.e3s-conferences.org/articles/e3sconf/pdf/2021/71/e3sconf_wfsdi2021_05021.pdf)
 - [The use of mind maps as an active methodology for teaching](https://ime.events/iii-cinped/pdf/46491)
 - [The effectiveness of collaborative mind maps in learning](https://revistas.uece.br/index.php/redufor/article/view/13292)
 - [Digital Multimodal Composing Using Visme](https://www.ncbi.nlm.nih.gov/pmc/articles/9548306)
