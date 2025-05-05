@@ -309,4 +309,10 @@ This project is under the MIT license. See the [LICENSE](../../LICENSE) file for
 
 <p align="center">
   Made with ❤️ by the community, for the community.
-</p> 
+</p>
+
+- [Deployment Guide](./guides/DEPLOYMENT.md)
+- [Use Cases](./guides/USE_CASES.md)
+- [API Guide](./guides/API.md)
+- [FAQ](./guides/FAQ.md)
+- [Glossary](./guides/GLOSSARY.md) 

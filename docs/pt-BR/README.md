@@ -310,4 +310,10 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](../../LICENSE) p
 
 <p align="center">
   Feito com ❤️ pela comunidade, para a comunidade.
-</p> 
+</p>
+
+- [Guia de Implantação](./guias/IMPLANTACAO.md)
+- [Guia de Casos de Uso](./guias/CASOS_DE_USO.md)
+- [Guia de API](./guias/API.md)
+- [FAQ](../FAQ.md)
+- [Glossário](../GLOSSARIO.md) 
