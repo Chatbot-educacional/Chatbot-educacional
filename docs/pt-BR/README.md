@@ -242,6 +242,72 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](../../LICENSE) p
 
 ---
 
+## 📦 Configuração do PocketBase para Gamificação
+
+### 1. Collection: `actions`  
+**Descrição:** Define cada ação de gamificação possível e quantos pontos ela concede.
+
+| Campo        | Tipo     | Obrigatório | Descrição                                      |
+|--------------|----------|-------------|------------------------------------------------|
+| name         | string   | sim         | Nome único da ação (ex: `whiteboard_save_board`) |
+| description  | string   | não         | Descrição legível da ação                      |
+| points       | number   | sim         | Pontos/XP atribuídos por essa ação             |
+| multiplier   | number   | não         | Multiplicador de XP (opcional)                 |
+| badge        | string   | não         | Badge concedido (opcional)                     |
+| context      | string   | não         | Contexto especial (opcional)                   |
+
+**Exemplos de registros:**
+- `whiteboard_save_board` — 10 pontos
+- `whiteboard_create_board` — 50 pontos
+- `whiteboard_open_board` — 20 pontos
+- `whiteboard_upload_file` — 30 pontos
+- `whiteboard_daily_bonus` — 200 pontos
+- `whiteboard_10_boards` — 500 pontos
+- `access_excalidraw` — 100 pontos
+
+---
+
+### 2. Collection: `user_actions`  
+**Descrição:** Histórico de ações realizadas por cada usuário.
+
+| Campo     | Tipo     | Obrigatório | Descrição                        |
+|-----------|----------|-------------|----------------------------------|
+| user      | relation | sim         | Relaciona com a collection `users` |
+| action    | string   | sim         | Nome da ação (deve bater com `actions.name`) |
+| context   | string   | não         | Contexto especial (opcional)     |
+| timestamp | date     | sim         | Data/hora da ação                |
+
+---
+
+### 3. Collection: `gamification`  
+**Descrição:** Estado atual de gamificação do usuário (XP, nível, badges, etc).
+
+| Campo     | Tipo     | Obrigatório | Descrição                        |
+|-----------|----------|-------------|----------------------------------|
+| user      | relation | sim         | Relaciona com a collection `users` |
+| points    | number   | sim         | Pontos/XP acumulados             |
+| level     | number   | sim         | Nível atual                      |
+| badges    | list     | não         | Lista de badges/conquistas       |
+
+---
+
+### 4. (Opcional) Collection: `badges`  
+**Descrição:** Lista de todos os badges possíveis, caso queira badges customizados.
+
+| Campo     | Tipo     | Obrigatório | Descrição                        |
+|-----------|----------|-------------|----------------------------------|
+| name      | string   | sim         | Nome do badge                    |
+| icon      | file     | não         | Ícone do badge                   |
+| description | string | não         | Descrição do badge               |
+
+---
+
+## 📋 Observações
+
+- Certifique-se de que os nomes das ações em `actions` batem com os usados no frontend (`registerUserAction`).
+- O campo `user` nas collections deve ser do tipo **relation** para a collection `users`.
+- O campo `timestamp` em `user_actions` pode ser do tipo **date** ou **text** (ISO string).
+
 <p align="center">
   Feito com ❤️ pela comunidade, para a comunidade.
 </p> 

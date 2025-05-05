@@ -257,6 +257,72 @@ PocketBase is used in CoderBot v2 for authentication, database, and real-time fe
 }
 ```
 
+## 📦 PocketBase Setup for Gamification
+
+### 1. Collection: `actions`
+**Description:** Defines each possible gamification action and how many points it grants.
+
+| Field       | Type     | Required | Description                                      |
+|-------------|----------|----------|--------------------------------------------------|
+| name        | string   | yes      | Unique action name (e.g., `whiteboard_save_board`) |
+| description | string   | no       | Human-readable description of the action         |
+| points      | number   | yes      | Points/XP granted for this action                |
+| multiplier  | number   | no       | XP multiplier (optional)                         |
+| badge       | string   | no       | Badge granted (optional)                         |
+| context     | string   | no       | Special context (optional)                       |
+
+**Example records:**
+- `whiteboard_save_board` — 10 points
+- `whiteboard_create_board` — 50 points
+- `whiteboard_open_board` — 20 points
+- `whiteboard_upload_file` — 30 points
+- `whiteboard_daily_bonus` — 200 points
+- `whiteboard_10_boards` — 500 points
+- `access_excalidraw` — 100 points
+
+---
+
+### 2. Collection: `user_actions`
+**Description:** History of actions performed by each user.
+
+| Field     | Type     | Required | Description                        |
+|-----------|----------|----------|------------------------------------|
+| user      | relation | yes      | Relates to the `users` collection  |
+| action    | string   | yes      | Action name (should match `actions.name`) |
+| context   | string   | no       | Special context (optional)         |
+| timestamp | date     | yes      | Date/time of the action            |
+
+---
+
+### 3. Collection: `gamification`
+**Description:** Current gamification state for the user (XP, level, badges, etc).
+
+| Field     | Type     | Required | Description                        |
+|-----------|----------|----------|------------------------------------|
+| user      | relation | yes      | Relates to the `users` collection  |
+| points    | number   | yes      | Accumulated points/XP              |
+| level     | number   | yes      | Current level                      |
+| badges    | list     | no       | List of badges/achievements        |
+
+---
+
+### 4. (Optional) Collection: `badges`
+**Description:** List of all possible badges, if you want custom badges.
+
+| Field       | Type     | Required | Description                        |
+|-------------|----------|----------|------------------------------------|
+| name        | string   | yes      | Badge name                         |
+| icon        | file     | no       | Badge icon                         |
+| description | string   | no       | Badge description                  |
+
+---
+
+## 📋 Notes
+
+- Make sure the action names in `actions` match those used in the frontend (`registerUserAction`).
+- The `user` field in collections should be of type **relation** to the `users` collection.
+- The `timestamp` field in `user_actions` can be of type **date** or **text** (ISO string).
+
 ## Real-time Features
 
 PocketBase provides real-time subscriptions that we use for:
