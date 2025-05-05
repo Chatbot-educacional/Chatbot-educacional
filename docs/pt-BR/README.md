@@ -32,38 +32,64 @@ Um chatbot educacional moderno para o ensino de programação, construído com t
 
 O CoderBot v2 é uma plataforma educacional open source projetada para auxiliar estudantes e professores no processo de aprendizagem de programação. Através de uma interface intuitiva e um sistema de tutoria inteligente, oferecemos:
 
-- 🤖 Tutoria personalizada em programação
-- 📚 Exercícios práticos e desafios
-- 🔍 Feedback em tempo real
+- 🤖 Tutoria personalizada em programação com IA
+- 📚 Exercícios práticos e katas de programação
+- 🔍 Feedback em tempo real do código
 - 👥 Aprendizado colaborativo
 - 🌐 Suporte a múltiplas linguagens de programação
+- 💻 Interface desktop com Tauri
+- 🔐 Autenticação e armazenamento com PocketBase
+
+## 💡 Propostas em Discussão
+
+Estamos discutindo com a comunidade a implementação das seguintes funcionalidades:
+
+- 🖥️ Colaboração em tempo real via SSHX
+  - Terminal compartilhado para professores e alunos
+  - Monitoramento de atividades em tempo real
+  - Ajuda remota e intervenção quando necessário
+
+Participe da discussão em nossa [página de discussões](https://github.com/Chatbot-educacional/Chatbot-educacional/discussions) e ajude a definir o futuro do projeto!
 
 ## 🚀 Tecnologias
 
 ### Frontend
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- Shadcn/ui
-- Monaco Editor
-- Tauri (Desktop App)
-- Supabase
+- React 18 + TypeScript
+- Vite para build e desenvolvimento
+- Tailwind CSS para estilização
+- Shadcn/ui para componentes
+- Monaco Editor para edição de código
+- Tauri para aplicação desktop
+- PocketBase para autenticação e banco de dados
+  - Gerenciamento de usuários
+  - Assinaturas em tempo real
+  - Armazenamento de arquivos
+  - Coleções personalizadas
 
 ### Backend
-- FastAPI
+- FastAPI para API REST
 - Python 3.8+
-- OpenAI/DeepSeek API Integration
+- Integração com modelos de IA (OpenAI/DeepSeek)
+- Sistema de tutoria contínua
 
 ## 📁 Estrutura do Projeto
 
 ```
 coderbot-v2/
 ├── frontend/          # Interface do usuário em React
-├── backend/           # API em FastAPI
-├── continueTutor/     # Módulo de tutoria contínua
-├── temp-tauri/        # Configurações Tauri
-├── docs/             # Documentação do projeto
-└── .github/          # Templates e workflows do GitHub
+│   ├── src/          # Código fonte React
+│   ├── src-tauri/    # Configurações Tauri
+│   └── pocketbase/   # Configurações PocketBase
+│       ├── collections/  # Schemas das coleções PocketBase
+│       └── migrations/   # Migrações do banco de dados
+├── backend/          # API em FastAPI
+│   ├── app/         # Código fonte Python
+│   └── requirements.txt
+├── continueTutor/    # Módulo de tutoria contínua
+├── temp-tauri/       # Configurações temporárias Tauri
+└── docs/            # Documentação do projeto
+    ├── pt-BR/      # Documentação em Português
+    └── en/         # Documentação em Inglês
 ```
 
 ## 🛠️ Começando
@@ -71,9 +97,38 @@ coderbot-v2/
 Para instruções detalhadas de instalação e configuração, consulte nosso [Guia de Instalação](./guias/INSTALACAO.md).
 
 ### Pré-requisitos
-- Node.js 18+ e pnpm/npm
+- Node.js 18+ e pnpm
 - Python 3.8+
 - Rust (para build Tauri)
+- PocketBase (para autenticação e banco de dados)
+
+### Configuração do PocketBase
+1. Baixe o PocketBase para sua plataforma em [pocketbase.io](https://pocketbase.io/docs/)
+2. Extraia o arquivo baixado
+3. Execute o PocketBase:
+   ```bash
+   # Windows
+   .\pocketbase.exe serve
+
+   # Linux/macOS
+   ./pocketbase serve
+   ```
+4. Acesse a interface administrativa em `http://127.0.0.1:8090/_/`
+5. Crie sua primeira conta de administrador
+6. Crie as seguintes coleções:
+   - `users` - Para autenticação de usuários
+   - `exercises` - Para exercícios de programação
+   - `progress` - Para acompanhamento do progresso
+   - `feedback` - Para armazenar feedback da IA
+
+Para mais detalhes sobre a configuração do PocketBase, consulte nosso [Guia do PocketBase](./guias/POCKETBASE.md).
+
+### Configuração do Ambiente
+1. Clone o repositório
+2. Configure as variáveis de ambiente (veja `.env.example`)
+3. Instale as dependências do frontend e backend
+4. Configure o PocketBase
+5. Inicie os serviços
 
 Para mais informações sobre desenvolvimento, consulte nosso [Guia de Desenvolvimento](./guias/DESENVOLVIMENTO.md).
 
@@ -83,6 +138,13 @@ Adoraríamos contar com sua contribuição! Por favor, leia nossos guias:
 
 - [Guia de Contribuição](./CONTRIBUTING.md)
 - [Código de Conduta](./CODE_OF_CONDUCT.md)
+
+### Como Contribuir
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ## 🌟 Comunidade
 
@@ -99,6 +161,15 @@ Adoraríamos contar com sua contribuição! Por favor, leia nossos guias:
 - [ ] Suporte a múltiplos idiomas
 - [ ] Sistema de conquistas
 - [ ] Integração com GitHub Classroom
+- [ ] Melhorias na interface do usuário
+- [ ] Sistema de progressão de aprendizado
+- [ ] Análise de código mais avançada
+
+### Propostas em Discussão
+- Integração com SSHX para colaboração em tempo real
+  - Terminal compartilhado
+  - Monitoramento de atividades
+  - Sistema de intervenção do professor
 
 ## 📊 Status do Projeto
 

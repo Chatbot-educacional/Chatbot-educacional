@@ -15,7 +15,7 @@
 
 [English](./README.md) | [Português](../pt-BR/README.md)
 
-A modern educational chatbot for teaching programming, built with cutting-edge technologies and focused on the open source community.
+A modern educational chatbot for programming education, built with cutting-edge technologies and focused on the open source community. Our goal is to maximize learning through AI, offering a personalized experience that adapts to each student's needs and interests, combining various innovative educational tools.
 
 ## 📋 Table of Contents
 
@@ -32,63 +32,162 @@ A modern educational chatbot for teaching programming, built with cutting-edge t
 
 CoderBot v2 is an open source educational platform designed to assist students and teachers in the programming learning process. Through an intuitive interface and an intelligent tutoring system, we offer:
 
-- 🤖 Personalized programming tutoring
-- 📚 Practical exercises and challenges
-- 🔍 Real-time feedback
+- 🤖 AI-Powered Personalized Programming Tutoring
+  - Adaptation to student's learning style
+  - Interest-based personalized learning paths
+  - Adaptive and progressive feedback
+- 📚 Practical exercises and programming katas
+- 🔍 Real-time code feedback
 - 👥 Collaborative learning
 - 🌐 Support for multiple programming languages
+- 💻 Desktop interface with Tauri
+- 🔐 Authentication and storage with PocketBase
+- 🎯 Personalized learning objectives
+- 📊 Individual progress metrics
+- 🎮 Adaptive gamification
+
+## 💡 Proposals Under Discussion
+
+We are discussing with the community the implementation of the following features:
+
+- 🖥️ Real-time collaboration via SSHX
+  - Shared terminal for teachers and students
+  - Real-time activity monitoring
+  - Remote assistance and intervention when needed
+
+Join the discussion on our [discussions page](https://github.com/Chatbot-educacional/Chatbot-educacional/discussions) and help shape the future of the project!
 
 ## 🚀 Technologies
 
 ### Frontend
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- Shadcn/ui
-- Monaco Editor
-- Tauri (Desktop App)
-- Supabase
+- React 18 + TypeScript
+- Vite for build and development
+- Tailwind CSS for styling
+- Shadcn/ui for components
+- Monaco Editor for code editing
+- Tauri for desktop application
+- PocketBase for authentication and database
+  - User management
+  - Real-time subscriptions
+  - File storage
+  - Custom collections
 
 ### Backend
-- FastAPI
+- FastAPI for REST API
 - Python 3.8+
-- OpenAI/DeepSeek API Integration
+- AI model integration (OpenAI/DeepSeek)
+- Continuous tutoring system
 
 ## 📁 Project Structure
 
 ```
 coderbot-v2/
 ├── frontend/          # React user interface
-├── backend/           # FastAPI API
-├── continueTutor/     # Continuous tutoring module
-├── temp-tauri/        # Tauri configurations
-├── docs/             # Project documentation
-└── .github/          # GitHub templates and workflows
+│   ├── src/          # React source code
+│   ├── src-tauri/    # Tauri configurations
+│   └── pocketbase/   # PocketBase configurations
+│       ├── collections/  # PocketBase collection schemas
+│       └── migrations/   # Database migrations
+├── backend/          # FastAPI backend
+│   ├── app/         # Python source code
+│   └── requirements.txt
+├── continueTutor/    # Continuous tutoring module
+├── temp-tauri/       # Temporary Tauri configurations
+└── docs/            # Project documentation
+    ├── pt-BR/      # Portuguese documentation
+    └── en/         # English documentation
 ```
 
 ## 🛠️ Getting Started
 
-For detailed installation and configuration instructions, check our [Setup Guide](./guides/SETUP.md).
+For detailed installation and configuration instructions, please refer to our [Installation Guide](./guides/INSTALLATION.md).
 
 ### Prerequisites
-- Node.js 18+ and pnpm/npm
+- Node.js 18+ and pnpm
 - Python 3.8+
 - Rust (for Tauri build)
+- PocketBase (for authentication and database)
 
-For more information about development, check our [Development Guide](./guides/DEVELOPMENT.md).
+### PocketBase Setup
+1. Download PocketBase for your platform from [pocketbase.io](https://pocketbase.io/docs/)
+2. Extract the downloaded file
+3. Run PocketBase:
+   ```bash
+   # Windows
+   .\pocketbase.exe serve
+
+   # Linux/macOS
+   ./pocketbase serve
+   ```
+4. Access the admin UI at `http://127.0.0.1:8090/_/`
+5. Create your first admin account
+6. Create the following collections:
+   - `users` - For user authentication
+   - `exercises` - For programming exercises
+   - `progress` - For tracking user progress
+   - `feedback` - For storing AI feedback
+
+For more details about PocketBase configuration, check our [PocketBase Guide](./guides/POCKETBASE.md).
+
+### Environment Setup
+1. Clone the repository
+2. Configure environment variables (see `.env.example`)
+3. Install frontend and backend dependencies
+4. Configure PocketBase
+5. Start the services
+
+For more information about development, please refer to our [Development Guide](./guides/DEVELOPMENT.md).
 
 ## 👥 Contributing
 
-We would love to have your contribution! Please read our guides:
+We'd love to have your contribution! Please read our guides:
 
-- [Contributing Guide](./CONTRIBUTING.md)
+- [Contribution Guide](./CONTRIBUTING.md)
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
+
+### How to Contribute
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 🌟 Community
 
-- [Discord](https://discord.gg/your-server)
+### Discord
+Join our community on Discord! Our server is organized as follows:
+
+#### 📢 Announcement Channels
+- `#announcements` - Important project announcements
+- `#updates` - Version and feature updates
+
+#### 💻 Development
+- `#development` - General development discussions
+- `#frontend` - React, Tauri, and interface discussions
+- `#backend` - FastAPI and Python discussions
+- `#ai` - AI integration discussions
+- `#bugs` - Bug reporting and discussion
+
+#### 👥 Community
+- `#introductions` - Introduce yourself to the community
+- `#general` - General conversations
+- `#help` - Get help with the project
+- `#proposals` - Discuss new ideas and features
+
+#### 🎓 Education
+- `#tutorials` - Share and discuss tutorials
+- `#questions` - Ask programming questions
+- `#resources` - Share educational resources
+
+#### 🎮 Leisure
+- `#off-topic` - Casual conversations
+- `#events` - Community events
+
+[Join our Discord](https://discord.gg/seu-servidor)
+
+### Other Channels
 - [GitHub Discussions](https://github.com/Chatbot-educacional/Chatbot-educacional/discussions)
-- [YouTube Channel](https://youtube.com/@your-channel)
+- [YouTube Channel](https://youtube.com/@seu-canal)
 
 ## 🗺️ Roadmap
 
@@ -96,9 +195,18 @@ We would love to have your contribution! Please read our guides:
 - [ ] Gamification system
 - [ ] Integration with popular IDEs
 - [ ] Offline mode
-- [ ] Multiple language support
+- [ ] Multi-language support
 - [ ] Achievement system
 - [ ] GitHub Classroom integration
+- [ ] UI improvements
+- [ ] Learning progression system
+- [ ] Advanced code analysis
+
+### Proposals Under Discussion
+- SSHX integration for real-time collaboration
+  - Shared terminal
+  - Activity monitoring
+  - Teacher intervention system
 
 ## 📊 Project Status
 
