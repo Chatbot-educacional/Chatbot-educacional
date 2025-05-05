@@ -233,4 +233,25 @@ Se você encontrar algum problema durante a instalação:
 
 - Certifique-se de que os nomes das ações em `actions` batem com os usados no frontend (`registerUserAction`).
 - O campo `user` nas collections deve ser do tipo **relation** para a collection `users`.
-- O campo `timestamp` em `user_actions` pode ser do tipo **date** ou **text** (ISO string). 
+- O campo `timestamp` em `user_actions` pode ser do tipo **date** ou **text** (ISO string).
+
+## 🗂️ Como usar o arquivo de migration do PocketBase
+
+### Exportando o esquema atual
+1. Acesse o painel admin do PocketBase.
+2. Vá em **Settings > Export Data**.
+3. Exporte as collections desejadas (actions, user_actions, gamification, badges, users, etc).
+4. Salve o arquivo `.json` exportado na pasta `src/integrations/pocketbase/` do projeto (ex: `collections_migration.json`).
+
+### Importando o esquema em outro ambiente
+1. No novo ambiente, acesse o painel admin do PocketBase.
+2. Vá em **Settings > Import Data**.
+3. Selecione o arquivo `collections_migration.json` e importe.
+4. Pronto! O esquema (e dados, se exportados) será replicado.
+
+### Dica para times
+- Sempre que alterar o esquema do banco, exporte novamente e atualize o arquivo no repositório.
+- Documente no README ou Wiki para que todos saibam como importar/exportar.
+
+### Automatização (opcional)
+- Para times maiores, é possível usar a [API REST do PocketBase](https://pocketbase.io/docs/api-collections/) para importar/exportar collections via script. 

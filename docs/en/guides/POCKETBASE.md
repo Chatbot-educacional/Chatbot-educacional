@@ -411,4 +411,25 @@ Common issues and solutions:
 - [PocketBase Documentation](https://pocketbase.io/docs/)
 - [API Reference](https://pocketbase.io/docs/api-records/)
 - [Security Rules](https://pocketbase.io/docs/security-rules/)
-- [Real-time Subscriptions](https://pocketbase.io/docs/subscriptions/) 
+- [Real-time Subscriptions](https://pocketbase.io/docs/subscriptions/)
+
+## 🗂️ How to use the PocketBase migration file
+
+### Exporting the current schema
+1. Access the PocketBase admin panel.
+2. Go to **Settings > Export Data**.
+3. Export the desired collections (actions, user_actions, gamification, badges, users, etc).
+4. Save the exported `.json` file in the `src/integrations/pocketbase/` folder of the project (e.g., `collections_migration.json`).
+
+### Importing the schema in another environment
+1. In the new environment, access the PocketBase admin panel.
+2. Go to **Settings > Import Data**.
+3. Select the `collections_migration.json` file and import it.
+4. Done! The schema (and data, if exported) will be replicated.
+
+### Team tip
+- Whenever you change the database schema, export it again and update the file in the repository.
+- Document this process in the README or Wiki so everyone knows how to import/export.
+
+### Automation (optional)
+- For larger teams, you can use the [PocketBase REST API](https://pocketbase.io/docs/api-collections/) to import/export collections via script. 

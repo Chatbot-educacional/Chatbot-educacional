@@ -1,0 +1,45 @@
+{
+  "collections": [
+    {
+      "name": "actions",
+      "type": "base",
+      "schema": [
+        { "name": "name", "type": "text", "required": true, "unique": true },
+        { "name": "description", "type": "text", "required": false },
+        { "name": "points", "type": "number", "required": true },
+        { "name": "multiplier", "type": "number", "required": false },
+        { "name": "badge", "type": "text", "required": false },
+        { "name": "context", "type": "text", "required": false }
+      ]
+    },
+    {
+      "name": "user_actions",
+      "type": "base",
+      "schema": [
+        { "name": "user", "type": "relation", "required": true, "options": { "collectionId": "users" } },
+        { "name": "action", "type": "text", "required": true },
+        { "name": "context", "type": "text", "required": false },
+        { "name": "timestamp", "type": "date", "required": true }
+      ]
+    },
+    {
+      "name": "gamification",
+      "type": "base",
+      "schema": [
+        { "name": "user", "type": "relation", "required": true, "options": { "collectionId": "users" } },
+        { "name": "points", "type": "number", "required": true },
+        { "name": "level", "type": "number", "required": true },
+        { "name": "badges", "type": "list", "required": false }
+      ]
+    },
+    {
+      "name": "badges",
+      "type": "base",
+      "schema": [
+        { "name": "name", "type": "text", "required": true, "unique": true },
+        { "name": "icon", "type": "file", "required": false },
+        { "name": "description", "type": "text", "required": false }
+      ]
+    }
+  ]
+} 
