@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <I18nextProvider i18n={i18n}>
-          {children}
+        {children}
         </I18nextProvider>
       </body>
     </html>

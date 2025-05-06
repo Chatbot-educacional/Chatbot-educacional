@@ -15,8 +15,12 @@ class Settings(BaseSettings):
     pocketbase_user_email: str = Field(..., env="POCKETBASE_USER_EMAIL")
     pocketbase_user_password: str = Field(..., env="POCKETBASE_USER_PASSWORD")
     
+    # Configurações de Providers de IA
     open_ai_api_key: str = Field(..., env="OPEN_AI_API_KEY")
     open_ai_api_url: str = Field("https://api.openai.com/v1", env="OPENAI_API_URL")
+    
+    # Configuração do Claude (Anthropic)
+    claude_api_key: str = Field("", env="CLAUDE_API_KEY")
 
     # Outros
     rapidapi_key: str = Field(..., env="RAPIDAPI_KEY")

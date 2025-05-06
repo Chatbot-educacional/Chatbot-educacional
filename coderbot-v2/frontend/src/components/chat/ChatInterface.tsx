@@ -16,6 +16,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { chatService } from "@/services/chat-service";
 import { SessionSidebar } from "@/components/chat/SessionSidebar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // --- Define Settings Components Outside ---
 
@@ -24,12 +25,28 @@ interface SettingsProps {
   setAnalogiesEnabled: (enabled: boolean) => void;
   knowledgeBase: string;
   setKnowledgeBase: (base: string) => void;
+  aiModel: string;
+  setAiModel: (model: string) => void;
 }
 
 // Renamed to avoid conflict and indicate it's a view component
 const DesktopSettingsView: React.FC<SettingsProps> = (props) => (
   <div className="mb-3">
     <AnalogySettings {...props} />
+    
+    <div className="mt-4">
+      <h3 className="text-sm font-medium mb-2">Modelo de IA</h3>
+      <Select value={props.aiModel} onValueChange={props.setAiModel}>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Selecione o modelo" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="gpt-3.5-turbo">GPT-3.5 Turbo</SelectItem>
+          <SelectItem value="gpt-4">GPT-4</SelectItem>
+          <SelectItem value="claude-3-opus">Claude 3 Opus</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
   </div>
 );
 
@@ -45,6 +62,20 @@ const MobileSettingsDrawerView: React.FC<SettingsProps> = (props) => (
       <div className="mt-4">
         <h3 className="text-lg font-medium mb-3">Configurações do Chat</h3>
         <AnalogySettings {...props} />
+        
+        <div className="mt-4">
+          <h3 className="text-sm font-medium mb-2">Modelo de IA</h3>
+          <Select value={props.aiModel} onValueChange={props.setAiModel}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Selecione o modelo" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="gpt-3.5-turbo">GPT-3.5 Turbo</SelectItem>
+              <SelectItem value="gpt-4">GPT-4</SelectItem>
+              <SelectItem value="claude-3-opus">Claude 3 Opus</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <div className="flex justify-end mt-4">
         <DrawerClose asChild>
@@ -72,6 +103,7 @@ export const ChatInterface = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [analogiesEnabled, setAnalogiesEnabled] = useState(false);
   const [knowledgeBase, setKnowledgeBase] = useState("");
+  const [aiModel, setAiModel] = useState<string>("gpt-3.5-turbo");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [showSidebar, setShowSidebar] = useState(!isMobile);
@@ -178,7 +210,8 @@ export const ChatInterface = () => {
         input, 
         analogiesEnabled, 
         false,
-        knowledgeBase
+        knowledgeBase,
+        aiModel
       );
       
       // Save AI response
@@ -254,6 +287,8 @@ export const ChatInterface = () => {
                 setAnalogiesEnabled={setAnalogiesEnabled}
                 knowledgeBase={knowledgeBase}
                 setKnowledgeBase={setKnowledgeBase}
+                aiModel={aiModel}
+                setAiModel={setAiModel}
               />
             )}
           </div>
@@ -290,6 +325,8 @@ export const ChatInterface = () => {
                 setAnalogiesEnabled={setAnalogiesEnabled}
                 knowledgeBase={knowledgeBase}
                 setKnowledgeBase={setKnowledgeBase}
+                aiModel={aiModel}
+                setAiModel={setAiModel}
               />
             )}
 

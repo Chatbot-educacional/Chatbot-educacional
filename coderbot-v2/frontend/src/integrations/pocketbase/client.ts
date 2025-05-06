@@ -116,3 +116,8 @@ export const registerUserAction = async (userId: string, actionName: string, con
     timestamp: new Date().toISOString(),
   });
 };
+
+// --- GitHub OAuth com PocketBase ---
+export function startGithubOAuth() {
+  pb.collection('users').authWithOAuth2({ provider: 'github' });
+}

@@ -191,7 +191,7 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
             <AnimatePresence initial={false}>
             {filteredSessions.map(session => (
               <motion.div
-                key={session.id}
+                key={session.id} 
                 layout
                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.4, duration: 0.5 } }}

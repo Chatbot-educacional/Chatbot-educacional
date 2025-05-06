@@ -1,4 +1,3 @@
-
 import { toast } from "@/components/ui/sonner";
 
 export type Message = {
@@ -29,7 +28,8 @@ export const fetchChatResponse = async (
   message: string,
   useAnalogies: boolean = false,
   useSequential: boolean = false,
-  knowledge: string = ""
+  knowledge: string = "",
+  model: string = "gpt-3.5-turbo"
 ): Promise<ApiResponse> => {
   try {
     // Preparar mensagem no formato esperado pela API
@@ -52,7 +52,7 @@ export const fetchChatResponse = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: model,
         messages: messages,
         max_tokens: 350,
         temperature: 0.7,

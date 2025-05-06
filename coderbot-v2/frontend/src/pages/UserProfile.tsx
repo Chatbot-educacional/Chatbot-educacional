@@ -5,9 +5,9 @@ import { useUserData } from "@/hooks/useUserData";
 import { ProfileHeader } from "@/components/profile/ProfileHeader";
 import { ProfileForm } from "@/components/profile/ProfileForm";
 import { Card, CardContent } from "@/components/ui/card";
-import { LogOut, ArrowLeft } from "lucide-react";
+import { LogOut, ArrowLeft, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { pb } from "@/integrations/pocketbase/client";
+import { pb, startGithubOAuth } from "@/integrations/pocketbase/client";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -25,6 +25,11 @@ const UserProfile = () => {
       console.error("Logout error:", err);
       toast.error("Erro ao fazer logout");
     }
+  };
+
+  // Handler real para conectar ao GitHub via PocketBase
+  const handleGithubConnect = () => {
+    startGithubOAuth();
   };
 
   if (loading) {
@@ -54,15 +59,27 @@ const UserProfile = () => {
           </Button>
           <h1 className="text-2xl font-bold">Perfil</h1>
         </div>
-        <Button
-          variant="outline"
-          onClick={handleLogout}
-          className="flex items-center gap-2"
-          size="sm"
-        >
-          <LogOut className="h-4 w-4" />
-          Sair
-        </Button>
+        <div className="flex gap-2">
+          {/* Botão de conectar GitHub via PocketBase OAuth */}
+          <Button
+            variant="outline"
+            onClick={handleGithubConnect}
+            className="flex items-center gap-2"
+            size="sm"
+          >
+            <Github className="h-4 w-4" />
+            Conectar GitHub
+          </Button>
+          <Button
+            variant="outline"
+            onClick={handleLogout}
+            className="flex items-center gap-2"
+            size="sm"
+          >
+            <LogOut className="h-4 w-4" />
+            Sair
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-6">
