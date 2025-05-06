@@ -18,7 +18,7 @@ export interface SessionInfo {
   id: string;
   title: string;
   created: string;
-  UsuarioID_: string;
+  usuario: string; // relation para users
   messageIDs: string[];
 }
 

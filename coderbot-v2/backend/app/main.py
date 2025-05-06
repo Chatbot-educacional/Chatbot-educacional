@@ -5,12 +5,12 @@ from supabase import create_client, Client
 from fastapi.middleware.cors import CORSMiddleware
 
 
-if settings.supabase_url == "your_supabase_url":
-    raise ValueError("A URL do Supabase não está configurada corretamente. Verifique o arquivo .env.")
-if settings.supabase_key == "your_supabase_key":
-    raise ValueError("A chave do Supabase não está configurada corretamente. Verifique o arquivo .env.")
+# if settings.supabase_url == "your_supabase_url":
+#     raise ValueError("A URL do Supabase não está configurada corretamente. Verifique o arquivo .env.")
+# if settings.supabase_key == "your_supabase_key":
+#     raise ValueError("A chave do Supabase não está configurada corretamente. Verifique o arquivo .env.")
 
-supabase: Client = create_client(settings.supabase_url, settings.supabase_key)
+# supabase: Client = create_client(settings.supabase_url, settings.supabase_key)
 
 
 app = FastAPI(

@@ -61,6 +61,7 @@
     "framer-motion": "^12.9.4",
     "gsap": "^3.13.0",
     "highlight.js": "^11.11.1",
+    "i18next": "^25.0.2",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
     "mermaid": "^10.8.0",
@@ -76,6 +77,7 @@
     "react-flow-renderer": "^10.3.17",
     "react-hook-form": "^7.53.0",
     "react-hot-toast": "^2.5.2",
+    "react-i18next": "^15.5.1",
     "react-markdown": "^10.1.0",
     "react-resizable-panels": "^2.1.7",
     "react-router-dom": "^6.26.2",
@@ -96,7 +98,7 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@tailwindcss/typography": "^0.5.15",
-    "@types/node": "^22.5.5",
+    "@types/node": "^22.15.8",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
@@ -108,7 +110,8 @@
     "lovable-tagger": "^1.1.7",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
-    "typescript": "^5.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
   }

@@ -20,6 +20,8 @@ import {
 import { MessageSquarePlus, Edit2, Check, Clock, Search, MoreVertical, Trash2, PenLine } from "lucide-react";
 import { toast } from "@/components/ui/sonner";
 import { SessionInfo } from "@/components/chat/SessionSelector";
+import { useTranslation } from "react-i18next";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface SessionSidebarProps {
   currentSessionId: string;
@@ -40,6 +42,7 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
   const [sessionToDelete, setSessionToDelete] = useState<string | null>(null);
   const [newSessionTitle, setNewSessionTitle] = useState("Nova Conversa");
   const [showNewSessionDialog, setShowNewSessionDialog] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadSessions();
@@ -124,12 +127,12 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
   return (
     <div className="flex flex-col h-full border-r bg-background">
       <div className="p-4 border-b">
-        <h2 className="text-lg font-semibold mb-2">Suas Conversas</h2>
+        <h2 className="text-lg font-semibold mb-2">{t('sidebar.yourConversations')}</h2>
         
         <div className="relative mb-4">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Buscar conversas..."
+            placeholder={t('sidebar.searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-8"
@@ -142,7 +145,7 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
             className="flex-1 flex items-center justify-center gap-2"
           >
             <MessageSquarePlus size={16} />
-            Nova Conversa
+            {t('sidebar.newConversation')}
           </Button>
           
           <Dialog open={showNewSessionDialog} onOpenChange={setShowNewSessionDialog}>
@@ -153,23 +156,23 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Nova Conversa</DialogTitle>
+                <DialogTitle>{t('sidebar.newConversationTitle')}</DialogTitle>
               </DialogHeader>
               <div className="py-4">
                 <label className="text-sm font-medium mb-2 block">
-                  Título da conversa
+                  {t('sidebar.conversationTitleLabel')}
                 </label>
                 <Input
                   value={newSessionTitle}
                   onChange={(e) => setNewSessionTitle(e.target.value)}
-                  placeholder="Digite um título para a conversa"
+                  placeholder={t('sidebar.conversationTitleLabel')}
                 />
               </div>
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button variant="outline">Cancelar</Button>
+                  <Button variant="outline">{t('sidebar.cancel')}</Button>
                 </DialogClose>
-                <Button onClick={handleCreateNamedSession}>Criar</Button>
+                <Button onClick={handleCreateNamedSession}>{t('sidebar.create')}</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -178,16 +181,22 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
 
       <div className="flex-1 overflow-y-auto p-2">
         {loading ? (
-          <p className="text-center py-4 text-muted-foreground">Carregando...</p>
+          <p className="text-center py-4 text-muted-foreground">{t('sidebar.loading')}</p>
         ) : filteredSessions.length === 0 ? (
           <p className="text-center py-4 text-muted-foreground">
-            {searchQuery ? "Nenhuma conversa encontrada" : "Nenhuma conversa ainda"}
+            {searchQuery ? t('sidebar.noneFound') : t('sidebar.noneYet')}
           </p>
         ) : (
           <div className="space-y-1">
+            <AnimatePresence initial={false}>
             {filteredSessions.map(session => (
-              <div 
-                key={session.id} 
+              <motion.div
+                key={session.id}
+                layout
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.4, duration: 0.5 } }}
+                exit={{ scale: 0.9, opacity: 0, y: 30, transition: { duration: 0.2 } }}
+                transition={{ layout: { type: 'spring', bounce: 0.3, duration: 0.5 } }}
                 onClick={() => onSessionChange(session.id)}
                 className={`p-2 rounded-md hover:bg-accent/50 cursor-pointer transition-colors group ${
                   session.id === currentSessionId ? 'bg-accent' : ''
@@ -223,7 +232,7 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
                   <div className="flex items-center justify-between">
                     <div className="truncate flex-1">
                       <p className="font-medium text-sm truncate">
-                        {session.title || "Conversa sem título"}
+                        {session.title || t('sidebar.untitled')}
                       </p>
                       <div className="flex items-center text-xs text-muted-foreground">
                         <Clock size={12} className="mr-1" />
@@ -248,7 +257,7 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
                           startEditing(session, e);
                         }}>
                           <Edit2 size={14} className="mr-2" />
-                          Renomear
+                          {t('sidebar.rename')}
                         </DropdownMenuItem>
                         <DropdownMenuItem 
                           className="text-destructive focus:text-destructive"
@@ -258,14 +267,15 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
                           }}
                         >
                           <Trash2 size={14} className="mr-2" />
-                          Excluir
+                          {t('sidebar.delete')}
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
+            </AnimatePresence>
           </div>
         )}
       </div>
@@ -274,18 +284,18 @@ export const SessionSidebar: React.FC<SessionSidebarProps> = ({
       <Dialog open={!!sessionToDelete} onOpenChange={(open) => !open && setSessionToDelete(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Excluir Conversa</DialogTitle>
+            <DialogTitle>{t('sidebar.deleteTitle')}</DialogTitle>
           </DialogHeader>
-          <p>Tem certeza que deseja excluir esta conversa? Esta ação não pode ser desfeita.</p>
+          <p>{t('sidebar.deleteConfirm')}</p>
           <DialogFooter>
             <Button variant="outline" onClick={() => setSessionToDelete(null)}>
-              Cancelar
+              {t('sidebar.cancel')}
             </Button>
             <Button 
               variant="destructive" 
               onClick={() => sessionToDelete && handleDeleteSession(sessionToDelete)}
             >
-              Excluir
+              {t('sidebar.delete')}
             </Button>
           </DialogFooter>
         </DialogContent>

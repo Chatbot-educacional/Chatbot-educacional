@@ -23,36 +23,14 @@ openai_client = AsyncOpenAI(api_key=settings.open_ai_api_key)
 # Recupera exemplos relevantes via PocketBase (substituto ao PGVector)
 from pocketbase import PocketBase
 
-async def fetch_relevant_katas(query: str, top_k: int = 3) -> str:
-    pb = PocketBase(settings.pocketbase_url)
-    pb.collection("users").auth_with_password(
-        settings.pocketbase_user_email,
-        settings.pocketbase_user_password
-    )
-
-    records = pb.collection("kata_docs").get_list(1, 100)
-    sorted_records = sorted(
-        records.items,
-        key=lambda rec: -int(query.lower() in rec.title.lower() or query.lower() in rec.content.lower())
-    )
-
-    top_katas = sorted_records[:top_k]
-    return "\n\n".join(f"**{rec.title}**:\n{rec.content}" for rec in top_katas)
-
-
-# Monta o system prompt com contexto + exercícios
+# Monta o system prompt com contexto
 async def build_system_content_with_retrieval(query: str, use_analogies: bool, use_sequential: bool) -> str:
-    katas = await fetch_relevant_katas(query)
-
     parts = [
-        BASE_SYSTEM_PROMPT,
-        "\n\n---\n**Exercícios sugeridos (katas):**\n" + katas
+        BASE_SYSTEM_PROMPT
     ]
-
     if use_sequential:
         parts.append(SEQUENTIAL_INSTRUCTION)
     parts.append(ANALOGY_INSTRUCTION if use_analogies else NO_ANALOGY_INSTRUCTION)
-
     return "\n\n".join(parts)
 
 

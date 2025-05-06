@@ -9,7 +9,7 @@ export const chatService = {
     
     // Create a new session record with title
     const session = await pb.collection('sessao').create({
-      UsuarioID_: userId,
+      usuario: userId,
       messageIDs: [],
       Title: title  // Changed from lowercase 'title' to 'Title'
     });
@@ -141,7 +141,7 @@ export const chatService = {
     if (!userId) throw new Error('User not authenticated');
 
     const result = await pb.collection('sessao').getList(1, 100, {
-      filter: `UsuarioID_ = "${userId}"`,
+      filter: `usuario = "${userId}"`,
       sort: '-created',
     });
 
@@ -161,7 +161,7 @@ export const chatService = {
         id: item.id,
         title: item.Title || "Conversa sem título",  // Changed from lowercase 'title' to 'Title'
         created: item.created,
-        UsuarioID_: item.UsuarioID_,
+        usuario: item.usuario,
         messageIDs: Array.isArray(messageIDs) ? messageIDs : []
       };
     });
