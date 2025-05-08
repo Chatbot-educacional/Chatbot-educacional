@@ -430,7 +430,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleExampleChoice,
             handleQuiz, handleCorrectWE, handleIncorrectWE, handleQuestionWE, handleGoOut,
             //variáveis de dados 
-            dataWE, dataArray, dataFunc, dataArrayJava, dataFunc, dataListPY, themeNames
+            dataWE, dataArray, dataFunc, dataArrayJava, dataListPY, themeNames
           },
         });
       })}
