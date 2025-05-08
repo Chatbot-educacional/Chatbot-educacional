@@ -1,7 +1,32 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
+import { openWindow, openExternalUrl, openAppWindow } from "./utils/window";
 import "./App.css";
+
+// Componente reutilizável para abrir janelas
+export function WindowOpener() {
+  const handleOpenInternalWindow = () => openAppWindow("Nova Janela");
+  const handleOpenExternalWindow = () => openExternalUrl("tauri.app", "Tauri Docs");
+  const handleOpenGitHub = () => openExternalUrl("github.com/tauri-apps/tauri", "GitHub Tauri");
+  
+  return (
+    <div className="window-opener">
+      <h2>Abrir Janelas</h2>
+      <div className="buttons">
+        <button onClick={handleOpenInternalWindow}>
+          Nova Janela App
+        </button>
+        <button onClick={handleOpenExternalWindow}>
+          Abrir Site Tauri
+        </button>
+        <button onClick={handleOpenGitHub}>
+          GitHub Tauri
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -11,6 +36,9 @@ function App() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
   }
+
+  const handleOpenNewWindow = () => openAppWindow("Nova Janela Demo");
+  const handleOpenExternalUrl = () => openExternalUrl("github.com", "GitHub");
 
   return (
     <main className="container">
@@ -44,6 +72,25 @@ function App() {
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg}</p>
+
+      {/* Seção de demonstração para abrir novas janelas */}
+      <div className="row" style={{ marginTop: "2rem" }}>
+        <h2>Demonstração: Abrir Novas Janelas</h2>
+        <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+          <button onClick={handleOpenNewWindow}>
+            Abrir Nova Janela App
+          </button>
+          <button onClick={handleOpenExternalUrl}>
+            Abrir GitHub
+          </button>
+        </div>
+      </div>
+
+      {/* Usar o componente reutilizável */}
+      <div className="row" style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+        <h2>Componente Reutilizável</h2>
+        <WindowOpener />
+      </div>
     </main>
   );
 }

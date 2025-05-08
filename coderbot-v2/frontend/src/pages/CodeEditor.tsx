@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CodeEditor as CodeEditorComponent } from "@/components/playground/CodeEditor";
 import { FileSystemDemo } from "@/components/filesystem/FileSystemDemo";
 import * as Accordion from "@radix-ui/react-accordion";
 import { Folder as FolderIcon, FolderOpen as FolderOpenIcon, File as FileIcon, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { invoke } from "@tauri-apps/api/core";
 
 const explorerData = [
   {
@@ -77,30 +77,50 @@ function Explorer({ data, selectedId, onSelect }) {
   );
 }
 
+const CODE_SERVER_URL = "http://localhost:8787"; // ajuste se necessário
+
 const CodeEditor = () => {
-  const [selectedId, setSelectedId] = useState("3");
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    // Handler para interceptar window.open e links target=_blank
+    function handleMessage(event: MessageEvent) {
+      // Só aceite mensagens do VS Code Web
+      if (!event.data || typeof event.data !== "object") return;
+      // VS Code Web pode enviar mensagens de navegação
+      if (event.data.type === "vscode:openExternal" && event.data.url) {
+        invoke("plugin:opener|open", { path: event.data.url });
+      }
+    }
+
+    window.addEventListener("message", handleMessage);
+
+    // Injetar script no iframe para interceptar window.open e links target=_blank
+    function injectScript() {
+      if (!iframe.contentWindow) return;
+      iframe.contentWindow.postMessage(
+        { type: "inject-external-link-handler" },
+        "*"
+      );
+    }
+    iframe.addEventListener("load", injectScript);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+      iframe.removeEventListener("load", injectScript);
+    };
+  }, []);
 
   return (
-    <Tabs defaultValue="editor" className="w-full h-full flex flex-col">
-      <TabsList className="mb-4">
-        <TabsTrigger value="editor">Code Editor</TabsTrigger>
-        <TabsTrigger value="filesystem">File System Demo</TabsTrigger>
-      </TabsList>
-      <TabsContent value="editor" className="flex-grow h-0 flex flex-row border rounded-md overflow-hidden bg-muted/10">
-        {/* Modern Explorer Sidebar */}
-        <div className="w-64 min-w-[180px] max-w-xs border-r bg-background p-2 overflow-auto">
-          <div className="font-mono text-xs mb-2">EXPLORER</div>
-          <Explorer data={explorerData} selectedId={selectedId} onSelect={setSelectedId} />
-        </div>
-        {/* Editor */}
-        <div className="flex-1 h-full">
-        <CodeEditorComponent />
-        </div>
-      </TabsContent>
-      <TabsContent value="filesystem" className="flex-grow p-4">
-        <FileSystemDemo />
-      </TabsContent>
-    </Tabs>
+    <iframe
+      ref={iframeRef}
+      src={CODE_SERVER_URL}
+      title="VS Code code-server"
+      className="w-full h-full border-0 flex-1"
+    />
   );
 };
 

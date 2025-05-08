@@ -2,6 +2,9 @@ use tauri::Manager;
 use std::path::PathBuf;
 use tauri_plugin_fs::FsExt;
 use std::fs;
+use tauri_plugin_shell::open::open;
+use tauri_plugin_shell::ShellExt;
+
 
 #[tauri::command]
 fn get_workspace_dir() -> String {
@@ -179,7 +182,7 @@ pub fn run() {
       
       Ok(())
     })
-    .plugin(tauri_plugin_shell::init())
+    .plugin(tauri_plugin_opener::init())
     .plugin(tauri_plugin_fs::init())
     .invoke_handler(tauri::generate_handler![
       get_workspace_dir,
@@ -193,7 +196,8 @@ pub fn run() {
       list_files_in_dir,
       read_file_in_dir,
       write_file_in_dir,
-      ensure_dir_in_dir
+      ensure_dir_in_dir,
+    
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

@@ -114,3 +114,41 @@ button {
     background-color: #0f0f0f69;
   }
 }
+
+/* Estilos para o componente WindowOpener e botões de abertura de janelas */
+.window-opener {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  width: 100%;
+}
+
+.window-opener h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.window-opener .buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.window-opener button,
+.row button {
+  background-color: #4f46e5;
+  transition: all 0.2s ease-in-out;
+}
+
+.window-opener button:hover,
+.row button:hover {
+  background-color: #6366f1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.window-opener button:active,
+.row button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+}
