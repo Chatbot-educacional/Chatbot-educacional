@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { pb } from "@/integrations/pocketbase/client";
+import { CodeEditorProvider } from "@/context/CodeEditorContext";
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -31,27 +32,29 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="dashboard" element={<RequireAuth><Index /></RequireAuth>}>
-              <Route path="chat" element={<ChatInterface />} />
-              <Route path="playground" element={<CodeEditor />} />
-              <Route path="exercises" element={<ExerciseInterface />} />
-              <Route path="metrics" element={<LearningMetrics />} />
-              <Route path="teacher" element={<TeacherDashboard />} />
-              <Route path="student" element={<StudentDashboard />} />
-              <Route path="whiteboard" element={<Whiteboard />} />
-              <Route path="mermaid" element={<Mermaid />} />
-              <Route path="flashcard" element={<FlashCardPage />} />
-            </Route>
-            <Route path="/profile" element={<RequireAuth><UserProfile /></RequireAuth>} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <CodeEditorProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="dashboard" element={<RequireAuth><Index /></RequireAuth>}>
+                <Route path="chat" element={<ChatInterface />} />
+                <Route path="playground" element={<CodeEditor />} />
+                <Route path="exercises" element={<ExerciseInterface />} />
+                <Route path="metrics" element={<LearningMetrics />} />
+                <Route path="teacher" element={<TeacherDashboard />} />
+                <Route path="student" element={<StudentDashboard />} />
+                <Route path="whiteboard" element={<Whiteboard />} />
+                <Route path="mermaid" element={<Mermaid />} />
+                <Route path="flashcard" element={<FlashCardPage />} />
+              </Route>
+              <Route path="/profile" element={<RequireAuth><UserProfile /></RequireAuth>} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </CodeEditorProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
