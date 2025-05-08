@@ -1,0 +1,139 @@
+{
+  "collections": [
+    {
+      "name": "actions",
+      "type": "base",
+      "system": false,
+      "schema": [
+        { "name": "name", "type": "text", "required": true, "unique": true, "options": {} },
+        { "name": "description", "type": "text", "required": false, "options": {} },
+        { "name": "points", "type": "number", "required": true, "options": {} },
+        { "name": "multiplier", "type": "number", "required": false, "options": {} },
+        { "name": "badge", "type": "text", "required": false, "options": {} },
+        { "name": "context", "type": "text", "required": false, "options": {} }
+      ],
+      "listRule": null,
+      "viewRule": null,
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+    },
+    {
+      "name": "user_actions",
+      "type": "base",
+      "system": false,
+      "schema": [
+        {
+          "name": "user",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": false,
+            "maxSelect": 1
+          }
+        },
+        { "name": "action", "type": "text", "required": true, "options": {} },
+        { "name": "context", "type": "text", "required": false, "options": {} },
+        { "name": "timestamp", "type": "date", "required": true, "options": {} }
+      ],
+      "listRule": "@request.auth.id != ''",
+      "viewRule": "@request.auth.id != ''",
+      "createRule": "@request.auth.id != ''",
+      "updateRule": "@request.auth.id != ''",
+      "deleteRule": "@request.auth.id != ''",
+      "options": {}
+    },
+    {
+      "name": "gamification",
+      "type": "base",
+      "system": false,
+      "schema": [
+        {
+          "name": "user",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "users",
+            "cascadeDelete": false,
+            "maxSelect": 1
+          }
+        },
+        { "name": "points", "type": "number", "required": true, "options": {} },
+        { "name": "level", "type": "number", "required": true, "options": {} },
+        { "name": "badges", "type": "json", "required": false, "options": {} }
+      ],
+      "listRule": "@request.auth.id != ''",
+      "viewRule": "@request.auth.id != ''",
+      "createRule": "@request.auth.id != ''",
+      "updateRule": "@request.auth.id != ''",
+      "deleteRule": "@request.auth.id != ''",
+      "options": {}
+    },
+    {
+      "name": "badges",
+      "type": "base",
+      "system": false,
+      "schema": [
+        { "name": "name", "type": "text", "required": true, "unique": true, "options": {} },
+        { "name": "icon", "type": "file", "required": false, "options": {} },
+        { "name": "description", "type": "text", "required": false, "options": {} }
+      ],
+      "listRule": null,
+      "viewRule": null,
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+    },
+    {
+      "name": "sessao",
+      "type": "base",
+      "system": false,
+      "schema": [
+        { "name": "Usuario", "type": "relation", "required": true, "options": { "collectionId": "users", "cascadeDelete": false, "maxSelect": 1 } },
+        { "name": "messageIDs", "type": "json", "required": false, "options": {} },
+        { "name": "Title", "type": "text", "required": false, "options": {} }
+      ],
+      "listRule": "@request.auth.id != ''",
+      "viewRule": "@request.auth.id != ''",
+      "createRule": "@request.auth.id != ''",
+      "updateRule": "@request.auth.id != ''",
+      "deleteRule": "@request.auth.id != ''",
+      "options": {}
+    },
+    {
+      "name": "chat_messages",
+      "type": "base",
+      "system": false,
+      "schema": [
+        { "name": "user", "type": "text", "required": false, "options": {} },
+        { "name": "content", "type": "text", "required": true, "options": {} },
+        { "name": "isAi", "type": "bool", "required": true, "options": {} },
+        { "name": "sessionId", "type": "text", "required": true, "options": {} },
+        { "name": "timestamp", "type": "date", "required": true, "options": {} }
+      ],
+      "listRule": "@request.auth.id != ''",
+      "viewRule": "@request.auth.id != ''",
+      "createRule": "@request.auth.id != ''",
+      "updateRule": "@request.auth.id != ''",
+      "deleteRule": "@request.auth.id != ''",
+      "options": {}
+    },
+    {
+      "name": "test_collection",
+      "type": "base",
+      "system": false,
+      "schema": [
+        { "name": "title", "type": "text", "required": true, "options": {} }
+      ],
+      "listRule": null,
+      "viewRule": null,
+      "createRule": null,
+      "updateRule": null,
+      "deleteRule": null,
+      "options": {}
+    }
+  ]
+}

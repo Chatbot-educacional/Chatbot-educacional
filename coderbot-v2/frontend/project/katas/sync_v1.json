@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "Counter will increment a number.",
+  "correct_code": "package v1\n\n// Counter will increment a number.\ntype Counter struct {\n\tvalue int\n}\n\n// Inc the count.\nfunc (c *Counter) Inc() {\n\tc.value++\n}\n\n// Value returns the current count.\nfunc (c *Counter) Value() int {\n\treturn c.value\n}",
+  "test_code": "package v1\n\nimport (\n\t\"testing\"\n)\n\nfunc TestCounter(t *testing.T) {\n\n\tt.Run(\"incrementing the counter 3 times leaves it at 3\", func(t *testing.T) {\n\t\tcounter := Counter{}\n\t\tcounter.Inc()\n\t\tcounter.Inc()\n\t\tcounter.Inc()\n\n\t\tassertCounter(t, counter, 3)\n\t})\n}\n\nfunc assertCounter(t testing.TB, got Counter, want int) {\n\tt.Helper()\n\tif got.Value() != want {\n\t\tt.Errorf(\"got %d, want %d\", got.Value(), want)\n\t}\n}",
+  "difficulty": "Fácil"
+}

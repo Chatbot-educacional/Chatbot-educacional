@@ -1,0 +1,7 @@
+{
+  "title": "V5",
+  "content": "Hello returns a personalised greeting, defaulting to Hello, world if an empty name is passed.",
+  "correct_code": "package main\n\nimport \"fmt\"\n\nconst englishHelloPrefix = \"Hello, \"\n\n// Hello returns a personalised greeting, defaulting to Hello, world if an empty name is passed.\nfunc Hello(name string) string {\n\tif name == \"\" {\n\t\tname = \"World\"\n\t}\n\treturn englishHelloPrefix + name\n}\n\nfunc main() {\n\tfmt.Println(Hello(\"world\"))\n}",
+  "test_code": "package main\n\nimport \"testing\"\n\nfunc TestHello(t *testing.T) {\n\tt.Run(\"saying hello to people\", func(t *testing.T) {\n\t\tgot := Hello(\"Chris\")\n\t\twant := \"Hello, Chris\"\n\t\tassertCorrectMessage(t, got, want)\n\t})\n\n\tt.Run(\"empty string defaults to 'world'\", func(t *testing.T) {\n\t\tgot := Hello(\"\")\n\t\twant := \"Hello, World\"\n\t\tassertCorrectMessage(t, got, want)\n\t})\n\n}\n\nfunc assertCorrectMessage(t testing.TB, got, want string) {\n\tt.Helper()\n\tif got != want {\n\t\tt.Errorf(\"got %q want %q\", got, want)\n\t}\n}",
+  "difficulty": "Difícil"
+}

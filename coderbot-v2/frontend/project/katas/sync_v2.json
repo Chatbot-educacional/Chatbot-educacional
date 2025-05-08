@@ -1,0 +1,7 @@
+{
+  "title": "V2",
+  "content": "Counter will increment a number.",
+  "correct_code": "package v1\n\nimport \"sync\"\n\n// Counter will increment a number.\ntype Counter struct {\n\tmu    sync.Mutex\n\tvalue int\n}\n\n// NewCounter returns a new Counter.\nfunc NewCounter() *Counter {\n\treturn &Counter{}\n}\n\n// Inc the count.\nfunc (c *Counter) Inc() {\n\tc.mu.Lock()\n\tdefer c.mu.Unlock()\n\tc.value++\n}\n\n// Value returns the current count.\nfunc (c *Counter) Value() int {\n\treturn c.value\n}",
+  "test_code": "package v1\n\nimport (\n\t\"sync\"\n\t\"testing\"\n)\n\nfunc TestCounter(t *testing.T) {\n\n\tt.Run(\"incrementing the counter 3 times leaves it at 3\", func(t *testing.T) {\n\t\tcounter := NewCounter()\n\t\tcounter.Inc()\n\t\tcounter.Inc()\n\t\tcounter.Inc()\n\n\t\tassertCounter(t, counter, 3)\n\t})\n\n\tt.Run(\"it runs safely concurrently\", func(t *testing.T) {\n\t\twantedCount := 1000\n\t\tcounter := NewCounter()\n\n\t\tvar wg sync.WaitGroup\n\t\twg.Add(wantedCount)\n\n\t\tfor i := 0; i < wantedCount; i++ {\n\t\t\tgo func() {\n\t\t\t\tcounter.Inc()\n\t\t\t\twg.Done()\n\t\t\t}()\n\t\t}\n\t\twg.Wait()\n\n\t\tassertCounter(t, counter, wantedCount)\n\t})\n\n}\n\nfunc assertCounter(t testing.TB, got *Counter, want int) {\n\tt.Helper()\n\tif got.Value() != want {\n\t\tt.Errorf(\"got %d, want %d\", got.Value(), want)\n\t}\n}",
+  "difficulty": "Fácil"
+}

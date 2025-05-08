@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "Add takes two integers and returns the sum of them.",
+  "correct_code": "package integers\n\n// Add takes two integers and returns the sum of them.\nfunc Add(x, y int) int {\n\treturn x + y\n}",
+  "test_code": "package integers\n\nimport \"testing\"\n\nfunc TestAdder(t *testing.T) {\n\tsum := Add(2, 2)\n\texpected := 4\n\n\tif sum != expected {\n\t\tt.Errorf(\"expected '%d' but got '%d'\", expected, sum)\n\t}\n}",
+  "difficulty": "Fácil"
+}

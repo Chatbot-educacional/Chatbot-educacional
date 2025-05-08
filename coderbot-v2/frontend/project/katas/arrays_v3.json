@@ -1,0 +1,7 @@
+{
+  "title": "V3",
+  "content": "Sum calculates the total from a slice of numbers.",
+  "correct_code": "package main\n\n// Sum calculates the total from a slice of numbers.\nfunc Sum(numbers []int) int {\n\tsum := 0\n\tfor _, number := range numbers {\n\t\tsum += number\n\t}\n\treturn sum\n}",
+  "test_code": "package main\n\nimport \"testing\"\n\nfunc TestSum(t *testing.T) {\n\n\tt.Run(\"collections of any size\", func(t *testing.T) {\n\n\t\tnumbers := []int{1, 2, 3}\n\n\t\tgot := Sum(numbers)\n\t\twant := 6\n\n\t\tif got != want {\n\t\t\tt.Errorf(\"got %d want %d given, %v\", got, want, numbers)\n\t\t}\n\t})\n\n}",
+  "difficulty": "Intermediário"
+}

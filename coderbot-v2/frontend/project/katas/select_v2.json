@@ -1,0 +1,7 @@
+{
+  "title": "V2",
+  "content": "Racer compares the response times of a and b, returning the fastest one.",
+  "correct_code": "package racer\n\nimport (\n\t\"net/http\"\n)\n\n// Racer compares the response times of a and b, returning the fastest one.\nfunc Racer(a, b string) (winner string) {\n\tselect {\n\tcase <-ping(a):\n\t\treturn a\n\tcase <-ping(b):\n\t\treturn b\n\t}\n}\n\nfunc ping(url string) chan struct{} {\n\tch := make(chan struct{})\n\tgo func() {\n\t\thttp.Get(url)\n\t\tclose(ch)\n\t}()\n\treturn ch\n}",
+  "test_code": "package racer\n\nimport (\n\t\"net/http\"\n\t\"net/http/httptest\"\n\t\"testing\"\n\t\"time\"\n)\n\nfunc TestRacer(t *testing.T) {\n\n\tslowServer := makeDelayedServer(20 * time.Millisecond)\n\tfastServer := makeDelayedServer(0 * time.Millisecond)\n\n\tdefer slowServer.Close()\n\tdefer fastServer.Close()\n\n\tslowURL := slowServer.URL\n\tfastURL := fastServer.URL\n\n\twant := fastURL\n\tgot := Racer(slowURL, fastURL)\n\n\tif got != want {\n\t\tt.Errorf(\"got %q, want %q\", got, want)\n\t}\n}\n\nfunc makeDelayedServer(delay time.Duration) *httptest.Server {\n\treturn httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\ttime.Sleep(delay)\n\t\tw.WriteHeader(http.StatusOK)\n\t}))\n}",
+  "difficulty": "Fácil"
+}

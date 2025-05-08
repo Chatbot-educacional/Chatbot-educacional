@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "PlayerServer currently returns \"20\" given _any_ request.",
+  "correct_code": "package main\n\nimport (\n\t\"log\"\n\t\"net/http\"\n)\n\nfunc main() {\n\thandler := http.HandlerFunc(PlayerServer)\n\tlog.Fatal(http.ListenAndServe(\":5000\", handler))\n}\n\npackage main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n)\n\n// PlayerServer currently returns \"20\" given _any_ request.\nfunc PlayerServer(w http.ResponseWriter, r *http.Request) {\n\tfmt.Fprint(w, \"20\")\n}",
+  "test_code": "package main\n\nimport (\n\t\"net/http\"\n\t\"net/http/httptest\"\n\t\"testing\"\n)\n\nfunc TestGETPlayers(t *testing.T) {\n\trequest, _ := http.NewRequest(http.MethodGet, \"/\", nil)\n\tresponse := httptest.NewRecorder()\n\n\tPlayerServer(response, request)\n\n\tt.Run(\"returns Pepper's score\", func(t *testing.T) {\n\t\tgot := response.Body.String()\n\t\twant := \"20\"\n\n\t\tif got != want {\n\t\t\tt.Errorf(\"got %q, want %q\", got, want)\n\t\t}\n\t})\n\n}",
+  "difficulty": "Fácil"
+}

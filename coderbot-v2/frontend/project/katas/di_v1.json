@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "Greet sends a personalised greeting to writer.",
+  "correct_code": "package main\n\nimport (\n\t\"fmt\"\n\t\"io\"\n\t\"os\"\n)\n\n// Greet sends a personalised greeting to writer.\nfunc Greet(writer io.Writer, name string) {\n\tfmt.Fprintf(writer, \"Hello, %s\", name)\n}\n\nfunc main() {\n\tGreet(os.Stdout, \"Elodie\")\n}",
+  "test_code": "package main\n\nimport (\n\t\"bytes\"\n\t\"testing\"\n)\n\nfunc TestGreet(t *testing.T) {\n\tbuffer := bytes.Buffer{}\n\tGreet(&buffer, \"Chris\")\n\n\tgot := buffer.String()\n\twant := \"Hello, Chris\"\n\n\tif got != want {\n\t\tt.Errorf(\"got %q want %q\", got, want)\n\t}\n}",
+  "difficulty": "Fácil"
+}

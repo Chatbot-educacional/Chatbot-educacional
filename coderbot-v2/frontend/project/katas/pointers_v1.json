@@ -1,0 +1,7 @@
+{
+  "title": "V1",
+  "content": "Bitcoin represents a number of Bitcoins.",
+  "correct_code": "package main\n\nimport \"fmt\"\n\n// Bitcoin represents a number of Bitcoins.\ntype Bitcoin int\n\nfunc (b Bitcoin) String() string {\n\treturn fmt.Sprintf(\"%d BTC\", b)\n}\n\n// Wallet stores the number of Bitcoin someone owns.\ntype Wallet struct {\n\tbalance Bitcoin\n}\n\n// Deposit will add some Bitcoin to a wallet.\nfunc (w *Wallet) Deposit(amount Bitcoin) {\n\tw.balance += amount\n}\n\n// Balance returns the number of Bitcoin a wallet has.\nfunc (w *Wallet) Balance() Bitcoin {\n\treturn w.balance\n}",
+  "test_code": "package main\n\nimport (\n\t\"testing\"\n)\n\nfunc TestWallet(t *testing.T) {\n\n\twallet := Wallet{}\n\n\twallet.Deposit(Bitcoin(10))\n\n\tgot := wallet.Balance()\n\n\twant := Bitcoin(10)\n\n\tif got != want {\n\t\tt.Errorf(\"got %s want %s\", got, want)\n\t}\n}",
+  "difficulty": "Fácil"
+}

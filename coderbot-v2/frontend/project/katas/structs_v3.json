@@ -1,0 +1,7 @@
+{
+  "title": "V3",
+  "content": "Rectangle has the dimensions of a rectangle.",
+  "correct_code": "package main\n\n// Rectangle has the dimensions of a rectangle.\ntype Rectangle struct {\n\tWidth  float64\n\tHeight float64\n}\n\n// Perimeter returns the perimeter of the rectangle.\nfunc Perimeter(rectangle Rectangle) float64 {\n\treturn 2 * (rectangle.Width + rectangle.Height)\n}\n\n// Area returns the area of the rectangle.\nfunc Area(rectangle Rectangle) float64 {\n\treturn rectangle.Width * rectangle.Height\n}",
+  "test_code": "package main\n\nimport \"testing\"\n\nfunc TestPerimeter(t *testing.T) {\n\trectangle := Rectangle{10.0, 10.0}\n\tgot := Perimeter(rectangle)\n\twant := 40.0\n\n\tif got != want {\n\t\tt.Errorf(\"got %.2f want %.2f\", got, want)\n\t}\n}\n\nfunc TestArea(t *testing.T) {\n\trectangle := Rectangle{12.0, 6.0}\n\tgot := Area(rectangle)\n\twant := 72.0\n\n\tif got != want {\n\t\tt.Errorf(\"got %.2f want %.2f\", got, want)\n\t}\n}",
+  "difficulty": "Intermediário"
+}

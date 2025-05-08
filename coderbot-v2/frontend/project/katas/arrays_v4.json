@@ -1,0 +1,7 @@
+{
+  "title": "V4",
+  "content": "Sum calculates the total from a slice of numbers.",
+  "correct_code": "package main\n\n// Sum calculates the total from a slice of numbers.\nfunc Sum(numbers []int) int {\n\tsum := 0\n\tfor _, number := range numbers {\n\t\tsum += number\n\t}\n\treturn sum\n}\n\n// SumAll calculates the respective sums of every slice passed in.\nfunc SumAll(numbersToSum ...[]int) []int {\n\tlengthOfNumbers := len(numbersToSum)\n\tsums := make([]int, lengthOfNumbers)\n\n\tfor i, numbers := range numbersToSum {\n\t\tsums[i] = Sum(numbers)\n\t}\n\n\treturn sums\n}",
+  "test_code": "package main\n\nimport (\n\t\"reflect\"\n\t\"testing\"\n)\n\nfunc TestSum(t *testing.T) {\n\n\tt.Run(\"collections of any size\", func(t *testing.T) {\n\n\t\tnumbers := []int{1, 2, 3}\n\n\t\tgot := Sum(numbers)\n\t\twant := 6\n\n\t\tif got != want {\n\t\t\tt.Errorf(\"got %d want %d given, %v\", got, want, numbers)\n\t\t}\n\t})\n\n}\n\nfunc TestSumAll(t *testing.T) {\n\n\tgot := SumAll([]int{1, 2}, []int{0, 9})\n\twant := []int{3, 9}\n\n\tif !reflect.DeepEqual(got, want) {\n\t\tt.Errorf(\"got %v want %v\", got, want)\n\t}\n}",
+  "difficulty": "Intermediário"
+}

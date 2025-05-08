@@ -1,0 +1,63 @@
+/*
+	Installed from https://reactbits.dev/default/
+*/
+
+.threads-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.threads-column {
+  flex: 1;
+  margin: 0 20px;
+  height: 100%;
+  position: relative;
+}
+
+.thread {
+  border-radius: 30px;
+  margin: 30px auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.5s ease;
+  animation: glow 4s infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.1);
+  }
+  33% {
+    box-shadow: 0 8px 32px rgba(14, 165, 233, 0.1);
+  }
+  66% {
+    box-shadow: 0 8px 32px rgba(244, 114, 182, 0.1);
+  }
+  100% {
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.1);
+  }
+}
+
+/* Add glass effect for modern UI */
+.threads-column:nth-child(1) .thread {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.05));
+  border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.threads-column:nth-child(2) .thread {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.05));
+  border: 1px solid rgba(14, 165, 233, 0.1);
+}
+
+.threads-column:nth-child(3) .thread {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.1), rgba(244, 114, 182, 0.05));
+  border: 1px solid rgba(244, 114, 182, 0.1);
+}
