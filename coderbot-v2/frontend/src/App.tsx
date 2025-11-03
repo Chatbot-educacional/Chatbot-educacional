@@ -45,6 +45,25 @@ const UserInfo = React.lazy(() => import("./pages/UserInfo"));
 
 const queryClient = new QueryClient();
 
+// Component to redirect to Teacher module (separate container)
+const TeacherRedirect = () => {
+  useEffect(() => {
+    // Force full page reload to Teacher module
+    window.location.href = '/teacher/';
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="text-center">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 mb-4">
+          <div className="w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+        <p className="text-lg font-medium text-gray-700 dark:text-gray-300">Redirecionando para Painel do Professor...</p>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   const [consentStatus, setConsentStatus] = useState<ConsentStatus>(() => getAnalyticsConsent());
   const analyticsInitRef = useRef(false);
@@ -243,26 +262,8 @@ const App = () => {
                     <Route path="notes" element={<NotesPage />} />
                     <Route path="code-editor" element={<CodeEditorPage />} />
                   </Route>
-                  <Route
-                    path="teacher/*"
-                    element={
-                      <RequireAuth>
-                        <RequireRole
-                          allowedRoles={["teacher", "admin"]}
-                          fallbackByRole={{
-                            student: <TeacherStudentFallback />,
-                            default: <TeacherUnknownFallback />,
-                          }}
-                        >
-                          <Index />
-                        </RequireRole>
-                      </RequireAuth>
-                    }
-                  >
-                    {/* <Route index element={<TeacherDashboard />} />
-                    <Route path="dashboard" element={<TeacherDashboard />} /> */}
-                    <Route path="*" element={<NotFound />} />
-                  </Route>
+                  {/* Teacher module - redirect to separate container */}
+                  <Route path="teacher/*" element={<TeacherRedirect />} />
                   <Route path="/profile" element={<RequireAuth><UserProfile /></RequireAuth>} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/consent" element={<ConsentTerms />} />
