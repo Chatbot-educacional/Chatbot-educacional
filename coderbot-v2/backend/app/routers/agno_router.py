@@ -35,6 +35,24 @@ logger = logging.getLogger(__name__)
 
 # --- Modelos Pydantic para validação e documentação ---
 
+class StepSubstep(BaseModel):
+    """Sub-etapa de um passo educacional."""
+    number: int = Field(description="Número da sub-etapa (1, 2, 3...)")
+    title: str = Field(description="Título curto da sub-etapa")
+    description: str = Field(description="Descrição detalhada da sub-etapa")
+
+
+class Step(BaseModel):
+    """Passo educacional com suporte a sub-etapas hierárquicas."""
+    number: int = Field(description="Número do passo (1, 2, 3...)")
+    title: str = Field(description="Título curto do passo")
+    description: str = Field(description="Descrição detalhada do passo")
+    substeps: Optional[List[StepSubstep]] = Field(
+        default=None,
+        description="Lista de sub-etapas opcionais deste passo"
+    )
+
+
 class UserContext(BaseModel):
     """Contexto do usuário para personalização das respostas."""
     user_id: str
@@ -97,7 +115,12 @@ class ResponseSegment(BaseModel):
     type: str = Field(description="Tipo do segmento (intro, steps, correct_example, incorrect_example, reflection, final_code)")
     content: str = Field(description="Conteúdo em Markdown do segmento. Para final_code, apenas um bloco de código")
     language: Optional[str] = Field(default=None, description="Linguagem do bloco de código quando type=final_code")
-    # NOVO: suporte a feedback de exemplos
+    # NOVO: suporte a passos hierárquicos com sub-etapas
+    steps: Optional[List[Step]] = Field(
+        default=None,
+        description="Lista de passos educacionais com possíveis sub-etapas (para exemplos correct/incorrect)"
+    )
+    # Suporte a feedback de exemplos
     example_id: Optional[str] = Field(default=None, description="ID do exemplo salvo no PocketBase (se aplicável)")
     can_vote: Optional[bool] = Field(default=False, description="Se este segmento aceita feedback de upvote/downvote")
 
@@ -295,7 +318,8 @@ async def ask_question(
                         "title": segment.get("title", "Exemplo"),
                         "code": segment.get("content", ""),  # O conteúdo já é o código
                         "language": segment.get("language", "python"),
-                        "explanation": segment.get("title", "")  # Título como explicação inicial
+                        "explanation": segment.get("title", ""),  # Título como explicação inicial
+                        "steps": segment.get("steps")  # NOVO: Incluir steps se existirem
                     }
                     
                     # Salvar no PocketBase
@@ -311,7 +335,7 @@ async def ask_question(
                     if example_id:
                         segment["example_id"] = example_id
                         segment["can_vote"] = True
-                        logger.info(f"Exemplo salvo: {example_id} | Tipo: {example_data['type']}")
+                        logger.info(f"Exemplo salvo: {example_id} | Tipo: {example_data['type']} | Steps: {len(segment.get('steps', []))}")
                     
                 except Exception as e:
                     logger.error(f"Erro ao salvar exemplo do segmento {i}: {e}")

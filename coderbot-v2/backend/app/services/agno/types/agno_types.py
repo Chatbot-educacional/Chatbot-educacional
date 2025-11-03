@@ -11,6 +11,23 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
+@dataclass
+class StepSubstep:
+    """Sub-etapa de um passo educacional."""
+    number: int
+    title: str
+    description: str
+
+
+@dataclass
+class Step:
+    """Passo educacional com suporte a sub-etapas hierárquicas."""
+    number: int
+    title: str
+    description: str
+    substeps: Optional[List[StepSubstep]] = None
+
+
 class MethodologyType(Enum):
     """Tipos de metodologias educacionais suportadas."""
     SEQUENTIAL_THINKING = "sequential_thinking"
@@ -70,6 +87,9 @@ class ResponseSegment:
     type: str
     content: str
     language: Optional[str] = None
+    steps: Optional[List[Step]] = None  # NOVO: suporte a passos hierárquicos
+    example_id: Optional[str] = None
+    can_vote: Optional[bool] = False
 
 
 @dataclass

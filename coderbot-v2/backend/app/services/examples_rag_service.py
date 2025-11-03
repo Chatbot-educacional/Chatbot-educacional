@@ -183,7 +183,8 @@ class ExamplesRAGService:
                 "title": str,
                 "code": str,
                 "language": str,
-                "explanation": str
+                "explanation": str,
+                "steps": List[Dict] (opcional) - estrutura hierárquica de passos
             }
             user_query: Query original do aluno
             chat_session_id: ID da sessão de chat
@@ -212,6 +213,9 @@ class ExamplesRAGService:
                 "code": example_data.get("code", ""),
                 "language": example_data.get("language", "python"),
                 "explanation": example_data.get("explanation", ""),
+                
+                # NOVO: Estrutura de passos hierárquicos
+                "steps": example_data.get("steps"),  # JSON com estrutura de steps e substeps
                 
                 # Metadados educacionais
                 "methodology": "worked_examples",  # Padrão

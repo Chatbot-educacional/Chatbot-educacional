@@ -1,5 +1,16 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 
+export interface CodeExampleStep {
+  number: number;
+  title: string;
+  description: string;
+  substeps?: Array<{
+    number: number;
+    title: string;
+    description: string;
+  }>;
+}
+
 export interface CodeExample {
   id: string;
   title: string;
@@ -9,11 +20,7 @@ export interface CodeExample {
   explanation: string;
   tags?: string[];
   difficulty?: 'beginner' | 'intermediate' | 'advanced';
-  steps?: Array<{
-    number: number;
-    title: string;
-    description: string;
-  }>;
+  steps?: CodeExampleStep[];
   hints?: Array<{
     line: number;
     message: string;
