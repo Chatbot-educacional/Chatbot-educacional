@@ -1,58 +1,55 @@
-# Stage 1: build estático com pnpm
-FROM node:20-alpine AS builder
+# Frontend Dockerfile with Node.js and pnpm
+FROM node:20-alpine
 
-# Ferramentas necessárias durante o build
-RUN apk add --no-cache curl && npm install -g pnpm
+# Instalar pnpm
+RUN npm install -g pnpm
 
+# Instalar curl para health checks
+RUN apk add --no-cache curl
+
+# Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar manifestos primeiro para aproveitar cache de dependências
-COPY frontend/package.json frontend/pnpm-lock.yaml ./
+# Copiar apenas arquivos de configuração (contexto: .)
+COPY frontend/package.json frontend/pnpm-lock.yaml .
 
-# Instalar dependências usando cache do pnpm
+# Instalar dependências com cache do store do pnpm
 RUN --mount=type=cache,target=/root/.pnpm-store pnpm install --frozen-lockfile --prefer-offline
 
-# Copiar código fonte
+# Copiar o código da aplicação
 COPY frontend/ .
 
-# Remover artefatos não utilizados no build final
+# Garantir remoção de artefatos não usados
+
 RUN rm -rf src-tauri temp-tauri supabase 2>/dev/null || true
 
 # ===== Build-time args para Vite =====
 ARG VITE_API_URL=/api
 ARG VITE_POCKETBASE_URL=/pb
+# PostHog (analytics)
 ARG VITE_PUBLIC_POSTHOG_KEY
 ARG VITE_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 
-# Definir variáveis de ambiente para o build (lidas pelo Vite)
-ENV NODE_ENV=production \
-    VITE_API_URL=${VITE_API_URL} \
-    VITE_POCKETBASE_URL=${VITE_POCKETBASE_URL} \
-    VITE_PUBLIC_POSTHOG_KEY=${VITE_PUBLIC_POSTHOG_KEY} \
-    VITE_PUBLIC_POSTHOG_HOST=${VITE_PUBLIC_POSTHOG_HOST}
+# Definir variáveis de ambiente para build (lidas pelo Vite)
+ENV NODE_ENV=production
+ENV VITE_API_URL=${VITE_API_URL}
+ENV VITE_POCKETBASE_URL=${VITE_POCKETBASE_URL}
+# PostHog (analytics)
+ENV VITE_PUBLIC_POSTHOG_KEY=${VITE_PUBLIC_POSTHOG_KEY}
+ENV VITE_PUBLIC_POSTHOG_HOST=${VITE_PUBLIC_POSTHOG_HOST}
 
-# Build da aplicação (falha se houver erro)
+# Build da aplicação para produção (falha se build falhar)
 RUN pnpm run build
 
-# Validar que o bundle foi gerado
+# Garante que o diretório dist foi criado
 RUN test -d dist
 
-# Stage 2: runtime enxuto com Nginx servindo arquivos estáticos
-FROM nginx:1.27-alpine AS runtime
-
-# Ferramentas para healthcheck
-RUN apk add --no-cache curl
-
-# Copiar bundle estático
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Configuração dedicada do Nginx para SPA
-COPY docker/nginx/frontend.conf /etc/nginx/conf.d/default.conf
-
+# Expor a porta
 EXPOSE 3000
 
-# Healthcheck simples apontando para o Nginx interno
+# Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:3000/ || exit 1
 
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para iniciar a aplicação (passando variáveis de ambiente)
+CMD ["sh", "-c", "VITE_POCKETBASE_URL=${VITE_POCKETBASE_URL:-/pb} VITE_PUBLIC_POSTHOG_KEY=${VITE_PUBLIC_POSTHOG_KEY:-} VITE_PUBLIC_POSTHOG_HOST=${VITE_PUBLIC_POSTHOG_HOST:-https://us.i.posthog.com} pnpm run preview --host 0.0.0.0 --port 3000"]

@@ -9,6 +9,11 @@ export interface CodeExample {
   explanation: string;
   tags?: string[];
   difficulty?: 'beginner' | 'intermediate' | 'advanced';
+  steps?: Array<{
+    number: number;
+    title: string;
+    description: string;
+  }>;
   hints?: Array<{
     line: number;
     message: string;
