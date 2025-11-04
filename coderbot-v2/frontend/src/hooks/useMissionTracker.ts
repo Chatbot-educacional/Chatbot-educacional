@@ -155,13 +155,25 @@ export const useMissionTracker = (classId?: string) => {
   }, [trackAction]);
 
   /**
-   * Rastreia criação ou salvamento de uma nota.
+   * Rastreia criação ou salvamento de uma anotação textual.
    * Atualiza missões do tipo 'notes_creation'.
    */
   const trackNoteCreation = useCallback(async (noteTitle: string, noteLength: number) => {
     await trackAction('notes_creation', 1, {
       noteTitle,
       noteLength,
+      timestamp: new Date().toISOString(),
+    });
+  }, [trackAction]);
+
+  /**
+   * Rastreia interações no quadro branco (desenhos, etc).
+   * Atualiza missões do tipo 'whiteboard_interaction'.
+   */
+  const trackWhiteboardInteraction = useCallback(async (actionType: string, metadata?: Record<string, any>) => {
+    await trackAction('whiteboard_interaction', 1, {
+      actionType,
+      ...metadata,
       timestamp: new Date().toISOString(),
     });
   }, [trackAction]);
@@ -215,6 +227,7 @@ export const useMissionTracker = (classId?: string) => {
     trackChatMessage,
     trackCodeExecution,
     trackNoteCreation,
+    trackWhiteboardInteraction,
     trackExerciseCompletion,
     trackCustomAction,
 

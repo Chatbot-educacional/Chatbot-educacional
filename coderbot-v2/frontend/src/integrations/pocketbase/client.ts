@@ -471,10 +471,12 @@ export type MissionType =
   | 'code_execution'
   | 'exercise_completion'
   | 'notes_creation'
+  | 'whiteboard_interaction'
   | 'custom';
 
 export type ModuleType =
   | 'chat'
+  | 'notes'
   | 'quadro'
   | 'ide'
   | 'general';

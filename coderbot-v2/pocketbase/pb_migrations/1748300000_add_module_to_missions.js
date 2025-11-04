@@ -14,6 +14,7 @@ migrate((app) => {
     "type": "select",
     "values": [
       "chat",
+      "notes",
       "quadro",
       "ide",
       "general"

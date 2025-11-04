@@ -75,7 +75,8 @@ const missionTypeIcons: Record<string, React.ReactNode> = {
   chat_interaction: <MessageCircle className="h-4 w-4" />,
   code_execution: <Code className="h-4 w-4" />,
   exercise_completion: <BookOpen className="h-4 w-4" />,
-  notes_creation: <Music className="h-4 w-4" />,
+  notes_creation: <FileText className="h-4 w-4" />,
+  whiteboard_interaction: <Zap className="h-4 w-4" />,
   custom: <Target className="h-4 w-4" />,
 };
 
@@ -83,7 +84,8 @@ const missionTypeLabels: Record<string, string> = {
   chat_interaction: 'Conversa com IA',
   code_execution: 'Execução de Código',
   exercise_completion: 'Exercícios',
-  notes_creation: 'Notas Musicais',
+  notes_creation: 'Criação de Anotações',
+  whiteboard_interaction: 'Interação no Quadro',
   custom: 'Personalizada',
 };
 
@@ -750,16 +752,25 @@ const ClassForumPage = () => {
       mission_type: activity.mission.type
     });
 
-    // Redirecionar baseado no tipo de missão
-    switch (activity.mission.type) {
+    // Redirecionar baseado no tipo de missão ou módulo relacionado
+    const targetModule = activity.mission.module_type || activity.mission.type;
+    
+    switch (targetModule) {
+      case 'chat':
       case 'chat_interaction':
         navigate('/dashboard/chat');
         break;
+      case 'notes':
       case 'notes_creation':
         navigate('/dashboard/notes');
         break;
+      case 'ide':
       case 'code_execution':
         navigate('/dashboard/code-editor');
+        break;
+      case 'quadro':
+      case 'whiteboard_interaction':
+        navigate('/dashboard/whiteboard');
         break;
       case 'exercise_completion':
         navigate('/dashboard/exercises');

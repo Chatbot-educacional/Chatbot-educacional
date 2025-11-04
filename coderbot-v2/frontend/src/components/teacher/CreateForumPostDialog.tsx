@@ -63,7 +63,8 @@ const missionTypeIcons: Record<MissionType, React.ReactNode> = {
   chat_interaction: <MessageCircle className="h-4 w-4" />,
   code_execution: <Code className="h-4 w-4" />,
   exercise_completion: <BookOpen className="h-4 w-4" />,
-  notes_creation: <Music className="h-4 w-4" />,
+  notes_creation: <FileText className="h-4 w-4" />,
+  whiteboard_interaction: <LayoutDashboard className="h-4 w-4" />,
   custom: <Sparkles className="h-4 w-4" />,
 };
 
@@ -71,7 +72,8 @@ const missionTypeLabels: Record<MissionType, string> = {
   chat_interaction: 'Conversa com IA',
   code_execution: 'Execução de Código',
   exercise_completion: 'Exercícios',
-  notes_creation: 'Notas Musicais',
+  notes_creation: 'Criação de Anotações',
+  whiteboard_interaction: 'Interação no Quadro',
   custom: 'Personalizada',
 };
 
@@ -79,12 +81,14 @@ const missionTypeDescriptions: Record<MissionType, string> = {
   chat_interaction: 'Enviar mensagens para a IA e receber respostas',
   code_execution: 'Executar código no ambiente de desenvolvimento',
   exercise_completion: 'Completar exercícios práticos',
-  notes_creation: 'Criar composições musicais',
+  notes_creation: 'Criar e salvar anotações textuais',
+  whiteboard_interaction: 'Desenhar e interagir com o quadro branco',
   custom: 'Atividade personalizada definida pelo professor',
 };
 
 const moduleTypeIcons: Record<ModuleType, React.ReactNode> = {
   chat: <MessageSquare className="h-4 w-4" />,
+  notes: <FileText className="h-4 w-4" />,
   quadro: <LayoutDashboard className="h-4 w-4" />,
   ide: <Code className="h-4 w-4" />,
   general: <Target className="h-4 w-4" />,
@@ -92,14 +96,16 @@ const moduleTypeIcons: Record<ModuleType, React.ReactNode> = {
 
 const moduleTypeLabels: Record<ModuleType, string> = {
   chat: 'Chat com IA',
-  quadro: 'Quadro de Atividades',
+  notes: 'Bloco de Notas',
+  quadro: 'Quadro Branco',
   ide: 'Editor de Código (IDE)',
   general: 'Geral',
 };
 
 const moduleTypeDescriptions: Record<ModuleType, string> = {
   chat: 'Atividade relacionada ao módulo de chat com a IA',
-  quadro: 'Atividade relacionada ao quadro de atividades da turma',
+  notes: 'Atividade relacionada ao bloco de anotações textuais',
+  quadro: 'Atividade relacionada ao quadro branco colaborativo',
   ide: 'Atividade relacionada ao editor de código integrado',
   general: 'Atividade não específica de um módulo',
 };
@@ -332,7 +338,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {(['chat_interaction', 'code_execution', 'exercise_completion', 'notes_creation', 'custom'] as MissionType[]).map((type) => (
+                        {(['chat_interaction', 'code_execution', 'exercise_completion', 'notes_creation', 'whiteboard_interaction', 'custom'] as MissionType[]).map((type) => (
                           <SelectItem key={type} value={type} className="py-3">
                             <div className="flex items-center gap-3">
                               <div className="p-1.5 rounded bg-primary/10">
@@ -361,7 +367,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {(['chat', 'quadro', 'ide', 'general'] as ModuleType[]).map((mod) => (
+                        {(['chat', 'notes', 'quadro', 'ide', 'general'] as ModuleType[]).map((mod) => (
                           <SelectItem key={mod} value={mod} className="py-3">
                             <div className="flex items-center gap-3">
                               <div className="p-1.5 rounded bg-primary/10">
