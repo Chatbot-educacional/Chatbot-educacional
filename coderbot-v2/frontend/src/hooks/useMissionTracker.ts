@@ -8,6 +8,7 @@ import {
   updateStudentMissionProgress,
   getCurrentUser,
   registerUserAction,
+  pb,
 } from '@/integrations/pocketbase/client';
 
 /**
@@ -62,14 +63,54 @@ export const useMissionTracker = (classId?: string) => {
     setIsTracking(true);
 
     try {
-      // Encontrar missões relevantes do tipo especificado
-      const relevantMissions = activeMissions.filter(m => m.type === missionType);
+      // Se não temos missões ativas localmente, tentar recarregar do servidor
+      if (activeMissions.length === 0 && classId) {
+        console.log('[useMissionTracker] Nenhuma missão ativa local, recarregando do servidor...');
+        try {
+          const missions = await listClassMissions(classId, { status: 'active' });
+          setActiveMissions(missions);
+          console.log('[useMissionTracker] Missões recarregadas:', missions.length);
+        } catch (error) {
+          console.error('[useMissionTracker] Erro ao recarregar missões:', error);
+        }
+      }
+
+      // Se ainda não temos missões, buscar missões de todas as turmas do usuário
+      let relevantMissions = activeMissions.filter(m => m.type === missionType);
+      
+      if (relevantMissions.length === 0 && !classId) {
+        console.log('[useMissionTracker] Buscando missões de todas as turmas do usuário...');
+        try {
+          // Buscar matrículas do usuário
+          const enrollments = await pb.collection('class_members').getFullList({
+            filter: `user = "${userId}"`,
+          });
+          
+          const classIds = enrollments.map(e => e.class);
+          console.log('[useMissionTracker] Turmas do usuário:', classIds);
+          
+          // Buscar missões ativas de todas as turmas
+          const allMissions: ClassMissionRecord[] = [];
+          for (const cId of classIds) {
+            const missions = await listClassMissions(cId, { status: 'active' });
+            allMissions.push(...missions);
+          }
+          
+          relevantMissions = allMissions.filter(m => m.type === missionType);
+          console.log('[useMissionTracker] Missões encontradas de todas as turmas:', relevantMissions.length);
+        } catch (error) {
+          console.error('[useMissionTracker] Erro ao buscar missões de todas as turmas:', error);
+        }
+      }
 
       if (relevantMissions.length === 0) {
         // Sem missões ativas deste tipo, apenas registrar ação para gamificação
+        console.log('[useMissionTracker] Nenhuma missão relevante, registrando ação de gamificação');
         await registerUserAction(userId, missionType, JSON.stringify(metadata || {}));
         return;
       }
+
+      console.log('[useMissionTracker] ✅ Atualizando progresso de', relevantMissions.length, 'missões');
 
       // Atualizar progresso de cada missão relevante
       for (const mission of relevantMissions) {
@@ -77,6 +118,8 @@ export const useMissionTracker = (classId?: string) => {
           const progress = await getStudentMissionProgress(mission.id, userId);
           const currentValue = progress?.current_value || 0;
           const newValue = currentValue + increment;
+
+          console.log(`[useMissionTracker] Missão "${mission.title}": ${currentValue} -> ${newValue}/${mission.target_value}`);
 
           // Verificar se completou a missão
           const isCompleted = newValue >= mission.target_value;
@@ -129,7 +172,7 @@ export const useMissionTracker = (classId?: string) => {
     } finally {
       setIsTracking(false);
     }
-  }, [userId, activeMissions, isTracking]);
+  }, [userId, activeMissions, isTracking, classId]);
 
   /**
    * Rastreia uma mensagem enviada no chat.

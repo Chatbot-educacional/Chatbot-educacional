@@ -216,7 +216,9 @@ export const PROVIDER_CONFIG: Record<ProviderKey, ProviderConfig> = {
     name: "Claude (Anthropic)",
     models: [
       { id: "claude-sonnet-4-20250514", name: "Claude 4 Sonnet", default: true },
+      { id: "claude-sonnet-4.5-20250115", name: "Claude 4.5 Sonnet" },
       { id: "claude-3-5-sonnet-20241022", name: "Claude 3.5 Sonnet" },
+      { id: "claude-haiku-4-20250115", name: "Claude 4.5 Haiku" },
       { id: "claude-3-opus-20240229", name: "Claude 3 Opus" },
       { id: "claude-3-haiku-20240307", name: "Claude 3 Haiku" }
     ],

@@ -1294,7 +1294,16 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
   }>({});
 
   // Mission Tracker - Rastreamento automático de progresso das missões
-  const { trackChatMessage } = useMissionTracker(chatContext.classId);
+  // Usar o classId da missão selecionada se disponível, caso contrário usar o chatContext
+  const missionClassId = selectedMission?.class || chatContext.classId;
+  const { trackChatMessage, refreshMissions } = useMissionTracker(missionClassId);
+
+  // Atualizar missões quando selecionar uma nova missão
+  useEffect(() => {
+    if (selectedMission) {
+      refreshMissions();
+    }
+  }, [selectedMission, refreshMissions]);
 
   // Save chat context to session
   const saveChatContext = useCallback(async (classId?: string, subject?: string) => {
