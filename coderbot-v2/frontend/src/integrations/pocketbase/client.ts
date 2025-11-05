@@ -501,6 +501,7 @@ export interface ClassMissionRecord extends PBRecord {
   ends_at?: string;
   max_participants?: number;
   current_progress?: number;
+  preferred_language?: string; // Linguagem de programação preferida para exemplos (python, javascript, java, etc.)
   metadata?: any; // Flexible field for mission-specific data
   expand?: {
     class?: any;
@@ -847,6 +848,7 @@ export const createClassMission = async (data: {
   starts_at?: string;
   ends_at?: string;
   max_participants?: number;
+  preferred_language?: string; // Nova opção: linguagem de programação preferida
   metadata?: any;
 }): Promise<ClassMissionRecord | null> => {
   const user = getCurrentUser();
@@ -868,6 +870,7 @@ export const createClassMission = async (data: {
       starts_at: data.starts_at,
       ends_at: data.ends_at,
       max_participants: data.max_participants,
+      preferred_language: data.preferred_language || null,
       metadata: data.metadata || {},
     });
     return record as ClassMissionRecord;

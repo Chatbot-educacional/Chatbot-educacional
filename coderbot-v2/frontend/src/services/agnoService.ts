@@ -18,6 +18,7 @@ export interface UserContext {
   difficultyLevel?: string;
   learningProgress?: any;
   previousInteractions?: string[];
+  preferredLanguage?: string | null; // Linguagem de programação preferida
 }
 
 // Interface para a requisição ao AGNO
@@ -215,7 +216,9 @@ export const PROVIDER_CONFIG: Record<ProviderKey, ProviderConfig> = {
     name: "Claude (Anthropic)",
     models: [
       { id: "claude-sonnet-4-20250514", name: "Claude 4 Sonnet", default: true },
+      { id: "claude-sonnet-4.5-20250115", name: "Claude 4.5 Sonnet" },
       { id: "claude-3-5-sonnet-20241022", name: "Claude 3.5 Sonnet" },
+      { id: "claude-haiku-4-20250115", name: "Claude 4.5 Haiku" },
       { id: "claude-3-opus-20240229", name: "Claude 3 Opus" },
       { id: "claude-3-haiku-20240307", name: "Claude 3 Haiku" }
     ],
@@ -366,7 +369,8 @@ class AgnoService {
         current_topic: request.userContext.currentTopic || null,
         difficulty_level: request.userContext.difficultyLevel || null,
         learning_progress: request.userContext.learningProgress || null,
-        previous_interactions: request.userContext.previousInteractions || null
+        previous_interactions: request.userContext.previousInteractions || null,
+        preferred_language: request.userContext.preferredLanguage || null
       } : null;
 
       const requestBody = {

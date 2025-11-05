@@ -1294,7 +1294,16 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
   }>({});
 
   // Mission Tracker - Rastreamento automático de progresso das missões
-  const { trackChatMessage } = useMissionTracker(chatContext.classId);
+  // Usar o classId da missão selecionada se disponível, caso contrário usar o chatContext
+  const missionClassId = selectedMission?.class || chatContext.classId;
+  const { trackChatMessage, refreshMissions } = useMissionTracker(missionClassId);
+
+  // Atualizar missões quando selecionar uma nova missão
+  useEffect(() => {
+    if (selectedMission) {
+      refreshMissions();
+    }
+  }, [selectedMission, refreshMissions]);
 
   // Save chat context to session
   const saveChatContext = useCallback(async (classId?: string, subject?: string) => {
@@ -1745,6 +1754,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
           difficulty: selectedMission.difficulty,
           topics: selectedMission.topics,
           learningObjectives: selectedMission.learningObjectives,
+          preferredLanguage: selectedMission.preferred_language || null,
         } : null;
         
         const userContext = {
@@ -1753,6 +1763,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
           classId: chatContext.classId || null,
           difficultyLevel: selectedMission?.difficulty || userProfile.difficulty_level || "medium",
           learningProgress: userProfile.learning_progress || {},
+          preferredLanguage: selectedMission?.preferred_language || null, // Linguagem preferida
           mission: missionContext, // Adicionar contexto da missão
           quizStats: {
             correctCount: quizCorrectCount,
@@ -1779,7 +1790,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
         
         // Adicionar contexto da missão ao prompt
         const missionContextPrompt = selectedMission
-          ? `\n\nContexto da Missão Ativa:\n- Título: ${selectedMission.title}\n- Descrição: ${selectedMission.description}\n- Tipo: ${selectedMission.type}\n- Dificuldade: ${selectedMission.difficulty || 'não especificado'}\n${selectedMission.learningObjectives ? `- Objetivos de Aprendizado: ${selectedMission.learningObjectives.join(', ')}` : ''}\n\nPor favor, mantenha suas respostas focadas neste tema e nos objetivos de aprendizado da missão.`
+          ? `\n\nContexto da Missão Ativa:\n- Título: ${selectedMission.title}\n- Descrição: ${selectedMission.description}\n- Tipo: ${selectedMission.type}\n- Dificuldade: ${selectedMission.difficulty || 'não especificado'}\n${selectedMission.learningObjectives ? `- Objetivos de Aprendizado: ${selectedMission.learningObjectives.join(', ')}` : ''}${selectedMission.preferred_language ? `\n\n⚠️ IMPORTANTE: Todos os exemplos de código devem ser EXCLUSIVAMENTE em ${selectedMission.preferred_language.toUpperCase()}. NÃO use outras linguagens de programação nos exemplos.` : ''}\n\nPor favor, mantenha suas respostas focadas neste tema e nos objetivos de aprendizado da missão.`
           : '';
 
         const modelOption = findModelOption(normalizedModelId);

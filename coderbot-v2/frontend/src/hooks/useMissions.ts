@@ -15,6 +15,7 @@ export interface Mission {
   starts_at?: string;
   ends_at?: string;
   max_participants?: number;
+  preferred_language?: string; // Linguagem de programação preferida
   created: string;
   updated: string;
   // Campos opcionais para compatibilidade
