@@ -18,6 +18,7 @@ export interface UserContext {
   difficultyLevel?: string;
   learningProgress?: any;
   previousInteractions?: string[];
+  preferredLanguage?: string | null; // Linguagem de programação preferida
 }
 
 // Interface para a requisição ao AGNO
@@ -366,7 +367,8 @@ class AgnoService {
         current_topic: request.userContext.currentTopic || null,
         difficulty_level: request.userContext.difficultyLevel || null,
         learning_progress: request.userContext.learningProgress || null,
-        previous_interactions: request.userContext.previousInteractions || null
+        previous_interactions: request.userContext.previousInteractions || null,
+        preferred_language: request.userContext.preferredLanguage || null
       } : null;
 
       const requestBody = {

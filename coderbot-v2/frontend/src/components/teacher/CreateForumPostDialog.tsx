@@ -127,6 +127,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
   const [missionTarget, setMissionTarget] = useState(20);
   const [missionReward, setMissionReward] = useState(100);
   const [missionDescription, setMissionDescription] = useState('');
+  const [preferredLanguage, setPreferredLanguage] = useState<string>('');
 
   const resetForm = () => {
     setTitle('');
@@ -140,6 +141,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
     setMissionTarget(20);
     setMissionReward(100);
     setMissionDescription('');
+    setPreferredLanguage('');
   };
 
   const handleAddLink = () => {
@@ -218,6 +220,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
           module_type: moduleType,
           target_value: missionTarget,
           reward_points: missionReward,
+          preferred_language: preferredLanguage || undefined,
         });
 
         toast.success('Missão criada e publicada no fórum com sucesso!');
@@ -447,6 +450,40 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                     </p>
                   </div>
 
+                  {/* Linguagem de Programação Preferida */}
+                  <div className="space-y-2">
+                    <Label htmlFor="preferred-language" className="flex items-center gap-2">
+                      <Code className="h-3.5 w-3.5" />
+                      Linguagem de programação (opcional)
+                    </Label>
+                    <Select value={preferredLanguage} onValueChange={setPreferredLanguage}>
+                      <SelectTrigger id="preferred-language" className="h-11">
+                        <SelectValue placeholder="Selecione uma linguagem (deixe em branco para qualquer)" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">
+                          <span className="text-muted-foreground">Qualquer linguagem</span>
+                        </SelectItem>
+                        <SelectItem value="python">Python</SelectItem>
+                        <SelectItem value="javascript">JavaScript</SelectItem>
+                        <SelectItem value="typescript">TypeScript</SelectItem>
+                        <SelectItem value="java">Java</SelectItem>
+                        <SelectItem value="cpp">C++</SelectItem>
+                        <SelectItem value="c">C</SelectItem>
+                        <SelectItem value="csharp">C#</SelectItem>
+                        <SelectItem value="go">Go</SelectItem>
+                        <SelectItem value="rust">Rust</SelectItem>
+                        <SelectItem value="ruby">Ruby</SelectItem>
+                        <SelectItem value="php">PHP</SelectItem>
+                        <SelectItem value="swift">Swift</SelectItem>
+                        <SelectItem value="kotlin">Kotlin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <p className="text-xs text-muted-foreground">
+                      A IA gerará exemplos de código apenas nesta linguagem
+                    </p>
+                  </div>
+
                   {/* Preview da Missão */}
                   <div className="p-4 rounded-xl border border-primary/20 bg-gradient-to-br from-primary/5 to-purple-500/5 backdrop-blur-sm">
                     <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
@@ -464,6 +501,12 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                         <span className="text-muted-foreground">Tipo:</span>
                         <span className="font-medium">{missionTypeLabels[missionType]}</span>
                       </div>
+                      {preferredLanguage && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-muted-foreground">Linguagem:</span>
+                          <span className="font-medium capitalize">{preferredLanguage}</span>
+                        </div>
+                      )}
                       <div className="flex items-center gap-4 pt-2">
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/50 backdrop-blur-sm border">
                           <Target className="h-3 w-3 text-primary" />
