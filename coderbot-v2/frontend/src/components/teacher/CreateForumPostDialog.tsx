@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Loader2, Plus, Link2, FileText, X, Target, MessageCircle, Code, BookOpen, Music, Sparkles, ClipboardList, Zap } from 'lucide-react';
+import { Loader2, Plus, Link2, FileText, X, Target, MessageCircle, Code, BookOpen, Music, Sparkles, ClipboardList, Zap, LayoutDashboard, MessageSquare } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -30,6 +30,7 @@ import {
   ClassForumLink,
   createClassForumPost,
   MissionType,
+  ModuleType,
   createClassMission,
 } from '@/integrations/pocketbase/client';
 
@@ -62,7 +63,8 @@ const missionTypeIcons: Record<MissionType, React.ReactNode> = {
   chat_interaction: <MessageCircle className="h-4 w-4" />,
   code_execution: <Code className="h-4 w-4" />,
   exercise_completion: <BookOpen className="h-4 w-4" />,
-  notes_creation: <Music className="h-4 w-4" />,
+  notes_creation: <FileText className="h-4 w-4" />,
+  whiteboard_interaction: <LayoutDashboard className="h-4 w-4" />,
   custom: <Sparkles className="h-4 w-4" />,
 };
 
@@ -70,7 +72,8 @@ const missionTypeLabels: Record<MissionType, string> = {
   chat_interaction: 'Conversa com IA',
   code_execution: 'Execução de Código',
   exercise_completion: 'Exercícios',
-  notes_creation: 'Notas Musicais',
+  notes_creation: 'Criação de Anotações',
+  whiteboard_interaction: 'Interação no Quadro',
   custom: 'Personalizada',
 };
 
@@ -78,8 +81,33 @@ const missionTypeDescriptions: Record<MissionType, string> = {
   chat_interaction: 'Enviar mensagens para a IA e receber respostas',
   code_execution: 'Executar código no ambiente de desenvolvimento',
   exercise_completion: 'Completar exercícios práticos',
-  notes_creation: 'Criar composições musicais',
+  notes_creation: 'Criar e salvar anotações textuais',
+  whiteboard_interaction: 'Desenhar e interagir com o quadro branco',
   custom: 'Atividade personalizada definida pelo professor',
+};
+
+const moduleTypeIcons: Record<ModuleType, React.ReactNode> = {
+  chat: <MessageSquare className="h-4 w-4" />,
+  notes: <FileText className="h-4 w-4" />,
+  quadro: <LayoutDashboard className="h-4 w-4" />,
+  ide: <Code className="h-4 w-4" />,
+  general: <Target className="h-4 w-4" />,
+};
+
+const moduleTypeLabels: Record<ModuleType, string> = {
+  chat: 'Chat com IA',
+  notes: 'Bloco de Notas',
+  quadro: 'Quadro Branco',
+  ide: 'Editor de Código (IDE)',
+  general: 'Geral',
+};
+
+const moduleTypeDescriptions: Record<ModuleType, string> = {
+  chat: 'Atividade relacionada ao módulo de chat com a IA',
+  notes: 'Atividade relacionada ao bloco de anotações textuais',
+  quadro: 'Atividade relacionada ao quadro branco colaborativo',
+  ide: 'Atividade relacionada ao editor de código integrado',
+  general: 'Atividade não específica de um módulo',
 };
 
 export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPostDialogProps) => {
@@ -95,6 +123,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
 
   // Estado para missões
   const [missionType, setMissionType] = useState<MissionType>('chat_interaction');
+  const [moduleType, setModuleType] = useState<ModuleType>('general');
   const [missionTarget, setMissionTarget] = useState(20);
   const [missionReward, setMissionReward] = useState(100);
   const [missionDescription, setMissionDescription] = useState('');
@@ -107,6 +136,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
     setLinks([]);
     setLinkInput({ url: '', label: '' });
     setMissionType('chat_interaction');
+    setModuleType('general');
     setMissionTarget(20);
     setMissionReward(100);
     setMissionDescription('');
@@ -185,6 +215,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
           title: title.trim(),
           description: missionDescription.trim(),
           type: missionType,
+          module_type: moduleType,
           target_value: missionTarget,
           reward_points: missionReward,
         });
@@ -307,7 +338,7 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {(['chat_interaction', 'code_execution', 'exercise_completion', 'notes_creation', 'custom'] as MissionType[]).map((type) => (
+                        {(['chat_interaction', 'code_execution', 'exercise_completion', 'notes_creation', 'whiteboard_interaction', 'custom'] as MissionType[]).map((type) => (
                           <SelectItem key={type} value={type} className="py-3">
                             <div className="flex items-center gap-3">
                               <div className="p-1.5 rounded bg-primary/10">
@@ -317,6 +348,35 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                                 <span className="font-medium">{missionTypeLabels[type]}</span>
                                 <span className="text-xs text-muted-foreground">
                                   {missionTypeDescriptions[type]}
+                                </span>
+                              </div>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Módulo Relacionado */}
+                  <div className="space-y-2">
+                    <Label htmlFor="module-type" className="flex items-center gap-2">
+                      Módulo relacionado
+                    </Label>
+                    <Select value={moduleType} onValueChange={(value) => setModuleType(value as ModuleType)}>
+                      <SelectTrigger id="module-type" className="h-auto py-2.5">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {(['chat', 'notes', 'quadro', 'ide', 'general'] as ModuleType[]).map((mod) => (
+                          <SelectItem key={mod} value={mod} className="py-3">
+                            <div className="flex items-center gap-3">
+                              <div className="p-1.5 rounded bg-primary/10">
+                                {moduleTypeIcons[mod]}
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                <span className="font-medium">{moduleTypeLabels[mod]}</span>
+                                <span className="text-xs text-muted-foreground">
+                                  {moduleTypeDescriptions[mod]}
                                 </span>
                               </div>
                             </div>

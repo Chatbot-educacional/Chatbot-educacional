@@ -117,7 +117,7 @@ const Whiteboard: React.FC = () => {
   // Mission Tracker - Rastreamento automático de progresso das missões
   // Nota: classId deve vir do contexto quando o usuário estiver em uma turma
   const [classId] = useState<string | undefined>(undefined);
-  const { trackCustomAction } = useMissionTracker(classId);
+  const { trackWhiteboardInteraction } = useMissionTracker(classId);
 
   // ---------- Estado local otimizado ----------
   const [editorVisible, setEditorVisible] = useState(false);
@@ -184,7 +184,7 @@ const Whiteboard: React.FC = () => {
         toast.success("Quadro salvo");
         
         // Rastrear salvamento de desenho para progresso da missão
-        await trackCustomAction('whiteboard_save', {
+        await trackWhiteboardInteraction('whiteboard_save', {
           drawingId: activeId || 'new',
           dataSize: compressedData.length,
         });

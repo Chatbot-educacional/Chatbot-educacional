@@ -833,6 +833,49 @@ class AgnoMethodologyService:
                 return heading, body
         return None
 
+    def _normalize_steps(self, steps: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        Normaliza a estrutura de steps/substeps garantindo formato consistente.
+        
+        Args:
+            steps: Lista de steps com possíveis substeps
+            
+        Returns:
+            Lista de steps normalizados com substeps (se existirem)
+        """
+        normalized_steps = []
+        
+        for step in steps:
+            if not isinstance(step, dict):
+                continue
+                
+            normalized_step = {
+                "number": step.get("number", len(normalized_steps) + 1),
+                "title": step.get("title", ""),
+                "description": step.get("description", "")
+            }
+            
+            # Processar substeps se existirem
+            if "substeps" in step and isinstance(step["substeps"], list):
+                normalized_substeps = []
+                for substep in step["substeps"]:
+                    if not isinstance(substep, dict):
+                        continue
+                    
+                    normalized_substeps.append({
+                        "number": substep.get("number", len(normalized_substeps) + 1),
+                        "title": substep.get("title", ""),
+                        "description": substep.get("description", "")
+                    })
+                
+                if normalized_substeps:
+                    normalized_step["substeps"] = normalized_substeps
+            
+            if normalized_step["title"] or normalized_step["description"]:
+                normalized_steps.append(normalized_step)
+        
+        return normalized_steps
+
     def _normalize_example_entry(
         self,
         data: Optional[Dict[str, Any]],
@@ -862,6 +905,10 @@ class AgnoMethodologyService:
             "error_explanation": data.get("error_explanation"),
             "correction": data.get("correction"),
         }
+
+        # NOVO: Extrair e normalizar steps se existirem
+        if "steps" in data and isinstance(data["steps"], list):
+            normalized["steps"] = self._normalize_steps(data["steps"])
 
         # Se explanation estiver vazia em exemplos corretos, tente comentar sobre objetivo
         if default_type == "correct" and not normalized["explanation"]:
@@ -1386,6 +1433,8 @@ class AgnoMethodologyService:
 ## 🧊 Painel de Exemplos (3 pares)
 Gere exemplos REAIS e RELEVANTES alinhados com a pergunta do aluno e com a missão do professor (quando fornecida). O código deve aparecer apenas dentro do JSON abaixo.
 
+IMPORTANTE: Cada exemplo (correto e incorreto) DEVE incluir uma estrutura hierárquica de 'steps' com 'substeps' opcionais para pedagogia efetiva.
+
 ```examples
 {{
   "pairs": [
@@ -1399,7 +1448,43 @@ Gere exemplos REAIS e RELEVANTES alinhados com a pergunta do aluno e com a miss�
         "difficulty": "beginner|intermediate|advanced",
         "tags": ["tag1", "tag2"],
         "code": "linha1\\nlinha2\\n...",
-        "explanation": "Por que este código está correto"
+        "explanation": "Por que este código está correto",
+        "steps": [
+          {{
+            "number": 1,
+            "title": "Título do passo 1",
+            "description": "Descrição detalhada do passo",
+            "substeps": [
+              {{
+                "number": 1,
+                "title": "Sub-etapa 1.1",
+                "description": "Detalhamento da sub-etapa"
+              }},
+              {{
+                "number": 2,
+                "title": "Sub-etapa 1.2",
+                "description": "Detalhamento da sub-etapa"
+              }}
+            ]
+          }},
+          {{
+            "number": 2,
+            "title": "Título do passo 2",
+            "description": "Descrição do segundo passo (substeps são opcionais)"
+          }},
+          {{
+            "number": 3,
+            "title": "Título do passo 3",
+            "description": "Descrição detalhada",
+            "substeps": [
+              {{
+                "number": 1,
+                "title": "Sub-etapa 3.1",
+                "description": "Detalhamento"
+              }}
+            ]
+          }}
+        ]
       }},
       "incorrect": {{
         "id": "incorrect_pair_1",
@@ -1409,24 +1494,75 @@ Gere exemplos REAIS e RELEVANTES alinhados com a pergunta do aluno e com a miss�
         "tags": ["tag1", "tag2"],
         "code": "linha1\\nlinha2\\n...",
         "error_explanation": "Explique o erro cometido",
-        "correction": "Como corrigir o erro"
+        "correction": "Como corrigir o erro",
+        "steps": [
+          {{
+            "number": 1,
+            "title": "❌ Título do passo problemático",
+            "description": "Explicação do que está errado neste passo",
+            "substeps": [
+              {{
+                "number": 1,
+                "title": "Problema específico",
+                "description": "Por que isso causa erro"
+              }}
+            ]
+          }},
+          {{
+            "number": 2,
+            "title": "🤔 Por que evitar?",
+            "description": "Explicação educacional do anti-pattern",
+            "substeps": [
+              {{
+                "number": 1,
+                "title": "Impacto em legibilidade",
+                "description": "Como isso dificulta a leitura"
+              }},
+              {{
+                "number": 2,
+                "title": "Impacto em performance",
+                "description": "Como isso afeta o desempenho"
+              }}
+            ]
+          }}
+        ]
       }}
     }},
     {{
       "pair_id": "pair_2",
       "context": "Outro recorte relevante do mesmo problema",
-      "correct": {{ ... }},
-      "incorrect": {{ ... }}
+      "correct": {{ 
+        ...,
+        "steps": [ {{ "number": 1, "title": "...", "description": "...", "substeps": [...] }} ]
+      }},
+      "incorrect": {{
+        ...,
+        "steps": [ {{ "number": 1, "title": "...", "description": "...", "substeps": [...] }} ]
+      }}
     }},
     {{
       "pair_id": "pair_3",
       "context": "Terceiro recorte complementar",
-      "correct": {{ ... }},
-      "incorrect": {{ ... }}
+      "correct": {{
+        ...,
+        "steps": [ {{ "number": 1, "title": "...", "description": "...", "substeps": [...] }} ]
+      }},
+      "incorrect": {{
+        ...,
+        "steps": [ {{ "number": 1, "title": "...", "description": "...", "substeps": [...] }} ]
+      }}
     }}
   ]
 }}
 ```
+
+REGRAS PARA STEPS:
+- Cada exemplo DEVE ter entre 3-5 steps principais
+- Steps podem (mas não precisam) ter substeps
+- Use substeps para detalhar conceitos complexos
+- Numere steps e substeps sequencialmente
+- Para exemplos incorretos, use emojis ❌ ou 🤔 nos títulos
+- Mantenha descrições concisas mas educativas
 
 IMPORTANTE: Não inclua blocos de código fora do JSON acima. Os três pares devem abordar variações significativas do mesmo conceito.
 

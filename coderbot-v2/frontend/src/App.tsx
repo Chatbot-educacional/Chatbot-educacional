@@ -243,26 +243,7 @@ const App = () => {
                     <Route path="notes" element={<NotesPage />} />
                     <Route path="code-editor" element={<CodeEditorPage />} />
                   </Route>
-                  <Route
-                    path="teacher/*"
-                    element={
-                      <RequireAuth>
-                        <RequireRole
-                          allowedRoles={["teacher", "admin"]}
-                          fallbackByRole={{
-                            student: <TeacherStudentFallback />,
-                            default: <TeacherUnknownFallback />,
-                          }}
-                        >
-                          <Index />
-                        </RequireRole>
-                      </RequireAuth>
-                    }
-                  >
-                    {/* <Route index element={<TeacherDashboard />} />
-                    <Route path="dashboard" element={<TeacherDashboard />} /> */}
-                    <Route path="*" element={<NotFound />} />
-                  </Route>
+                  {/* Teacher module is handled by nginx and served from separate container */}
                   <Route path="/profile" element={<RequireAuth><UserProfile /></RequireAuth>} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/consent" element={<ConsentTerms />} />

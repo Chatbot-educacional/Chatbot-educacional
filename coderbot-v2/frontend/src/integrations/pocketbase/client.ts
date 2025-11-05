@@ -471,7 +471,15 @@ export type MissionType =
   | 'code_execution'
   | 'exercise_completion'
   | 'notes_creation'
+  | 'whiteboard_interaction'
   | 'custom';
+
+export type ModuleType =
+  | 'chat'
+  | 'notes'
+  | 'quadro'
+  | 'ide'
+  | 'general';
 
 export type MissionStatus =
   | 'active'
@@ -485,6 +493,7 @@ export interface ClassMissionRecord extends PBRecord {
   title: string;
   description?: string;
   type: MissionType;
+  module_type?: ModuleType; // Novo campo para relacionar com módulos
   target_value: number; // e.g., 20 messages, 5 exercises, etc.
   reward_points: number;
   status: MissionStatus;
@@ -832,6 +841,7 @@ export const createClassMission = async (data: {
   title: string;
   description?: string;
   type: MissionType;
+  module_type?: ModuleType;
   target_value: number;
   reward_points: number;
   starts_at?: string;
@@ -851,6 +861,7 @@ export const createClassMission = async (data: {
       title: data.title,
       description: data.description || '',
       type: data.type,
+      module_type: data.module_type || 'general',
       target_value: data.target_value,
       reward_points: data.reward_points,
       status: 'active',
@@ -932,20 +943,45 @@ export const updateStudentMissionProgress = async (
 ): Promise<StudentMissionProgressRecord> => {
   const existing = await getStudentMissionProgress(missionId, studentId);
 
+  // Obter a missão para saber o target_value
+  const mission = await pb.collection('class_missions').getOne(missionId);
+  const targetValue = mission.target_value || 0;
+  
+  // Determinar se a missão foi concluída
+  const isCompleted = currentValue >= targetValue;
+  const newStatus = isCompleted ? 'completed' : 'in_progress';
+
   if (existing) {
-    return await pb.collection('student_mission_progress').update(existing.id, {
+    // Se já estava completa, não sobrescrever o completed_at
+    const updateData: any = {
       current_value: currentValue,
       metadata: metadata || existing.metadata,
-    }) as StudentMissionProgressRecord;
+      status: newStatus,
+    };
+
+    // Apenas definir completed_at se estiver sendo concluída agora
+    if (isCompleted && existing.status !== 'completed') {
+      updateData.completed_at = new Date().toISOString();
+    }
+
+    return await pb.collection('student_mission_progress').update(existing.id, updateData) as StudentMissionProgressRecord;
   } else {
-    return await pb.collection('student_mission_progress').create({
+    // Criar novo registro
+    const createData: any = {
       mission: missionId,
       student: studentId,
       current_value: currentValue,
-      status: 'in_progress',
+      status: newStatus,
       started_at: new Date().toISOString(),
       metadata: metadata || {},
-    }) as StudentMissionProgressRecord;
+    };
+
+    // Se já for criada como completa, definir completed_at
+    if (isCompleted) {
+      createData.completed_at = new Date().toISOString();
+    }
+
+    return await pb.collection('student_mission_progress').create(createData) as StudentMissionProgressRecord;
   }
 };
 

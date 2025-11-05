@@ -15,15 +15,20 @@ RUN pip install --no-cache-dir pdm
 # Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar código da aplicação e arquivos de configuração do PDM
+# Copiar arquivos de configuração do PDM (contexto: .)
+COPY backend/pyproject.toml backend/pdm.lock* ./
+
+# Instalar dependências usando PDM
+RUN pdm install --prod --no-editable
+
+# Copiar código da aplicação
 COPY backend/ ./
 
-# Criar cache do PDM em /tmp para evitar I/O no disco
-ENV PDM_HOME=/tmp/pdm
+# Instalar dependências novamente após copiar o código (caso necessário)
+RUN pdm install --prod --no-editable
 
-# Instalar dependências usando PDM e criar script de entrada
-RUN pdm install --prod --no-self && \
-    echo '#!/bin/bash' > /app/start.sh && \
+# Criar um script de entrada melhorado
+RUN echo '#!/bin/bash' > /app/start.sh && \
     echo 'set -e' >> /app/start.sh && \
     echo 'echo "🔧 Verificando instalação do PDM..."' >> /app/start.sh && \
     echo 'pdm info' >> /app/start.sh && \
@@ -35,6 +40,9 @@ RUN pdm install --prod --no-self && \
 
 # Expor a porta
 EXPOSE 8000
+
+# Adicionar endpoint de health check
+RUN echo 'from fastapi import FastAPI\nfrom fastapi.responses import JSONResponse\n\napp = FastAPI()\n\n@app.get("/health")\nasync def health_check():\n    return JSONResponse(content={"status": "healthy"})' > /app/health.py
 
 # Comando para iniciar a aplicação
 CMD ["/app/start.sh"]

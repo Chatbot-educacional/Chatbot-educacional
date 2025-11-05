@@ -2311,34 +2311,7 @@ Obrigado pela paciência! 🤖✨`,
             {/* Dropdown de analogias */}
             <div className="relative">
 
-              <Button
-                type="button"
-                variant={analogiesEnabled ? "edu-light-active" : "edu-light"}
-                size="edu-sm"
-                aria-label={analogiesEnabled ? "Gerenciar analogias" : "Ativar analogias"}
-                title={analogiesEnabled ? "Gerenciar analogias" : "Ativar analogias"}
-                onClick={() => {
-                  if (!analogiesEnabled) { // If analogies are currently OFF
-                    setAnalogiesEnabled(true);    // Turn them ON
-                    setShowAnalogyDropdown(true); // And show the dropdown
-                  } else { // If analogies are already ON
-                    setShowAnalogyDropdown((prev) => !prev); // Just toggle dropdown visibility
-                  }
-                }}
-                className={cn(
-                  "flex items-center gap-1 text-xs font-medium transition-all duration-200",
-                  analogiesEnabled ? "shadow-md" : ""
-                )}
-                tabIndex={0}
-                style={{ minHeight: 32 }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                <span>Analogias</span>
-                <svg className={cn("h-3 w-3 ml-1 transition-transform", showAnalogyDropdown ? "rotate-180" : "rotate-0")}
-                  fill="none" viewBox="0 0 20 20" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 8l4 4 4-4" />
-                </svg>
-              </Button>
+
               {/* Dropdown/colapsável */}
               {showAnalogyDropdown && (
                 <div className="absolute right-0 mt-2 w-72 edu-card shadow-lg z-20 p-4 animate-scale-in">
