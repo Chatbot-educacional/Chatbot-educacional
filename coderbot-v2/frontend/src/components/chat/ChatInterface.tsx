@@ -802,6 +802,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
           combinedTags.push(pairContext);
         }
 
+        // Extrair steps se existirem
+        const steps = Array.isArray(example.steps) ? example.steps : undefined;
+
         items.push({
           id: String(baseId),
           title:
@@ -816,6 +819,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ whiteboardContext,
           explanation: explanationParts.join('\n\n'),
           tags: combinedTags.length ? Array.from(new Set(combinedTags)) : undefined,
           difficulty: normalizeDifficulty(example.difficulty),
+          steps, // Incluir steps no CodeExample
         });
       };
 

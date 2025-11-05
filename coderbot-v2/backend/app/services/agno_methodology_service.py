@@ -1001,7 +1001,7 @@ class AgnoMethodologyService:
         additional_blocks: List[str] = []
         for label, keywords in [
             ("Explicações Complementares", ["justificativa", "explicação dos passos", "raciocínio"]),
-            ("Checklist de Autoavaliação", ["checklist", "autoavaliação"]),
+            # ("Checklist de Autoavaliação", ["checklist", "autoavaliação"]),
             ("Padrões Importantes", ["padrões", "heurísticas", "patterns"]),
             ("Próximos Passos", ["próximos passos", "exercícios", "pratica"]),
         ]:
