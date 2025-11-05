@@ -549,9 +549,8 @@ export const CodeEditorPage: React.FC<CodeEditorPageProps> = ({ className }) => 
   const [currentExampleId, setCurrentExampleId] = useState<string | null>(null);
 
   // Mission Tracker - Rastreamento automático de progresso das missões
-  // Nota: classId deve vir do contexto quando o usuário estiver em uma turma
-  const [classId, setClassId] = useState<string | undefined>(undefined);
-  const { trackCodeExecution } = useMissionTracker(classId);
+  // Passa undefined para permitir que o hook busque missões de todas as turmas do usuário
+  const { trackCodeExecution } = useMissionTracker(undefined);
 
   // Sync theme with context
   React.useEffect(() => {

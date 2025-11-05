@@ -456,31 +456,45 @@ export const CreateForumPostDialog = ({ classId, onPostCreated }: CreateForumPos
                       <Code className="h-3.5 w-3.5" />
                       Linguagem de programação (opcional)
                     </Label>
-                    <Select value={preferredLanguage} onValueChange={setPreferredLanguage}>
-                      <SelectTrigger id="preferred-language" className="h-11">
-                        <SelectValue placeholder="Selecione uma linguagem (deixe em branco para qualquer)" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="">
-                          <span className="text-muted-foreground">Qualquer linguagem</span>
-                        </SelectItem>
-                        <SelectItem value="python">Python</SelectItem>
-                        <SelectItem value="javascript">JavaScript</SelectItem>
-                        <SelectItem value="typescript">TypeScript</SelectItem>
-                        <SelectItem value="java">Java</SelectItem>
-                        <SelectItem value="cpp">C++</SelectItem>
-                        <SelectItem value="c">C</SelectItem>
-                        <SelectItem value="csharp">C#</SelectItem>
-                        <SelectItem value="go">Go</SelectItem>
-                        <SelectItem value="rust">Rust</SelectItem>
-                        <SelectItem value="ruby">Ruby</SelectItem>
-                        <SelectItem value="php">PHP</SelectItem>
-                        <SelectItem value="swift">Swift</SelectItem>
-                        <SelectItem value="kotlin">Kotlin</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div className="flex gap-2">
+                      <Select value={preferredLanguage || undefined} onValueChange={setPreferredLanguage}>
+                        <SelectTrigger id="preferred-language" className="h-11 flex-1">
+                          <SelectValue placeholder="Selecione uma linguagem (deixe em branco para qualquer)" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="python">Python</SelectItem>
+                          <SelectItem value="javascript">JavaScript</SelectItem>
+                          <SelectItem value="typescript">TypeScript</SelectItem>
+                          <SelectItem value="java">Java</SelectItem>
+                          <SelectItem value="cpp">C++</SelectItem>
+                          <SelectItem value="c">C</SelectItem>
+                          <SelectItem value="csharp">C#</SelectItem>
+                          <SelectItem value="go">Go</SelectItem>
+                          <SelectItem value="rust">Rust</SelectItem>
+                          <SelectItem value="ruby">Ruby</SelectItem>
+                          <SelectItem value="php">PHP</SelectItem>
+                          <SelectItem value="swift">Swift</SelectItem>
+                          <SelectItem value="kotlin">Kotlin</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      {preferredLanguage && (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          onClick={() => setPreferredLanguage('')}
+                          className="h-11 w-11 shrink-0"
+                          title="Limpar seleção"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">
-                      A IA gerará exemplos de código apenas nesta linguagem
+                      {preferredLanguage 
+                        ? 'A IA gerará exemplos de código apenas nesta linguagem'
+                        : 'Nenhuma linguagem selecionada - a IA poderá usar qualquer linguagem'
+                      }
                     </p>
                   </div>
 
