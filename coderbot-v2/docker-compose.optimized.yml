@@ -11,8 +11,8 @@ services:
       context: .
       dockerfile: docker/Dockerfile.pocketbase
     # container_name: coderbot-pocketbase  # Removido para evitar conflito entre ambientes
-    ports:
-      - "8090:8090"
+    # ports:
+    #   - "8090:8090"  # Porta comentada - acessível apenas via rede interna e proxy reverso
     volumes:
       - pocketbase_data:/pb/pb_data
       - ./pocketbase/pb_migrations:/pb/pb_migrations:ro
@@ -190,8 +190,8 @@ services:
         condition: service_healthy
       pocketbase:
         condition: service_healthy
-    ports:
-      - "8080:80"
+    # ports:
+    #   - "8080:80"  # Porta comentada - Dokploy gerencia via proxy reverso (Traefik)
     networks:
       - coderbot-network
     restart: unless-stopped
@@ -231,8 +231,8 @@ services:
   judge0:
     image: judge0/judge0:latest
     # container_name: coderbot-judge0  # Removido para evitar conflito entre ambientes
-    ports:
-      - "2358:2358"
+    # ports:
+    #   - "2358:2358"  # Porta comentada - acessível apenas via rede interna
     environment:
       - DATABASE_URL=postgresql://judge0:judge0@judge0-db:5432/judge0
       - REDIS_URL=redis://judge0-redis:6379/0
