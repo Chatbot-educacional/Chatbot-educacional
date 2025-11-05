@@ -115,9 +115,8 @@ const Whiteboard: React.FC = () => {
   const { drawings, loading, refresh } = useDrawings(currentUser?.id);
 
   // Mission Tracker - Rastreamento automático de progresso das missões
-  // Nota: classId deve vir do contexto quando o usuário estiver em uma turma
-  const [classId] = useState<string | undefined>(undefined);
-  const { trackWhiteboardInteraction } = useMissionTracker(classId);
+  // Passa undefined para buscar missões de todas as turmas do usuário automaticamente
+  const { trackWhiteboardInteraction } = useMissionTracker(undefined);
 
   // ---------- Estado local otimizado ----------
   const [editorVisible, setEditorVisible] = useState(false);

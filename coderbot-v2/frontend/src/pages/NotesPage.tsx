@@ -69,9 +69,8 @@ export default function NotesPage() {
   } = useNotes();
 
   // Mission Tracker - Rastreamento automático de progresso das missões
-  // Nota: classId deve vir do contexto quando o usuário estiver em uma turma
-  const [classId] = useState<string | undefined>(undefined);
-  const { trackNoteCreation } = useMissionTracker(classId);
+  // Passa undefined para buscar missões de todas as turmas do usuário automaticamente
+  const { trackNoteCreation } = useMissionTracker(undefined);
 
   const [currentNote, setCurrentNote] = useState<Note | null>(null);
   const [filters, setFilters] = useState<NoteFilters>({});
