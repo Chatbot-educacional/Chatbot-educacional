@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.pocketbase
-    container_name: coderbot-pocketbase
+    # container_name: coderbot-pocketbase  # Removido para evitar conflito entre ambientes
     ports:
       - "8090:8090"
     volumes:
@@ -42,7 +42,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.backend
-    container_name: coderbot-backend
+    # container_name: coderbot-backend  # Removido para evitar conflito entre ambientes
     # ports:
     #   - "8000:8000"  # Acessível apenas via nginx
     environment:
@@ -113,7 +113,7 @@ services:
         VITE_POCKETBASE_URL: /pb
         VITE_PUBLIC_POSTHOG_KEY: ${VITE_PUBLIC_POSTHOG_KEY:-}
         VITE_PUBLIC_POSTHOG_HOST: ${VITE_PUBLIC_POSTHOG_HOST:-https://us.i.posthog.com}
-    container_name: coderbot-frontend
+    # container_name: coderbot-frontend  # Removido para evitar conflito entre ambientes
     environment:
       - VITE_POCKETBASE_URL=/pb
       - VITE_PUBLIC_POSTHOG_KEY=${VITE_PUBLIC_POSTHOG_KEY:-}
@@ -150,7 +150,7 @@ services:
         VITE_POCKETBASE_URL: /pb
         VITE_PUBLIC_POSTHOG_KEY: ${VITE_PUBLIC_POSTHOG_KEY:-}
         VITE_PUBLIC_POSTHOG_HOST: ${VITE_PUBLIC_POSTHOG_HOST:-https://us.i.posthog.com}
-    container_name: coderbot-teacher
+    # container_name: coderbot-teacher  # Removido para evitar conflito entre ambientes
     environment:
       - VITE_POCKETBASE_URL=/pb
       - VITE_APP_BASE_PATH=/teacher
@@ -180,7 +180,7 @@ services:
   # Reverse proxy para expor todos os serviços via uma única porta (nginx)
   nginx:
     image: nginx:alpine
-    container_name: coderbot-nginx
+    # container_name: coderbot-nginx  # Removido para evitar conflito entre ambientes
     depends_on:
       backend:
         condition: service_healthy
@@ -204,7 +204,7 @@ services:
   # Judge0 - Execução de código (opcional - perfil judge)
   judge0-db:
     image: postgres:13
-    container_name: coderbot-judge0-db
+    # container_name: coderbot-judge0-db  # Removido para evitar conflito entre ambientes
     environment:
       - POSTGRES_USER=judge0
       - POSTGRES_PASSWORD=judge0
@@ -219,7 +219,7 @@ services:
 
   judge0-redis:
     image: redis:6-alpine
-    container_name: coderbot-judge0-redis
+    # container_name: coderbot-judge0-redis  # Removido para evitar conflito entre ambientes
     networks:
       - coderbot-network
     restart: unless-stopped
@@ -230,7 +230,7 @@ services:
 
   judge0:
     image: judge0/judge0:latest
-    container_name: coderbot-judge0
+    # container_name: coderbot-judge0  # Removido para evitar conflito entre ambientes
     ports:
       - "2358:2358"
     environment:
@@ -271,7 +271,7 @@ services:
 
   judge0-worker:
     image: judge0/judge0:latest
-    container_name: coderbot-judge0-worker
+    # container_name: coderbot-judge0-worker  # Removido para evitar conflito entre ambientes
     environment:
       - DATABASE_URL=postgresql://judge0:judge0@judge0-db:5432/judge0
       - REDIS_URL=redis://judge0-redis:6379/0
