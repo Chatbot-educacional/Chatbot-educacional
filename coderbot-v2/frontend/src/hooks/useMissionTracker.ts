@@ -21,11 +21,30 @@ import {
  * @returns Funções para rastrear diferentes tipos de ações
  */
 export const useMissionTracker = (classId?: string) => {
+  console.log('[useMissionTracker] 🌟 HOOK CRIADO/MONTADO', { classId });
+  
   const [activeMissions, setActiveMissions] = useState<ClassMissionRecord[]>([]);
   const [isTracking, setIsTracking] = useState(false);
-  const [userId, setUserId] = useState<string | null>(null);
+  
+  // Tentar inicializar userId IMEDIATAMENTE (síncrono)
+  const initialUser = getCurrentUser();
+  const [userId, setUserId] = useState<string | null>(initialUser?.id || null);
+  
+  console.log('[useMissionTracker] 📌 Estado inicial userId:', userId);
 
-  // Carregar missões ativas da turma E inicializar userId
+  // Inicializar userId imediatamente (não esperar useEffect)
+  useEffect(() => {
+    console.log('[useMissionTracker] 🚀 useEffect[] iniciado (montagem)');
+    const user = getCurrentUser();
+    if (user) {
+      console.log('[useMissionTracker] 👤 Definindo userId no useEffect:', user.id);
+      setUserId(user.id);
+    } else {
+      console.log('[useMissionTracker] ⚠️ getCurrentUser() retornou null/undefined');
+    }
+  }, []); // Executar apenas uma vez na montagem
+
+  // Carregar missões ativas da turma
   useEffect(() => {
     const loadMissions = async () => {
       console.log('[useMissionTracker] 🔄 useEffect loadMissions', { classId });
