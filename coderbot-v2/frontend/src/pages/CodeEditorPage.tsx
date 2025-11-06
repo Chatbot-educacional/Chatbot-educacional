@@ -684,7 +684,15 @@ export const CodeEditorPage: React.FC<CodeEditorPageProps> = ({ className }) => 
         
         // Rastrear execução de código para progresso da missão
         if (!executionResult.executionError) {
+          console.log('[CodeEditorPage] 🚀 Executando trackCodeExecution...', {
+            language: currentLanguage,
+            codeLength: code.length,
+            hasError: executionResult.executionError
+          });
           await trackCodeExecution(currentLanguage, code.length);
+          console.log('[CodeEditorPage] ✅ trackCodeExecution concluído');
+        } else {
+          console.log('[CodeEditorPage] ❌ Não rastreando: código com erro');
         }
         
         // Marcar exemplo como executado se estivermos executando um exemplo

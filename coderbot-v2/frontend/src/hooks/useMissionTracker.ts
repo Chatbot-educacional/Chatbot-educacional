@@ -25,21 +25,31 @@ export const useMissionTracker = (classId?: string) => {
   const [isTracking, setIsTracking] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
 
-  // Carregar missões ativas da turma
+  // Carregar missões ativas da turma E inicializar userId
   useEffect(() => {
     const loadMissions = async () => {
-      if (!classId) return;
-
+      console.log('[useMissionTracker] 🔄 useEffect loadMissions', { classId });
+      
       try {
         const user = getCurrentUser();
-        if (!user) return;
+        if (!user) {
+          console.log('[useMissionTracker] ⚠️ Nenhum usuário logado');
+          return;
+        }
 
+        console.log('[useMissionTracker] 👤 Usuário encontrado:', user.id);
         setUserId(user.id);
 
-        const missions = await listClassMissions(classId, { status: 'active' });
-        setActiveMissions(missions);
+        // Se temos classId, carregar missões da turma
+        if (classId) {
+          const missions = await listClassMissions(classId, { status: 'active' });
+          console.log('[useMissionTracker] ✅ Missões carregadas da turma:', missions.length);
+          setActiveMissions(missions);
+        } else {
+          console.log('[useMissionTracker] ℹ️ Sem classId, missões serão carregadas sob demanda');
+        }
       } catch (error) {
-        console.error('Erro ao carregar missões:', error);
+        console.error('[useMissionTracker] ❌ Erro ao carregar missões:', error);
       }
     };
 
@@ -58,7 +68,22 @@ export const useMissionTracker = (classId?: string) => {
     increment: number = 1,
     metadata?: Record<string, any>
   ) => {
-    if (!userId || isTracking) return;
+    console.log('[useMissionTracker] 🎬 trackAction iniciado', {
+      missionType,
+      increment,
+      userId,
+      isTracking,
+      classId,
+      activeMissionsCount: activeMissions.length,
+      activeMissions: activeMissions.map(m => ({ id: m.id, title: m.title, type: m.type }))
+    });
+
+    if (!userId || isTracking) {
+      console.log('[useMissionTracker] ⚠️ Abortando trackAction:', {
+        reason: !userId ? 'sem userId' : 'já está rastreando'
+      });
+      return;
+    }
 
     setIsTracking(true);
 
@@ -190,11 +215,13 @@ export const useMissionTracker = (classId?: string) => {
    * Atualiza missões do tipo 'code_execution'.
    */
   const trackCodeExecution = useCallback(async (language: string, codeLength: number) => {
+    console.log('[useMissionTracker] 🎯 trackCodeExecution chamado', { language, codeLength });
     await trackAction('code_execution', 1, {
       language,
       codeLength,
       timestamp: new Date().toISOString(),
     });
+    console.log('[useMissionTracker] 🎯 trackCodeExecution finalizado');
   }, [trackAction]);
 
   /**
